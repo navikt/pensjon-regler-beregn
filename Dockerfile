@@ -1,8 +1,8 @@
 FROM node:13.12.0-alpine as build
 WORKDIR /
 ENV PATH /satsviewer/node_modules/.bin:$PATH
-COPY /src/main/satsviewer/package.json ./
-COPY /src/main/satsviewer/package-lock.json ./
+COPY package.json ./
+COPY package-lock.json ./
 RUN npm ci --silent
 RUN npm install react-scripts@3.4.1 -g --silent
 COPY . ./
