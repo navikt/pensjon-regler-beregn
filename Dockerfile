@@ -10,6 +10,6 @@ RUN npm run build
 
 # production environment
 FROM nginx:stable-alpine
-COPY --from=build src/main/satsviewer/build /usr/share/nginx/html
+COPY --from=build /build /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
