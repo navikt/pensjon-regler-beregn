@@ -1,7 +1,7 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: pensjon-preg-logviewer-app
+  name: pensjon-regler-satsviewer
   namespace: teampensjon
   labels:
     team: teampensjon
@@ -12,13 +12,13 @@ spec:
     min: 1
     max: 1
   liveness:
-    path: "/index.html"
+    path: "isAlive"
     initialDelay: 10
     timeout: 30
   readiness:
-    path: "/index.html"
+    path: "isReady"
     initialDelay: 10
     timeout: 30
   ingresses:
-    - "https://pensjon-preg-logviewer-app.dev.adeo.no"
-    - "https://pensjon-preg-logviewer-app.dev-fss.nais.io"
+    - "https://pensjon-regler-satsviewer.dev.adeo.no"
+    - "https://pensjon-regler-satsviewer.dev-fss.nais.io"
