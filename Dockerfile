@@ -1,5 +1,5 @@
 FROM node:13.12.0-alpine as build
-WORKDIR \src\main\satsviewer
+WORKDIR /
 ENV PATH /satsviewer/node_modules/.bin:$PATH
 COPY package.json ./
 COPY package-lock.json ./
