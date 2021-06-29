@@ -37,6 +37,6 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-fss
-          RESOURCE: nais.yaml
+          RESOURCE: nais.yml
           IMAGE: ${{ env.IMAGE }}
           TEAM: teampensjon
