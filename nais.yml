@@ -13,12 +13,12 @@ spec:
     max: 1
   liveness:
     path: "/isAlive"
-    initialDelay: 30
-    timeout: 1
+    initialDelay: 20
+    timeout: 3
   readiness:
     path: "/isReady"
-    initialDelay: 30
-    timeout: 1
+    initialDelay: 20
+    timeout: 3
   resources:
     limits:
       cpu: "1"
