@@ -19,6 +19,13 @@ spec:
     path: "isReady"
     initialDelay: 10
     timeout: 30
+  resources:
+    limits:
+      cpu: "1"
+      memory: "2048Mi"
+    requests:
+      cpu: "100m"
+      memory: "512Mi"
   ingresses:
     - "https://pensjon-regler-satsviewer.dev.adeo.no"
     - "https://pensjon-regler-satsviewer.dev-fss.nais.io"
