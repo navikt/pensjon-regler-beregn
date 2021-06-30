@@ -1,10 +1,10 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: pensjon-regler-satsviewer
-  namespace: teampensjon
+  name: "pensjon-regler-satsviewer"
+  namespace: "teampensjon"
   labels:
-    team: teampensjon
+    team: "teampensjon"
 spec:
   image: "{{ image }}"
   port: 80
