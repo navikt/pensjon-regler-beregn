@@ -5,18 +5,25 @@ import { DropdownButton } from "react-bootstrap";
 class DropdownMenu extends React.Component{
     constructor(props){
         super(props)
-        this.state = {name: "", list: []}
+        this.state = {name: this.props.name, list: this.props.list, value: "default"}
+
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-    componentDidMount(){
-        this.setState( {name: this.props.name,list:this.props.list})
-    }
+    
+
+  handleSubmit(event) {
+    this.setState({value: event.target.name});
+    this.props.onTabellChange(event.target.name);
+    console.log(event.target.name);
+    console.log('Valgt satstabell: ' + this.state.value);
+  }
     render(){
-        console.log('render dropdown', this.props, this.state);
+        console.log('render dropdown state value:'+ this.state.value);
         return(
 
             <DropdownButton menuAlign = "left" id="dropdown-basic-button" size="lg" title={this.state.name}>
                 {this.state.list.map((listItem)=>
-                    <Dropdown.Item href ={'#/action-'+listItem} key = {listItem}>{listItem}</Dropdown.Item>
+                    <Dropdown.Item href ={'#/action-'+listItem} key = {listItem} name = {listItem} onClick = {this.handleSubmit}>{listItem}</Dropdown.Item>
                 )}
             </DropdownButton>
         );

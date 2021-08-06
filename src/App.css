@@ -26,6 +26,17 @@
 .flexbox-container {
   display: flex;
   flex-direction: row;
+  width: 50%;
+  justify-content: space-around;
+  padding:5%;
+}
+
+.satsvindu-container{
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  color:black;
+  background-color: rgb(165, 165, 158);
 }
 
 @keyframes App-logo-spin {
