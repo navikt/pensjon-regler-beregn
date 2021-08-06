@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 
-class SkjermingstilleggTabell extends React.Component {
+class MinstePensjonsnivåTabell extends React.Component {
     constructor(props){
         super(props)
         this.state = {   
@@ -12,7 +12,7 @@ class SkjermingstilleggTabell extends React.Component {
         }
     }
     componentDidMount() {
-        fetch('    http://localhost:8080/api/skjermingstilleggSats?Aktiv=false&Satstabell='+this.props.currentTabell
+        fetch('    http://localhost:8080/api/minstePensjonsNivåSats?Aktiv=false&Satstabell='+this.props.currentTabell
         ,{
           headers : { 
             'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ class SkjermingstilleggTabell extends React.Component {
                 isLoaded: true,
                 verdier: result[1]
               },
-              console.log("Skjermingstillegg lastet"));
+              console.log("MinstePensjonsNivå lastet"));
             },
             (error) => {
               this.setState({
@@ -43,11 +43,15 @@ class SkjermingstilleggTabell extends React.Component {
             <div>
             <Table striped bordered hover>
             <thead>   
-                <tr>Skjermingstillegg</tr>
+                <tr>Minstepensjonsnivå</tr>
                 <tr>
                     <th>FomDato</th>
                     <th>TomDato</th>
-                    <th>Verdi</th>
+                    <th>Lav</th>
+                    <th>Ordinær</th>
+                    <th>Høy</th>
+                    <th>Høy enslig</th>
+                    <th>Særskilt</th>
                 </tr>
             </thead> 
             <tbody> 
@@ -56,7 +60,11 @@ class SkjermingstilleggTabell extends React.Component {
                         <tr>
                         <td>{data.satsFom[2]}-{data.satsFom[1]}-{data.satsFom[0]}</td>
                         <td>{data.satsTom[2]}-{data.satsTom[1]}-{data.satsTom[0]}</td>
-                        <td>{data.value}</td>
+                        <td>{data.kodeMap[1].LAV}</td>
+                        <td>{data.kodeMap[1].ORDINAER}</td>
+                        <td>{data.kodeMap[1].HOY}</td>
+                        <td>{data.kodeMap[1].HOY_ENSLIG}</td>
+                        <td>{data.kodeMap[1].SAERSKILT}</td>
                         </tr>
             )})}
              </tbody>
@@ -66,4 +74,4 @@ class SkjermingstilleggTabell extends React.Component {
     }
 }
 
-export default SkjermingstilleggTabell
+export default MinstePensjonsnivåTabell

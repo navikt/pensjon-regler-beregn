@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 
-class SkjermingstilleggTabell extends React.Component {
+class GarantiePensjonsnivåTabell extends React.Component {
     constructor(props){
         super(props)
         this.state = {   
@@ -12,7 +12,7 @@ class SkjermingstilleggTabell extends React.Component {
         }
     }
     componentDidMount() {
-        fetch('    http://localhost:8080/api/skjermingstilleggSats?Aktiv=false&Satstabell='+this.props.currentTabell
+        fetch('    http://localhost:8080/api/garantiPensjonsNivåSats?Aktiv=false&Satstabell='+this.props.currentTabell
         ,{
           headers : { 
             'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ class SkjermingstilleggTabell extends React.Component {
                 isLoaded: true,
                 verdier: result[1]
               },
-              console.log("Skjermingstillegg lastet"));
+              console.log("GarantiPensjonsNivå lastet"));
             },
             (error) => {
               this.setState({
@@ -43,11 +43,12 @@ class SkjermingstilleggTabell extends React.Component {
             <div>
             <Table striped bordered hover>
             <thead>   
-                <tr>Skjermingstillegg</tr>
+                <tr>Garantipensjonsnivå</tr>
                 <tr>
                     <th>FomDato</th>
                     <th>TomDato</th>
-                    <th>Verdi</th>
+                    <th>GPN Ordinær</th>
+                    <th>GPN Høy</th>
                 </tr>
             </thead> 
             <tbody> 
@@ -56,7 +57,8 @@ class SkjermingstilleggTabell extends React.Component {
                         <tr>
                         <td>{data.satsFom[2]}-{data.satsFom[1]}-{data.satsFom[0]}</td>
                         <td>{data.satsTom[2]}-{data.satsTom[1]}-{data.satsTom[0]}</td>
-                        <td>{data.value}</td>
+                        <td>{data.kodeMap[1].GPN_ORDINAER}</td>
+                        <td>{data.kodeMap[1].GPN_HOY}</td>
                         </tr>
             )})}
              </tbody>
@@ -66,4 +68,4 @@ class SkjermingstilleggTabell extends React.Component {
     }
 }
 
-export default SkjermingstilleggTabell
+export default GarantiePensjonsnivåTabell

@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 
-class SkjermingstilleggTabell extends React.Component {
+class NordiskKonvensjonslandTabell extends React.Component {
     constructor(props){
         super(props)
         this.state = {   
@@ -12,7 +12,7 @@ class SkjermingstilleggTabell extends React.Component {
         }
     }
     componentDidMount() {
-        fetch('    http://localhost:8080/api/skjermingstilleggSats?Aktiv=false&Satstabell='+this.props.currentTabell
+        fetch('    http://localhost:8080/api/nordiskKonvensjonsLandSats?Aktiv=false&Satstabell='+this.props.currentTabell
         ,{
           headers : { 
             'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ class SkjermingstilleggTabell extends React.Component {
                 isLoaded: true,
                 verdier: result[1]
               },
-              console.log("Skjermingstillegg lastet"));
+              console.log("Nordisk Konvensjonsland lastet"));
             },
             (error) => {
               this.setState({
@@ -43,7 +43,7 @@ class SkjermingstilleggTabell extends React.Component {
             <div>
             <Table striped bordered hover>
             <thead>   
-                <tr>Skjermingstillegg</tr>
+                <tr>Nordisk Konvensjonsland</tr>
                 <tr>
                     <th>FomDato</th>
                     <th>TomDato</th>
@@ -66,4 +66,4 @@ class SkjermingstilleggTabell extends React.Component {
     }
 }
 
-export default SkjermingstilleggTabell
+export default NordiskKonvensjonslandTabell

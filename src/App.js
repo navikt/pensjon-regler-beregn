@@ -49,13 +49,10 @@ class App extends React.Component {
             var navn = String(tabell)
             if(navn.startsWith("PROD")){
                 ProdTabeller.push(navn);
-                console.log("prod push")
             } else if( navn.startsWith("SYSTEMTEST_") || navn.startsWith("TEST")){
               TestTabeller.push(navn);
-              console.log("test push")
             } else {
               AndreTabeller.push(navn);
-              console.log("andre push")
             };
           })
         }

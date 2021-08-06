@@ -34,9 +34,10 @@
 .satsvindu-container{
   display: flex;
   flex-direction: column;
-  width: 45%;
+  width: 90%;
   color:black;
   background-color: rgb(165, 165, 158);
+  font-size: small;
 }
 
 @keyframes App-logo-spin {
