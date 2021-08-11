@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 
-class GarantiePensjonsnivåTabell extends React.Component {
+class GarantiPensjonsnivåTabell extends React.Component {
     constructor(props){
         super(props)
         this.state = {   
@@ -68,4 +68,4 @@ class GarantiePensjonsnivåTabell extends React.Component {
     }
 }
 
-export default GarantiePensjonsnivåTabell
+export default GarantiPensjonsnivåTabell

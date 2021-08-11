@@ -4,11 +4,10 @@ import { Table } from "react-bootstrap";
 class VeietGrunnbeløpTabell extends React.Component {
     constructor(props){
         super(props)
-        this.state = {   
-            currentTabell: this.props.currentTabell,         
+        this.state = {      
             error: null,
             isLoaded: false,
-            verdier: [],
+            verdier: []
         }
     }
     componentDidMount() {

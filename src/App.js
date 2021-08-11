@@ -22,7 +22,7 @@ class App extends React.Component {
         andreTabeller: [],
         prodTabeller: [],
         testTabeller: [],
-        valgtTabell: "ingen"
+        valgtTabell: "PROD"
     }
 
     this.handleTabellChange = this.handleTabellChange.bind(this);
@@ -70,24 +70,23 @@ class App extends React.Component {
         }
     ) //TODO vil helst ha dette i en egen metode
   }
-  handleTabellChange(event) {
-    console.log('event target print:' + event.target)
+  handleTabellChange(name) {
+    this.setState({valgtTabell: name})
     console.log('Valgt satstabell (inne i App.js): ' + this.state.valgtTabell);
   }
   render(){
     console.log("App render", this.state)
-    const valgtTabell = this.state.valgtTabell;
     return (
       <div class = "App-header">          
         <h1> PENSJON REGLER SATSVIEWER </h1>
         <div class = "flexbox-container">
-          <DropdownMenu href = {"ProdTabeller"} name = "PROD Tabeller" list = {ProdTabeller} onTabellChange = {this.handleTabellChange}>PROD Tabeller</DropdownMenu>
-          <DropdownMenu href = {"TestTabeller"} name = "Test Tabeller" list = {TestTabeller} onTabellChange = {this.handleTabellChange}>Test Tabeller</DropdownMenu>
-          <DropdownMenu href = {"AndreTabeller"} name = "Andre Tabeller" list = {AndreTabeller} onTabellChange = {this.handleTabellChange}>Andre Tabeller</DropdownMenu>
+          <DropdownMenu href = {"ProdTabeller"} name = "PROD Tabeller" list = {ProdTabeller} prevTabell = {this.state.valgtTabell} onTabellChange = {this.handleTabellChange}>PROD Tabeller</DropdownMenu>
+          <DropdownMenu href = {"TestTabeller"} name = "Test Tabeller" list = {TestTabeller} prevTabell = {this.state.valgtTabell} onTabellChange = {this.handleTabellChange}>Test Tabeller</DropdownMenu>
+          <DropdownMenu href = {"AndreTabeller"} name = "Andre Tabeller" list = {AndreTabeller} prevTabell = {this.state.valgtTabell} onTabellChange = {this.handleTabellChange}>Andre Tabeller</DropdownMenu>
           <DropdownMenu href = {"MiljøTabeller"} name = "Aktiv Tabell i Miljø" list = {["Q1","Q2","Q3","Q4","T1","T2","T3","T4"]} onTabellChange = {this.handleTabellChange}>Aktiv Tabell i Miljø</DropdownMenu>
         </div>
         <div class = "satsvindu-container">
-          <Satsvindu currentTabell = "PROD"></Satsvindu>
+          <Satsvindu currentTabell = {this.state.valgtTabell}></Satsvindu>
         </div>
       </div>
   );

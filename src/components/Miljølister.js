@@ -62,13 +62,10 @@ export function HentLister3() {
                 var navn = String(tabell)
                 if(navn.startsWith("PROD_")){
                    ProdTabeller.push(navn);
-                   console.log("prod push")
                 } else if( navn.startsWith("SYSTEMTEST_") || navn.startsWith("TEST")){
                   TestTabeller.push(navn);
-                  console.log("test push")
                 } else {
                   AndreTabeller.push(navn);
-                  console.log("test push")
                 };
               })
           }
@@ -129,13 +126,10 @@ export class HentLister2 extends React.Component {
                     var navn = String(tabell)
                     if(navn.startsWith("PROD_")){
                        ProdTabeller.push(navn);
-                       console.log("prod push")
                     } else if( navn.startsWith("SYSTEMTEST_") || navn.startsWith("TEST")){
                       TestTabeller.push(navn);
-                      console.log("test push")
                     } else {
                       AndreTabeller.push(navn);
-                      console.log("andre push")
                     };
                   })
             )
