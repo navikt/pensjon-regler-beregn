@@ -1,5 +1,4 @@
 import React from "react";
-import { Table } from "react-bootstrap";
 import SkjermingstilleggTabell from "./Satstabeller/SkjermingstilleggTabell";
 import VeietGrunnbeløpTabell from "./Satstabeller/VeietGrunnbeløpTabell";
 import UføretrygdMinsteytelseTabell from "./Satstabeller/UføretrygdMinsteytelseTabell";
@@ -14,6 +13,8 @@ import GrunnbeløpTabell from "./Satstabeller/GrunnbeløpTabell";
 import GarantiPensjonsnivåTabell from "./Satstabeller/GarantiPensjonsnivåTabell";
 import EØSKonvensjonslandTabell from "./Satstabeller/EØSKonvensjonslandTabell";
 import BarnetilleggTak2016Tabell from "./Satstabeller/BarnetilleggTak2016Tabell";
+import "../App.css";
+import Collapse from 'react-bootstrap/Collapse'
 
 class Satsvindu extends React.Component{
     constructor(props){
@@ -25,24 +26,106 @@ class Satsvindu extends React.Component{
         }
     }
     render(){
-        console.log("satsvindu re-render");
         return(
-            <div>
-            <h1>Valgt Tabell: {this.props.currentTabell}</h1>
-                    <VeietGrunnbeløpTabell key = {"veietGrunnbeløp: "+this.props.currentTabell} currentTabell = {this.props.currentTabell}></VeietGrunnbeløpTabell>
-                    <UføretrygdMinsteytelseTabell key = {"UføretrygdMinsteytelse: "+this.props.currentTabell} currentTabell = {this.props.currentTabell}></UføretrygdMinsteytelseTabell>
-                    <SærtilleggTabell key = {"Særtillegg: "+this.props.currentTabell} currentTabell = {this.props.currentTabell}></SærtilleggTabell>
-                    <SkjermingstilleggTabell key = {"Skjermingstillegg: "+this.props.currentTabell} currentTabell = {this.props.currentTabell}></SkjermingstilleggTabell>
-                    <RettsgebyrTabell key = {"Rettsgebyr: "+this.props.currentTabell} currentTabell = {this.props.currentTabell}></RettsgebyrTabell>
-                    <ReguleringsfaktorTabell key = {"Reguleringsfaktor: "+this.props.currentTabell} currentTabell = {this.props.currentTabell}></ReguleringsfaktorTabell>
-                    <NordiskKonvensjonslandTabell key = {"NordiskKonvensjonsland: "+this.props.currentTabell} currentTabell = {this.props.currentTabell}></NordiskKonvensjonslandTabell>
-                    <MinstePensjonsnivåTabell key = {"MinstePensjonsnivå: "+this.props.currentTabell} currentTabell = {this.props.currentTabell}></MinstePensjonsnivåTabell>
-                    <LønnsvekstTabell key = {"Lønnsvekst: "+this.props.currentTabell} currentTabell = {this.props.currentTabell}></LønnsvekstTabell>
-                    <GrunnpensjonTabell key = {"Grunnpensjon: "+this.props.currentTabell} currentTabell = {this.props.currentTabell}></GrunnpensjonTabell>
-                    <GrunnbeløpTabell key = {"Grunnbeløp: "+this.props.currentTabell} currentTabell = {this.props.currentTabell}></GrunnbeløpTabell>
-                    <GarantiPensjonsnivåTabell key = {"GarantiPensjonsnivå: "+this.props.currentTabell} currentTabell = {this.props.currentTabell}></GarantiPensjonsnivåTabell>
-                    <EØSKonvensjonslandTabell key = {"EØSKonvensjonsland: "+this.props.currentTabell} currentTabell = {this.props.currentTabell}></EØSKonvensjonslandTabell>
-                    <BarnetilleggTak2016Tabell key = {"BarnetilleggTak2016: "+this.props.currentTabell} currentTabell = {this.props.currentTabell}></BarnetilleggTak2016Tabell>
+            <div class = "satstabell-container">
+                <h1>Valgt Tabell: {this.props.currentTabell}</h1>
+                <VeietGrunnbeløpTabell 
+                    key = {"veietGrunnbeløp: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                    currentTabell = {this.props.currentTabell} 
+                    valgtMiljø = {this.props.valgtMiljø} 
+                    aktiv = {this.props.aktiv}>
+                </VeietGrunnbeløpTabell>
+
+                <UføretrygdMinsteytelseTabell 
+                    key = {"UføretrygdMinsteytelse: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                    currentTabell = {this.props.currentTabell} 
+                    valgtMiljø = {this.props.valgtMiljø} 
+                    aktiv = {this.props.aktiv}>
+                </UføretrygdMinsteytelseTabell>
+
+                <SærtilleggTabell 
+                    key = {"Særtillegg: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                    currentTabell = {this.props.currentTabell} 
+                    valgtMiljø = {this.props.valgtMiljø} 
+                    aktiv = {this.props.aktiv}>
+                </SærtilleggTabell>
+
+                <SkjermingstilleggTabell 
+                    key = {"Skjermingstillegg: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                    currentTabell = {this.props.currentTabell} 
+                    valgtMiljø = {this.props.valgtMiljø} 
+                    aktiv = {this.props.aktiv}>
+                </SkjermingstilleggTabell>
+
+                <RettsgebyrTabell 
+                    key = {"Rettsgebyr: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                    currentTabell = {this.props.currentTabell} 
+                    valgtMiljø = {this.props.valgtMiljø} 
+                    aktiv = {this.props.aktiv}>
+                </RettsgebyrTabell>
+
+                <ReguleringsfaktorTabell 
+                    key = {"Reguleringsfaktor: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                    currentTabell = {this.props.currentTabell} 
+                    valgtMiljø = {this.props.valgtMiljø} 
+                    aktiv = {this.props.aktiv}>
+                </ReguleringsfaktorTabell>
+
+                <NordiskKonvensjonslandTabell
+                    key = {"NordiskKonvensjonsland: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                    currentTabell = {this.props.currentTabell} 
+                    valgtMiljø = {this.props.valgtMiljø} 
+                    aktiv = {this.props.aktiv}>
+                </NordiskKonvensjonslandTabell>
+
+                <MinstePensjonsnivåTabell 
+                    key = {"MinstePensjonsnivå: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                    currentTabell = {this.props.currentTabell} 
+                    valgtMiljø = {this.props.valgtMiljø} 
+                    aktiv = {this.props.aktiv}>
+                </MinstePensjonsnivåTabell>
+
+                <LønnsvekstTabell 
+                    key = {"Lønnsvekst: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                    currentTabell = {this.props.currentTabell} 
+                    valgtMiljø = {this.props.valgtMiljø} 
+                    aktiv = {this.props.aktiv}>
+                </LønnsvekstTabell>
+
+                <GrunnpensjonTabell 
+                    key = {"Grunnpensjon: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                    currentTabell = {this.props.currentTabell} 
+                    valgtMiljø = {this.props.valgtMiljø} 
+                    aktiv = {this.props.aktiv}>
+                </GrunnpensjonTabell>
+
+                <GrunnbeløpTabell 
+                    key = {"Grunnbeløp: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                    currentTabell = {this.props.currentTabell} 
+                    valgtMiljø = {this.props.valgtMiljø} 
+                    aktiv = {this.props.aktiv}>
+                </GrunnbeløpTabell>
+
+                <GarantiPensjonsnivåTabell 
+                    key = {"GarantiPensjonsnivå: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                    currentTabell = {this.props.currentTabell} 
+                    valgtMiljø = {this.props.valgtMiljø} 
+                    aktiv = {this.props.aktiv}>
+                </GarantiPensjonsnivåTabell>
+
+                <EØSKonvensjonslandTabell 
+                    key = {"EØSKonvensjonsland: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                    currentTabell = {this.props.currentTabell} 
+                    valgtMiljø = {this.props.valgtMiljø} 
+                    aktiv = {this.props.aktiv}>
+                </EØSKonvensjonslandTabell>
+
+                <BarnetilleggTak2016Tabell 
+                    key = {"BarnetilleggTak2016: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                    currentTabell = {this.props.currentTabell} 
+                    valgtMiljø = {this.props.valgtMiljø} 
+                    aktiv = {this.props.aktiv}>
+                </BarnetilleggTak2016Tabell>
             </div>
         );
     }

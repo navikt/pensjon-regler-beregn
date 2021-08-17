@@ -11,7 +11,7 @@ class VeietGrunnbeløpTabell extends React.Component {
         }
     }
     componentDidMount() {
-        fetch('    http://localhost:8080/api/veietGrunnbeløpSats?Aktiv=false&Satstabell='+this.props.currentTabell
+        fetch('https://pensjon-regler-'+this.props.valgtMiljø+'.dev.adeo.no/api/veietGrunnbeløpSats?Aktiv='+this.props.aktiv+'&Satstabell='+this.props.currentTabell
         ,{
           headers : { 
             'Content-Type': 'application/json',
@@ -40,9 +40,11 @@ class VeietGrunnbeløpTabell extends React.Component {
     render(){
         return(
             <div>
+              <div class = "sats-header">
+                Veiet Grunnbeløp
+              </div>
             <Table striped bordered hover>
             <thead>   
-                <tr>Veiet Grunnbeløp</tr>
                 <tr>
                     <th>FomDato</th>
                     <th>TomDato</th>

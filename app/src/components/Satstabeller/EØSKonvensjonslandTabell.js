@@ -12,7 +12,7 @@ class EØSKonvensjonslandTabell extends React.Component {
         }
     }
     componentDidMount() {
-        fetch('    http://localhost:8080/api/eøsKonvensjonsLandSats?Aktiv=false&Satstabell='+this.props.currentTabell
+        fetch('https://pensjon-regler-'+this.props.valgtMiljø+'.dev.adeo.no/api/eøsKonvensjonsLandSats?Aktiv='+this.props.aktiv+'&Satstabell='+this.props.currentTabell
         ,{
           headers : { 
             'Content-Type': 'application/json',
@@ -41,9 +41,12 @@ class EØSKonvensjonslandTabell extends React.Component {
     render(){
         return(
             <div>
+              <div class = "sats-header">
+                EØS Konvensjonsland
+              </div>
             <Table striped bordered hover>
             <thead>   
-                <tr>EØS Konvensjonsland</tr>
+                <tr></tr>
                 <tr>
                     <th>FomDato</th>
                     <th>TomDato</th>

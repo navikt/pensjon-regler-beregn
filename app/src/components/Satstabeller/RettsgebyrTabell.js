@@ -12,7 +12,7 @@ class RettsgebyrTabell extends React.Component {
         }
     }
     componentDidMount() {
-        fetch('    http://localhost:8080/api/rettsgebyrSats?Aktiv=false&Satstabell='+this.props.currentTabell
+        fetch('https://pensjon-regler-'+this.props.valgtMiljø+'.dev.adeo.no/api/rettsgebyrSats?Aktiv='+this.props.aktiv+'&Satstabell='+this.props.currentTabell
         ,{
           headers : { 
             'Content-Type': 'application/json',
@@ -41,9 +41,11 @@ class RettsgebyrTabell extends React.Component {
     render(){
         return(
             <div>
+              <div class = "sats-header">
+                Rettsgebyr
+              </div>
             <Table striped bordered hover>
             <thead>   
-                <tr>Rettsgebyr</tr>
                 <tr>
                     <th>FomDato</th>
                     <th>TomDato</th>

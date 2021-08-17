@@ -12,7 +12,7 @@ class GarantiPensjonsnivåTabell extends React.Component {
         }
     }
     componentDidMount() {
-        fetch('    http://localhost:8080/api/garantiPensjonsNivåSats?Aktiv=false&Satstabell='+this.props.currentTabell
+        fetch('https://pensjon-regler-'+this.props.valgtMiljø+'.dev.adeo.no/api/garantiPensjonsNivåSats?Aktiv='+this.props.aktiv+'&Satstabell='+this.props.currentTabell
         ,{
           headers : { 
             'Content-Type': 'application/json',
@@ -41,9 +41,11 @@ class GarantiPensjonsnivåTabell extends React.Component {
     render(){
         return(
             <div>
+              <div class = "sats-header">
+              Garantipensjonsnivå
+              </div>
             <Table striped bordered hover>
             <thead>   
-                <tr>Garantipensjonsnivå</tr>
                 <tr>
                     <th>FomDato</th>
                     <th>TomDato</th>

@@ -12,7 +12,7 @@ class UføretrygdMinsteytelseTabell extends React.Component {
         }
     }
     componentDidMount() {
-        fetch('    http://localhost:8080/api/uføretrygdMinsteytelseSats?Aktiv=false&Satstabell='+this.props.currentTabell
+        fetch('https://pensjon-regler-'+this.props.valgtMiljø+'.dev.adeo.no/api/uføretrygdMinsteytelseSats?Aktiv='+this.props.aktiv+'&Satstabell='+this.props.currentTabell
         ,{
           headers : { 
             'Content-Type': 'application/json',
@@ -41,9 +41,11 @@ class UføretrygdMinsteytelseTabell extends React.Component {
     render(){
         return(
             <div>
+              <div class = "sats-header">
+              Uføretrygd Minsteytelse
+              </div>
             <Table striped bordered hover>
             <thead>   
-                <tr>Uføretrygd Minsteytelse</tr>
                 <tr>
                     <th>FomDato</th>
                     <th>TomDato</th>

@@ -12,7 +12,7 @@ class ReguleringsfaktorTabell extends React.Component {
         }
     }
     componentDidMount() {
-        fetch('    http://localhost:8080/api/reguleringsFaktorSats?Aktiv=false&Satstabell='+this.props.currentTabell
+        fetch('https://pensjon-regler-'+this.props.valgtMiljø+'.dev.adeo.no/api/reguleringsFaktorSats?Aktiv='+this.props.aktiv+'&Satstabell='+this.props.currentTabell
         ,{
           headers : { 
             'Content-Type': 'application/json',
@@ -41,9 +41,11 @@ class ReguleringsfaktorTabell extends React.Component {
     render(){
         return(
             <div>
+              <div class = "sats-header">
+                Reguleringsfaktor
+              </div>
             <Table striped bordered hover>
             <thead>   
-                <tr>Reguleringsfaktor</tr>
                 <tr>
                     <th>FomDato</th>
                     <th>TomDato</th>

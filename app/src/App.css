@@ -2,8 +2,9 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.logo {
+  height: 4vmin;
+  size: 5%;
   pointer-events: none;
 }
 
@@ -23,21 +24,37 @@
   color: #61dafb;
 }
 
-.flexbox-container {
+.menu-container {
   display: flex;
   flex-direction: row;
-  width: 50%;
+  width: 60%;
   justify-content: space-around;
   padding:5%;
 }
 
 .satsvindu-container{
-  display: flex;
-  flex-direction: column;
   width: 90%;
   color:black;
-  background-color: rgb(165, 165, 158);
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   font-size: small;
+}
+
+.satstabell-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgb(165, 165, 158);
+}
+
+.sats-header {
+  font-size: x-large;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border: thick solid #797575;
 }
 
 @keyframes App-logo-spin {
