@@ -29,7 +29,7 @@ class App extends React.Component {
     this.handleMiljøChange = this.handleMiljøChange.bind(this);
   }
   componentDidMount() {
-    fetch('https://pensjon-regler-q4.dev.adeo.no/alleSatstabeller' //TODO peker mot localhost inntil videre, for lokal utvikling
+    fetch('https://pensjon-regler-q4.dev.adeo.no/alleSatstabeller'
       ,{
         headers : { 
           'Content-Type': 'application/json',
@@ -71,16 +71,16 @@ class App extends React.Component {
         }
     ) //TODO vil helst ha dette i en egen metode
   }
+  
   handleTabellChange(name) {
     this.setState({valgtTabell: name, valgtMiljø: 'Q4', aktiv: 'false'})
-    console.log('Valgt satstabell (inne i App.js): ' + this.state.valgtTabell);
   }
 
   handleMiljøChange(name) {
     this.setState({valgtMiljø: name, aktiv: 'true'})
   }
+
   render(){
-    console.log("App render", this.state)
     return (
       <div class = "App-header">   
     

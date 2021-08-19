@@ -9,7 +9,9 @@ class SærtilleggTabell extends React.Component {
             error: null,
             isLoaded: false,
             verdier: [],
+            show: true
         }
+        this.handleClick = this.handleClick.bind(this);
     }
     componentDidMount() {
         fetch('https://pensjon-regler-'+this.props.valgtMiljø+'.dev.adeo.no/api/særtilleggSats?Aktiv='+this.props.aktiv+'&Satstabell='+this.props.currentTabell
@@ -38,35 +40,41 @@ class SærtilleggTabell extends React.Component {
           )
 
       }
+      handleClick(event){
+        this.setState({show: !this.state.show})
+      }
     render(){
+      const TabellRender = () => (
+        <div><Table striped bordered hover>
+        <thead>   
+            <tr>
+                <th>FomDato</th>
+                <th>TomDato</th>
+                <th>Minste</th>
+                <th>Ordinær</th>
+                <th>Forhøyet</th>
+            </tr>
+        </thead> 
+        <tbody> 
+        {this.state.verdier.map((data,key) => {
+            return(
+                    <tr>
+                    <td>{data.satsFom[2]}-{data.satsFom[1]}-{data.satsFom[0]}</td>
+                    <td>{data.satsTom[2]}-{data.satsTom[1]}-{data.satsTom[0]}</td>
+                    <td>{data.kodeMap[1].Minste}</td>
+                    <td>{data.kodeMap[1].Ordinær}</td>
+                    <td>{data.kodeMap[1].Forhøyet}</td>
+                    </tr>
+        )})}
+         </tbody>
+        </Table></div>
+      )
         return(
             <div>
-              <div class = "sats-header">
+              <div class = "sats-header" onClick = {this.handleClick}>
                 Særtillegg
               </div>
-            <Table striped bordered hover>
-            <thead>   
-                <tr>
-                    <th>FomDato</th>
-                    <th>TomDato</th>
-                    <th>Minste</th>
-                    <th>Ordinær</th>
-                    <th>Forhøyet</th>
-                </tr>
-            </thead> 
-            <tbody> 
-            {this.state.verdier.map((data,key) => {
-                return(
-                        <tr>
-                        <td>{data.satsFom[2]}-{data.satsFom[1]}-{data.satsFom[0]}</td>
-                        <td>{data.satsTom[2]}-{data.satsTom[1]}-{data.satsTom[0]}</td>
-                        <td>{data.kodeMap[1].Minste}</td>
-                        <td>{data.kodeMap[1].Ordinær}</td>
-                        <td>{data.kodeMap[1].Forhøyet}</td>
-                        </tr>
-            )})}
-             </tbody>
-            </Table>
+              {this.state.show ? <TabellRender></TabellRender> : null}
             </div>
         );
     }

@@ -9,7 +9,9 @@ class UføretrygdMinsteytelseTabell extends React.Component {
             error: null,
             isLoaded: false,
             verdier: [],
+            show: true
         }
+        this.handleClick = this.handleClick.bind(this);
     }
     componentDidMount() {
         fetch('https://pensjon-regler-'+this.props.valgtMiljø+'.dev.adeo.no/api/uføretrygdMinsteytelseSats?Aktiv='+this.props.aktiv+'&Satstabell='+this.props.currentTabell
@@ -38,13 +40,13 @@ class UføretrygdMinsteytelseTabell extends React.Component {
           )
 
       }
+      handleClick(event){
+        this.setState({show: !this.state.show})
+      }
     render(){
-        return(
-            <div>
-              <div class = "sats-header">
-              Uføretrygd Minsteytelse
-              </div>
-            <Table striped bordered hover>
+      const TabellRender = () => (
+        <div>
+                      <Table striped bordered hover>
             <thead>   
                 <tr>
                     <th>FomDato</th>
@@ -80,6 +82,14 @@ class UføretrygdMinsteytelseTabell extends React.Component {
             )})}
              </tbody>
             </Table>
+        </div>
+      )
+        return(
+            <div>
+              <div class = "sats-header" onClick = {this.handleClick}>
+              Uføretrygd Minsteytelse
+              </div>
+              {this.state.show ? <TabellRender></TabellRender> : null}
             </div>
         );
     }

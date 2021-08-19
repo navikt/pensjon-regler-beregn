@@ -19,11 +19,8 @@ class DropdownMenu extends React.Component{
   handleSubmit(event) {
     this.setState({currentTabell: event.target.name});
     this.props.onTabellChange(event.target.name);
-    console.log(event.target.name);
-    console.log('Valgt satstabell: ' + this.state.currentTabell);
   }
     render(){
-        console.log('render dropdown state value:'+ this.state.currentTabell);
         return(
 
             <DropdownButton menuAlign = "left" id="dropdown-basic-button" size="lg" title={this.state.name}>
