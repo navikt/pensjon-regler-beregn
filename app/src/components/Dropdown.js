@@ -25,7 +25,7 @@ class DropdownMenu extends React.Component{
 
             <DropdownButton menuAlign = "left" id="dropdown-basic-button" size="lg" title={this.state.name}>
                 {this.state.list.map((listItem)=>
-                    <Dropdown.Item href ={'#/action-'+listItem} key = {listItem} name = {listItem} onClick = {this.handleSubmit}>{listItem}</Dropdown.Item>
+                    <Dropdown.Item key = {listItem} name = {listItem} onClick = {this.handleSubmit}>{listItem}</Dropdown.Item>
                 )}
             </DropdownButton>
         );
