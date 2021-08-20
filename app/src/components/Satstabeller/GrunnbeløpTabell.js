@@ -9,7 +9,7 @@ class GrunnbeløpTabell extends React.Component {
                 error: null,
                 isLoaded: false,
                 verdier: [],
-                show: true
+                show: false
             }
             this.handleClick = this.handleClick.bind(this);
         }
@@ -67,7 +67,7 @@ class GrunnbeløpTabell extends React.Component {
           )
             return(
                 <div>
-                  <div class = "sats-header" onClick = {this.handleClick}>
+                  <div class = "sats-header" onClick = {this.handleClick} style={{cursor:'pointer'}}>
                     Grunnbeløp
                   </div>
                   {this.state.show ? <TabellRender></TabellRender> : null}

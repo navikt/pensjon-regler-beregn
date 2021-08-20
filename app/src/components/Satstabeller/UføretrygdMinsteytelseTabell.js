@@ -9,7 +9,7 @@ class UføretrygdMinsteytelseTabell extends React.Component {
             error: null,
             isLoaded: false,
             verdier: [],
-            show: true
+            show: false
         }
         this.handleClick = this.handleClick.bind(this);
     }
@@ -56,10 +56,10 @@ class UføretrygdMinsteytelseTabell extends React.Component {
                     <th>Forsørger Ektefelle over 60</th>
                     <th>Sats</th>
                     <th>Kode</th>
-                    <th>Er Gyldig</th>
+                    {/*<th>Er Gyldig</th>
                     <th>Benyttet Ung Ufør</th>
                     <th>Oppfylt Ung Ufør</th>
-                    <th>Eksportforbud Ung Ufør</th>
+                    <th>Eksportforbud Ung Ufør</th>*/}
                 </tr>
             </thead> 
             <tbody> 
@@ -74,10 +74,10 @@ class UføretrygdMinsteytelseTabell extends React.Component {
                         <td>{data.forsorgerEktefelleOver60.toString()}</td>
                         <td>{data.satsMinsteytelse.sats}</td>
                         <td>{data.satsMinsteytelse.satsType.kode}</td>
-                        <td>{data.satsMinsteytelse.satsType.er_gyldig.toString()}</td>
+                        {/*<td>{data.satsMinsteytelse.satsType.er_gyldig.toString()}</td>
                         <td>{data.satsMinsteytelse.benyttetUngUfor.toString()}</td>
                         <td>{data.satsMinsteytelse.oppfyltUngUfor.toString()}</td>
-                        <td>{data.satsMinsteytelse.eksportForbudUngUfor.toString()}</td>
+                <td>{data.satsMinsteytelse.eksportForbudUngUfor.toString()}</td>*/}
                         </tr>
             )})}
              </tbody>
@@ -86,7 +86,7 @@ class UføretrygdMinsteytelseTabell extends React.Component {
       )
         return(
             <div>
-              <div class = "sats-header" onClick = {this.handleClick}>
+              <div class = "sats-header" onClick = {this.handleClick} style={{cursor:'pointer'}}>
               Uføretrygd Minsteytelse
               </div>
               {this.state.show ? <TabellRender></TabellRender> : null}

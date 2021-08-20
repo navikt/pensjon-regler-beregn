@@ -12,7 +12,7 @@ class BarnetilleggTak2016Tabell extends React.Component {
             error: null,
             isLoaded: false,
             verdier: [],
-            show: true
+            show: false
         }
         this.handleClick = this.handleClick.bind(this);
     }
@@ -73,8 +73,11 @@ class BarnetilleggTak2016Tabell extends React.Component {
       )
         return(
             <div>
-              <div class = "sats-header" onClick = {this.handleClick}>
-                Barnetillegg Tak 2016
+              <div class = "sats-header" onClick = {this.handleClick} style={{cursor:'pointer'}}>
+                <div></div>
+                <div>Barnetillegg Tak 2016</div>
+                <div>{this.state.show ? "skjul" : "vis"}</div>
+                
               </div>
               {this.state.show ? <TabellRender></TabellRender> : null}
             </div>
