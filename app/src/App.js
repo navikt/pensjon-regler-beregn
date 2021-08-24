@@ -95,6 +95,7 @@ class App extends React.Component {
         <div class = "satsvindu-container">
           <Satsvindu currentTabell = {this.state.valgtTabell} valgtMiljø = {this.state.valgtMiljø} aktiv = {this.state.aktiv}></Satsvindu>
         </div>
+        <div class = "App-footer" height = "500"></div>
       </div>
   );
     }

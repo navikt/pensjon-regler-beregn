@@ -1,5 +1,6 @@
 import React from "react";
 import { Table } from "react-bootstrap";
+import  Satsheader  from "../Satsheader";
 
 class UføretrygdMinsteytelseTabell extends React.Component {
     constructor(props){
@@ -86,8 +87,8 @@ class UføretrygdMinsteytelseTabell extends React.Component {
       )
         return(
             <div>
-              <div class = "sats-header" onClick = {this.handleClick} style={{cursor:'pointer'}}>
-              Uføretrygd Minsteytelse
+              <div onClick = {this.handleClick}>
+                <Satsheader headline = "Uføretrygd Minsteytelse" show = {this.state.show}></Satsheader>
               </div>
               {this.state.show ? <TabellRender></TabellRender> : null}
             </div>

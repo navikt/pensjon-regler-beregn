@@ -1,6 +1,7 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 import "../../App.css";
+import  Satsheader  from "../Satsheader";
 
 class BarnetilleggTak2016Tabell extends React.Component {
     constructor(props){
@@ -73,11 +74,8 @@ class BarnetilleggTak2016Tabell extends React.Component {
       )
         return(
             <div>
-              <div class = "sats-header" onClick = {this.handleClick} style={{cursor:'pointer'}}>
-                <div></div>
-                <div>Barnetillegg Tak 2016</div>
-                <div>{this.state.show ? "skjul" : "vis"}</div>
-                
+              <div onClick = {this.handleClick}>
+                <Satsheader headline = "Barnetillegg Tak 2016" show = {this.state.show}></Satsheader>
               </div>
               {this.state.show ? <TabellRender></TabellRender> : null}
             </div>

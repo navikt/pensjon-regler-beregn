@@ -20,6 +20,11 @@
   color: white;
 }
 
+.app-footer {
+  min-height: 1000px;
+  background-color: blueviolet;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -32,7 +37,16 @@
   padding:5%;
 }
 
-.satsvindu-container{
+.kategori-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.kategori-delimiter {
+  background-color: #282c34;
+}
+
+.satsvindu-container {
   width: 90%;
   color:black;
   background-color: black;
@@ -57,12 +71,33 @@
   border: thick solid #797575;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-  
+.sats-header:hover {
+  background-color: rgb(224, 223, 202);
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 5px 5px 0;
+  display: inline-block;
+  padding: 5px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
 }

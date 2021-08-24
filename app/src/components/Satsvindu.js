@@ -14,6 +14,7 @@ import GarantiPensjonsnivåTabell from "./Satstabeller/GarantiPensjonsnivåTabel
 import EØSKonvensjonslandTabell from "./Satstabeller/EØSKonvensjonslandTabell";
 import BarnetilleggTak2016Tabell from "./Satstabeller/BarnetilleggTak2016Tabell";
 import "../App.css";
+import Satsheader from "./Satsheader";
 import Collapse from 'react-bootstrap/Collapse'
 
 class Satsvindu extends React.Component{
@@ -22,83 +23,49 @@ class Satsvindu extends React.Component{
         this.state = {          
             error: null,
             isLoaded: false,
-            verdier: []
+            verdier: [],
+            showGenerelt: false,
+            showAlderspensjon1967: false,
+            showAlderspensjon2011: false,
+            showUføretrygd: false,
+            showKonvensjonsland: false
         }
+        this.handleClickGenerelt = this.handleClickGenerelt.bind(this);
+        this.handleClickAlderspensjon1967 = this.handleClickAlderspensjon1967.bind(this);
+        this.handleClickAlderspensjon2011 = this.handleClickAlderspensjon2011.bind(this);
+        this.handleClickUføretrygd = this.handleClickUføretrygd.bind(this);
+        this.handleClickKonvensjonsland = this.handleClickKonvensjonsland.bind(this)
     }
+
+    handleClickGenerelt(event){
+        this.setState({showGenerelt: !this.state.showGenerelt})
+    }
+
+    handleClickAlderspensjon1967(event){
+        this.setState({showAlderspensjon1967: !this.state.showAlderspensjon1967})
+    }
+
+    handleClickAlderspensjon2011(event){
+        this.setState({showAlderspensjon2011: !this.state.showAlderspensjon2011})
+    }
+
+    handleClickUføretrygd(event){
+        this.setState({showUføretrygd: !this.state.showUføretrygd})
+    }
+
+    handleClickKonvensjonsland(event){
+        this.setState({showKonvensjonsland: !this.state.showKonvensjonsland})
+    }
+
     render(){
-        return(
-            <div class = "satstabell-container">
-                <h1>Valgt Tabell: {this.props.currentTabell}</h1>
-                <VeietGrunnbeløpTabell 
-                    key = {"veietGrunnbeløp: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
-                    currentTabell = {this.props.currentTabell} 
-                    valgtMiljø = {this.props.valgtMiljø} 
-                    aktiv = {this.props.aktiv}>
-                </VeietGrunnbeløpTabell>
 
-                <UføretrygdMinsteytelseTabell 
-                    key = {"UføretrygdMinsteytelse: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
-                    currentTabell = {this.props.currentTabell} 
-                    valgtMiljø = {this.props.valgtMiljø} 
-                    aktiv = {this.props.aktiv}>
-                </UføretrygdMinsteytelseTabell>
+        const Generelt = () => {
+            return(
+            <div class = "kategori-container">
+                <div class = "kategori-delimiter" style={{width: '5%'}}></div>
 
-                <SærtilleggTabell 
-                    key = {"Særtillegg: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
-                    currentTabell = {this.props.currentTabell} 
-                    valgtMiljø = {this.props.valgtMiljø} 
-                    aktiv = {this.props.aktiv}>
-                </SærtilleggTabell>
-
-                <SkjermingstilleggTabell 
-                    key = {"Skjermingstillegg: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
-                    currentTabell = {this.props.currentTabell} 
-                    valgtMiljø = {this.props.valgtMiljø} 
-                    aktiv = {this.props.aktiv}>
-                </SkjermingstilleggTabell>
-
-                <RettsgebyrTabell 
-                    key = {"Rettsgebyr: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
-                    currentTabell = {this.props.currentTabell} 
-                    valgtMiljø = {this.props.valgtMiljø} 
-                    aktiv = {this.props.aktiv}>
-                </RettsgebyrTabell>
-
-                <ReguleringsfaktorTabell 
-                    key = {"Reguleringsfaktor: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
-                    currentTabell = {this.props.currentTabell} 
-                    valgtMiljø = {this.props.valgtMiljø} 
-                    aktiv = {this.props.aktiv}>
-                </ReguleringsfaktorTabell>
-
-                <NordiskKonvensjonslandTabell
-                    key = {"NordiskKonvensjonsland: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
-                    currentTabell = {this.props.currentTabell} 
-                    valgtMiljø = {this.props.valgtMiljø} 
-                    aktiv = {this.props.aktiv}>
-                </NordiskKonvensjonslandTabell>
-
-                <MinstePensjonsnivåTabell 
-                    key = {"MinstePensjonsnivå: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
-                    currentTabell = {this.props.currentTabell} 
-                    valgtMiljø = {this.props.valgtMiljø} 
-                    aktiv = {this.props.aktiv}>
-                </MinstePensjonsnivåTabell>
-
-                <LønnsvekstTabell 
-                    key = {"Lønnsvekst: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
-                    currentTabell = {this.props.currentTabell} 
-                    valgtMiljø = {this.props.valgtMiljø} 
-                    aktiv = {this.props.aktiv}>
-                </LønnsvekstTabell>
-
-                <GrunnpensjonTabell 
-                    key = {"Grunnpensjon: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
-                    currentTabell = {this.props.currentTabell} 
-                    valgtMiljø = {this.props.valgtMiljø} 
-                    aktiv = {this.props.aktiv}>
-                </GrunnpensjonTabell>
-
+                <div class = "sats-container" style = {{width: '95%'}}>
+                    
                 <GrunnbeløpTabell 
                     key = {"Grunnbeløp: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
                     currentTabell = {this.props.currentTabell} 
@@ -106,26 +73,188 @@ class Satsvindu extends React.Component{
                     aktiv = {this.props.aktiv}>
                 </GrunnbeløpTabell>
 
-                <GarantiPensjonsnivåTabell 
-                    key = {"GarantiPensjonsnivå: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                <VeietGrunnbeløpTabell 
+                    key = {"veietGrunnbeløp: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
                     currentTabell = {this.props.currentTabell} 
                     valgtMiljø = {this.props.valgtMiljø} 
                     aktiv = {this.props.aktiv}>
-                </GarantiPensjonsnivåTabell>
+                </VeietGrunnbeløpTabell>
+                
+                <ReguleringsfaktorTabell 
+                    key = {"Reguleringsfaktor: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                    currentTabell = {this.props.currentTabell} 
+                    valgtMiljø = {this.props.valgtMiljø} 
+                    aktiv = {this.props.aktiv}>
+                </ReguleringsfaktorTabell>
 
-                <EØSKonvensjonslandTabell 
-                    key = {"EØSKonvensjonsland: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                <LønnsvekstTabell 
+                    key = {"Lønnsvekst: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
                     currentTabell = {this.props.currentTabell} 
                     valgtMiljø = {this.props.valgtMiljø} 
                     aktiv = {this.props.aktiv}>
-                </EØSKonvensjonslandTabell>
+                </LønnsvekstTabell>
+                </div>
+            </div>
+            );
+        }
 
-                <BarnetilleggTak2016Tabell 
-                    key = {"BarnetilleggTak2016: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
-                    currentTabell = {this.props.currentTabell} 
-                    valgtMiljø = {this.props.valgtMiljø} 
-                    aktiv = {this.props.aktiv}>
-                </BarnetilleggTak2016Tabell>
+        const Alderspensjon1967 = () => {
+            return(
+                <div class = "kategori-container">
+                    <div class = "kategori-delimiter" style={{width: '5%'}}></div>
+    
+                    <div class = "sats-container" style = {{width: '95%'}}>
+                        
+                        <GrunnpensjonTabell 
+                            key = {"Grunnpensjon: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                            currentTabell = {this.props.currentTabell} 
+                            valgtMiljø = {this.props.valgtMiljø} 
+                            aktiv = {this.props.aktiv}>
+                        </GrunnpensjonTabell>
+
+                        <SærtilleggTabell 
+                            key = {"Særtillegg: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                            currentTabell = {this.props.currentTabell} 
+                            valgtMiljø = {this.props.valgtMiljø} 
+                            aktiv = {this.props.aktiv}>
+                        </SærtilleggTabell>
+
+                    </div>
+                </div>
+                );
+        }
+
+        const Alderspensjon2011 = () => {
+            return(
+                <div class = "kategori-container">
+                    <div class = "kategori-delimiter" style={{width: '5%'}}></div>
+    
+                    <div class = "sats-container" style = {{width: '95%'}}>
+
+                        <MinstePensjonsnivåTabell 
+                            key = {"MinstePensjonsnivå: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                            currentTabell = {this.props.currentTabell} 
+                            valgtMiljø = {this.props.valgtMiljø} 
+                            aktiv = {this.props.aktiv}>
+                        </MinstePensjonsnivåTabell>
+
+                        <GarantiPensjonsnivåTabell 
+                            key = {"GarantiPensjonsnivå: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                            currentTabell = {this.props.currentTabell} 
+                            valgtMiljø = {this.props.valgtMiljø} 
+                            aktiv = {this.props.aktiv}>
+                        </GarantiPensjonsnivåTabell>
+
+                        <SkjermingstilleggTabell 
+                            key = {"Skjermingstillegg: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                            currentTabell = {this.props.currentTabell} 
+                            valgtMiljø = {this.props.valgtMiljø} 
+                            aktiv = {this.props.aktiv}>
+                        </SkjermingstilleggTabell>
+
+                    </div>
+                </div>
+                );
+        }
+
+        const Uføretrygd = () => {
+            return(
+                <div class = "kategori-container">
+                    <div class = "kategori-delimiter" style={{width: '5%'}}></div>
+    
+                    <div class = "sats-container" style = {{width: '95%'}}>
+
+                        <UføretrygdMinsteytelseTabell 
+                            key = {"UføretrygdMinsteytelse: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                            currentTabell = {this.props.currentTabell} 
+                            valgtMiljø = {this.props.valgtMiljø} 
+                            aktiv = {this.props.aktiv}>
+                        </UføretrygdMinsteytelseTabell>
+
+                        <RettsgebyrTabell 
+                            key = {"Rettsgebyr: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                            currentTabell = {this.props.currentTabell} 
+                            valgtMiljø = {this.props.valgtMiljø} 
+                            aktiv = {this.props.aktiv}>
+                        </RettsgebyrTabell>
+
+                        <BarnetilleggTak2016Tabell 
+                            key = {"BarnetilleggTak2016: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                            currentTabell = {this.props.currentTabell} 
+                            valgtMiljø = {this.props.valgtMiljø} 
+                            aktiv = {this.props.aktiv}>
+                        </BarnetilleggTak2016Tabell>
+
+                    </div>
+                </div>
+                );
+        }
+        
+        const Konvensjonsland = () => {
+            return(
+                <div class = "kategori-container">
+                    <div class = "kategori-delimiter" style={{width: '5%'}}></div>
+    
+                    <div class = "sats-container" style = {{width: '95%'}}>
+                        
+                        <NordiskKonvensjonslandTabell
+                            key = {"NordiskKonvensjonsland: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                            currentTabell = {this.props.currentTabell} 
+                            valgtMiljø = {this.props.valgtMiljø} 
+                            aktiv = {this.props.aktiv}>
+                        </NordiskKonvensjonslandTabell>
+
+                        <EØSKonvensjonslandTabell 
+                            key = {"EØSKonvensjonsland: "+this.props.currentTabell+this.props.valgtMiljø+this.props.aktiv} 
+                            currentTabell = {this.props.currentTabell} 
+                            valgtMiljø = {this.props.valgtMiljø} 
+                            aktiv = {this.props.aktiv}>
+                        </EØSKonvensjonslandTabell>
+
+                    </div>
+                </div>
+                );
+        }
+        return(
+            <div class = "satstabell-container">
+
+                <h1>Valgt Tabell: {this.props.currentTabell}</h1>
+
+                <div>
+                <div onClick = {this.handleClickGenerelt}>
+                <Satsheader headline = "Generelt" show = {this.state.showGenerelt}></Satsheader>
+                </div>
+                {this.state.showGenerelt ? <Generelt></Generelt> : null}
+                </div>
+
+                <div>
+                <div onClick = {this.handleClickAlderspensjon1967}>
+                <Satsheader headline = "Alderspensjon1967" show = {this.state.showAlderspensjon1967}></Satsheader>
+                </div>
+                {this.state.showAlderspensjon1967 ? <Alderspensjon1967></Alderspensjon1967> : null}
+                </div>
+
+                <div>
+                <div onClick = {this.handleClickAlderspensjon2011}>
+                <Satsheader headline = "Alderspensjon2011" show = {this.state.showAlderspensjon2011}></Satsheader>
+                </div>
+                {this.state.showAlderspensjon2011 ? <Alderspensjon2011></Alderspensjon2011> : null}
+                </div>
+
+                <div>
+                <div onClick = {this.handleClickUføretrygd}>
+                <Satsheader headline = "Uføretrygd" show = {this.state.showUføretrygd}></Satsheader>
+                </div>
+                {this.state.showUføretrygd ? <Uføretrygd></Uføretrygd> : null}
+                </div>
+
+                <div>
+                <div onClick = {this.handleClickKonvensjonsland}>
+                <Satsheader headline = "Konvensjonsland" show = {this.state.showKonvensjonsland}></Satsheader>
+                </div>
+                {this.state.showKonvensjonsland ? <Konvensjonsland></Konvensjonsland> : null}
+                </div>
+
             </div>
         );
     }

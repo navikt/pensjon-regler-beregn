@@ -1,5 +1,6 @@
 import React from "react";
 import { Table } from "react-bootstrap";
+import  Satsheader  from "../Satsheader";
 
 class VeietGrunnbeløpTabell extends React.Component {
     constructor(props){
@@ -69,10 +70,15 @@ class VeietGrunnbeløpTabell extends React.Component {
       )
         return(
           <div>
-              <div class = "sats-header" onClick = {this.handleClick} style={{cursor:'pointer'}}>
-                Veiet Grunnbeløp
+              {/*<div class = "sats-header" onClick = {this.handleClick} style={{cursor:'pointer'}}>
+                <div style={{width: '5%'}}><i class="arrow right"></i></div>
+                <div style={{width: '80%'}}>Veiet Grunnbeløp</div>
+                <div style={{width: '5%'}}></div>
+              </div>*/}
+              <div onClick = {this.handleClick}>
+                <Satsheader headline = "Veiet Grunnbeløp" show = {this.state.show}></Satsheader>
               </div>
-                          {this.state.show ? <TabellRender></TabellRender> : null}
+              {this.state.show ? <TabellRender></TabellRender> : null}
           </div>
 
         );
