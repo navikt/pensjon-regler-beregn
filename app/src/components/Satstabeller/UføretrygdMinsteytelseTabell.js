@@ -44,7 +44,10 @@ class UføretrygdMinsteytelseTabell extends React.Component {
       handleClick(event){
         this.setState({show: !this.state.show})
       }
+
     render(){
+      
+
       const TabellRender = () => (
         <div>
                       <Table striped bordered hover>
@@ -57,28 +60,20 @@ class UføretrygdMinsteytelseTabell extends React.Component {
                     <th>Forsørger Ektefelle over 60</th>
                     <th>Sats</th>
                     <th>Kode</th>
-                    {/*<th>Er Gyldig</th>
-                    <th>Benyttet Ung Ufør</th>
-                    <th>Oppfylt Ung Ufør</th>
-                    <th>Eksportforbud Ung Ufør</th>*/}
                 </tr>
             </thead> 
             <tbody> 
-            {this.state.verdier.map((data,key) => {    //beregnesSomGift og ungUfor ikke alltid til stede ????            
+            {this.state.verdier.map((data,key) => { 
                 return(
-
+ 
                         <tr>
                         <td>{data.satsFom[2]}-{data.satsFom[1]}-{data.satsFom[0]}</td>
                         <td>{data.satsTom[2]}-{data.satsTom[1]}-{data.satsTom[0]}</td>
-                        <td></td>
-                        <td></td>
+                        <td>{((data.beregnesSomGift) != undefined) ? data.beregnesSomGift.toString() : 'udefinert'}</td>
+                        <td>{((data.ungUfor) != undefined) ? data.ungUfor.toString() : 'udefinert'}</td>
                         <td>{data.forsorgerEktefelleOver60.toString()}</td>
                         <td>{data.satsMinsteytelse.sats}</td>
                         <td>{data.satsMinsteytelse.satsType.kode}</td>
-                        {/*<td>{data.satsMinsteytelse.satsType.er_gyldig.toString()}</td>
-                        <td>{data.satsMinsteytelse.benyttetUngUfor.toString()}</td>
-                        <td>{data.satsMinsteytelse.oppfyltUngUfor.toString()}</td>
-                <td>{data.satsMinsteytelse.eksportForbudUngUfor.toString()}</td>*/}
                         </tr>
             )})}
              </tbody>

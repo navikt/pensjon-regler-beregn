@@ -70,11 +70,6 @@ class VeietGrunnbeløpTabell extends React.Component {
       )
         return(
           <div>
-              {/*<div class = "sats-header" onClick = {this.handleClick} style={{cursor:'pointer'}}>
-                <div style={{width: '5%'}}><i class="arrow right"></i></div>
-                <div style={{width: '80%'}}>Veiet Grunnbeløp</div>
-                <div style={{width: '5%'}}></div>
-              </div>*/}
               <div onClick = {this.handleClick}>
                 <Satsheader headline = "Veiet Grunnbeløp" show = {this.state.show}></Satsheader>
               </div>

@@ -218,37 +218,35 @@ class Satsvindu extends React.Component{
         return(
             <div class = "satstabell-container">
 
-                <h1>Valgt Tabell: {this.props.currentTabell}</h1>
-
-                <div>
+                <div class = "tabell-wrapper">
                 <div onClick = {this.handleClickGenerelt}>
                 <Satsheader headline = "Generelt" show = {this.state.showGenerelt}></Satsheader>
                 </div>
                 {this.state.showGenerelt ? <Generelt></Generelt> : null}
                 </div>
 
-                <div>
+                <div class = "tabell-wrapper">
                 <div onClick = {this.handleClickAlderspensjon1967}>
                 <Satsheader headline = "Alderspensjon1967" show = {this.state.showAlderspensjon1967}></Satsheader>
                 </div>
                 {this.state.showAlderspensjon1967 ? <Alderspensjon1967></Alderspensjon1967> : null}
                 </div>
 
-                <div>
+                <div class = "tabell-wrapper">
                 <div onClick = {this.handleClickAlderspensjon2011}>
                 <Satsheader headline = "Alderspensjon2011" show = {this.state.showAlderspensjon2011}></Satsheader>
                 </div>
                 {this.state.showAlderspensjon2011 ? <Alderspensjon2011></Alderspensjon2011> : null}
                 </div>
 
-                <div>
+                <div class = "tabell-wrapper">
                 <div onClick = {this.handleClickUføretrygd}>
                 <Satsheader headline = "Uføretrygd" show = {this.state.showUføretrygd}></Satsheader>
                 </div>
                 {this.state.showUføretrygd ? <Uføretrygd></Uføretrygd> : null}
                 </div>
 
-                <div>
+                <div class = "tabell-wrapper">
                 <div onClick = {this.handleClickKonvensjonsland}>
                 <Satsheader headline = "Konvensjonsland" show = {this.state.showKonvensjonsland}></Satsheader>
                 </div>

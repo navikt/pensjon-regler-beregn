@@ -4,11 +4,13 @@ import ReactDOM from 'react-dom';
 import DropdownMenu from './components/Dropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
-import  Satsvindu  from './components/Satsvindu';
+import Satsvindu  from './components/Satsvindu';
+import HentMiljøtabell from "./components/HentMiljøtabell";
 
 export var ProdTabeller = []
 export var TestTabeller = []
 export var AndreTabeller = []
+
 
 class App extends React.Component {
   constructor(props){
@@ -22,7 +24,8 @@ class App extends React.Component {
         testTabeller: [],
         valgtTabell: 'PROD',
         valgtMiljø: 'Q4',
-        aktiv: 'false'
+        aktiv: false,
+        displayTabell: 'PROD'
     }
 
     this.handleTabellChange = this.handleTabellChange.bind(this);
@@ -73,29 +76,32 @@ class App extends React.Component {
   }
   
   handleTabellChange(name) {
-    this.setState({valgtTabell: name, valgtMiljø: 'Q4', aktiv: 'false'})
+    this.setState({valgtTabell: name, valgtMiljø: 'Q4', aktiv: false, displayTabell: name})
   }
 
+ 
   handleMiljøChange(name) {
-    this.setState({valgtMiljø: name, aktiv: 'true'})
+    this.setState({valgtMiljø: name, aktiv: true, displayTabell: name})
   }
 
   render(){
+    
     return (
       <div class = "App-header">   
     
-        <h1>   PENSJON REGLER SATSVIEWER </h1>
+        <h1> PENSJON REGLER SATSVIEWER </h1>
         <div>{<img src={logo} alt="Logo" width="500" height="300"/>}      </div>
         <div class = "menu-container">
           <DropdownMenu href = {"ProdTabeller"} name = "PROD Tabeller" list = {ProdTabeller} prevTabell = {this.state.valgtTabell} onTabellChange = {this.handleTabellChange}>PROD Tabeller</DropdownMenu>
           <DropdownMenu href = {"TestTabeller"} name = "Test Tabeller" list = {TestTabeller} prevTabell = {this.state.valgtTabell} onTabellChange = {this.handleTabellChange}>Test Tabeller</DropdownMenu>
           <DropdownMenu href = {"AndreTabeller"} name = "Andre Tabeller" list = {AndreTabeller} prevTabell = {this.state.valgtTabell} onTabellChange = {this.handleTabellChange}>Andre Tabeller</DropdownMenu>
-          <DropdownMenu href = {"MiljøTabeller"} name = "Aktiv Tabell i Miljø" list = {["Q1","Q2","Q3","Q4","T1","T2","T3","T4"]} onTabellChange = {this.handleMiljøChange}>Aktiv Tabell i Miljø</DropdownMenu>
+          <DropdownMenu href = {"MiljøTabeller"} name = "Aktiv Tabell i Miljø" list = {["Q1","Q2","Q3","Q4","Q5","T1","T2","T3","T4","PROD"]} onTabellChange = {this.handleMiljøChange}>Aktiv Tabell i Miljø</DropdownMenu>
         </div>
+        <div class = "valgt-tabell"><HentMiljøtabell key = {"miljøtabell: "+this.state.displayTabell} aktiv = {this.state.aktiv} displayTabell = {this.state.displayTabell} valgtMiljø = {this.state.valgtMiljø}></HentMiljøtabell></div>
         <div class = "satsvindu-container">
-          <Satsvindu currentTabell = {this.state.valgtTabell} valgtMiljø = {this.state.valgtMiljø} aktiv = {this.state.aktiv}></Satsvindu>
+          <Satsvindu currentTabell = {this.state.valgtTabell} valgtMiljø = {this.state.valgtMiljø} aktiv = {this.state.aktiv} displayTabell = {this.state.displayTabell}></Satsvindu>
         </div>
-        <div class = "App-footer" height = "500"></div>
+        <div class = "app-footer" height = '15%'></div>
       </div>
   );
     }

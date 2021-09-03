@@ -21,8 +21,7 @@
 }
 
 .app-footer {
-  min-height: 1000px;
-  background-color: blueviolet;
+  min-height: 10vh;
 }
 
 .App-link {
@@ -46,6 +45,14 @@
   background-color: #282c34;
 }
 
+.valgt-tabell {
+  display: flex;
+  width: 90%;
+  background-color: rgb(165, 165, 158);
+  border: thick solid #797575;
+  color: black;
+}
+
 .satsvindu-container {
   width: 90%;
   color:black;
@@ -56,10 +63,15 @@
   font-size: small;
 }
 
+.tabell-wrapper {
+  border-top: thick solid #282c34;
+}
+
 .satstabell-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 90%;
   background-color: rgb(165, 165, 158);
 }
 
@@ -69,6 +81,7 @@
   flex-direction: row;
   justify-content: space-around;
   border: thick solid #797575;
+  padding: 1%;
 }
 
 .sats-header:hover {
