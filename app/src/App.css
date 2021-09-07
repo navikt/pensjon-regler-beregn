@@ -67,6 +67,16 @@
   border-top: thick solid #282c34;
 }
 
+.tabell-body {
+  width: 95%;
+}
+
+.th {
+  position: sticky; 
+  top: 0;
+  background-color: #a7a498;
+}
+
 .satstabell-container {
   display: flex;
   flex-direction: column;

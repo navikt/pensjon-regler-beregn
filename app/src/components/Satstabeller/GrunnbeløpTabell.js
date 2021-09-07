@@ -46,8 +46,9 @@ class GrunnbeløpTabell extends React.Component {
           }
         render(){
           const TabellRender = () => (
-            <div>                <Table striped bordered hover>
-            <thead>   
+            <div>                
+            <Table striped bordered hover>
+            <thead className = "th">   
                 <tr>
                     <th>FomDato</th>
                     <th>TomDato</th>
@@ -69,7 +70,7 @@ class GrunnbeløpTabell extends React.Component {
             return(
                 <div>
               <div onClick = {this.handleClick}>
-                <Satsheader headline = "Veiet Grunnbeløp" show = {this.state.show}></Satsheader>
+                <Satsheader headline = "Grunnbeløp" show = {this.state.show}></Satsheader>
               </div>
                   {this.state.show ? <TabellRender></TabellRender> : null}
                 </div>

@@ -85,26 +85,30 @@ class App extends React.Component {
   }
 
   render(){
-    
     return (
       <div class = "App-header">   
-    
         <h1> PENSJON REGLER SATSVIEWER </h1>
-        <div>{<img src={logo} alt="Logo" width="500" height="300"/>}      </div>
+        <div>{<img src={logo} alt="Logo" width="500" height="300"/>}</div>
+
         <div class = "menu-container">
           <DropdownMenu href = {"ProdTabeller"} name = "PROD Tabeller" list = {ProdTabeller} prevTabell = {this.state.valgtTabell} onTabellChange = {this.handleTabellChange}>PROD Tabeller</DropdownMenu>
           <DropdownMenu href = {"TestTabeller"} name = "Test Tabeller" list = {TestTabeller} prevTabell = {this.state.valgtTabell} onTabellChange = {this.handleTabellChange}>Test Tabeller</DropdownMenu>
           <DropdownMenu href = {"AndreTabeller"} name = "Andre Tabeller" list = {AndreTabeller} prevTabell = {this.state.valgtTabell} onTabellChange = {this.handleTabellChange}>Andre Tabeller</DropdownMenu>
           <DropdownMenu href = {"MiljøTabeller"} name = "Aktiv Tabell i Miljø" list = {["Q1","Q2","Q3","Q4","Q5","T1","T2","T3","T4","PROD"]} onTabellChange = {this.handleMiljøChange}>Aktiv Tabell i Miljø</DropdownMenu>
         </div>
-        <div class = "valgt-tabell"><HentMiljøtabell key = {"miljøtabell: "+this.state.displayTabell} aktiv = {this.state.aktiv} displayTabell = {this.state.displayTabell} valgtMiljø = {this.state.valgtMiljø}></HentMiljøtabell></div>
+
+        <div class = "valgt-tabell">
+          <HentMiljøtabell key = {"miljøtabell: "+this.state.displayTabell} aktiv = {this.state.aktiv} displayTabell = {this.state.displayTabell} valgtMiljø = {this.state.valgtMiljø}></HentMiljøtabell>
+        </div>
+
         <div class = "satsvindu-container">
           <Satsvindu currentTabell = {this.state.valgtTabell} valgtMiljø = {this.state.valgtMiljø} aktiv = {this.state.aktiv} displayTabell = {this.state.displayTabell}></Satsvindu>
         </div>
+
         <div class = "app-footer" height = '15%'></div>
       </div>
-  );
-    }
+    );
+  }
 }
 ReactDOM.render(App,document.getElementById('root'))
 export default App;

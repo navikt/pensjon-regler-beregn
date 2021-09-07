@@ -47,7 +47,7 @@ class SkjermingstilleggTabell extends React.Component {
     render(){
       const TabellRender = () => (
         <div><Table striped bordered hover>
-        <thead>   
+        <thead className = "th">   
             <tr>
                 <th>FomDato</th>
                 <th>TomDato</th>

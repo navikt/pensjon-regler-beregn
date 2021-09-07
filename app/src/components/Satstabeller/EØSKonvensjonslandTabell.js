@@ -47,7 +47,7 @@ class EØSKonvensjonslandTabell extends React.Component {
     render(){
       const TabellRender = () => (<div>
         <Table striped bordered hover>
-            <thead>   
+            <thead className = "th">   
                 <tr></tr>
                 <tr>
                     <th>FomDato</th>

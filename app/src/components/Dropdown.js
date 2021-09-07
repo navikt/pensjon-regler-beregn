@@ -16,13 +16,13 @@ class DropdownMenu extends React.Component{
     }
     
 
-  handleSubmit(event) {
+    handleSubmit(event) {
     this.setState({currentTabell: event.target.name});
     this.props.onTabellChange(event.target.name);
-  }
+    }
+
     render(){
         return(
-
             <DropdownButton menuAlign = "left" id="dropdown-basic-button" size="lg" title={this.state.name} >
                 {this.state.list.map((listItem)=>
                     <Dropdown.Item key = {listItem} name = {listItem} onClick = {this.handleSubmit}>{listItem}</Dropdown.Item>

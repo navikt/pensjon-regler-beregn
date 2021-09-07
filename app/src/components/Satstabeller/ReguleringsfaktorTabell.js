@@ -48,7 +48,7 @@ class ReguleringsfaktorTabell extends React.Component {
       const TabellRender = () => (
         <div>
 <Table striped bordered hover>
-            <thead>   
+            <thead className = "th">   
                 <tr>
                     <th>FomDato</th>
                     <th>TomDato</th>

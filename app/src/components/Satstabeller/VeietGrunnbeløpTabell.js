@@ -45,25 +45,25 @@ class VeietGrunnbeløpTabell extends React.Component {
     render(){
       const TabellRender = () => (
         <div>
-      
-      
+           
         <Table striped bordered hover>
-        <thead>   
+        <thead className = "th">   
             <tr>
                 <th>FomDato</th>
                 <th>TomDato</th>
                 <th>Verdi</th>
             </tr>
-        </thead> 
-        <tbody> 
-        {this.state.verdier.map((data,key) => {
+        </thead>
+          <tbody className = "tabell-body"> 
+          {this.state.verdier.map((data,key) => {
             return(
-                    <tr>
-                    <td>{data.satsFom[2]}-{data.satsFom[1]}-{data.satsFom[0]}</td>
-                    <td>{data.satsTom[2]}-{data.satsTom[1]}-{data.satsTom[0]}</td>
-                    <td>{data.value}</td>
-                    </tr>
-        )})}
+              <tr>
+              <td>{data.satsFom[2]}-{data.satsFom[1]}-{data.satsFom[0]}</td>
+              <td>{data.satsTom[2]}-{data.satsTom[1]}-{data.satsTom[0]}</td>
+              <td>{data.value}</td>
+              </tr>
+            )
+          })}
          </tbody>
         </Table>
         </div>
