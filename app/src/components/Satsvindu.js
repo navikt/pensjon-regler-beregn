@@ -15,7 +15,6 @@ import EØSKonvensjonslandTabell from "./Satstabeller/EØSKonvensjonslandTabell"
 import BarnetilleggTak2016Tabell from "./Satstabeller/BarnetilleggTak2016Tabell";
 import "../App.css";
 import Satsheader from "./Satsheader";
-import Collapse from 'react-bootstrap/Collapse'
 
 class Satsvindu extends React.Component{
     constructor(props){

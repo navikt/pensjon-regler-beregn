@@ -58,8 +58,8 @@ class VeietGrunnbeløpTabell extends React.Component {
           {this.state.verdier.map((data,key) => {
             return(
               <tr>
-              <td>{data.satsFom[2]}-{data.satsFom[1]}-{data.satsFom[0]}</td>
-              <td>{data.satsTom[2]}-{data.satsTom[1]}-{data.satsTom[0]}</td>
+              <td>{((data.satsFom[0]) < 0) ? 'N/A' : (data.satsFom[2]+'-'+data.satsFom[1]+'-'+data.satsFom[0])}</td>
+              <td>{((data.satsTom[0]) > 10000) ? 'N/A' : (data.satsTom[2]+'-'+data.satsTom[1]+'-'+data.satsTom[0])}</td>
               <td>{data.value}</td>
               </tr>
             )

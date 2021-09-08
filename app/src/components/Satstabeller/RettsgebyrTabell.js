@@ -57,12 +57,12 @@ class RettsgebyrTabell extends React.Component {
                 <th>TERSKEL_FEILUTBET</th>
             </tr>
         </thead> 
-        <tbody> 
+        <tbody className = "tabell-body"> 
         {this.state.verdier.map((data,key) => {
             return(
                     <tr>
-                    <td>{data.satsFom[2]}-{data.satsFom[1]}-{data.satsFom[0]}</td>
-                    <td>{data.satsTom[2]}-{data.satsTom[1]}-{data.satsTom[0]}</td>
+                    <td>{((data.satsFom[0]) < 0) ? 'N/A' : (data.satsFom[2]+'-'+data.satsFom[1]+'-'+data.satsFom[0])}</td>
+                    <td>{((data.satsTom[0]) > 10000) ? 'N/A' : (data.satsTom[2]+'-'+data.satsTom[1]+'-'+data.satsTom[0])}</td>
                     <td>{data.kodeMap[1].RETTSGEBYR}</td>
                     <td>{data.kodeMap[1].TOL_GR_EO_ETTERBET}</td>
                     <td>{data.kodeMap[1].TOL_GR_EO_TILBAKEKR}</td>

@@ -56,12 +56,12 @@ class SærtilleggTabell extends React.Component {
                 <th>Forhøyet</th>
             </tr>
         </thead> 
-        <tbody> 
+        <tbody className = "tabell-body"> 
         {this.state.verdier.map((data,key) => {
             return(
                     <tr>
-                    <td>{data.satsFom[2]}-{data.satsFom[1]}-{data.satsFom[0]}</td>
-                    <td>{data.satsTom[2]}-{data.satsTom[1]}-{data.satsTom[0]}</td>
+                    <td>{((data.satsFom[0]) < 0) ? 'N/A' : (data.satsFom[2]+'-'+data.satsFom[1]+'-'+data.satsFom[0])}</td>
+                    <td>{((data.satsTom[0]) > 10000) ? 'N/A' : (data.satsTom[2]+'-'+data.satsTom[1]+'-'+data.satsTom[0])}</td>
                     <td>{data.kodeMap[1].Minste}</td>
                     <td>{data.kodeMap[1].Ordinær}</td>
                     <td>{data.kodeMap[1].Forhøyet}</td>

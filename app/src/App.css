@@ -1,14 +1,6 @@
 .App {
   text-align: center;
 }
-
-.logo {
-  height: 4vmin;
-  size: 5%;
-  pointer-events: none;
-}
-
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -22,10 +14,6 @@
 
 .app-footer {
   min-height: 10vh;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 .menu-container {
@@ -69,12 +57,15 @@
 
 .tabell-body {
   width: 95%;
+  border: thick solid #797575;
 }
 
 .th {
   position: sticky; 
   top: 0;
   background-color: #a7a498;
+  border: thick solid #797575;
+  border-collapse: separate;
 }
 
 .satstabell-container {
