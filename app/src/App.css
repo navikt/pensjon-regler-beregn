@@ -1,8 +1,15 @@
-.App {
-  text-align: center;
+:root {
+  --background: #282c34;
+  --border: #797575;
+  --tabell-background: #a7a79d;
+  --hover: #e0e0d2;
+  --text: #000000;
+  --headline: #ffffff;
+  --colorpick: #be5da1;
 }
-.App-header {
-  background-color: #282c34;
+
+.App {
+  background-color: var(--background);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -10,6 +17,63 @@
   justify-content: top;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.top-bar {
+  width: 100%;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
+color: var(--text);
+}
+
+.top-filler {
+  width: 10%;
+  display: flex;
+}
+
+.headline {
+  width: 80%;
+  text-align: center;
+  font-size:90px;
+  font-style: bold;
+  color: var(--headline);
+}
+
+.button-container{
+  width: 10%;
+  justify-content: flex-end;
+  align-items: right;
+  margin-left: auto;
+}
+
+.matrix-theme-button{
+  padding: 10px 10px;
+  border-radius: 5px;
+  border-color: rgb(8, 90, 6);
+  background-color: rgb(15, 216, 15);
+}
+
+.light-theme-button{
+  padding: 10px 10px;
+  border-radius: 5px;
+  border-color: rgb(185, 182, 182);
+  background-color: rgb(255, 255, 255);
+}
+
+.dark-theme-button{
+  padding: 10px 10px;
+  border-radius: 5px;
+  border-color: rgb(66, 65, 65);
+  background-color: rgb(94, 90, 90);
+}
+
+.bubblegum-theme-button{
+  padding: 10px 10px;
+  border-radius: 5px;
+  border-color: rgb(180, 14, 111);
+  background-color: rgb(250, 51, 184);
 }
 
 .app-footer {
@@ -30,21 +94,20 @@
 }
 
 .kategori-delimiter {
-  background-color: #282c34;
+  background-color: var(--background);
 }
 
 .valgt-tabell {
   display: flex;
   width: 90%;
-  background-color: rgb(165, 165, 158);
-  border: thick solid #797575;
-  color: black;
+  background-color: var(--tabell-background);
+  border: thick solid var(--border);
+  color: var(--text);
 }
 
 .satsvindu-container {
   width: 90%;
-  color:black;
-  background-color: black;
+  color:var(--text);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -52,20 +115,22 @@
 }
 
 .tabell-wrapper {
-  border-top: thick solid #282c34;
+  border-top: thick solid var(--background);
 }
 
 .tabell-body {
   width: 95%;
-  border: thick solid #797575;
+  border: thick solid var(--border);
+  color: var(--text);
 }
 
 .th {
   position: sticky; 
   top: 0;
-  background-color: #a7a498;
-  border: thick solid #797575;
+  background-color: var(--tabell-background);;
+  border: thick solid var(--border);
   border-collapse: separate;
+  color: var(--text);
 }
 
 .satstabell-container {
@@ -73,7 +138,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 90%;
-  background-color: rgb(165, 165, 158);
+  background-color: var(--tabell-background);
 }
 
 .sats-header {
@@ -81,12 +146,12 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  border: thick solid #797575;
+  border: thick solid var(--border);
   padding: 1%;
 }
 
 .sats-header:hover {
-  background-color: rgb(224, 223, 202);
+  background-color: var(--hover);
 }
 
 .arrow {

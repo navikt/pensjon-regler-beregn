@@ -10,6 +10,7 @@ class DropdownMenu extends React.Component{
             list: this.props.list,
             prevTabell: this.props.prevTabell, 
             currentTabell: "default",
+            variant: this.props.variant
             
             }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,7 +24,7 @@ class DropdownMenu extends React.Component{
 
     render(){
         return(
-            <DropdownButton menuAlign = "left" id="dropdown-basic-button" size="lg" title={this.state.name}>
+            <DropdownButton menuAlign = "left" id="dropdown-basic-button" size="lg" title={this.state.name} variant = {this.props.variant} key = {this.state.name + ': '+this.props.variant}>
                 {this.state.list.map((listItem)=>
                     <Dropdown.Item key = {listItem} name = {listItem} onClick = {this.handleSubmit}>{listItem}</Dropdown.Item>
                 )}
