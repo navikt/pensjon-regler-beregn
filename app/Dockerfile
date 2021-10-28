@@ -1,19 +1,15 @@
-FROM node:carbon
-
+FROM node:13.12.0-alpine as build
 WORKDIR /app
+ENV PATH /app/node_modules/.bin:$PATH
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm ci
+RUN npm install react-scripts@3.4.1 -g --silent
+COPY . ./
+RUN npm run build
 
-RUN apt-get update && apt-get -y install nginx && apt-get -y install gettext-base
-
-# NGINX
-COPY nginx/fss.conf /etc/nginx/conf.d/app.conf.template
-COPY /build /usr/share/nginx/html
-
-# NODE
-COPY node_modules/ ./node_modules/
-COPY nginx/startup-fss.sh ./startup.sh
-
-RUN chmod 744 ./startup.sh
-
-EXPOSE 8080
-
-CMD ./startup.sh
+# production environment
+FROM nginx:stable-alpine
+COPY --from=build /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
