@@ -6,7 +6,7 @@ metadata:
   labels:
     team: "teampensjon"
   annotations:
-    nais.io/security-does-not-matter: "true"
+    #nais.io/security-does-not-matter: "true"
 spec:
   image: "{{ image }}"
   port: 80
