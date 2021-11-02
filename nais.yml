@@ -6,8 +6,8 @@ metadata:
   labels:
     team: "teampensjon"
   annotations:
-    nais.io/read-only-file-system: "false"
-    #nais.io/security-does-not-matter: "true"
+    #nais.io/read-only-file-system: "false"
+    nais.io/security-does-not-matter: "true"
 spec:
   image: "{{ image }}"
   port: 80
