@@ -6,12 +6,12 @@ metadata:
   labels:
     team: "teampensjon"
   annotations:
-    nais.io/run-as-user: "1001"
+    nais.io/run-as-user: "101"
     nais.io/read-only-file-system: "false"
     #nais.io/security-does-not-matter: "true"
 spec:
   image: "{{ image }}"
-  port: 80
+  port: 8080
   replicas:
     min: 1
     max: 1

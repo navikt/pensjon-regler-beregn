@@ -1,4 +1,5 @@
-FROM node:13.12.0-alpine as build
+FROM nginxinc/nginx-unprivileged:stable-alpine
+
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json ./
@@ -9,7 +10,7 @@ COPY . ./
 RUN npm run build
 
 # production environment
-FROM nginx:stable-alpine
+#FROM nginx:stable-alpine
 COPY --from=build /app/build /usr/share/nginx/html
-EXPOSE 80
+EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
