@@ -1,7 +1,7 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: "pensjon-regler-satsviewer"
+  name: "pensjon-regler-beregn"
   namespace: "teampensjon"
   labels:
     team: "teampensjon"
@@ -29,5 +29,5 @@ spec:
       cpu: "100m"
       memory: "512Mi"
   ingresses:
-    - "https://pensjon-regler-satsviewer.dev.adeo.no"
-    - "https://pensjon-regler-satsviewer.dev-fss.nais.io"
+    - "https://pensjon-regler-beregn.dev.adeo.no"
+    - "https://pensjon-regler-beregn.dev-fss.nais.io"
