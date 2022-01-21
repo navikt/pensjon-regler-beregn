@@ -8,175 +8,50 @@
   --colorpick: #be5da1;
 }
 
-.App {
-  background-color: var(--background);
-  min-height: 100vh;
+.header {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: top;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border: thick solid black;
 }
 
-.top-bar {
+.main-container {
   width: 100%;
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-between;
-color: var(--text);
-}
-
-.top-filler {
-  width: 10%;
-  display: flex;
-}
-
-.headline {
-  width: 80%;
-  text-align: center;
-  font-size:90px;
-  font-style: bold;
-  color: var(--headline);
-}
-
-.button-container{
-  width: 10%;
-  justify-content: flex-end;
-  align-items: right;
-  margin-left: auto;
-}
-
-.matrix-theme-button{
-  padding: 10px 10px;
-  border-radius: 5px;
-  border-color: rgb(8, 90, 6);
-  background-color: rgb(15, 216, 15);
-}
-
-.light-theme-button{
-  padding: 10px 10px;
-  border-radius: 5px;
-  border-color: rgb(185, 182, 182);
-  background-color: rgb(255, 255, 255);
-}
-
-.dark-theme-button{
-  padding: 10px 10px;
-  border-radius: 5px;
-  border-color: rgb(66, 65, 65);
-  background-color: rgb(94, 90, 90);
-}
-
-.bubblegum-theme-button{
-  padding: 10px 10px;
-  border-radius: 5px;
-  border-color: rgb(180, 14, 111);
-  background-color: rgb(250, 51, 184);
-}
-
-.app-footer {
-  min-height: 10vh;
-}
-
-.menu-container {
   display: flex;
   flex-direction: row;
-  width: 60%;
-  justify-content: space-around;
-  padding:5%;
+  align-items: center;
 }
 
-.kategori-container {
-  display: flex;
-  flex-direction: row;
+.RequestPane {
+  width: 100%;
+  height: 100%;
+  border: thick solid black;
 }
 
-.kategori-delimiter {
-  background-color: var(--background);
+.ResponsePane {
+  width: 100%;
+  height: 100%;
+  border: thick solid black;
 }
 
-.valgt-tabell {
-  display: flex;
-  width: 90%;
-  background-color: var(--tabell-background);
-  border: thick solid var(--border);
-  color: var(--text);
-}
-
-.satsvindu-container {
-  width: 90%;
-  color:var(--text);
+.footer {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  font-size: small;
+  align-items: center;
+  border: thick solid black;
+  position:absolute;
+  left:0;
+  bottom:0;
+  right:0;
 }
 
-.tabell-wrapper {
-  border-top: thick solid var(--background);
-}
-
-.tabell-body {
-  width: 95%;
-  border: thick solid var(--border);
-  color: var(--text);
-}
-
-.th {
-  position: sticky; 
-  top: 0;
-  background-color: var(--tabell-background);;
-  border: thick solid var(--border);
-  border-collapse: separate;
-  color: var(--text);
-}
-
-.satstabell-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 90%;
-  background-color: var(--tabell-background);
-}
-
-.sats-header {
-  font-size: x-large;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  border: thick solid var(--border);
-  padding: 1%;
-}
-
-.sats-header:hover {
-  background-color: var(--hover);
-}
-
-.arrow {
-  border: solid black;
-  border-width: 0 5px 5px 0;
-  display: inline-block;
-  padding: 5px;
-}
-
-.right {
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-}
-
-.left {
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
-}
-
-.up {
-  transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
-}
-
-.down {
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
+.App {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  font-size: calc(10px + 2vmin);
 }
