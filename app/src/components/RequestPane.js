@@ -9,7 +9,7 @@ class RequestPane extends React.Component {
         super(props)
         this.state = {  
             id: this.props.id,
-            request: null,
+            request: [],
             isLoaded: false
         }
     }
@@ -22,8 +22,7 @@ class RequestPane extends React.Component {
           headers : { 
             'Content-Type': 'application/json',
             'Accept': 'application/json'
-           },
-           mode: 'no-cors'
+           }
         }
         )
           .then(res => res.json())
@@ -32,13 +31,13 @@ class RequestPane extends React.Component {
                 if(this._isMounted){
               this.setState({
                 isLoaded: true,
-                request: result[1]
+                request: result
               })
             }
             },
             (error) => {
               this.setState({
-                isLoaded: false,
+                isLoaded: true,
                 error
               });
             }
@@ -51,22 +50,12 @@ class RequestPane extends React.Component {
       }
 
        render(){
-           if(this.state.isLoaded){
-        {this.state.verdier.map((data,key) => {
-            return(
-                <div>
-                    {data.environment}
-                </div>
-            )})}
-        }
-            console.log("ID: "+ this.state.id);
-            console.log("isLoaded: "+ this.state.isLoaded);
         return(
-
-            <div class ="RequestPane">
-                <h1>REQUEST</h1>
-                request id: {this.state.id}
-            </div>
+          <div className ="RequestPane">
+            <h1>REQUEST</h1>
+            <div>request id: {this.state.id}</div>
+            <div>{this.state.request.xml}</div>
+          </div>
         )
       }
 }
