@@ -9,7 +9,13 @@ function RequestPane(props) {
     useEffect(() => {
         // GET request using fetch inside useEffect React hook
         fetch('https://pensjon-preg-logviewer-api.dev-fss.nais.io/api/log/' + id
-            ,)
+            ,{
+            headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            }
+           )
             .then(response => response.json())
             //.then(myjson=>console.log(myjson))
             // .then(data => setResult(JSON.stringify(data)));
