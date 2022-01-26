@@ -1,30 +1,28 @@
-import React,  { useState, useEffect }  from "react";
+import React, {useEffect, useState} from "react";
 import '../App.css';
 
 function RequestPane(props) {
     let inheritId = props.id
-    const [id, setId] = useState(inheritId)  //121042323
-    // const [result, setResult] = useState(null);
+    const [id] = useState(inheritId)  //121042323
     const [result, setResult] = useState([]);
 
     useEffect(() => {
         // GET request using fetch inside useEffect React hook
-        fetch('https://pensjon-preg-logviewer-api.dev-fss.nais.io/api/log/' + id)
+        fetch('https://pensjon-preg-logviewer-api.dev-fss.nais.io/api/log/' + id
+            ,)
             .then(response => response.json())
             //.then(myjson=>console.log(myjson))
             // .then(data => setResult(JSON.stringify(data)));
             .then(data => setResult(data));
-
         // empty dependency array means this effect will only run once (like componentDidMount in classes)
     }, []);
 
     return (
-        <div>
-            <h5 >GET Request with React Hooks</h5>
-            <div >
-                request: {result.metadata}
-            </div>
+        <div class="RequestPane">
+            <h1>REQUEST</h1>
+            {JSON.stringify(result)}
         </div>
+
     );
 }
 
