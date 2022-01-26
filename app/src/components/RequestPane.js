@@ -20,7 +20,9 @@ function RequestPane(props) {
     return (
         <div class="RequestPane">
             <h1>REQUEST</h1>
-            {JSON.stringify(result)}
+            <p>request id: {id}</p>
+            <p>environment : {result.environment}</p>
+            <p>content : {result.xml}</p>
         </div>
 
     );
