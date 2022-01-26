@@ -1,4 +1,4 @@
-import { Route, BrowserRouter, Routes } from "react-router-dom";
+import { Route, BrowserRouter, Routes, HashRouter } from "react-router-dom";
 import './App.css';
 import React from "react";
 import ReactDOM from "react-dom";
@@ -18,17 +18,17 @@ function Request() {
 
 export default function App() {
   return (
-    <div class = "App">
-      <div class = "header"><Header></Header></div>
-      <div class = "main-container">
-        <BrowserRouter>
+    <div className = "App">
+      <div className = "header"><Header></Header></div>
+      <div className = "main-container">
+        <HashRouter>
           <Routes>
             <Route path="/:id" element={<Request />}></Route> {/* routing to enable us to read parameter from URL */}
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
         <ResponsePane></ResponsePane>
       </div>
-      <div class = "footer"><Footer></Footer></div>
+      <div className = "footer"><Footer></Footer></div>
     </div>
   );
 }

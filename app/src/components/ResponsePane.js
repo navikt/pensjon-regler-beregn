@@ -4,7 +4,7 @@ import '../App.css';
 class ResponsePane extends React.Component {
     render(){
         return(
-            <div class = "ResponsePane">
+            <div className = "ResponsePane">
                 <h1>RESPONSE</h1>
                 test
             </div>
