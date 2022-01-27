@@ -2,8 +2,7 @@ import React, {useEffect, useState} from "react";
 import '../App.css';
 
 function RequestPane(props) {
-    let inheritId = props.id
-    const [id] = useState(inheritId)  //121042323
+    const [id] = useState(props.id)  //121042323
     const [result, setResult] = useState([]);
 
     useEffect(() => {
@@ -21,7 +20,7 @@ function RequestPane(props) {
             // .then(data => setResult(JSON.stringify(data)));
             .then(data => setResult(data));
         // empty dependency array means this effect will only run once (like componentDidMount in classes)
-    }, []);
+    });
 
     return (
         <div class="RequestPane">
