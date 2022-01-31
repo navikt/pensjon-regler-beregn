@@ -3,12 +3,12 @@ import '../App.css';
 
 function RequestPane(props) {
     let inheritId = props.id
-    const [id] = useState(inheritId)  //121042323
+    // const [id] = useState(inheritId)  //106597005
     const [result, setResult] = useState([]);
 
     useEffect(() => {
         // GET request using fetch inside useEffect React hook
-        fetch('https://pensjon-preg-logviewer-api.dev-fss.nais.io/api/log/' + id
+        fetch('https://pensjon-preg-logviewer-api.dev-fss.nais.io/api/log/' + inheritId
             ,{
             headers: {
                     'Content-Type': 'application/json',
@@ -24,11 +24,11 @@ function RequestPane(props) {
     }, []);
 
     return (
-        <div class="RequestPane">
+        <div className="RequestPane">
             <h1>REQUEST</h1>
-            <p>request id: {id}</p>
+            <p>request id: {inheritId}</p>
             <p>environment : {result.environment}</p>
-            <p>content : {result.xml}</p>
+            <p id='id'>content : {result.xml}</p>
         </div>
 
     );
