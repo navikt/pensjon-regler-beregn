@@ -3,8 +3,8 @@ import '../App.css';
 
 function ResponsePane(props) {
 
-    var url = 'https://pensjon-regler-t0.dev.adeo.no/api/'; //'https://example.com/profile'  //
-    var servicetype= 'beregnOpptjening'
+    var url = 'http://localhost:8080/api'; //https://pensjon-regler-t0.dev.adeo.no'; //'https://example.com/profile'  //
+    var servicetype= '/beregnOpptjening'
     var data = {
         "beholdningTom" : 1514804400000,
         "persongrunnlag" : {
@@ -151,32 +151,35 @@ function ResponsePane(props) {
 
     useEffect(() => {
         fetch(url + servicetype, {
-            // mode: 'no-cors',
+             // mode: 'no-cors',
+            // crossDomain:true,
             // 'Access-Control-Request-Method': '*',
             // 'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
             // 'Access-Control-Allow-Origin': '*',
             // 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
             method: 'POST', // or 'PUT'
-            Origin: 'http://localhost:3000/',
+            // Origin: 'http://localhost:3000/',
             // dataType: 'json',
             // referrerPolicy: "no-referrer",
             headers:  {
                 // 'Access-Control-Request-Method': '*',
                 // 'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-                'Content-Type': 'application/json',
-                'accept': 'application/json',
+                // 'Access-Control-Allow-Origin': '*',
+                // 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+                'Content-Type':  'application/json', //'text/plain;charset=UTF-8' , //'application/json',
+                'accept': 'application/json', //'application/json',
                 // 'mode': 'no-cors',
                 // 'postman-token': '5bf211e3-8d3e-5eca-b303-dce815081ccd',
                 // 'cache-control': 'no-cache',
                 // 'Allow':'POST'
-                Origin: 'http://localhost:3000/',
+                // Origin: 'http://localhost:3000/',
             },
-            body: data, // JSON.parse(data), //JSON.stringify(data)  //// // data can be `string` or {object}!
-            }).then(res => res.json())
+            body: JSON.stringify(data), // JSON.parse(data), //JSON.stringify(data)  //// // data can be `string` or {object}!
+            })
+            // .then(res => res.json())
             .catch(error => console.error('Error:', error))
             // .then(response => console.log('Success:', response))
+            .then(response => response.json())
             .then(data => setResult(data));
     }, []);
 
@@ -184,7 +187,8 @@ function ResponsePane(props) {
         <div className = "ResponsePane">
             <h1>RESPONSE</h1>
             <p>response type: {servicetype}</p>
-            <p>content : {result}</p>
+            <p>content : {JSON.stringify(result)}</p>
+            <p>år :  {JSON.stringify(result.beholdninger[0].ar)}</p>
         </div>
     )
 }
