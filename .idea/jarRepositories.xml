@@ -27,8 +27,33 @@
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="local-maven-repo-2" />
+      <option name="name" value="Local library" />
+      <option name="url" value="file:///C:\data\BWTestRep\BWTestRep/blaze-lib" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="github-preg-testdata" />
       <option name="name" value="github-preg-testdata" />
+      <option name="url" value="https://maven.pkg.github.com/navikt/pensjon-regler-testdata" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="local-maven-repo" />
+      <option name="name" value="Local library" />
+      <option name="url" value="file://c/data/preg_github/blaze-lib" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="central" />
+      <option name="url" value="https://repo1.maven.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="github-package-registry-navikt" />
+      <option name="name" value="GitHub Apache Maven Packages" />
+      <option name="url" value="https://maven.pkg.github.com/navikt/maven-release/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="github-package-registry-navikt-testdata" />
+      <option name="name" value="GitHub Apache Maven Packages" />
       <option name="url" value="https://maven.pkg.github.com/navikt/pensjon-regler-testdata" />
     </remote-repository>
   </component>

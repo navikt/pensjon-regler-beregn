@@ -21,10 +21,10 @@ function RequestPane(props) {
             // .then(data => setResult(JSON.stringify(data)));
             .then(data => setResult(data));
         // empty dependency array means this effect will only run once (like componentDidMount in classes)
-    },[result.xml]);
+    }, []);
 
     return (
-        <div class="RequestPane">
+        <div className="RequestPane">
             <h1>REQUEST</h1>
             <p>request id : {id}</p>
             <p>environment : {result.environment}</p>
