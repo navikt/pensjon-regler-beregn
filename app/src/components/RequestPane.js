@@ -1,14 +1,14 @@
+import { getDefaultNormalizer } from "@testing-library/react";
 import React, {useEffect, useState} from "react";
 import '../App.css';
 
 function RequestPane(props) {
-    let inheritId = props.id
-    // const [id] = useState(inheritId)  //106597005
+    const [id] = useState(props.id)  //121042323
     const [result, setResult] = useState([]);
 
     useEffect(() => {
         // GET request using fetch inside useEffect React hook
-        fetch('https://pensjon-preg-logviewer-api.dev-fss.nais.io/api/log/' + inheritId
+        fetch('https://pensjon-preg-logviewer-api.dev-fss.nais.io/api/log/' + id
             ,{
             headers: {
                     'Content-Type': 'application/json',
@@ -26,9 +26,9 @@ function RequestPane(props) {
     return (
         <div className="RequestPane">
             <h1>REQUEST</h1>
-            <p>request id: {inheritId}</p>
+            <p>request id : {id}</p>
             <p>environment : {result.environment}</p>
-            <p id='id'>content : {result.xml}</p>
+            <p>content : {result.xml}</p>
         </div>
 
     );

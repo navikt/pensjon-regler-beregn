@@ -1,4 +1,4 @@
-import { Route, BrowserRouter, Routes, HashRouter } from "react-router-dom";
+import { Route, Routes, HashRouter } from "react-router-dom";
 import './App.css';
 import React from "react";
 import ReactDOM from "react-dom";
