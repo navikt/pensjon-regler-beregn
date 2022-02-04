@@ -3,7 +3,7 @@ import '../App.css';
 
 function ResponsePane(props) {
 
-    var url = 'http://localhost:8080/api'; //https://pensjon-regler-t0.dev.adeo.no'; //'https://example.com/profile'  //
+    var url = 'https://pensjon-regler-q0.dev.adeo.no/api'; //https://pensjon-regler-t0.dev.adeo.no';
     var servicetype= '/beregnOpptjening'
     var data = {
         "beholdningTom" : 1514804400000,
@@ -176,9 +176,7 @@ function ResponsePane(props) {
             },
             body: JSON.stringify(data), // JSON.parse(data), //JSON.stringify(data)  //// // data can be `string` or {object}!
             })
-            // .then(res => res.json())
             .catch(error => console.error('Error:', error))
-            // .then(response => console.log('Success:', response))
             .then(response => response.json())
             .then(data => setResult(data));
     }, []);
@@ -188,7 +186,6 @@ function ResponsePane(props) {
             <h1>RESPONSE</h1>
             <p>response type: {servicetype}</p>
             <p>content : {JSON.stringify(result)}</p>
-            <p>år :  {JSON.stringify(result.beholdninger[0].ar)}</p>
         </div>
     )
 }
