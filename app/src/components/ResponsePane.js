@@ -3,7 +3,7 @@ import '../App.css';
 
 function ResponsePane(props) {
 
-    var url = 'https://pensjon-regler-q0.dev.adeo.no/api'; //https://pensjon-regler-t0.dev.adeo.no';
+    var url = 'https://pensjon-regler-q5.dev.adeo.no/api'; //https://pensjon-regler-t0.dev.adeo.no';
     var servicetype= '/beregnOpptjening'
     var data = {
         "beholdningTom" : 1514804400000,
