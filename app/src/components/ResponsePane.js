@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import '../App.css';
-
+import './ResponsePane.css'
 function ResponsePane(props) {
 
     var url = 'https://pensjon-regler-q5.dev.adeo.no/api'; //https://pensjon-regler-t0.dev.adeo.no';
@@ -145,47 +145,155 @@ function ResponsePane(props) {
     };
 
     const [result, setResult] = useState([]);
-
-
+    const [uiData, setUiData] = useState([]);
+    let [uiHtml, setUiHtml] = useState([]);
 
 
     useEffect(() => {
-        fetch(url + servicetype, {
-             // mode: 'no-cors',
-            // crossDomain:true,
-            // 'Access-Control-Request-Method': '*',
-            // 'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
-            // 'Access-Control-Allow-Origin': '*',
-            // 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
-            method: 'POST', // or 'PUT'
-            // Origin: 'http://localhost:3000/',
-            // dataType: 'json',
-            // referrerPolicy: "no-referrer",
-            headers:  {
-                // 'Access-Control-Request-Method': '*',
-                // 'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
-                // 'Access-Control-Allow-Origin': '*',
-                // 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-                'Content-Type':  'application/json', //'text/plain;charset=UTF-8' , //'application/json',
-                'accept': 'application/json', //'application/json',
-                // 'mode': 'no-cors',
-                // 'postman-token': '5bf211e3-8d3e-5eca-b303-dce815081ccd',
-                // 'cache-control': 'no-cache',
-                // 'Allow':'POST'
-                // Origin: 'http://localhost:3000/',
-            },
-            body: JSON.stringify(data), // JSON.parse(data), //JSON.stringify(data)  //// // data can be `string` or {object}!
-            })
-            .catch(error => console.error('Error:', error))
-            .then(response => response.json())
-            .then(data => setResult(data));
+        //console.log("load file1")
+        const d = require('./jsonTestFile/trygdetid.json');
+        setUiData(JSON.parse(JSON.stringify(d)))
+        //console.log(d);
     }, []);
+
+    // useEffect(() => {
+    //     fetch(url + servicetype, {
+    //          // mode: 'no-cors',
+    //         // crossDomain:true,
+    //         // 'Access-Control-Request-Method': '*',
+    //         // 'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
+    //         // 'Access-Control-Allow-Origin': '*',
+    //         // 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+    //         method: 'POST', // or 'PUT'
+    //         // Origin: 'http://localhost:3000/',
+    //         // dataType: 'json',
+    //         // referrerPolicy: "no-referrer",
+    //         headers:  {
+    //             // 'Access-Control-Request-Method': '*',
+    //             // 'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
+    //             // 'Access-Control-Allow-Origin': '*',
+    //             // 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+    //             'Content-Type':  'application/json', //'text/plain;charset=UTF-8' , //'application/json',
+    //             'accept': 'application/json', //'application/json',
+    //             // 'mode': 'no-cors',
+    //             // 'postman-token': '5bf211e3-8d3e-5eca-b303-dce815081ccd',
+    //             // 'cache-control': 'no-cache',
+    //             // 'Allow':'POST'
+    //             // Origin: 'http://localhost:3000/',
+    //         },
+    //         body: JSON.stringify(data), // JSON.parse(data), //JSON.stringify(data)  //// // data can be `string` or {object}!
+    //         })
+    //         .catch(error => console.error('Error:', error))
+    //         .then(response => response.json())
+    //         .then(data => setResult(data));
+    // }, []);
+
+    // use this recursive function with a parse funciton
+    function parseObjectProperties (obj, parse) {
+        for (var k in obj) {
+            if (typeof obj[k] === 'object' && obj[k] !== null) {
+                parseObjectProperties(obj[k], parse)
+            } else if (obj.hasOwnProperty(k)) {
+                parse(k, obj[k], obj)
+            }
+        }
+
+    }
+
+
+// then apply to the property the task you want, in this case just console
+    const replace = "replaceTextString"
+
+    function createHtml(k,prop,obj) {
+        if(k=='type') {
+            if(prop=='TABLIST') {
+                console.log(k + ': ' + prop)
+                const tabList= "<div class=\"tab\">" + replace + "</div>"
+                uiHtml = tabList
+            }
+            else if(prop == 'TAB') {
+                console.log(k + ': ' + prop)
+                //<button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">London</button>
+                const name = obj['name']
+                const horizontalTab = "<button className=\"tablinks\" onClick=\"openTab(event, '" + name+"')\">" + name + "</button>"
+                uiHtml =uiHtml.toString().replace(replace, horizontalTab + replace)
+                document.getElementById("demo").innerHTML =  uiHtml
+            }
+            else if(prop == 'Table') {
+
+            }
+        }
+    }
+
+    parseObjectProperties(uiData, function(k, prop, obj) {
+        createHtml(k,prop,obj)
+    })
+
+    const blocks = {
+        time: 1602725895949,
+        blocks: [
+            {
+                type: "header",
+                data: {
+                    text: "This is a heading",
+                    level: 2
+                }
+            },
+            {
+                type: "paragraph",
+                data: {
+                    text: "This is a paragraph"
+                }
+            }
+        ]
+    };
+
+    function Block({ type, data }) {
+        switch (type) {
+            case "header":
+                const Element = "h" + data.level;
+                return <Element>{data.text}</Element>;
+            case "paragraph":
+                return <p>{data.text}</p>;
+            default:
+                console.log("Unknown block type", type);
+                return null;
+        }
+    }
 
     return(
         <div className = "ResponsePane">
             <h1>RESPONSE</h1>
-            <p>response type: {servicetype}</p>
-            <p>content : {JSON.stringify(result)}</p>
+            {/*<p>response type: {servicetype}</p>*/}
+            {/*<p>response result: {result.xml}</p>*/}
+            <p id="demo"> </p>
+            {/*uiHtml*/}
+            {/*<div className="tab">
+                <button className="tablinks" onClick="openTab(event, 'Oversikt')">Oversikt</button>
+                <button className="tablinks" onClick="openTab(event, 'GenerellHistorikk')">GenerellHistorikk</button>
+                <button className="tablinks" onClick="openTab(event, 'Pensjonsbeholdning')">Pensjonsbeholdning</button>
+                <button className="tablinks" onClick="openTab(event, 'Uføre')">Uføre</button>
+                <button className="tablinks" onClick="openTab(event, 'AFP Historikk')">AFP Historikk</button>
+                <button className="tablinks" onClick="openTab(event, 'Opptjeningsgrunnlag')">Opptjeningsgrunnlag
+                </button>
+                <button className="tablinks" onClick="openTab(event, 'Inntektsgrunnlag')">Inntektsgrunnlag</button>
+                <button className="tablinks" onClick="openTab(event, 'Trygdetid kap 19')">Trygdetid kap 19</button>
+                <button className="tablinks" onClick="openTab(event, 'Trygdetid kap 20')">Trygdetid kap 20</button>
+                <button className="tablinks" onClick="openTab(event, 'Trygdetid Alternativ')">Trygdetid Alternativ
+                </button>
+                <button className="tablinks" onClick="openTab(event, 'Trygdeavtale')">Trygdeavtale</button>
+                <button className="tablinks" onClick="openTab(event, 'Institusjon')">Institusjon</button>
+                <button className="tablinks"
+                        onClick="openTab(event, 'InngangOgEksportgrunnlag')">InngangOgEksportgrunnlag
+                </button>
+                replaceTextString
+            </div>*/}
+            <div className="App">
+                <h1>JSON to html below</h1>
+                {blocks.blocks.map((block, i) => (
+                    <Block key={i} {...block} />
+                ))}
+            </div>
         </div>
     )
 }
