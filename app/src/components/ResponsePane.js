@@ -102,19 +102,33 @@ function ResponsePane(props) {
                               //console.log(secondLevel[j]['data'])
                               if(secondLevel[j]['data'].hasOwnProperty('entry')) {
                                 if(secondLevel[j]['data']['entry'].hasOwnProperty('list')) {
-                                      data = secondLevel[j]['data']['entry']['list'];
-                                    for(var i in data) {
-                                        //TODO cell can have popup dialog.
-                                        const cell = <td>{data[i]['data']}</td>
-                                        r.push(cell)
-                                    }
-                                    t.push(<tr>{r}</tr>)
+                                      data = secondLevel[j]['data']['entry'] //['list'];
+
+                                      for(var i in data) {
+                                          r= []
+                                          if(i=='list') {
+                                              for(var x in data['list']) {
+                                                      //console.log(data[i][x])
+                                                      const cell = <td>{data[i][x]['data']}</td>
+                                                      r.push(cell)
+                                              }
+                                              t.push(<tr>{r}</tr>)
+                                          }
+                                      }
+
+                                    // for(var i in data) {
+                                    //     //TODO cell can have popup dialog.
+                                    //     const cell = <td>{data[i]['data']}</td>
+                                    //     r.push(cell)
+                                    // }
+
                                   }
                               }else   {
                                   data = secondLevel[j]['data'];
                                   for(var i in data) {
                                       for(var x in data[i]) {
                                           // console.log("x: " + x)
+                                          r= []
                                           if(x =='list') {
                                               for(var c in data[i]['list']) {
                                                   console.log(data[i]['list'][c]['data'])
