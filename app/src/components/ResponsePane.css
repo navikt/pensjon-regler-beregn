@@ -34,18 +34,18 @@
     border-top: none;
 }
 
-/* Style the Vertical  tab
+/* Style the Side  tab
 see https://www.w3schools.com/howto/howto_js_vertical_tabs.asp */
-.verticalTab {
+.sideTab {
     float: left;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
     width: 30%;
-    height: 300px;
+    height: 100%;
 }
 
 /* Style the buttons inside the tab */
-.verticalTab button {
+.sideTab button {
     display: block;
     background-color: inherit;
     color: black;
@@ -60,23 +60,23 @@ see https://www.w3schools.com/howto/howto_js_vertical_tabs.asp */
 }
 
 /* Change background color of buttons on hover */
-.verticalTab button:hover {
+.sideTab button:hover {
     background-color: #ddd;
 }
 
 /* Create an active/current "tab button" class */
-.verticalTab button.active {
+.sideTab button.active {
     background-color: #ccc;
 }
 
 /* Style the tab content */
-.verticalTabcontent {
+.sideTabcontent {
     float: left;
     padding: 0px 12px;
     border: 1px solid #ccc;
     width: 70%;
     border-left: none;
-    height: 300px;
+    height: 100%;
 }
 
 /*Table horizontal */
