@@ -1,4 +1,4 @@
-name: Satsviewer build and deploy
+name: Beregn build and deploy
 
 on:
   push:
