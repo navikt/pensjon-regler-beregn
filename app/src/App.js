@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 import { useParams } from "react-router";
 
 import Header from "./components/Header";
+import HeaderButton from "./components/Small/HeaderButton";
 import RequestPane from "./components/RequestPane";
 import ResponsePane from "./components/ResponsePane";
 import Footer from "./components/Footer";
@@ -19,7 +20,14 @@ function Request() {
 export default function App() {
   return (
     <div className = "App">
-      <div className = "header"><Header></Header></div>
+      <div>
+        <div className="Header">
+          <div className="HeaderTitle">Beregn Pensjon</div>
+          <HeaderButton text = {"Åpne"}></HeaderButton>
+          <HeaderButton text = {"Sats"}></HeaderButton>
+          <HeaderButton text = {"Run"}></HeaderButton>
+        </div>
+      </div>
       <div className = "main-container">
         <HashRouter>
           <Routes>
