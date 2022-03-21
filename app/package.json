@@ -6,7 +6,7 @@
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@navikt/ds-css": "^0.14.2",
-    "@navikt/ds-react": "^0.15.3",
+    "@navikt/ds-react": "^0.17.8",
     "@navikt/ds-react-internal": "^0.11.4",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.4",
