@@ -1,4 +1,4 @@
-# pensjon-regler-satsviewer
+# pensjon-regler-beregn
 # Beskrivelse
 
 Dette er et React prosjekt, for å starte kreves node.js.
@@ -12,7 +12,7 @@ For å kjøre appen lokalt må man først installere pakker med kommandoen
 `npm i`
 
 i Node kommando vindu etter å ha navigert til 
-(repo-location)/pensjon-regler-satsviewer/src.
+(repo-location)/pensjon-regler-beregn/src.
 
 Deretter kan man starte appen lokalt med kommandoen:
 
