@@ -3,9 +3,10 @@ import '../App.css';
 
 function ResponsePane(props) {
 
-    var url = 'https://pensjon-regler-q5.dev.adeo.no/api'; //https://pensjon-regler-t0.dev.adeo.no';
-    var servicetype= '/beregnOpptjening'
-    var data = {
+    //var url = 'https://pensjon-regler-q5.dev.adeo.no/api/';
+    var servicetype= 'BeregnOpptjeningRequest';
+    var url = 'http://localhost:8080/api/beregn?requestType='+servicetype;
+    var body = {
         "beholdningTom" : 1514804400000,
         "persongrunnlag" : {
             "penPerson" : {
@@ -143,14 +144,13 @@ function ResponsePane(props) {
             "merknadListe" : [ "java.util.ArrayList", [ ] ]
         }
     };
-
     const [result, setResult] = useState([]);
 
 
 
 
     useEffect(() => {
-        fetch(url + servicetype, {
+        fetch(url, {
              // mode: 'no-cors',
             // crossDomain:true,
             // 'Access-Control-Request-Method': '*',
@@ -174,7 +174,7 @@ function ResponsePane(props) {
                 // 'Allow':'POST'
                 // Origin: 'http://localhost:3000/',
             },
-            body: JSON.stringify(data), // JSON.parse(data), //JSON.stringify(data)  //// // data can be `string` or {object}!
+            body: JSON.stringify(body) // JSON.parse(data), //JSON.stringify(data)  //// // data can be `string` or {object}!
             })
             .catch(error => console.error('Error:', error))
             .then(response => response.json())
@@ -185,7 +185,7 @@ function ResponsePane(props) {
         <div className = "ResponsePane">
             <h1>RESPONSE</h1>
             <p>response type: {servicetype}</p>
-            <p>content : {JSON.stringify(result)}</p>
+            <p>content : {JSON.stringify(result.response)}</p>
         </div>
     )
 }
