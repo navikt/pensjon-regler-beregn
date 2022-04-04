@@ -1,6 +1,7 @@
 import { getDefaultNormalizer } from "@testing-library/react";
 import React, {useEffect, useState} from "react";
 import '../App.css';
+import ParseJson from '../components/parseJson/ParseJson'
 
 function RequestPane(props) {
     const [id] = useState(props.id)  //121042323
@@ -28,7 +29,8 @@ function RequestPane(props) {
             <h1>REQUEST</h1>
             <p>request id : {id}</p>
             <p>environment : {result.environment}</p>
-            <p>content : {result.xml}</p>
+            <ParseJson data={JSON.parse(JSON.stringify(result.xml))}></ParseJson>
+            <!--<p>content : {result.xml}</p>-->
         </div>
 
     );
