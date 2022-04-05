@@ -1,13 +1,36 @@
 import React, {useEffect, useState} from "react";
 import {openSideTab, openTab} from "./Tab";
 
+const search = (tree, target) => {
+
+    if (tree != undefined && tree.hasOwnProperty(target)) {
+        
+        console.log("Found it!")
+        return tree.target;
+    }
+    
+    for (var child in tree) {
+    console.log("going deeper")
+      const found = search(child, target);
+      
+      if (found) {
+        return found;
+      }
+    }
+  }
+
 function JsonParser(props){
             const[data] = useState(props.data)
+            console.log(data)
             const[uiHtml, setuiHtml] = []
             var rootTab = []
             var tabs = []
+            return (
+                <h1>{search(data, '0')}</h1>
+            );
+
             //create root tab
-                for (var k in data) {
+                /*for (var k in data) {
                   if (data.hasOwnProperty(k)) {
                       const name = data[k]['name']
                       const horizontalTab =<button className="tablinks" onClick={(e) => openTab(e, {name})}>{name}</button>
@@ -140,5 +163,7 @@ function JsonParser(props){
             rootTab = <div className="tab">{rootTab}</div>
             uiHtml = <div>{rootTab}{tabs}</div>
             console.log(uiHtml)
-            return uiHtml
+            return uiHtml*/
         }
+
+        export default JsonParser
