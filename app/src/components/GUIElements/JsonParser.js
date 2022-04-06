@@ -36,10 +36,19 @@ const search = (current, target, parent) => {
                 search( current[child]['data'], target, current[child]);
             }
             else if( current[child]['type']== 'TABLE') {
+                //TODO parse Table frame, also include cells??
 
+                search( current[child]['cells'], target, current[child]);
             }
-            //TODO cells ,etc
 
+        }
+        else if(current[child].hasOwnProperty('popover')) {
+            console.log("Cell level - one cell: "  +  current[child]['data'])
+            //TODO parse one cell property
+
+            if(current[child]['popover']==true) {
+                search( current[child]['popoverContent'], target, current[child]);
+            }
         }
         else if(Array.isArray(current[child])) {
             console.log('has arrays, probably just one ')
