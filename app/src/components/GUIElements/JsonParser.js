@@ -13,6 +13,7 @@ const search = (current, target, parent) => {
     // }
     
     for (var child in current) {
+        var found = []
         console.log("child:" + child)
         // console.log("child value:" + JSON.stringify(current[child]))
         // console.log("current object has type value:" + current[child].hasOwnProperty('type'))
@@ -27,18 +28,20 @@ const search = (current, target, parent) => {
                 //DO parse tabList
                 //parseTabList(name, current['data'], parent)
                 //continue parse
-                search( current[child]['data'], target, current[child]);
+                found= current[child]
+                return found
+                //found = search( current[child]['data'], target, current[child]);
             }
             else if( current[child]['type'] == 'TAB') {
                 //DO parse Tab
                 //parseTab(name, current['data'], parent)
                 //continue parse
-                search( current[child]['data'], target, current[child]);
+                found = search( current[child]['data'], target, current[child]);
             }
             else if( current[child]['type']== 'TABLE') {
                 //TODO parse Table frame, also include cells??
 
-                search( current[child]['cells'], target, current[child]);
+                found= search( current[child]['cells'], target, current[child]);
             }
 
         }
@@ -47,13 +50,20 @@ const search = (current, target, parent) => {
             //TODO parse one cell property
 
             if(current[child]['popover']==true) {
-                search( current[child]['popoverContent'], target, current[child]);
+                found = search( current[child]['popoverContent'], target, current[child]);
             }
         }
         else if(Array.isArray(current[child])) {
             console.log('has arrays, probably just one ')
-            search( current[child], target, current);
+            found = search( current[child], target, current);
         }
+
+        //console.log("found:" +found)
+        if(found.length!=0) {
+        // if(found.hasOwnProperty('type')) {
+            return found
+        }
+
     }
   }
 
@@ -66,7 +76,11 @@ function JsonParser(props){
             var rootTab = []
             var tabs = []
             return (
-                <p>{search(data, 'xyzzt', [])}</p>
+                <div>
+                    <div>test</div>
+                    {JSON.stringify(search(data, 'xyzzt', []))}
+                </div>
+
             );
 
             //create root tab
