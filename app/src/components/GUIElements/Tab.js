@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Table} from "./Table"
+import { TabList } from "./TabList";
 
 export function Tab(props){
     let [tab] = useState(props.tab);
@@ -46,11 +47,16 @@ export function Tab(props){
         <div>TAB: {tab['name']}</div>
         <div>Here are my tables!</div>
         {tab['data'][1].map((data,key) => {
+            if(data['type'] === 'TABLIST') {
+                return (
+                    <TabList tabs = {data['data'][1]}/>
+                )
+            } else if (data['type'] === 'TABLE') {
             return(
                 <div>
                 <Table table = {data}/>
                 </div>
-            )})}
+            )}})}
         </div>
     )
 }
