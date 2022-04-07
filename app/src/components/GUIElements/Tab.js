@@ -1,5 +1,7 @@
-function Tab(props){
-    
+import React, {useEffect, useState} from "react";
+
+export function Tab(props){
+    let [data] = useState(props.data);
 
     const  openTab = function (evt, tabName) {
         // let targe = evt.target()
@@ -36,4 +38,9 @@ function Tab(props){
         evt.currentTarget.className += " active";
         //return undefined;
     }
+    console.log("Inside Tab")
+
+    return(
+        <div>TAB: {data['name']}</div>
+    )
 }

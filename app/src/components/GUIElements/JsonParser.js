@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {openSideTab, openTab} from "./Tab";
+import { TabList } from "./TabList";
 
 const search = (current, target, parent) => {
 
@@ -28,7 +29,7 @@ const search = (current, target, parent) => {
                 //DO parse tabList
                 //parseTabList(name, current['data'], parent)
                 //continue parse
-                found= current[child]
+                found= <TabList tabs = {current[child]}></TabList>
                 return found
                 //found = search( current[child]['data'], target, current[child]);
             }
@@ -78,7 +79,7 @@ function JsonParser(props){
             return (
                 <div>
                     <div>test</div>
-                    {JSON.stringify(search(data, 'xyzzt', []))}
+                    {(search(data, 'xyzzt', []))}
                 </div>
 
             );
