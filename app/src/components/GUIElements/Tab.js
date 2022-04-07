@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
+import {Table} from "./Table"
 
 export function Tab(props){
-    let [data] = useState(props.data);
+    let [tab] = useState(props.tab);
 
     const  openTab = function (evt, tabName) {
         // let targe = evt.target()
@@ -41,6 +42,15 @@ export function Tab(props){
     console.log("Inside Tab")
 
     return(
-        <div>TAB: {data['name']}</div>
+        <div>
+        <div>TAB: {tab['name']}</div>
+        <div>Here are my tables!</div>
+        {tab['data'][1].map((data,key) => {
+            return(
+                <div>
+                <Table table = {data}/>
+                </div>
+            )})}
+        </div>
     )
 }

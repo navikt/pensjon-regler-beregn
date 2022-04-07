@@ -12,12 +12,13 @@ export function TabList(props){
 return(
     <div class = "TabList">
         <p>{log()}</p>
+        This is a tablist
+        
+        Here are my tabs:
         {tabs['data'][1].map((data,key) => {
             return(
                 <div>
-                This is a tablist
-                Here are my tabs:
-                <Tab data = {data}></Tab>
+                <Tab tab = {data}></Tab>
                 </div>
             )})}
     </div>
