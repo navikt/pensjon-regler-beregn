@@ -37,12 +37,16 @@ const search = (current, target, parent) => {
                 //DO parse Tab
                 //parseTab(name, current['data'], parent)
                 //continue parse
-                found = search( current[child]['data'], target, current[child]);
+                //found = search( current[child]['data'], target, current[child]);
+                found= <Tab tab = {current[child]}></Tab>
+                return found
             }
             else if( current[child]['type']== 'TABLE') {
                 //TODO parse Table frame, also include cells??
 
-                found= search( current[child]['cells'], target, current[child]);
+                //found= search( current[child]['cells'], target, current[child]);
+                found= <Table table = {current[child]}></Table>
+                return found
             }
 
         }
