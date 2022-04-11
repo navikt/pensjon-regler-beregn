@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import '../App.css';
-import JsonParser from "./GUIElements/JsonParser";
+import {JsonParser} from "./GUIElements/JsonParser";
 
 
 function ResponsePane(props) {

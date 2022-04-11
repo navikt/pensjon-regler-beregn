@@ -1,5 +1,6 @@
 import {Tab} from './Tab';
 import React, {useEffect, useState} from "react";
+import {JsonParser} from './JsonParser';
 
 export function TabList(props){
     
@@ -15,11 +16,9 @@ return(
         This is a tablist
         
         Here are my tabs:
-        {tabs['data'][1].map((data,key) => {
+        {tabs['data'].map((data,key) => {
             return(
-                <div>
-                <Tab tab = {data}></Tab>
-                </div>
+                <JsonParser data = {data}/>
             )})}
     </div>
 );

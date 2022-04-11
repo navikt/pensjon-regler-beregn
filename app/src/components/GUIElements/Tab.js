@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import { JsonParser } from "./JsonParser";
 import {Table} from "./Table"
 import { TabList } from "./TabList";
 
@@ -40,23 +41,30 @@ export function Tab(props){
         evt.currentTarget.className += " active";
         //return undefined;
     }
-    console.log("Inside Tab")
 
+    
+    function log(){
+        console.log("Inside Tab: " + tab['name'])
+        console.log(tab['data'][1])
+        }
+
+        function log2(data){
+            console.log("test tab child iterator")
+            console.log(data)
+        }
     return(
         <div>
+            {log()}
         <div>TAB: {tab['name']}</div>
         <div>Here are my tables!</div>
         {tab['data'][1].map((data,key) => {
-            if(data['type'] === 'TABLIST') {
-                return (
-                    <TabList tabs = {data['data'][1]}/>
-                )
-            } else if (data['type'] === 'TABLE') {
-            return(
-                <div>
-                <Table table = {data}/>
-                </div>
-            )}})}
+            return (
+            <div>
+            {log2(data)}
+            <JsonParser data = {data}/>
+            </div>
+            )
+        })}
         </div>
     )
 }
