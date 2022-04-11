@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {openSideTab, openTab} from "./Tab";
+import {openSideTab, openTab, Tab} from "./Tab";
 import { TabList } from "./TabList";
+import {Table} from "./Table";
 
 const search = (current, target, parent) => {
 
@@ -15,7 +16,13 @@ const search = (current, target, parent) => {
     
     for (var child in current) {
         var found = []
-        console.log("child:" + child)
+        var element = []
+        console.log("child type:" + child['type'])
+        if(current[child].hasOwnProperty('type')) {
+            element = current[child];
+        } else if (current.hasOwnProperty('type')) {
+            element = current;
+        }
         // console.log("child value:" + JSON.stringify(current[child]))
         // console.log("current object has type value:" + current[child].hasOwnProperty('type'))
         // console.log("current object has type value:" + current[child].hasOwnProperty('position'))
@@ -23,48 +30,49 @@ const search = (current, target, parent) => {
 
         // find TOP ,then data, then recursive , last is type....  In the   model of backend.. move type to the beginning.
         //one level can only has recursive when child = data.
-        if(current[child].hasOwnProperty('type')) {
-            console.log("type: "  +  current[child]['type'])
-            if(  current[child]['type'] == 'TABLIST') {
+        if(current[child].hasOwnProperty('type') || current.hasOwnProperty('type')) {
+            console.log("type: "  +  element['type'])
+            if(  element['type'] == 'TABLIST') {
                 //DO parse tabList
                 //parseTabList(name, current['data'], parent)
                 //continue parse
-                found= <TabList tabs = {current[child]}></TabList>
+                found= <TabList tabs = {element}></TabList>
                 return found
                 //found = search( current[child]['data'], target, current[child]);
             }
-            else if( current[child]['type'] == 'TAB') {
+            else if( element['type'] == 'TAB') {
                 //DO parse Tab
                 //parseTab(name, current['data'], parent)
                 //continue parse
                 //found = search( current[child]['data'], target, current[child]);
-                found= <Tab tab = {current[child]}></Tab>
+                found= <Tab tab = {element}></Tab>
                 return found
             }
-            else if( current[child]['type']== 'TABLE') {
+            else if( element['type']== 'TABLE') {
                 //TODO parse Table frame, also include cells??
 
                 //found= search( current[child]['cells'], target, current[child]);
-                found= <Table table = {current[child]}></Table>
+                console.log("TABLE HELLO TABLE")
+                found= <Table table = {element}></Table>
                 return found
             }
 
         }
-        else if(current[child].hasOwnProperty('popover')) {
+        /*else if(current[child].hasOwnProperty('popover')) {
             console.log("Cell level - one cell: "  +  current[child]['data'])
             //TODO parse one cell property
 
             if(current[child]['popover']==true) {
                 found = search( current[child]['popoverContent'], target, current[child]);
             }
-        }
+        }*/
         else if(Array.isArray(current[child])) {
-            console.log('has arrays, probably just one ')
-            found = search( current[child], target, current);
+            console.log("current[child]: "+current[child]['type'])
+            found = search(current[child], target, current);
         }
 
         //console.log("found:" +found)
-        if(found.length!=0) {
+        if(found.length != 0) {
         // if(found.hasOwnProperty('type')) {
             return found
         }
@@ -72,7 +80,7 @@ const search = (current, target, parent) => {
     }
   }
 
-function JsonParser(props){
+export function JsonParser(props){
             let [data] = useState(props.data)
             console.log(data)
             // data =  JSON.parse(JSON.stringify(data))
@@ -82,7 +90,6 @@ function JsonParser(props){
             var tabs = []
             return (
                 <div>
-                    <div>test</div>
                     {(search(data, 'xyzzt', []))}
                 </div>
 
@@ -225,4 +232,4 @@ function JsonParser(props){
             return uiHtml*/
         }
 
-        export default JsonParser
+
