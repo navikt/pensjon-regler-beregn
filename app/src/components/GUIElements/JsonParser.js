@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
-import {openSideTab, openTab, Tab} from "./Tab";
+import { openSideTab, openTab, Tab } from "./Tab";
 import { TabList } from "./TabList";
-import {Table} from "./Table";
+import { Table } from "./Table";
+import { Tree } from "./Tree";
 
 const search = (current, target, parent) => {
 
@@ -19,7 +20,7 @@ const search = (current, target, parent) => {
         var element = []
 
         console.log("child type:" + child['type'])
-        
+
         if(current[child].hasOwnProperty('type')) {
             element = current[child];
         } else if (current.hasOwnProperty('type')) {
@@ -55,6 +56,9 @@ const search = (current, target, parent) => {
 
                 //found= search( current[child]['cells'], target, current[child]);
                 found= <Table table = {element}></Table>
+                return found
+            } else if( element['type'] == 'TREE') {
+                found = <Tree tree = {element}></Tree>
                 return found
             }
 
