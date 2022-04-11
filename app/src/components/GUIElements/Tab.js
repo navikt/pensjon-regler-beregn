@@ -42,25 +42,17 @@ export function Tab(props){
         //return undefined;
     }
 
-    
-    function log(){
+    function log() {
         console.log("Inside Tab: " + tab['name'])
-        console.log(tab['data'][1])
-        }
+    }
 
-        function log2(data){
-            console.log("test tab child iterator")
-            console.log(data)
-        }
     return(
         <div>
-            {log()}
         <div>TAB: {tab['name']}</div>
         <div>Here are my tables!</div>
         {tab['data'][1].map((data,key) => {
             return (
             <div>
-            {log2(data)}
             <JsonParser data = {data}/>
             </div>
             )

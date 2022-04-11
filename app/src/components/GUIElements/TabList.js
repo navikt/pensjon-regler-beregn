@@ -8,7 +8,6 @@ export function TabList(props){
 
     function log(){
     console.log("Inside TabList")
-    console.log(tabs)
     }
 return(
     <div class = "TabList">

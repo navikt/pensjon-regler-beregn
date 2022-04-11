@@ -17,7 +17,9 @@ const search = (current, target, parent) => {
     for (var child in current) {
         var found = []
         var element = []
+
         console.log("child type:" + child['type'])
+        
         if(current[child].hasOwnProperty('type')) {
             element = current[child];
         } else if (current.hasOwnProperty('type')) {
@@ -52,7 +54,6 @@ const search = (current, target, parent) => {
                 //TODO parse Table frame, also include cells??
 
                 //found= search( current[child]['cells'], target, current[child]);
-                console.log("TABLE HELLO TABLE")
                 found= <Table table = {element}></Table>
                 return found
             }
