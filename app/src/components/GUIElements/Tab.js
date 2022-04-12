@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import { JsonParser } from "./JsonParser";
-import {Table} from "./Table"
 import { TabList } from "./TabList";
 import { Tabs } from '@navikt/ds-react';
 

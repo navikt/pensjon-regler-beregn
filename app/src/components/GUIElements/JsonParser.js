@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { openSideTab, openTab, Tab } from "./Tab";
 import { TabList } from "./TabList";
-import { Table } from "./Table";
+import { EnTable } from "./EnTable";
 import { Tree } from "./Tree";
 
 const search = (current, target, parent) => {
@@ -24,10 +24,10 @@ const search = (current, target, parent) => {
             element = current;
         }
 
-        // console.log("child value:" + JSON.stringify(current[child]))
-        // console.log("current object has type value:" + current[child].hasOwnProperty('type'))
-        // console.log("current object has type value:" + current[child].hasOwnProperty('position'))
-        // console.log("child value:" + JSON.parse(current[child]))
+        //console.log("element value:" , element)
+        // console.log("current object has type value:" , current[child].hasOwnProperty('type'))
+        // console.log("current object has type value:" , current[child].hasOwnProperty('position'))
+        // console.log("child value:" , JSON.parse(current[child]))
 
         // find TOP ,then data, then recursive , last is type....  In the   model of backend.. move type to the beginning.
         //one level can only has recursive when child = data.
@@ -49,10 +49,8 @@ const search = (current, target, parent) => {
                 return found
             }
             else if( element['type']== 'TABLE') {
-                //TODO parse Table frame, also include cells??
-
                 //found= search( current[child]['cells'], target, current[child]);
-                found= <Table table = {element}></Table>
+                found= <EnTable table = {element}></EnTable>
                 return found
             } else if( element['type'] == 'TREE') {
                 found = <Tree tree = {element}></Tree>
