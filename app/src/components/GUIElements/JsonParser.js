@@ -14,18 +14,16 @@ const search = (current, target, parent) => {
     // if(current == undefined || current == '' /*|| parent == 'java.util.ArrayList'*/) {
     //     return 'end'
     // }
-    
+    var element = []
+
     for (var child in current) {
         var found = []
-        var element = []
-
-        console.log("child type:" + child['type'])
-
         if(current[child].hasOwnProperty('type')) {
             element = current[child];
         } else if (current.hasOwnProperty('type')) {
             element = current;
         }
+
         // console.log("child value:" + JSON.stringify(current[child]))
         // console.log("current object has type value:" + current[child].hasOwnProperty('type'))
         // console.log("current object has type value:" + current[child].hasOwnProperty('position'))
@@ -34,7 +32,6 @@ const search = (current, target, parent) => {
         // find TOP ,then data, then recursive , last is type....  In the   model of backend.. move type to the beginning.
         //one level can only has recursive when child = data.
         if(current[child].hasOwnProperty('type') || current.hasOwnProperty('type')) {
-            console.log("type: "  +  element['type'])
             if(  element['type'] == 'TABLIST') {
                 //DO parse tabList
                 //parseTabList(name, current['data'], parent)
@@ -72,7 +69,6 @@ const search = (current, target, parent) => {
             }
         }*/
         else if(Array.isArray(current[child])) {
-            console.log("current[child]: "+current[child]['type'])
             found = search(current[child], target, current);
         }
 
@@ -87,7 +83,6 @@ const search = (current, target, parent) => {
 
 export function JsonParser(props){
             let [data] = useState(props.data)
-            console.log(data)
             // data =  JSON.parse(JSON.stringify(data))
             // console.log(data)
             const[uiHtml, setuiHtml] = []
