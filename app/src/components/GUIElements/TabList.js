@@ -10,6 +10,7 @@ export function TabList(props){
 
     function log(){
     console.log("Inside TabList")
+    console.log(tabs)
     }
 return(
     /*<div class = "TabList">
@@ -24,8 +25,9 @@ return(
     </div>*/
     <>
     <Tabs value = {value} onChange={setValue}>
+        {log()}
         <Tabs.List>
-            {tabs['data'].map((data,key) => {
+            {tabs['data'][1].map((data,key) => {
                 return (
                     <JsonParser data = {data}></JsonParser>
                 )
