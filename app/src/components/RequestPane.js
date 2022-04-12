@@ -1,6 +1,7 @@
 import { getDefaultNormalizer } from "@testing-library/react";
 import React, {useEffect, useState} from "react";
 import '../App.css';
+import {JsonParser} from "./GUIElements/JsonParser";
 
 function RequestPane(props) {
     const[request] = useState(props.request)
@@ -9,15 +10,16 @@ function RequestPane(props) {
 
 
     function test() {
+        console.log("Inside request pane")
+        console.log(request)
     }
 
 
     return (
         <div className="RequestPane">
+            {test()}
             <h1>REQUEST</h1>
-            <p>content : {JSON.stringify(request)}</p>
-            <p>ID: {id}</p>
-            <p>{test()}</p>
+            <JsonParser data = {request}/>
         </div>
 
     );
