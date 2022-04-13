@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {JsonParser} from "./JsonParser";
 import {Table} from '@navikt/ds-react';
+import {Heading} from '@navikt/ds-react';
 import data from "bootstrap/js/src/dom/data";
 
 export function EnTable(props){
@@ -18,12 +19,11 @@ export function EnTable(props){
     }
 
     function showRow(item, index) {
-        //console.log("Item inside row" , item, index)
+        //console.log("one row data" , item, index)
         var row = []
-        if(item[index]==null)
-            return
-        else if(index ==1 ){
-            item[index].map((subitem,j) => {
+        if(Array.isArray(item[1])){
+            //console.log("item[index]" , item[index])
+            item[1].map((subitem,j) => {
                 console.log("Item inside cell" , subitem, j)
                 // if (subitem[j] != null) {
                     if (subitem['header']) {
@@ -55,64 +55,43 @@ export function EnTable(props){
     //     }
     // }
 
+    const Checkname = ({ name }) => {
+        console.log({ name })
+        if(name!=null && name.includes('ingen')) {
+            return (null);
+        }
+        else
+            return <div className="w-full flex flex-col gap-4">
+                <Table size="small" >
+                    <Table.Header>
+                        <Table.Row>
+                            {table['cells'].map((item,index)=> (
+                                horizontalHeader(item, index)
+                            ))}
+                        </Table.Row>
+                    </Table.Header>
+                    <Table.Body>
+                        {table['cells'][1].map((item, index) => (
+                            <Table.Row /*key={fnr}*/ >
+                                {showRow(item,index)}
+                                {/*{showPopOver(item, index)}*/}
+                            </Table.Row>
+                        ))
+                        }
+                    </Table.Body>
+                </Table>
+            </div>
+    }
 
     return (
         <div>
-            {log()}
-            <p>{table.hasOwnProperty('name')?table['name']:''}</p>
-            <Table size="medium" >
-                <Table.Header>
-                    <Table.Row>
-                        {table['cells'].map((item,index)=> (
-                            horizontalHeader(item, index)
-                            // item[index][0]['header']? (
-                            //     <Table.HeaderCell scope="col">{item[index][0]['data']}</Table.HeaderCell>
-                            // ):(null)
+            {/*{log()}*/}
+            <Heading size="xsmall" level="6"> &ensp;
+            </Heading>
+            <Heading spacing size="xsmall" level="6">{table.hasOwnProperty('name')?table['name']:''}</Heading>
+            <Checkname name = {table['name']}>
 
-
-                        ))}
-                        {/*<Table.HeaderCell scope="col">Navn</Table.HeaderCell>*/}
-                        {/*<Table.HeaderCell scope="col">Fødseslnr.</Table.HeaderCell>*/}
-                        {/*<Table.HeaderCell scope="col">Start</Table.HeaderCell>*/}
-
-                    </Table.Row>
-                </Table.Header>
-                <Table.Body>
-                    {/*{data*/}
-
-
-                    {/*    .map(*/}
-                    {/*        ({ name, fnr, start }) =>*/}
-                    {/*            <Table.Row key={fnr} >*/}
-                    {/*                <Table.HeaderCell scope="row">{name}</Table.HeaderCell>*/}
-                    {/*                <Table.DataCell>{fnr.substring(0, 6)} {fnr.substring(6)}</Table.DataCell>*/}
-                    {/*                <Table.DataCell>{format(new Date(start), "dd.MM.yyyy")}</Table.DataCell>*/}
-                    {/*            </Table.Row>*/}
-                    {/*    )}*/}
-
-                    {table['cells'][1].map((item, index) => (
-                        //console.log("table item" , item)
-                        <Table.Row /*key={fnr}*/ >
-                            {showRow(item,index)}
-                            {/*{showPopOver(item, index)}*/}
-                            {/*{item[index][1].map((subitem,j) => (*/}
-
-                            {/*    subitem[j]['header']? (*/}
-                            {/*        <Table.HeaderCell scope="col">{subitem[j]['data']}</Table.HeaderCell>*/}
-                            {/*    ):(<Table.DataCell>{subitem[j]['data']}</Table.DataCell>),*/}
-
-                            {/*    subitem[j]['popover']? (*/}
-                            {/*        <JsonParser data = { subitem[j]}></JsonParser>*/}
-                            {/*    ):('')*/}
-                            {/*))}*/}
-                        </Table.Row>
-                        ))
-                    }
-
-                </Table.Body>
-            </Table>
+            </Checkname>
         </div>
-
-
     )
 }
