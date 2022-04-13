@@ -24,8 +24,7 @@ export function EnTable(props){
         if(Array.isArray(item[1])){
             //console.log("item[index]" , item[index])
             item[1].map((subitem,j) => {
-                console.log("Item inside cell" , subitem, j)
-                // if (subitem[j] != null) {
+                //console.log("Item inside cell" , subitem, j)
                     if (subitem['header']) {
                         row.push(<Table.HeaderCell scope="col">{subitem['data']}</Table.HeaderCell>)
                     } else {
@@ -34,7 +33,7 @@ export function EnTable(props){
                     if (subitem['popover']) {
                         //row.push(<JsonParser data = { subitem[j]}></JsonParser>)
                     }
-                // }
+
             })
         }
         //console.log(row)
@@ -56,7 +55,7 @@ export function EnTable(props){
     // }
 
     const Checkname = ({ name }) => {
-        console.log({ name })
+        //console.log({ name })
         if(name!=null && name.includes('ingen')) {
             return (null);
         }
