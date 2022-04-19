@@ -2,6 +2,7 @@ import {Tab} from './Tab';
 import React, {useEffect, useState} from "react";
 import {JsonParser} from './JsonParser';
 import { Tabs } from '@navikt/ds-react';
+import {Nav} from 'react-bootstrap'
 
 export function TabList(props){
     
@@ -12,31 +13,52 @@ export function TabList(props){
     console.log("Inside TabList")
     console.log(tabs)
     }
-return(
-    /*<div class = "TabList">
-        <p>{log()}</p>
-        This is a tablist
-        
-        Here are my tabs:
-        {tabs['data'].map((data,key) => {
-            return(
-                <JsonParser data = {data}/>
-            )})}
-    </div>*/
-    <>
-    <Tabs value = {value} onChange={setValue}>
-        {log()}
-        <Tabs.List>
-            {tabs['data'][1].map((data,key) => {
-                return (
-                    <JsonParser data = {data}></JsonParser>
-                )
-            })}
-        </Tabs.List>
-    </Tabs>
-
-    </>
-);
+    if(tabs['position'] == "TOP") {
+        return(
+            <>
+                <Tabs value = {value} onChange={setValue}> {/* notat til etter påske, dele opp Tab headers inne i Tab.List og Tab content etter Tab.list slik at
+                det ikke ødelegger CSS*/}
+                    {log()}
+                    <Tabs.List>
+                        {tabs['data'][1].map((data,key) => {
+                            return (
+                                <Tabs.Tab
+                                    value = {data['name']}
+                                    label = {data['name']}
+                                    id = {data['name'] + '-tab'}
+                                    aria-controls = {data['name'] + '-panel'}
+                                    >
+                                </Tabs.Tab>
+                            )
+                        })}
+                    </Tabs.List>
+                </Tabs>
+                {tabs['data'][1].map((data,key) => {
+                  return (
+                    <div
+                    role = "tabpanel"
+                    hidden = {value !== data['name'] }
+                    aria-labelledby = {data['name'] + '-tab'}
+                    id = {data['name'] + '-panel'}
+                    tabIndex = {0}
+                    >
+                      <JsonParser data = {data}></JsonParser>
+                      </div>
+                  )
+                })}
+            </>
+        );
+    } else if(tabs['position'] == "SIDE") {
+        return(
+            <Nav defaultActiveKey="/home" className="flex-column">
+                                        {tabs['data'][1].map((data,key) => {
+                            return (
+                                <JsonParser data = {data}></JsonParser>
+                            )
+                        })}
+            </Nav>
+        );
+    }
 
 }
 

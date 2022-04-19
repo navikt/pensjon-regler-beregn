@@ -43,28 +43,16 @@ export function Tab(props){
         //return undefined;
     }
 
-    function log() {
-        console.log("Inside Tab: " + tab['name'])
-    }
-
     return(
-        <>
-        <Tabs.Tab
-            value = {tab['name']}
-            label = {tab['name']}
-        >
-        </Tabs.Tab>
-        <Tabs.Panel
-            value = {tab['name']}
-        >
-        {tab['data'][1].map((data,key) => {
+        <div>
+            {tab['data'][1].map((data,key) => {
                 return (
-                    <JsonParser data = {data}></JsonParser>
+                    <div>
+                      <JsonParser data = {data}></JsonParser>
+                    </div>
                 )
             })}
-             
-    </Tabs.Panel>
-        </>
+        </div>
     )
     
 }
