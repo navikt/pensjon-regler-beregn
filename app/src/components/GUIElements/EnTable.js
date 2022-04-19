@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {JsonParser} from "./JsonParser";
-import {Table} from '@navikt/ds-react';
-import {Heading} from '@navikt/ds-react';
+import {Popover, Table} from '@navikt/ds-react';
+import {Heading, Button} from '@navikt/ds-react';
 import data from "bootstrap/js/src/dom/data";
 
 export function EnTable(props){
@@ -24,16 +24,42 @@ export function EnTable(props){
         if(Array.isArray(item[1])){
             //console.log("item[index]" , item[index])
             item[1].map((subitem,j) => {
-                //console.log("Item inside cell" , subitem, j)
+                let popOver;
+                let btnCell;
+//console.log("Item inside cell" , subitem, j)
+                if (subitem['popover']) {
+                    const buttonRef = useRef(null);
+                    const [open, setOpen] = useState(false);
+                    if (subitem['header']) {
+                        btnCell = <Table.HeaderCell scope="col"><Button ref={buttonRef} onClick={() => setOpen(true)}>
+                                {subitem['data']}</Button></Table.HeaderCell>;
+                        row.push(btnCell)
+                        popOver = <Popover open={open} onClose={() => setOpen(false)} anchorEl={buttonRef.current}
+                                           arrow={false} placement="bottom">
+                            <Popover.Content><JsonParser data = { subitem['popoverContent']}></JsonParser></Popover.Content>
+                        </Popover>;
+                        row.push(popOver)
+                    } else {
+                        btnCell = <Table.DataCell><Button ref={buttonRef} onClick={() => setOpen(true)}>
+                            {subitem['data']}</Button></Table.DataCell>;
+                        row.push(btnCell)
+                        popOver = <Popover open={open} onClose={() => setOpen(false)} anchorEl={buttonRef.current}
+                                           arrow={false} placement="bottom">
+                            <Popover.Content><JsonParser
+                                data={subitem['popoverContent']}></JsonParser></Popover.Content>
+                        </Popover>;
+                        //row.push(<Table.DataCell>{subitem['data']}</Table.DataCell>)
+                        row.push(popOver)
+                    }
+                    //row.push(<JsonParser data = { subitem['popoverContent']}></JsonParser>)
+                }
+                else {
                     if (subitem['header']) {
                         row.push(<Table.HeaderCell scope="col">{subitem['data']}</Table.HeaderCell>)
                     } else {
                         row.push(<Table.DataCell>{subitem['data']}</Table.DataCell>)
                     }
-                    if (subitem['popover']) {
-                        //row.push(<JsonParser data = { subitem[j]}></JsonParser>)
-                    }
-
+                }
             })
         }
         //console.log(row)
