@@ -31,7 +31,7 @@ export function EnTable(props){
                     const buttonRef = useRef(null);
                     const [open, setOpen] = useState(false);
                     if (subitem['header']) {
-                        btnCell = <Table.HeaderCell scope="col"><Button ref={buttonRef} onClick={() => setOpen(true)}>
+                        btnCell = <Table.HeaderCell scope="col"><Button ref={buttonRef} onClick={() => setOpen(true)} size="xsmall">
                                 {subitem['data']}</Button></Table.HeaderCell>;
                         row.push(btnCell)
                         popOver = <Popover open={open} onClose={() => setOpen(false)} anchorEl={buttonRef.current}
@@ -40,7 +40,7 @@ export function EnTable(props){
                         </Popover>;
                         row.push(popOver)
                     } else {
-                        btnCell = <Table.DataCell><Button ref={buttonRef} onClick={() => setOpen(true)}>
+                        btnCell = <Table.DataCell><Button ref={buttonRef} onClick={() => setOpen(true)} size="xsmall" >
                             {subitem['data']}</Button></Table.DataCell>;
                         row.push(btnCell)
                         popOver = <Popover open={open} onClose={() => setOpen(false)} anchorEl={buttonRef.current}
@@ -81,7 +81,7 @@ export function EnTable(props){
     // }
 
     const Checkname = ({ name }) => {
-        //console.log({ name })
+        //console.log(table)
         if(name!=null && name.includes('ingen')) {
             return (null);
         }
