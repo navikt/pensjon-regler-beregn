@@ -18,48 +18,47 @@ export function EnTable(props){
             return <Table.HeaderCell scope="col">{item[index][0]['data']}</Table.HeaderCell>
     }
 
-    function showRow(item, index) {
+    function showRow(item) {
         //console.log("one row data" , item, index)
         var row = []
         if(Array.isArray(item[1])){
             //console.log("item[index]" , item[index])
             item[1].map((subitem,j) => {
-                let popOver;
-                let btnCell;
+                // let popOver;
+                // let btnCell;
 //console.log("Item inside cell" , subitem, j)
-                if (subitem['popover']) {
-                    const buttonRef = useRef(null);
-                    const [open, setOpen] = useState(false);
-                    if (subitem['header']) {
-                        btnCell = <Table.HeaderCell scope="col"><Button ref={buttonRef} onClick={() => setOpen(true)} size="xsmall">
-                                {subitem['data']}</Button></Table.HeaderCell>;
-                        row.push(btnCell)
-                        popOver = <Popover open={open} onClose={() => setOpen(false)} anchorEl={buttonRef.current}
-                                           arrow={false} placement="bottom">
-                            <Popover.Content><JsonParser data = { subitem['popoverContent']}></JsonParser></Popover.Content>
-                        </Popover>;
-                        row.push(popOver)
-                    } else {
-                        btnCell = <Table.DataCell><Button ref={buttonRef} onClick={() => setOpen(true)} size="xsmall" >
-                            {subitem['data']}</Button></Table.DataCell>;
-                        row.push(btnCell)
-                        popOver = <Popover open={open} onClose={() => setOpen(false)} anchorEl={buttonRef.current}
-                                           arrow={false} placement="bottom">
-                            <Popover.Content><JsonParser
-                                data={subitem['popoverContent']}></JsonParser></Popover.Content>
-                        </Popover>;
-                        //row.push(<Table.DataCell>{subitem['data']}</Table.DataCell>)
-                        row.push(popOver)
-                    }
-                    //row.push(<JsonParser data = { subitem['popoverContent']}></JsonParser>)
-                }
-                else {
+//                 if (subitem['popover']) {
+//                     const buttonRef = useRef(null);
+//                     const [open, setOpen] = useState(false);
+//                     if (subitem['header']) {
+//                         btnCell = <Table.HeaderCell scope="col"><Button ref={buttonRef} onClick={() => setOpen(true)} size="xsmall">
+//                                 {subitem['data']}</Button></Table.HeaderCell>;
+//                         row.push(btnCell)
+//                         popOver = <Popover open={open} onClose={() => setOpen(false)} anchorEl={buttonRef.current}
+//                                            arrow={false} placement="bottom">
+//                             <Popover.Content><JsonParser data = { subitem['popoverContent']}></JsonParser></Popover.Content>
+//                         </Popover>;
+//                         row.push(popOver)
+//                     } else {
+//                         btnCell = <Table.DataCell><Button ref={buttonRef} onClick={() => setOpen(true)} size="xsmall" >
+//                             {subitem['data']}</Button></Table.DataCell>;
+//                         row.push(btnCell)
+//                         popOver = <Popover open={open} onClose={() => setOpen(false)} anchorEl={buttonRef.current}
+//                                            arrow={false} placement="bottom">
+//                             <Popover.Content><JsonParser
+//                                 data={subitem['popoverContent']}></JsonParser></Popover.Content>
+//                         </Popover>;
+//                         //row.push(<Table.DataCell>{subitem['data']}</Table.DataCell>)
+//                         row.push(popOver)
+//                     }
+//                     //row.push(<JsonParser data = { subitem['popoverContent']}></JsonParser>)
+//                 }  else {
                     if (subitem['header']) {
                         row.push(<Table.HeaderCell scope="col">{subitem['data']}</Table.HeaderCell>)
                     } else {
                         row.push(<Table.DataCell>{subitem['data']}</Table.DataCell>)
                     }
-                }
+                // }
             })
         }
         //console.log(row)
@@ -97,15 +96,28 @@ export function EnTable(props){
                     </Table.Header>
                     <Table.Body>
                         {table['cells'][1].map((item, index) => (
-                            <Table.Row /*key={fnr}*/ >
-                                {showRow(item,index)}
+                            //if(Array.isArray(item[1])&&item[1][0]['popover])
+                            //<Table.Row /*key={fnr}*/ >
+                            <CheckExpandableRow rowContent ={item}/*key={fnr}*/ >
+                                {/*{showRow(item)}*/}
                                 {/*{showPopOver(item, index)}*/}
-                            </Table.Row>
+                            </CheckExpandableRow>
                         ))
                         }
                     </Table.Body>
                 </Table>
             </div>
+    }
+
+    const CheckExpandableRow =  ({ rowContent }) => {
+        if(Array.isArray(rowContent[1])&&rowContent[1][0]['popover']) {
+           return  <Table.ExpandableRow content={ <JsonParser data = { rowContent[1][0]['popoverContent']}></JsonParser>}>
+                         {showRow(rowContent)}
+                 </Table.ExpandableRow>
+        }
+        else {
+            return <Table.Row>{showRow(rowContent)} </Table.Row>
+        }
     }
 
     return (

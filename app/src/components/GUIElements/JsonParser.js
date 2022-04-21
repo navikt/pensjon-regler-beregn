@@ -71,7 +71,7 @@ const search = (current, target, parent) => {
         }
 
         //console.log("found:" +found)
-        if(found.length != 0) {
+        if(found!=null&&found.length != 0) {
         // if(found.hasOwnProperty('type')) {
             return found
         }
