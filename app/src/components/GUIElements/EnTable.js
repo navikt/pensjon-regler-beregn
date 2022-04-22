@@ -110,13 +110,24 @@ export function EnTable(props){
     }
 
     const CheckExpandableRow =  ({ rowContent }) => {
-        if(Array.isArray(rowContent[1])&&rowContent[1][0]['popover']) {
-           return  <Table.ExpandableRow content={ <JsonParser data = { rowContent[1][0]['popoverContent']}></JsonParser>}>
-                         {showRow(rowContent)}
-                 </Table.ExpandableRow>
+        var expandable = false
+        var expandableitem = []
+        if(Array.isArray(rowContent[1]) ) {
+            rowContent[1].map((subitem,j) => { //check every cell of this row, show expandable if one cell have popOver.
+                if (subitem['popover']) {
+                    expandable = true
+                    expandableitem = subitem
+                }
+            })
+        }
+
+        if(expandable) {
+            return  <Table.ExpandableRow content={ <JsonParser data = { expandableitem['popoverContent']}></JsonParser>}>
+                {showRow(rowContent)}
+            </Table.ExpandableRow>
         }
         else {
-            return <Table.Row>{showRow(rowContent)} </Table.Row>
+            return <Table.Row><Table.DataCell></Table.DataCell> {showRow(rowContent)} </Table.Row>
         }
     }
 
@@ -125,7 +136,7 @@ export function EnTable(props){
             {/*{log()}*/}
             <Heading size="xsmall" level="6"> &ensp;
             </Heading>
-            <Heading spacing size="xsmall" level="6">{table.hasOwnProperty('name')?table['name']:''}</Heading>
+            <Heading spacing size="xsmall" level="6"> &ensp; {table.hasOwnProperty('name')?table['name']:''}</Heading>
             <Checkname name = {table['name']}>
 
             </Checkname>
