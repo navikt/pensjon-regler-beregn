@@ -1,31 +1,203 @@
-
 {
-        "beholdningTom" : 1514804400000,
-        "persongrunnlag" : {
+    "kravhode" : {
+        "persongrunnlagListe" : [ "java.util.ArrayList", [ {
             "penPerson" : {
-                "penPersonId" : 25700806
+                "penPersonId" : 27762106
             },
-            "fodselsdato" : -486133200000,
+            "fodselsdato" : -505227600000,
+            "statsborgerskap" : {
+                "kode" : "NOR",
+                "er_gyldig" : true
+            },
             "flyktning" : false,
             "personDetaljListe" : [ "java.util.ArrayList", [ {
                 "grunnlagsrolle" : {
                     "kode" : "SOKER",
                     "er_gyldig" : true
                 },
-                "rolleFomDato" : -483886800000,
+                "rolleFomDato" : 1083405600000,
+                "sivilstandType" : {
+                    "kode" : "GIFT",
+                    "er_gyldig" : true
+                },
                 "tillegg" : false,
                 "bruk" : true,
                 "grunnlagKilde" : {
-                    "kode" : "PEN",
+                    "kode" : "TPS",
                     "er_gyldig" : true
                 }
             } ] ],
-            "sisteGyldigeOpptjeningsAr" : 2019,
+            "sisteGyldigeOpptjeningsAr" : 2020,
+            "hentetPopp" : true,
+            "hentetInnt" : true,
+            "hentetInst" : false,
+            "hentetTT" : true,
+            "hentetArbeid" : false,
             "opptjeningsgrunnlagListe" : [ "java.util.ArrayList", [ {
+                "ar" : 2016,
+                "pi" : 229676,
+                "pia" : 229676,
+                "pp" : 1.5,
+                "opptjeningType" : {
+                    "kode" : "PPI",
+                    "er_gyldig" : true
+                },
+                "maksUforegrad" : 0,
+                "bruk" : true,
+                "grunnlagKilde" : {
+                    "kode" : "POPP",
+                    "er_gyldig" : true
+                },
+                "opptjeningTypeListe" : [ "java.util.ArrayList", [ ] ]
+            }, {
+                "ar" : 2018,
+                "pi" : 239841,
+                "pia" : 239841,
+                "pp" : 1.5,
+                "opptjeningType" : {
+                    "kode" : "PPI",
+                    "er_gyldig" : true
+                },
+                "maksUforegrad" : 0,
+                "bruk" : true,
+                "grunnlagKilde" : {
+                    "kode" : "POPP",
+                    "er_gyldig" : true
+                },
+                "opptjeningTypeListe" : [ "java.util.ArrayList", [ ] ]
+            }, {
+                "ar" : 2019,
+                "pi" : 247516,
+                "pia" : 247516,
+                "pp" : 1.5,
+                "opptjeningType" : {
+                    "kode" : "PPI",
+                    "er_gyldig" : true
+                },
+                "maksUforegrad" : 0,
+                "bruk" : true,
+                "grunnlagKilde" : {
+                    "kode" : "POPP",
+                    "er_gyldig" : true
+                },
+                "opptjeningTypeListe" : [ "java.util.ArrayList", [ ] ]
+            }, {
+                "ar" : 2020,
+                "pi" : 252491,
+                "pia" : 252491,
+                "pp" : 1.5,
+                "opptjeningType" : {
+                    "kode" : "PPI",
+                    "er_gyldig" : true
+                },
+                "maksUforegrad" : 0,
+                "bruk" : true,
+                "grunnlagKilde" : {
+                    "kode" : "POPP",
+                    "er_gyldig" : true
+                },
+                "opptjeningTypeListe" : [ "java.util.ArrayList", [ ] ]
+            }, {
                 "ar" : 2011,
-                "pi" : 781,
-                "pia" : 0,
-                "pp" : 0.0,
+                "pi" : 195337,
+                "pia" : 195337,
+                "pp" : 1.5,
+                "opptjeningType" : {
+                    "kode" : "PPI",
+                    "er_gyldig" : true
+                },
+                "maksUforegrad" : 0,
+                "bruk" : true,
+                "grunnlagKilde" : {
+                    "kode" : "POPP",
+                    "er_gyldig" : true
+                },
+                "opptjeningTypeListe" : [ "java.util.ArrayList", [ ] ]
+            }, {
+                "ar" : 2012,
+                "pi" : 203171,
+                "pia" : 203171,
+                "pp" : 1.5,
+                "opptjeningType" : {
+                    "kode" : "PPI",
+                    "er_gyldig" : true
+                },
+                "maksUforegrad" : 0,
+                "bruk" : true,
+                "grunnlagKilde" : {
+                    "kode" : "POPP",
+                    "er_gyldig" : true
+                },
+                "opptjeningTypeListe" : [ "java.util.ArrayList", [ ] ]
+            }, {
+                "ar" : 2017,
+                "pi" : 233534,
+                "pia" : 233534,
+                "pp" : 1.5,
+                "opptjeningType" : {
+                    "kode" : "PPI",
+                    "er_gyldig" : true
+                },
+                "maksUforegrad" : 0,
+                "bruk" : true,
+                "grunnlagKilde" : {
+                    "kode" : "POPP",
+                    "er_gyldig" : true
+                },
+                "opptjeningTypeListe" : [ "java.util.ArrayList", [ ] ]
+            }, {
+                "ar" : 2010,
+                "pi" : 187068,
+                "pia" : 187068,
+                "pp" : 1.5,
+                "opptjeningType" : {
+                    "kode" : "PPI",
+                    "er_gyldig" : true
+                },
+                "maksUforegrad" : 0,
+                "bruk" : true,
+                "grunnlagKilde" : {
+                    "kode" : "POPP",
+                    "er_gyldig" : true
+                },
+                "opptjeningTypeListe" : [ "java.util.ArrayList", [ ] ]
+            }, {
+                "ar" : 2013,
+                "pi" : 210809,
+                "pia" : 210809,
+                "pp" : 1.5,
+                "opptjeningType" : {
+                    "kode" : "PPI",
+                    "er_gyldig" : true
+                },
+                "maksUforegrad" : 0,
+                "bruk" : true,
+                "grunnlagKilde" : {
+                    "kode" : "POPP",
+                    "er_gyldig" : true
+                },
+                "opptjeningTypeListe" : [ "java.util.ArrayList", [ ] ]
+            }, {
+                "ar" : 2014,
+                "pi" : 218630,
+                "pia" : 218630,
+                "pp" : 1.5,
+                "opptjeningType" : {
+                    "kode" : "PPI",
+                    "er_gyldig" : true
+                },
+                "maksUforegrad" : 0,
+                "bruk" : true,
+                "grunnlagKilde" : {
+                    "kode" : "POPP",
+                    "er_gyldig" : true
+                },
+                "opptjeningTypeListe" : [ "java.util.ArrayList", [ ] ]
+            }, {
+                "ar" : 2015,
+                "pi" : 224073,
+                "pia" : 224073,
+                "pp" : 1.5,
                 "opptjeningType" : {
                     "kode" : "PPI",
                     "er_gyldig" : true
@@ -39,16 +211,83 @@
                 "opptjeningTypeListe" : [ "java.util.ArrayList", [ ] ]
             } ] ],
             "inntektsgrunnlagListe" : [ "java.util.ArrayList", [ ] ],
-            "trygdetidPerioder" : [ "java.util.ArrayList", [ ] ],
+            "trygdetidPerioder" : [ "java.util.ArrayList", [ {
+                "fom" : -306000000,
+                "tom" : 1577790000000,
+                "poengIInnAr" : false,
+                "poengIUtAr" : false,
+                "land" : {
+                    "kode" : "NOR",
+                    "er_gyldig" : true
+                },
+                "ikkeProRata" : false,
+                "bruk" : true,
+                "grunnlagKilde" : {
+                    "kode" : "SAKSB",
+                    "er_gyldig" : true
+                }
+            } ] ],
             "trygdetidPerioderKapittel20" : [ "java.util.ArrayList", [ ] ],
+            "trygdetid" : {
+                "trygdetidId" : 236656230,
+                "regelverkType" : {
+                    "kode" : "N_REG_G_OPPTJ",
+                    "er_gyldig" : true
+                },
+                "tt" : 40,
+                "ftt" : 0,
+                "ftt_redusert" : false,
+                "tt_fa_mnd" : 600,
+                "tt_67_70" : 0,
+                "tt_67_75" : 0,
+                "tt_faktisk" : 612,
+                "tt_E66" : 40,
+                "tt_F67" : 0,
+                "opptjeningsperiode" : 0,
+                "ttUtlandTrygdeavtaler" : [ "java.util.ArrayList", [ ] ],
+                "merknadListe" : [ "java.util.ArrayList", [ {
+                    "kode" : "BareTTNorgeRS.PeriodeNorge",
+                    "argumentListe" : [ "java.util.ArrayList", [ "Sun Dec 28 12:00:00 CET 1969", "Tue Dec 31 12:00:00 CET 2019" ] ]
+                }, {
+                    "kode" : "BeregnSamletTTRS.Max40Ar",
+                    "argumentListe" : [ "java.util.ArrayList", [ ] ]
+                } ] ],
+                "prorataTellerVKAP" : 0,
+                "prorataNevnerVKAP" : 0,
+                "tt_fa" : {
+                    "antallAr" : 50,
+                    "antallMnd" : 0,
+                    "antallDager" : 4
+                },
+                "virkFom" : 1651356000000
+            },
+            "dodAvYrkesskade" : false,
+            "generellHistorikk" : {
+                "giftFor2011" : false
+            },
             "afpHistorikkListe" : [ "java.util.ArrayList", [ ] ],
             "antallArUtland" : 0,
             "utenlandsoppholdListe" : [ "java.util.ArrayList", [ ] ],
-            "forsteVirkningsdatoGrunnlagListe" : [ "java.util.ArrayList", [ ] ],
+            "forsteVirkningsdatoGrunnlagListe" : [ "java.util.ArrayList", [ {
+                "virkningsdato" : 1651399200000,
+                "kravFremsattDato" : 1647342000000,
+                "bruker" : {
+                    "penPersonId" : 27762106
+                },
+                "kravlinjeType" : {
+                    "kode" : "AP",
+                    "er_gyldig" : true,
+                    "hovedKravlinje" : true
+                }
+            } ] ],
             "vernepliktAr" : [ ],
             "skiltesDelAvAvdodesTP" : -99,
             "instOpphReduksjonsperiodeListe" : [ "java.util.ArrayList", [ ] ],
             "instOpphFasteUtgifterperiodeListe" : [ "java.util.ArrayList", [ ] ],
+            "bosattLand" : {
+                "kode" : "NOR",
+                "er_gyldig" : true
+            },
             "dagpengegrunnlagListe" : [ "java.util.ArrayList", [ ] ],
             "omsorgsgrunnlagListe" : [ "java.util.ArrayList", [ ] ],
             "arbeidsforholdsgrunnlagListe" : [ "java.util.ArrayList", [ ] ],
@@ -60,80 +299,331 @@
             "PREG_poengtillegg" : 0.0,
             "PREG_boddEllerArbeidetIUtlandet" : false,
             "PREG_vilkarsvedtakEPSListe" : [ "java.util.ArrayList", [ ] ]
-        },
-        "beholdning" : {
-            "ar" : 2017,
-            "totalbelop" : 1187.5616578041836,
-            "opptjening" : {
-                "ar" : 2015,
-                "opptjeningsgrunnlag" : 0.0,
-                "anvendtOpptjeningsgrunnlag" : 0.0,
-                "arligOpptjening" : 0.0,
-                "lonnsvekstInformasjon" : {
-                    "lonnsvekst" : 0.03429478672985797,
-                    "reguleringsDato" : 1462096800000,
-                    "uttaksgradVedRegulering" : 0
-                },
-                "pSatsOpptjening" : 18.1,
-                "poengtall" : {
-                    "pp" : 0.0,
-                    "pia" : 0,
-                    "pi" : 0,
-                    "ar" : 0,
-                    "bruktIBeregning" : false,
-                    "gv" : 0,
-                    "maksUforegrad" : 0,
-                    "PREG_poengar" : false,
-                    "PREG_poengarUtland" : false,
-                    "PREG_pp_fa" : 0.0,
-                    "PREG_pp_gradert" : 0.0,
-                    "PREG_pp_omregnet" : 0.0,
-                    "PREG_up_faktor" : 0.0,
-                    "PREG_ysk_faktor" : 0.0,
-                    "uforear" : false,
-                    "PREG_avkortet" : false,
-                    "PREG_omsorg" : false,
-                    "PREG_omregnet" : false,
-                    "PREG_ikkeProrata" : false,
-                    "PREG_ikkeAlternativProrata" : false,
-                    "PREG_brp" : 0.0,
-                    "PREG_brp_fa" : 0.0,
-                    "PREG_tilsvarerUforear" : false,
-                    "PREG_effektivFPP" : 0.0,
-                    "PREG_effektivPAA" : 0.0,
-                    "merknadListe" : [ "java.util.ArrayList", [ ] ]
-                },
-                "inntektUtenDagpenger" : 0.0,
-                "dagpenger" : 0.0,
-                "dagpengerFiskerOgFangstmenn" : 0.0,
-                "omsorg" : 0.0,
-                "forstegangstjeneste" : 0.0,
-                "arligOpptjeningOmsorg" : 0.0,
-                "arligOpptjeningUtenOmsorg" : 0.0,
-                "PREG_antFgtMnd" : 0.0,
-                "PREG_samletDagpenger" : 0.0,
-                "PREG_samletUtbetalteDagpenger" : 0.0,
-                "PREG_samletFerietillegg" : 0.0,
-                "PREG_samletBarnetillegg" : 0.0
+        }, {
+            "penPerson" : {
+                "penPersonId" : 27752857
             },
-            "lonnsvekstInformasjon" : {
-                "lonnsvekst" : 0.011400000000000077,
-                "reguleringsDato" : 1493632800000,
-                "uttaksgradVedRegulering" : 0
-            },
-            "reguleringsInformasjon" : {
-                "lonnsvekst" : 0.011400000000000077,
-                "fratrekksfaktor" : 0.0,
-                "gammelG" : 0,
-                "nyG" : 0,
-                "reguleringsfaktor" : 1.0114,
-                "gjennomsnittligUttaksgradSisteAr" : 0.0,
-                "reguleringsbelop" : 13.38560697940261
-            },
-            "beholdningsType" : {
-                "kode" : "PEN_B",
+            "fodselsdato" : -306943200000,
+            "statsborgerskap" : {
+                "kode" : "NOR",
                 "er_gyldig" : true
             },
-            "merknadListe" : [ "java.util.ArrayList", [ ] ]
-        }
-    }
+            "flyktning" : false,
+            "personDetaljListe" : [ "java.util.ArrayList", [ {
+                "grunnlagsrolle" : {
+                    "kode" : "EKTEF",
+                    "er_gyldig" : true
+                },
+                "rolleFomDato" : 1083405600000,
+                "sivilstandType" : {
+                    "kode" : "GIFT",
+                    "er_gyldig" : true
+                },
+                "borMed" : {
+                    "kode" : "J_EKTEF",
+                    "er_gyldig" : true
+                },
+                "tillegg" : false,
+                "bruk" : true,
+                "grunnlagKilde" : {
+                    "kode" : "TPS",
+                    "er_gyldig" : true
+                },
+                "serskiltSatsUtenET" : true,
+                "epsAvkallEgenPensjon" : false
+            } ] ],
+            "sisteGyldigeOpptjeningsAr" : 2020,
+            "hentetPopp" : true,
+            "hentetInnt" : true,
+            "hentetInst" : false,
+            "hentetTT" : true,
+            "hentetArbeid" : false,
+            "opptjeningsgrunnlagListe" : [ "java.util.ArrayList", [ ] ],
+            "inntektsgrunnlagListe" : [ "java.util.ArrayList", [ {
+                "belop" : 15000,
+                "inntektType" : {
+                    "kode" : "PENT",
+                    "er_gyldig" : true
+                },
+                "fom" : 1651399200000,
+                "bruk" : true,
+                "grunnlagKilde" : {
+                    "kode" : "SAKSB",
+                    "er_gyldig" : true
+                }
+            } ] ],
+            "trygdetidPerioder" : [ "java.util.ArrayList", [ {
+                "fom" : -505227600000,
+                "tom" : 1609412400000,
+                "poengIInnAr" : false,
+                "poengIUtAr" : false,
+                "land" : {
+                    "kode" : "NOR",
+                    "er_gyldig" : true
+                },
+                "ikkeProRata" : false,
+                "bruk" : true,
+                "grunnlagKilde" : {
+                    "kode" : "TPS",
+                    "er_gyldig" : true
+                }
+            } ] ],
+            "trygdetidPerioderKapittel20" : [ "java.util.ArrayList", [ ] ],
+            "trygdetid" : {
+                "trygdetidId" : 236656231,
+                "regelverkType" : {
+                    "kode" : "N_REG_G_OPPTJ",
+                    "er_gyldig" : true
+                },
+                "tt" : 40,
+                "ftt" : 0,
+                "ftt_redusert" : false,
+                "tt_fa_mnd" : 536,
+                "tt_67_70" : 0,
+                "tt_67_75" : 0,
+                "tt_faktisk" : 536,
+                "tt_E66" : 40,
+                "tt_F67" : 0,
+                "opptjeningsperiode" : 0,
+                "ttUtlandTrygdeavtaler" : [ "java.util.ArrayList", [ ] ],
+                "merknadListe" : [ "java.util.ArrayList", [ {
+                    "kode" : "BareTTNorgeRS.PeriodeNorge",
+                    "argumentListe" : [ "java.util.ArrayList", [ "Sat Apr 10 12:00:00 CET 1976", "Thu Dec 31 12:00:00 CET 2020" ] ]
+                }, {
+                    "kode" : "BeregnSamletTTRS.Max40Ar",
+                    "argumentListe" : [ "java.util.ArrayList", [ ] ]
+                } ] ],
+                "prorataTellerVKAP" : 0,
+                "prorataNevnerVKAP" : 0,
+                "tt_fa" : {
+                    "antallAr" : 44,
+                    "antallMnd" : 8,
+                    "antallDager" : 22
+                },
+                "virkFom" : 1651356000000
+            },
+            "trygdetidKapittel20" : {
+                "trygdetidId" : 236656232,
+                "regelverkType" : {
+                    "kode" : "N_REG_N_OPPTJ",
+                    "er_gyldig" : true
+                },
+                "tt" : 40,
+                "ftt" : 0,
+                "ftt_redusert" : false,
+                "tt_fa_mnd" : 536,
+                "tt_67_70" : 0,
+                "tt_67_75" : 0,
+                "tt_faktisk" : 536,
+                "tt_E66" : 40,
+                "tt_F67" : 0,
+                "opptjeningsperiode" : 0,
+                "ttUtlandTrygdeavtaler" : [ "java.util.ArrayList", [ ] ],
+                "merknadListe" : [ "java.util.ArrayList", [ {
+                    "kode" : "BareTTNorgeRS.PeriodeNorge",
+                    "argumentListe" : [ "java.util.ArrayList", [ "Sat Apr 10 12:00:00 CET 1976", "Thu Dec 31 12:00:00 CET 2020" ] ]
+                }, {
+                    "kode" : "BeregnSamletTTRS.Max40Ar",
+                    "argumentListe" : [ "java.util.ArrayList", [ ] ]
+                } ] ],
+                "prorataTellerVKAP" : 0,
+                "prorataNevnerVKAP" : 0,
+                "tt_fa" : {
+                    "antallAr" : 44,
+                    "antallMnd" : 8,
+                    "antallDager" : 22
+                },
+                "virkFom" : 1651356000000
+            },
+            "dodAvYrkesskade" : false,
+            "generellHistorikk" : {
+                "giftFor2011" : false
+            },
+            "afpHistorikkListe" : [ "java.util.ArrayList", [ ] ],
+            "antallArUtland" : 0,
+            "utenlandsoppholdListe" : [ "java.util.ArrayList", [ ] ],
+            "forsteVirkningsdatoGrunnlagListe" : [ "java.util.ArrayList", [ ] ],
+            "vernepliktAr" : [ ],
+            "skiltesDelAvAvdodesTP" : -99,
+            "instOpphReduksjonsperiodeListe" : [ "java.util.ArrayList", [ ] ],
+            "instOpphFasteUtgifterperiodeListe" : [ "java.util.ArrayList", [ ] ],
+            "pensjonsbeholdning" : {
+                "ar" : 2022,
+                "totalbelop" : 0.0,
+                "opptjening" : {
+                    "ar" : 2020,
+                    "opptjeningsgrunnlag" : 0.0,
+                    "anvendtOpptjeningsgrunnlag" : 0.0,
+                    "arligOpptjening" : 0.0,
+                    "pSatsOpptjening" : 0.0,
+                    "poengtall" : {
+                        "pp" : 0.0,
+                        "pia" : 0,
+                        "pi" : 0,
+                        "ar" : 0,
+                        "bruktIBeregning" : false,
+                        "gv" : 0,
+                        "maksUforegrad" : 0,
+                        "PREG_poengar" : false,
+                        "PREG_poengarUtland" : false,
+                        "PREG_pp_fa" : 0.0,
+                        "PREG_pp_gradert" : 0.0,
+                        "PREG_pp_omregnet" : 0.0,
+                        "PREG_up_faktor" : 0.0,
+                        "PREG_ysk_faktor" : 0.0,
+                        "uforear" : false,
+                        "PREG_avkortet" : false,
+                        "PREG_omsorg" : false,
+                        "PREG_omregnet" : false,
+                        "PREG_ikkeProrata" : false,
+                        "PREG_ikkeAlternativProrata" : false,
+                        "PREG_brp" : 0.0,
+                        "PREG_brp_fa" : 0.0,
+                        "PREG_tilsvarerUforear" : false,
+                        "PREG_effektivFPP" : 0.0,
+                        "PREG_effektivPAA" : 0.0,
+                        "merknadListe" : [ "java.util.ArrayList", [ ] ]
+                    },
+                    "inntektUtenDagpenger" : 0.0,
+                    "dagpenger" : 0.0,
+                    "dagpengerFiskerOgFangstmenn" : 0.0,
+                    "omsorg" : 0.0,
+                    "forstegangstjeneste" : 0.0,
+                    "arligOpptjeningOmsorg" : 0.0,
+                    "arligOpptjeningUtenOmsorg" : 0.0,
+                    "PREG_antFgtMnd" : 0.0,
+                    "PREG_samletDagpenger" : 0.0,
+                    "PREG_samletUtbetalteDagpenger" : 0.0,
+                    "PREG_samletFerietillegg" : 0.0,
+                    "PREG_samletBarnetillegg" : 0.0
+                },
+                "beholdningsType" : {
+                    "kode" : "PEN_B",
+                    "er_gyldig" : true
+                },
+                "merknadListe" : [ "java.util.ArrayList", [ ] ]
+            },
+            "dagpengegrunnlagListe" : [ "java.util.ArrayList", [ ] ],
+            "omsorgsgrunnlagListe" : [ "java.util.ArrayList", [ ] ],
+            "arbeidsforholdsgrunnlagListe" : [ "java.util.ArrayList", [ ] ],
+            "arbeidsforholdEtterUforgrunnlagListe" : [ "java.util.ArrayList", [ ] ],
+            "utbetalingsgradUTListe" : [ "java.util.ArrayList", [ ] ],
+            "PREG_behandlesSomGift" : false,
+            "PREG_P67" : false,
+            "PREG_ektefellenMottarPensjon" : false,
+            "PREG_poengtillegg" : 0.0,
+            "PREG_boddEllerArbeidetIUtlandet" : false,
+            "PREG_vilkarsvedtakEPSListe" : [ "java.util.ArrayList", [ ] ]
+        } ] ],
+        "kravlinjeListe" : [ "java.util.Vector", [ {
+            "kravlinjeType" : {
+                "kode" : "AP",
+                "er_gyldig" : true,
+                "hovedKravlinje" : true
+            },
+            "relatertPerson" : {
+                "penPersonId" : 27762106
+            }
+        } ] ],
+        "afptillegg" : false,
+        "brukOpptjeningFra65I66Aret" : false,
+        "boddEllerArbeidetIUtlandet" : false,
+        "boddArbeidUtlandFar" : false,
+        "boddArbeidUtlandMor" : false,
+        "boddArbeidUtlandAvdod" : false,
+        "uttaksgradListe" : [ "java.util.ArrayList", [ {
+            "fomDato" : 1651399200000,
+            "uttaksgrad" : 80
+        } ] ],
+        "regelverkTypeCti" : {
+            "kode" : "N_REG_G_OPPTJ",
+            "er_gyldig" : true
+        },
+        "PREG_epsMottarPensjon" : false,
+        "overstyrendeP_satsGP" : 0.0,
+        "btVurderingsperiodeBenyttet" : false
+    },
+    "vilkarsvedtakListe" : [ "java.util.Vector", [ {
+        "anbefaltResultat" : {
+            "kode" : "INNV",
+            "er_gyldig" : true
+        },
+        "vilkarsvedtakResultat" : {
+            "kode" : "INNV",
+            "er_gyldig" : true
+        },
+        "kravlinjeType" : {
+            "kode" : "AP",
+            "er_gyldig" : true,
+            "hovedKravlinje" : true
+        },
+        "virkFom" : 1651399200000,
+        "forsteVirk" : 1651399200000,
+        "kravlinjeForsteVirk" : 1651399200000,
+        "kravlinje" : {
+            "kravlinjeType" : {
+                "kode" : "AP",
+                "er_gyldig" : true,
+                "hovedKravlinje" : true
+            },
+            "relatertPerson" : {
+                "penPersonId" : 27762106
+            }
+        },
+        "penPerson" : {
+            "penPersonId" : 27762106
+        },
+        "avslattKapittel19" : false,
+        "avslattGarantipensjon" : false,
+        "vurderSkattefritakET" : false,
+        "unntakHalvMinstepensjon" : false,
+        "epsAvkallEgenPensjon" : false,
+        "epsRettEgenPensjon" : false,
+        "beregningsvilkarPeriodeListe" : [ "java.util.ArrayList", [ ] ],
+        "merknadListe" : [ "java.util.ArrayList", [ ] ]
+    } ] ],
+    "virkFom" : 1651356000000,
+    "forholdstallUtvalg" : {
+        "ft" : 0.981,
+        "PREG_ft67soker" : 0.0,
+        "PREG_ft67virk" : 0.0,
+        "PREG_reguleringsfaktor" : 0.0,
+        "forholdstallListe" : [ "java.util.ArrayList", [ {
+            "arskull" : 1947,
+            "alder" : 67,
+            "maned" : 0,
+            "forholdstall" : 1.02
+        }, {
+            "arskull" : 1948,
+            "alder" : 67,
+            "maned" : 0,
+            "forholdstall" : 1.025
+        }, {
+            "arskull" : 1949,
+            "alder" : 67,
+            "maned" : 0,
+            "forholdstall" : 1.03
+        }, {
+            "arskull" : 1950,
+            "alder" : 67,
+            "maned" : 0,
+            "forholdstall" : 1.036
+        }, {
+            "arskull" : 1951,
+            "alder" : 67,
+            "maned" : 0,
+            "forholdstall" : 1.042
+        }, {
+            "arskull" : 1952,
+            "alder" : 67,
+            "maned" : 0,
+            "forholdstall" : 1.049
+        }, {
+            "arskull" : 1953,
+            "alder" : 67,
+            "maned" : 0,
+            "forholdstall" : 1.055
+        } ] ]
+    },
+    "ektefellenMottarPensjon" : false
+}

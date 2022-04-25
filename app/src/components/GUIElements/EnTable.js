@@ -134,6 +134,7 @@ export function EnTable(props){
     return (
         <div>
             {/*{log()}*/}
+
             <Heading size="xsmall" level="6"> &ensp;
             </Heading>
             <Heading spacing size="xsmall" level="6"> &ensp; {table.hasOwnProperty('name')?table['name']:''}</Heading>
