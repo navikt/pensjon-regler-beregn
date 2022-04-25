@@ -14,8 +14,10 @@ import Footer from "./components/Footer";
    
 
 var servicetype= 'BeregnOpptjeningRequest';
+//var servicetype = 'BeregnUforetrygdRequest'
 var url = 'http://localhost:8080/api/beregn?requestType='+servicetype;
 const d = require('./components/Testdata/RequestData.json');
+//const d = require('./components/Testdata/RequestWithTree.json');
 
 
 
