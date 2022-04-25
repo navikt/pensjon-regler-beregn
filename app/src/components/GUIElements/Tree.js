@@ -12,47 +12,55 @@ export function Tree(props){
     {console.log("Inside tree", tree)}
 
     function generateTreeNode (node, t) {
+        {console.log("generate node:", node)}
         if(node.hasOwnProperty('rootNode')) {
-            node['rootNode']['data']['data'][1].map((tablists,key) =>{
+
+            // node['rootNode']['data']['data'][1].map((tablists,key) =>{
                 //left treeview panel
                 return ( <div className="tree-nodes-container">
-                    <div class="treeview js-treeview">
+                    <div >
                         <ul>
                             <li>
-                                <div className="treeview__level" data-level="A">
-                                    <span className="level-title">
-                                         <Button>
+                                <div  >
+                                    <span  >
+                                         <Button  size="xsmall">
                                                 rootNode
                                         </Button>
                                     </span>
                                 </div>
-                                <generateTreeNode data = {node['rootNode']}></generateTreeNode>
+                                {generateTreeNode(node['rootNode'], t)}
                             </li>
                         </ul>
                      </div>
-                    </div> )
-
-                }
-            )
+                    </div>
+                )
+                // })
         }
-        else if(node.hasOwnProperty('nodes')) {
-            node['nodes'][1][0]['data']['data'][1].map((tablists,key) =>{
+        else if(node.hasOwnProperty('nodes') && node['nodes'].length>1) {
+
                 //left treeview panel
-                return (
-                  <ul>
-                      <li>
-                          <div className="treeview__level" data-level="A">
-                                    <span className="level-title">
-                                         <Button>
+                let treenode = []
+                node['nodes'][1].map((tablists,key) =>{
+                    treenode.push(
+                        <li>
+                            <div  >
+                                    <span >
+                                         <Button size="xsmall">
                                                 node
                                         </Button>
                                     </span>
-                          </div>
-                          <generateTreeNode data = {node['nodes'][1][0]}></generateTreeNode>
-                      </li>
-                  </ul>
+                            </div>
+                            {generateTreeNode(node['nodes'], t)}
+                        </li>
+                    )
+            })
 
-                )})
+                return (
+                  <ul>
+
+                      {treenode}
+                  </ul>
+                )
 
         }
         // if(Array.isArray(node['nodes']))
@@ -62,18 +70,18 @@ export function Tree(props){
 
     function generateTreeContent(node, t) {
         if(node.hasOwnProperty('rootNode')) {
-
             //  right panel = tablist, show tablists to left node
-            t.push(<div className='tree-content-container'><JsonParser data = {node['rootNode']['data']}></JsonParser></div>);
+            t.push( <JsonParser data = {node['rootNode']['data']}></JsonParser> );
+            generateTreeContent(node['rootNode'], t)
         }
         else if(node.hasOwnProperty('nodes')) {
-
             //  right panel = tablist, show tablists to left node
-            t.push(<div className='tree-content-container'><JsonParser data = {node['nodes'][1][0]['data']}></JsonParser></div>);
+            t.push(<JsonParser data = {node['nodes'][1][0]['data']}></JsonParser>);
+            generateTreeContent(node['nodes'], t)
 
         }
-        if(Array.isArray(node['nodes']))
-            t.push(generateTreeContent(node['nodes'][1][0]))  /**cursive to loop nodes */
+        // if(Array.isArray(node['nodes']))
+        //     t.push(generateTreeContent(node['nodes'][1][0]))  /**cursive to loop nodes */
         return t
     }
 
@@ -83,8 +91,9 @@ export function Tree(props){
             <div className='sidetab-container'>
 
                 { generateTreeNode(tree, []) }
-
+                <div className='tree-content-container'>
                 { generateTreeContent(tree, []) }
+                </div>
                 </div>
         </div>
     )

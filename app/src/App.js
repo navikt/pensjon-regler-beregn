@@ -13,7 +13,7 @@ import Footer from "./components/Footer";
 
    
 
-var servicetype= 'BeregnOpptjeningRequest';
+var servicetype= 'BeregnAlderspensjon2011ForsteUttakRequest'; //http://localhost:3000/#/246355100/
 //var servicetype = 'BeregnUforetrygdRequest'
 var url = 'http://localhost:8080/api/beregn?requestType='+servicetype;
 const d = require('./components/Testdata/RequestData.json');
