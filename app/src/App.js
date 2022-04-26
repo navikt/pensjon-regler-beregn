@@ -1,6 +1,6 @@
 import { Route, Routes, HashRouter } from "react-router-dom";
 import './App.css';
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef, useCallback} from "react";
 import ReactDOM from "react-dom";
 import { useParams } from "react-router";
 
@@ -26,7 +26,10 @@ const d = require('./components/Testdata/RequestData.json');
 
 
 export default function App() {
+  //API fetch constants
   const [result, setResult] = useState([]);
+  const [isSending, setIsSending] = useState(false)
+  const isMounted = useRef(true)
 
   function Request() {
     let {id} = useParams();
@@ -43,34 +46,44 @@ export default function App() {
     );
   }
 
- useEffect(() => {
-    const fetchData = async() => {
-        try {
-            fetch(url, {
-                method: 'POST',
-                headers:  {
-                    'Content-Type':  'application/json',
-                    'accept': 'application/json',
-                    'X-pensjonregler-log': 'disabled'
-                },
-                body: JSON.stringify(d)
-                })
-            .then(response => response.json())
-            .then(response => setResult(response));
-        } catch(error) {
-            console.log('Error:', error)
+  // set isMounted to false when we unmount the component, usnure if neccessary
+  useEffect(() => {
+    return () => {
+      isMounted.current = false
     }
-  };
-  fetchData();
-  }, []);
+  }, [])
+
+const fetchData = useCallback(async() => {
+  if (isSending) return
+  setIsSending(true)
+  try {
+    fetch(url, {
+      method: 'POST',
+      headers:  {
+          'Content-Type':  'application/json',
+          'accept': 'application/json',
+          'X-pensjonregler-log': 'disabled'
+      },
+      body: JSON.stringify(d)
+    })
+    .then(response => response.json())
+    .then(response => setResult(response));
+    } catch(error) {
+        console.log('Error:', error)
+    }
+    if (isMounted.current) // only update if we are still mounted
+    setIsSending(false)
+},[isSending])
+  
   return (
     <div className = "App">
+
       <div>
         <div className="Header">
           <div className="HeaderTitle">Beregn Pensjon</div>
-          <HeaderButton text = {"Åpne"}></HeaderButton>
-          <HeaderButton text = {"Sats"}></HeaderButton>
-          <HeaderButton text = {"Run"}></HeaderButton>
+          <div className="HeaderButton"> Åpne </div>
+          <div className="HeaderButton"> Sats </div>
+          <div className="HeaderButton" disabled = {isSending} onClick = {fetchData}> Run </div>
         </div>
       </div>
       <div className = "main-container">
