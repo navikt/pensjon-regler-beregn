@@ -50,7 +50,8 @@ export default function App() {
                 method: 'POST',
                 headers:  {
                     'Content-Type':  'application/json',
-                    'accept': 'application/json'
+                    'accept': 'application/json',
+                    'X-pensjonregler-log': 'disabled'
                 },
                 body: JSON.stringify(d)
                 })
