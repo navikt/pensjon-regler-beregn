@@ -11,28 +11,36 @@ export function Tree(props){
     let[tree] = useState(props.tree);
     {console.log("Inside tree", tree)}
 
-    function generateTreeNode (node, t) {
+    function checkStyle(value) {
+        if(value)
+            return {'background-color':'blue'};
+        else
+            return {'background-color':'red'} ;
+    }
+
+    function generateTreeNode (node, t, i) {
         {console.log("generate node:", node)}
         if(node.hasOwnProperty('rootNode')) {
 
             // node['rootNode']['data']['data'][1].map((tablists,key) =>{
                 //left treeview panel
-                return ( <div className="tree-nodes-container">
+            return(
+                //  <div className="tree-nodes-container">
                     <div >
                         <ul>
                             <li>
                                 <div  >
                                     <span  >
-                                         <Button  size="xsmall">
+                                         <Button   size="xsmall" id = {'treeNode' + i} onClick={(e) => click(e, ('treeTabs' + i))} style={checkStyle(node['rootNode']['used'])}>
                                                 rootNode
                                         </Button>
                                     </span>
                                 </div>
-                                {generateTreeNode(node['rootNode'], t)}
+                                {generateTreeNode(node['rootNode'], t, i+1)}
                             </li>
                         </ul>
                      </div>
-                    </div>
+                    // </div>
                 )
                 // })
         }
@@ -45,19 +53,18 @@ export function Tree(props){
                         <li>
                             <div  >
                                     <span >
-                                         <Button size="xsmall">
+                                         <Button  size="xsmall" id={'treeNode' + i} onClick={(e) => click(e, ('treeTabs' + i))} style={checkStyle(node['used'])}>
                                                 node
                                         </Button>
                                     </span>
                             </div>
-                            {generateTreeNode(node['nodes'], t)}
+                            {generateTreeNode(node['nodes'], t, i+1)}
                         </li>
                     )
             })
 
                 return (
                   <ul>
-
                       {treenode}
                   </ul>
                 )
@@ -68,16 +75,16 @@ export function Tree(props){
         // return t
     }
 
-    function generateTreeContent(node, t) {
+    function generateTreeContent(node, t, i) {
         if(node.hasOwnProperty('rootNode')) {
             //  right panel = tablist, show tablists to left node
-            t.push( <JsonParser data = {node['rootNode']['data']}></JsonParser> );
-            generateTreeContent(node['rootNode'], t)
+            t.push( <div id={'treeTabs' + i}   style={{ display: "block" }} className={'tree-tabs'}><JsonParser data = {node['rootNode']['data']}></JsonParser> </div>);
+            generateTreeContent(node['rootNode'], t, i+1)
         }
         else if(node.hasOwnProperty('nodes')) {
             //  right panel = tablist, show tablists to left node
-            t.push(<JsonParser data = {node['nodes'][1][0]['data']}></JsonParser>);
-            generateTreeContent(node['nodes'], t)
+            t.push(<div id={'treeTabs' + i}  className={'tree-tabs'}><JsonParser data = {node['nodes'][1][0]['data']}></JsonParser> </div>);
+            generateTreeContent(node['nodes'], t, i+1)
 
         }
         // if(Array.isArray(node['nodes']))
@@ -85,16 +92,27 @@ export function Tree(props){
         return t
     }
 
-    return(
-        <div>
-            <Heading spacing size="xsmall" level="6"> &ensp; {tree.hasOwnProperty('title')?tree['title']:''}</Heading>
-            <div className='sidetab-container'>
+    function click(evt, id) {
+        var x = document.getElementById(id);
+        var treeTabs =  document.getElementsByClassName("tree-tabs");
+        var i;
+        for(i=0;i<treeTabs.length;i++) {
+            treeTabs[i].style.display = "none";
+        }
+        x.style.display = "block";
+    }
 
-                { generateTreeNode(tree, []) }
+    return(
+
+            <div className='tree-container'>
+                <div className="tree-nodes-container">
+                    <Heading spacing size="xsmall" level="6"> &ensp; {tree.hasOwnProperty('title')?tree['title']:''}</Heading>
+                    { generateTreeNode(tree, [], 1) }
+                </div>
                 <div className='tree-content-container'>
-                { generateTreeContent(tree, []) }
+                     { generateTreeContent(tree, [], 1) }
                 </div>
-                </div>
-        </div>
+            </div>
+
     )
 }
