@@ -27,15 +27,13 @@ export function Tree(props){
             return(
                 //  <div className="tree-nodes-container">
                     <div >
-                        <ul>
+                        <ul className='rootNode'>
                             <li>
-                                <div  >
-                                    <span  >
+
                                          <Button   size="xsmall" id = {'treeNode' + i} onClick={(e) => click(e, ('treeTabs' + i))} style={checkStyle(node['rootNode']['used'])}>
                                                 rootNode
                                         </Button>
-                                    </span>
-                                </div>
+
                                 {generateTreeNode(node['rootNode'], t, i+1)}
                             </li>
                         </ul>
@@ -51,20 +49,18 @@ export function Tree(props){
                 node['nodes'][1].map((tablists,key) =>{
                     treenode.push(
                         <li>
-                            <div  >
-                                    <span >
+
                                          <Button  size="xsmall" id={'treeNode' + i} onClick={(e) => click(e, ('treeTabs' + i))} style={checkStyle(node['used'])}>
                                                 node
                                         </Button>
-                                    </span>
-                            </div>
+
                             {generateTreeNode(node['nodes'], t, i+1)}
                         </li>
                     )
             })
 
                 return (
-                  <ul>
+                  <ul className='tree'>
                       {treenode}
                   </ul>
                 )
