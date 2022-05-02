@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from "react";
-import {openSideTab, openTab} from "./Tab";
+import { openSideTab, openTab, Tab } from "./Tab";
+import { TabList } from "./TabList";
+import { EnTable } from "./EnTable";
+import { Tree } from "./Tree";
 
 const search = (current, target, parent) => {
 
@@ -11,53 +14,83 @@ const search = (current, target, parent) => {
     // if(current == undefined || current == '' /*|| parent == 'java.util.ArrayList'*/) {
     //     return 'end'
     // }
-    
+    var element = []
+
     for (var child in current) {
-        console.log("child:" + child)
-        // console.log("child value:" + JSON.stringify(current[child]))
-        // console.log("current object has type value:" + current[child].hasOwnProperty('type'))
-        // console.log("current object has type value:" + current[child].hasOwnProperty('position'))
-        // console.log("child value:" + JSON.parse(current[child]))
+        var found = []
+        if(current[child].hasOwnProperty('type')) {
+            element = current[child];
+        } else if (current.hasOwnProperty('type')) {
+            element = current;
+        }
+
+        //console.log("element value:" , element)
+        // console.log("current object has type value:" , current[child].hasOwnProperty('type'))
+        // console.log("current object has type value:" , current[child].hasOwnProperty('position'))
+        // console.log("child value:" , JSON.parse(current[child]))
 
         // find TOP ,then data, then recursive , last is type....  In the   model of backend.. move type to the beginning.
         //one level can only has recursive when child = data.
-        if(current[child].hasOwnProperty('type')) {
-            console.log("type: "  +  current[child]['type'])
-            if(  current[child]['type'] == 'TABLIST') {
+        if(current[child].hasOwnProperty('type') || current.hasOwnProperty('type')) {
+            if(  element['type'] == 'TABLIST') {
                 //DO parse tabList
                 //parseTabList(name, current['data'], parent)
                 //continue parse
-                search( current[child]['data'], target, current[child]);
+                found= <TabList tabs = {element}></TabList>
+                return found
+                //found = search( current[child]['data'], target, current[child]);
             }
-            else if( current[child]['type'] == 'TAB') {
+            else if( element['type'] == 'TAB') {
                 //DO parse Tab
                 //parseTab(name, current['data'], parent)
                 //continue parse
-                search( current[child]['data'], target, current[child]);
+                //found = search( current[child]['data'], target, current[child]);
+                found= <Tab tab = {element}></Tab>
+                return found
             }
-            else if( current[child]['type']== 'TABLE') {
-
+            else if( element['type']== 'TABLE') {
+                //found= search( current[child]['cells'], target, current[child]);
+                found= <EnTable table = {element}></EnTable>
+                return found
+            } else if( element['type'] == 'TREE') {
+                found = <Tree tree = {element}></Tree>
+                return found
             }
-            //TODO cells ,etc
 
         }
+        /*else if(current[child].hasOwnProperty('popover')) {
+            console.log("Cell level - one cell: "  +  current[child]['data'])
+            //TODO parse one cell property
+
+            if(current[child]['popover']==true) {
+                found = search( current[child]['popoverContent'], target, current[child]);
+            }
+        }*/
         else if(Array.isArray(current[child])) {
-            console.log('has arrays, probably just one ')
-            search( current[child], target, current);
+            found = search(current[child], target, current);
         }
+
+        //console.log("found:" +found)
+        if(found!=null&&found.length != 0) {
+        // if(found.hasOwnProperty('type')) {
+            return found
+        }
+
     }
   }
 
-function JsonParser(props){
+export function JsonParser(props){
             let [data] = useState(props.data)
-            console.log(data)
             // data =  JSON.parse(JSON.stringify(data))
             // console.log(data)
             const[uiHtml, setuiHtml] = []
             var rootTab = []
             var tabs = []
             return (
-                <p>{search(data, 'xyzzt', [])}</p>
+                <div>
+                    {(search(data, 'xyzzt', []))}
+                </div>
+
             );
 
             //create root tab
@@ -197,4 +230,4 @@ function JsonParser(props){
             return uiHtml*/
         }
 
-        export default JsonParser
+

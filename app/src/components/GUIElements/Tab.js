@@ -1,5 +1,11 @@
-function Tab(props){
-    
+import React, {useEffect, useState} from "react";
+import { JsonParser } from "./JsonParser";
+import { TabList } from "./TabList";
+import { Tabs } from '@navikt/ds-react';
+
+export function Tab(props){
+    let [tab] = useState(props.tab);
+    const [value, setValue] = useState(props.value)
 
     const  openTab = function (evt, tabName) {
         // let targe = evt.target()
@@ -36,4 +42,17 @@ function Tab(props){
         evt.currentTarget.className += " active";
         //return undefined;
     }
+
+    return(
+        <div>
+            {tab['data'][1].map((data,key) => {
+                return (
+                    <div>
+                      <JsonParser data = {data}></JsonParser>
+                    </div>
+                )
+            })}
+        </div>
+    )
+    
 }
