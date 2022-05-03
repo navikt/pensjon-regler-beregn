@@ -77,7 +77,7 @@ export function Tree(props){
             t.push( <div id={'treeTabs' + i}   style={{ display: "block" }} className={'tree-tabs'}><JsonParser data = {node['rootNode']['data']}></JsonParser> </div>);
             generateTreeContent(node['rootNode'], t, i+1)
         }
-        else if(node.hasOwnProperty('nodes')) {
+        else if(node.hasOwnProperty('nodes')&&node['nodes'][1].length!=0) {
             //  right panel = tablist, show tablists to left node
             t.push(<div id={'treeTabs' + i}  className={'tree-tabs'}><JsonParser data = {node['nodes'][1][0]['data']}></JsonParser> </div>);
             generateTreeContent(node['nodes'], t, i+1)
