@@ -82,9 +82,9 @@ useEffect(() => {
 const fetchGuiModel = useCallback(async() => {
   if (isSending) return
   setIsSending(true)
-  let tjeneste = FindService(serviceType)
-  let url = 'http://localhost:8080/api/beregn?requestType='+tjeneste
-  //let url = 'https://'+environment+'.dev.adeo.no/api/beregn?requestType='+tjeneste
+  let request = FindService(serviceType)
+  //let url = 'http://localhost:8080/api/beregn?requestType='+request
+  let url = 'https://pensjon-regler-q4.dev.adeo.no/api/beregn?requestType='+request
   let body = metaData['xml']
   console.log(body)
   try {
