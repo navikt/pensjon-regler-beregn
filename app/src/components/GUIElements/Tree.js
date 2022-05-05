@@ -19,7 +19,7 @@ export function Tree(props) {
             return {'background-color': 'red'};
     }
 
-    function generateTreeNode(node, t, i) {
+    function generateTreeNode(node, t, i, tabsName) {
         {
             console.log("generate node:", node)
         }
@@ -33,7 +33,7 @@ export function Tree(props) {
                     <ul className='rootNode'>
                         <li>
 
-                            <Button size="xsmall" id={'treeNode' + i} onClick={(e) => click(e, ('treeTabs' + i))}
+                            <Button size="xsmall" id={'treeNode' + i} onClick={(e) => click(e, (tabsName+ 'treeTabs' + i))}
                                     style={checkStyle(node['used'])} className={'tree-rootBtn'}>
                                 {node.hasOwnProperty('name') ? node['name'] : 'no name' }
                             </Button>
@@ -53,7 +53,7 @@ export function Tree(props) {
                 treenode.push(
                     <li>
 
-                        <Button size="xsmall" id={'treeNode' + i} onClick={(e) => click(e, ('treeTabs' + i))}
+                        <Button size="xsmall" id={'treeNode' + i} onClick={(e) => click(e, (tabsName+'treeTabs' + i))}
                                 style={checkStyle(subNode['used'])} className='tree-subNodeBtn'>
                             {subNode.hasOwnProperty('name') ? subNode['name'] : 'no name' }
                         </Button>
@@ -74,16 +74,16 @@ export function Tree(props) {
         // return t
     }
 
-    function generateTreeContent(node, t, i) {
+    function generateTreeContent(node, t, i, tabsName) {
         if (i==1) {
             //  right panel = tablist, show tablists to left node
-            t.push(<div id={'treeTabs' + i} style={{display: "block"}} className={'tree-tabs'}><JsonParser
+            t.push(<div id={tabsName+'treeTabs' + i} style={{display: "block"}} className={'tree-tabs'}><JsonParser
                 data={node['data']}></JsonParser></div>);
             generateTreeContent(node, t, i + 1)
         } else if (node.hasOwnProperty('nodes') && node['nodes'][1].length != 0) {
             //  right panel = tablist, show tablists to left node
             node['nodes'][1].map((subNode, key) => {
-                t.push(<div id={'treeTabs' + i} className={'tree-tabs'}><JsonParser
+                t.push(<div id={tabsName+'treeTabs' + i} className={'tree-tabs'}><JsonParser
                     data={subNode['data']}></JsonParser></div>);
                 generateTreeContent(subNode, t, i + 1)
             })
@@ -114,10 +114,10 @@ export function Tree(props) {
             <div className="tree-nodes-container">
                 <Heading spacing size="xsmall"
                          level="6"> &ensp; {tree.hasOwnProperty('name') ? tree['name'] : 'no name'}</Heading>
-                {generateTreeNode(tree, [], 1)}
+                {generateTreeNode(tree, [], 1, tree.hasOwnProperty('name') ? tree['name'] : 'noname')}
             </div>
             <div className='tree-content-container'>
-                {generateTreeContent(tree, [], 1)}
+                {generateTreeContent(tree, [], 1, tree.hasOwnProperty('name') ? tree['name'] : 'noname')}
             </div>
         </div>
 
