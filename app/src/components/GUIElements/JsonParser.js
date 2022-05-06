@@ -52,7 +52,7 @@ const search = (current, target, parent) => {
                 //found= search( current[child]['cells'], target, current[child]);
                 found= <EnTable table = {element}></EnTable>
                 return found
-            } else if( element['type'] == 'TREE') {
+            } else if( element['type'] == 'NODE') {
                 found = <Tree tree = {element}></Tree>
                 return found
             }

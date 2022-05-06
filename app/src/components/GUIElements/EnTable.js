@@ -17,6 +17,23 @@ export function EnTable(props) {
             return <Table.HeaderCell scope="col">{item[index][0]['data']}</Table.HeaderCell>
     }
 
+    function generateTables(tables) {
+        let t = []
+        let enTable
+        tables.map((data, k) => {
+            // {
+            //     console.log('One table in popOverContent', data)
+            // }
+            enTable =
+                <div>
+                    <JsonParser data={data}></JsonParser>
+                </div>
+            t.push(enTable)
+        })
+
+        return t;
+    }
+
     function showRow(item) {
         //console.log("one row data" , item, index)
         let row = []
@@ -34,8 +51,7 @@ export function EnTable(props) {
                             {subitem['data']}</Button>
                             <Popover open={open} onClose={() => setOpen(false)} anchorEl={buttonRef.current}
                                      arrow={true} placement="auto" offset={32}>
-                                <Popover.Content><JsonParser
-                                    data={subitem['popoverContent']}></JsonParser></Popover.Content>
+                                <Popover.Content>{generateTables(subitem['popoverContent'][1])}</Popover.Content>
                             </Popover></Table.HeaderCell>;
                         row.push(popOver)
                     } else {
@@ -44,8 +60,11 @@ export function EnTable(props) {
                             {subitem['data']}</Button><Popover open={open} onClose={() => setOpen(false)}
                                                                anchorEl={buttonRef.current}
                                                                arrow={true} placement="auto" offset={32}>
-                            <Popover.Content><JsonParser
-                                data={subitem['popoverContent']}></JsonParser></Popover.Content>
+                            <Popover.Content>
+                                <div className="scroll" /*style={{overflow:"scroll"}}*/>
+                                    {generateTables(subitem['popoverContent'][1])}
+                                </div>
+                            </Popover.Content>
                         </Popover></Table.DataCell>;
                         row.push(popOver)
                         // let modal = <Table.DataCell><Button ref={buttonRef} onClick={() => setOpen(true)} size="xsmall">
@@ -71,7 +90,6 @@ export function EnTable(props) {
         //console.log(row)
         return row
     }
-
 
     const Checkname = ({name}) => {
         //console.log(table)

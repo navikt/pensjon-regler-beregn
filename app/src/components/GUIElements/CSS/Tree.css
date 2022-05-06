@@ -27,18 +27,62 @@
 }
 
 
+.tree-rootBtn {
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    /*font-size: 14px;*/
+    /*font-weight: bold;*/
+    /*border-bottom: 1px solid black;*/
+    max-width:90%;
+    display:inline-block;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #262626;
+
+    /*padding: 13px 13px ;*/
+    /*transition: 0.3s;*/
+}
+
+.tree-subNodeBtn {
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    /*font-size: 14px;*/
+    /*font-weight: bold;*/
+    /*border-bottom: 1px solid black;*/
+    max-width:60%;
+    display:inline-block;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #262626;
+
+    /*padding: 13px 13px ;*/
+    /*transition: 0.3s;*/
+}
+
+.tree-rootBtn:hover {
+    cursor: pointer;
+    overflow: visible;
+}
+
+.tree-subNodeBtn:hover {
+    cursor: pointer;
+    overflow: visible;
+}
+
 .tree-tabs {
     display: none;
 }
 
 /* root node*/
 .rootNode {
-    /*list-style: none;*/
+    list-style: none; /* remove the dot from root node*/
+    margin: 0;
+    padding: 1px;
 }
 
 /*line between each nodes*/
 ul.tree, ul.tree ul {
-    list-style: none;  /* remove the dot from theh ul li list tag*/
+    list-style: none;  /* remove the dot for each subNodes*/
     margin: 0;
     padding: 0;
 }
