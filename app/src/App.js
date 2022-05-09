@@ -8,6 +8,7 @@ import HeaderButton from "./components/Small/HeaderButton";
 import RequestPane from "./components/RequestPane";
 import ResponsePane from "./components/ResponsePane";
 import Footer from "./components/Footer";
+import FindService from "./components/FindService";
 
 //var servicetype= 'BeregnAlderspensjon2011ForsteUttakRequest'; //http://localhost:3000/#/246355100/
 //var servicetype = 'RevurderingAlderspensjon2016Request'
@@ -81,10 +82,9 @@ useEffect(() => {
 const fetchGuiModel = useCallback(async() => {
   if (isSending) return
   setIsSending(true)
-  let tjeneste = serviceType.replace("/api/","")
-  tjeneste = tjeneste.charAt(0).toUpperCase() + tjeneste.slice(1)
-  let url = 'http://localhost:8080/api/beregn?requestType='+tjeneste+'Request'
-  //let url = 'https://'+environment+'.dev.adeo.no/api/beregn?requestType='+tjeneste
+  let request = FindService(serviceType)
+  //let url = 'http://localhost:8080/api/beregn?requestType='+request
+  let url = 'https://pensjon-regler-q4.dev.adeo.no/api/beregn?requestType='+request
   let body = metaData['xml']
   console.log(body)
   try {
