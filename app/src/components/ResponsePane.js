@@ -15,7 +15,6 @@ function ResponsePane(props) {
         <div className = "ResponsePane">
             <h1>RESPONSE</h1>
             <JsonParser data = {response}/>
-            <p>{test()}</p>
         </div>
     )
 }
