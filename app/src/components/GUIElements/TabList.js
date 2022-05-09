@@ -8,7 +8,7 @@ import './CSS/TabList.css'
 export function TabList(props){
     
     let [tabs] = useState(props.tabs);
-    const [value, setValue] = useState(props.tabs['data'][1][0]['name'])
+    const [value, setValue] = useState(props.tabs['data'][1][0]['name']+0)
 
     function log(){
     console.log("Inside TabList")
@@ -28,7 +28,7 @@ export function TabList(props){
                 {tabs['data'][1].map((data,key) => { //Creating header buttons for each Tab
                   return (
                     <Tabs.Tab
-                      value = {data['name']}
+                      value = {data['name']+key}
                       label = {data['name']}
                       id = {data['name'] + '-tab'} //Creating references from header button to tab content
                       aria-controls = {data['name'] + '-panel'}
@@ -42,10 +42,9 @@ export function TabList(props){
               return (
                 <div
                   role = "tabpanel"
-                  hidden = {value !== data['name'] }
+                  hidden = {value !== data['name']+key }
                   aria-labelledby = {data['name'] + '-tab'}
                   id = {data['name'] + '-panel'}
-                  tabIndex = {0}
                 >
                   <JsonParser data = {data}></JsonParser> {/*Sending tab content back to parser function*/}
                 </div>
@@ -61,7 +60,7 @@ export function TabList(props){
                 return (
                   <div 
                     className = "sidetab-button"
-                    onClick={() => setValue(data['name'])}
+                    onClick={() => setValue(data['name']+key)}
                     id = {data['name'] + '-tab'} //Creating references from header button to tab content
                     aria-controls = {data['name'] + '-panel'}
                   >
@@ -75,10 +74,9 @@ export function TabList(props){
                 return (
                   <div 
                     role = "tabpanel"
-                    hidden = {value !== data['name'] }
+                    hidden = {value !== data['name']+key }
                     aria-labelledby = {data['name'] + '-tab'}
-                    id = {data['name'] + '-panel'}
-                    tabIndex = {0}>
+                    id = {data['name'] + '-panel'}>
                       <JsonParser data = {data}></JsonParser> {/*Sending tab content back to parser function*/}
                   </div>
                 )
