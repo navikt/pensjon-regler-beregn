@@ -32,12 +32,13 @@
     /*font-size: 14px;*/
     /*font-weight: bold;*/
     /*border-bottom: 1px solid black;*/
-    max-width:90%;
+    max-width:100%;
     display:inline-block;
     overflow:hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     color: #262626;
+    /*border: 2px solid black;*/
 
     /*padding: 13px 13px ;*/
     /*transition: 0.3s;*/
@@ -48,13 +49,14 @@
     /*font-size: 14px;*/
     /*font-weight: bold;*/
     /*border-bottom: 1px solid black;*/
-    max-width:60%;
-    display:inline-block;
+    width:80%;
+    max-width:90%;
+    display:compact;/*inline-block;*/
     overflow:hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     color: #262626;
-
+    /*border: 2px solid black;*/
     /*padding: 13px 13px ;*/
     /*transition: 0.3s;*/
 }

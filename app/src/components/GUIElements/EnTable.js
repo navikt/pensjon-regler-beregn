@@ -51,7 +51,11 @@ export function EnTable(props) {
                             {subitem['data']}</Button>
                             <Popover open={open} onClose={() => setOpen(false)} anchorEl={buttonRef.current}
                                      arrow={true} placement="auto" offset={32}>
-                                <Popover.Content>{generateTables(subitem['popoverContent'][1])}</Popover.Content>
+                                <Popover.Content>
+                                    <div className="scroll" /*style={{overflow:"scroll"}}*/>
+                                        {generateTables(subitem['popoverContent'][1])}
+                                    </div>
+                                </Popover.Content>
                             </Popover></Table.HeaderCell>;
                         row.push(popOver)
                     } else {
@@ -81,7 +85,11 @@ export function EnTable(props) {
                 } else {
                     if (subitem['header']) {
                         row.push(<Table.HeaderCell scope="col">{subitem['data']}</Table.HeaderCell>)
-                    } else {
+                    }
+                    // else if(subitem['footer']){
+                    //     row.push(<Table.DataCell>{subitem['data']}</Table.DataCell>)
+                    // }
+                    else {
                         row.push(<Table.DataCell>{subitem['data']}</Table.DataCell>)
                     }
                 }
