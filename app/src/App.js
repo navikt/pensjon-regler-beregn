@@ -9,6 +9,7 @@ import RequestPane from "./components/RequestPane";
 import ResponsePane from "./components/ResponsePane";
 import Footer from "./components/Footer";
 import FindService from "./components/FindService";
+import SatsDropdown from "./components/Small/SatsDropdown";
 import Openfile from "./components/Openfile";
 
 //var servicetype= 'BeregnAlderspensjon2011ForsteUttakRequest'; //http://localhost:3000/#/246355100/
@@ -22,6 +23,7 @@ export default function App() {
   const [metaData, setMetadata] = useState([]);
   const [serviceType, setServiceType] = useState("")
   const [environment, setEnvironment] = useState("");
+  const [satsTabell,setSatsTabell] = useState("");
 
   const [result, setResult] = useState([]);
   const [isSending, setIsSending] = useState(false)
@@ -31,11 +33,8 @@ export default function App() {
   function FetchByLogID() {
     const {id} = useParams();
     let logUrl = 'https://pensjon-regler-logviewer-api.dev-fss.nais.io/api/log/'+id;
-    console.log("fetched outer: "+isFetched)
     if (!isFetched){
-    console.log("fetched inner: "+isFetched)
     const fetchLog = useCallback(async() => {
-    console.log('fetching')
       try {
         fetch(logUrl, {
           method: 'GET',
@@ -84,8 +83,8 @@ const fetchGuiModel = useCallback(async() => {
   if (isSending) return
   setIsSending(true)
   let request = FindService(serviceType)
-  //let url = 'http://localhost:8080/api/beregn?requestType='+request
-  let url = 'https://pensjon-regler-q4.dev.adeo.no/api/beregn?requestType='+request
+  //let url = 'http://localhost:8080/api/beregn?requestType='+request+satsTabell
+  let url = 'https://'+environment+'.dev.adeo.no/api/beregn?requestType='+request+satsTabell
   let body = metaData['xml']
   console.log(body)
   try {
@@ -105,17 +104,16 @@ const fetchGuiModel = useCallback(async() => {
     }
     if (isMounted.current) // only update if we are still mounted
     setIsSending(false)
-},[isSending, environment, serviceType])
-
-
+},[isSending, environment, serviceType, satsTabell])
+  
   return (
     <div className = "App">
 
       <div>
         <div className="Header">
           <div className="HeaderTitle">Beregn Pensjon</div>
+          <SatsDropdown tabellChanger = {setSatsTabell}></SatsDropdown>
           <div className="HeaderButton"><Openfile result={result} onResultChange={setResult}></Openfile></div>
-          <div className="HeaderButton"> Sats </div>
           <div className="HeaderButton" disabled = {isSending} onClick = {fetchGuiModel}> Run </div>
         </div>
       </div>
