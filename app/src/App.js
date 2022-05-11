@@ -9,7 +9,7 @@ import RequestPane from "./components/RequestPane";
 import ResponsePane from "./components/ResponsePane";
 import Footer from "./components/Footer";
 import FindService from "./components/FindService";
-import {Openfile} from "./components/Openfile";
+import Openfile from "./components/Openfile";
 
 //var servicetype= 'BeregnAlderspensjon2011ForsteUttakRequest'; //http://localhost:3000/#/246355100/
 //var servicetype = 'RevurderingAlderspensjon2016Request'
@@ -106,14 +106,15 @@ const fetchGuiModel = useCallback(async() => {
     if (isMounted.current) // only update if we are still mounted
     setIsSending(false)
 },[isSending, environment, serviceType])
-  
+
+
   return (
     <div className = "App">
 
       <div>
         <div className="Header">
           <div className="HeaderTitle">Beregn Pensjon</div>
-          <div className="HeaderButton"><Openfile></Openfile></div>
+          <div className="HeaderButton"><Openfile result={result} onResultChange={setResult}></Openfile></div>
           <div className="HeaderButton"> Sats </div>
           <div className="HeaderButton" disabled = {isSending} onClick = {fetchGuiModel}> Run </div>
         </div>

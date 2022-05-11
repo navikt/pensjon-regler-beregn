@@ -1,44 +1,52 @@
-import React from "react";
+import React, {useCallback} from "react";
 import {Button} from "@navikt/ds-react";
 
+export default function Openfile({result, onResultChange}) {
 
-export function Openfile(props) {
-
-
-    function openFile() {
-        const fileSelector = document.getElementById('file-selector');
-        fileSelector.addEventListener('change', (event) => {
-            const fileList = event.target.files;
-            console.log(fileList);
-        });
+    function parseRequestFromXML(body) {
+        const xml = new window.DOMParser().parseFromString(body, "application/xml")
+        // console.log("parsexml", xml.documentElement.nodeName )
+        let fullName =  xml.documentElement.nodeName
+        const requestType = fullName.split(".")[fullName.split(".").length-1]
+        return requestType;
     }
 
-    function readImage(file) {
-        // Check if the file is an image.
-        const reader = new FileReader();
-        reader.addEventListener('load', (event) => {
-            img.src = event.target.result;
-        });
-        reader.readAsText(file, 'UTF-8');
-    }
-
-
+    const fetchGuiModelOnXML = useCallback(async body => {
+        // if (isSending) return
+        // setIsSending(true)
+        let request =  parseRequestFromXML(body)
+        let url = 'http://localhost:8080/api/beregn?requestType='+request
+        try {
+            fetch(url, {
+                method: 'POST',
+                headers:  {
+                    'Content-Type':  'application/xml',
+                    'accept': 'application/json',
+                    'X-pensjonregler-log': 'disabled'
+                },
+                body: (body)
+            })
+                .then(response => response.json())
+                .then(response => onResultChange(response));
+            // console.log("result", result)
+        } catch(error) {
+            console.log('Error:', error)
+        }
+        // if (isMounted.current) // only update if we are still mounted
+        //     setIsSending(false)
+    })
 
     function previewFile(e) {
-        // const content = document.querySelector('.content');
-        const fileSelector = document.getElementById('file-selector');
         const reader = new FileReader();
 
         reader.addEventListener("loadend", () => {
-            // this will then display a text file
-            console.log(reader.result)
-            //TODO  send  xml request to server check javafx code
+            // send  xml request to server
+            fetchGuiModelOnXML(reader.result)
         }, false);
 
         if (e.target.files[0]!=null) {
-            reader.readAsDataURL(e.target.files[0]);
+            reader.readAsText(e.target.files[0]);
         }
-
     }
 
     function clickOpen(e) {
@@ -46,7 +54,6 @@ export function Openfile(props) {
     }
 
     return (
-
             <div>
                 {/*<input type="button" id="get_file" value="Åpne" onClick={(e => clickOpen(e))}  style={{background:"transparent",color:"white"}}/>*/}
                 <input type="file" id="file-selector" accept=".xml" onChange={(e) => previewFile(e)} hidden={true}/>
