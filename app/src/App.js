@@ -115,7 +115,7 @@ const fetchGuiModel = useCallback(async() => {
         <div className="Header">
           <div className="HeaderTitle">Beregn Pensjon</div>
           <SatsDropdown tabellChanger = {setSatsTabell}></SatsDropdown>
-          <div className="HeaderButton"><Openfile result={result} onResultChange={setResult}></Openfile></div>
+          <div className="HeaderButton"><Openfile satsTabell={satsTabell} onResultChange={setResult}></Openfile></div>
           <div className="HeaderButton" disabled = {isSending} onClick = {fetchGuiModel}> Run </div>
         </div>
       </div>

@@ -1,21 +1,22 @@
 import React, {useCallback} from "react";
 import {Button} from "@navikt/ds-react";
 
-export default function Openfile({result, onResultChange}) {
+export default function Openfile({satsTabell, onResultChange}) {
 
     function parseRequestFromXML(body) {
         const xml = new window.DOMParser().parseFromString(body, "application/xml")
         // console.log("parsexml", xml.documentElement.nodeName )
         let fullName =  xml.documentElement.nodeName
         const requestType = fullName.split(".")[fullName.split(".").length-1]
-        return requestType;
+        return fullName;
     }
 
     const fetchGuiModelOnXML = useCallback(async body => {
         // if (isSending) return
         // setIsSending(true)
-        let request =  parseRequestFromXML(body)
-        let url = 'http://localhost:8080/api/beregn?requestType='+request
+        let className =  parseRequestFromXML(body)
+        let url = 'http://localhost:8080/api/beregn?className='+className+ satsTabell
+        // let url = 'https://'+environment+'.dev.adeo.no/api/beregn?className='+className+satsTabell
         try {
             fetch(url, {
                 method: 'POST',
