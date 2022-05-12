@@ -24,6 +24,7 @@ export default function App() {
   const [serviceType, setServiceType] = useState("")
   const [environment, setEnvironment] = useState("");
   const [satsTabell,setSatsTabell] = useState("");
+  const [logResponse, setLogResponse] = useState([])
 
   const [result, setResult] = useState([]);
   const [isSending, setIsSending] = useState(false)
@@ -44,15 +45,16 @@ export default function App() {
           }
         })
         .then(response => response.json())
-        .then(response => setMetadata(response))
-        .then(() => setServiceType(metaData['method']))
-        .then(() => setEnvironment(metaData['environment']))
+        .then(response => setLogResponse(response))
+        .then(() => setMetadata(JSON.parse(logResponse['metadata'])))
+        .then(() => setEnvironment(logResponse['environment']))
         .then(() => setIsFetched(true))
       } catch(error) {
         console.log('Error:',error)
       }
     })
     fetchLog();
+    
   }
   return (
     <div>
@@ -82,10 +84,10 @@ useEffect(() => {
 const fetchGuiModel = useCallback(async() => {
   if (isSending) return
   setIsSending(true)
-  let request = FindService(serviceType)
-  //let url = 'http://localhost:8080/api/beregn?requestType='+request+satsTabell
-  let url = 'https://'+environment+'.dev.adeo.no/api/beregn?requestType='+request+satsTabell
-  let body = metaData['xml']
+  let className = metaData['className']
+  //let url = 'http://localhost:8080/api/beregn?className='+className+satsTabell
+  let url = 'https://'+environment+'.dev.adeo.no/api/beregn?className='+className+satsTabell
+  let body = logResponse['xml']
   console.log(body)
   try {
     fetch(url, {
