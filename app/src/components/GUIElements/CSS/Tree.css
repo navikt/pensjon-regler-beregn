@@ -10,12 +10,12 @@
     flex-direction: column;
     align-items: flex-start;
     /*border-right: 1px solid black;*/
-    width: 20%;
+    width: 25%;
     height: 100%;
 
     /*border: 1px solid #ccc;*/
     background-color: #f1f1f1;
-
+    /*overflow-y: scroll;*/
 }
 
 
@@ -23,7 +23,7 @@
 .tree-content-container {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 75%;
 }
 
 
@@ -46,11 +46,11 @@
 
 .tree-subNodeBtn {
     /*font-family: Arial, Helvetica, sans-serif;*/
-    /*font-size: 14px;*/
+    font-size: 16px;
     /*font-weight: bold;*/
     /*border-bottom: 1px solid black;*/
-    width:80%;
-    max-width:90%;
+    width:100%;
+    /*max-width:90%;*/
     display:compact;/*inline-block;*/
     overflow:hidden;
     text-overflow: ellipsis;
@@ -59,6 +59,8 @@
     /*border: 2px solid black;*/
     /*padding: 13px 13px ;*/
     /*transition: 0.3s;*/
+    text-align: left;
+    border: none;
 }
 
 .tree-rootBtn:hover {
@@ -75,45 +77,83 @@
     display: none;
 }
 
+/*tree view*/
 /* root node*/
-.rootNode {
-    list-style: none; /* remove the dot from root node*/
-    margin: 0;
-    padding: 1px;
-}
+/*ul.rootNode {*/
+/*    list-style: none; !* remove the dot from root node*!*/
+/*    margin: 0;*/
+/*    padding: 1px;*/
+/*}*/
 
-/*line between each nodes*/
-ul.tree, ul.tree ul {
-    list-style: none;  /* remove the dot for each subNodes*/
-    margin: 0;
+
+ul {
     padding: 0;
-}
-ul.tree ul {
-    /*margin-left: 10px;*/
-}
-ul.tree li {
     margin: 0;
-    padding: 0 7px;  /* position  of li element f.eks. node */
-    /*line-height: 20px;*/
-    /*color: #369;*/
-    /*font-weight: bold;*/
-    /*border-left:1px solid rgb(100,100,100);*/
+    list-style-type: none;
+    position: relative;
+}
 
+li {
+    list-style-type: none;
+    border-left: 2px solid #000;
+    margin-left: 1em;
 }
-ul.tree li:last-child {
-    border-left:none;
+
+li div {
+    padding-left: 0.15em; /*distance of the font to the left*/
+    position: relative;
 }
-ul.tree li:before {
-    position:relative;
-    top:-0.1em; /* line top position*/
-    height:1em; /* line height*/
-    width:15px; /* line vertical length*/
-    /*color:white;*/
-    border-bottom:3px solid rgb(100,100,100);  /* line bold*/
-    content:"";
-    display:inline-block;
-    left:2px;  /* line alignment to the left*/
+
+li div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -2px;
+    bottom: 35%; /*vertical line position*/
+    width: 0.3em;  /*length of the vertical line */
+    border: 2px solid #000;
+    border-top: 0 none transparent;
+    border-right: 0 none transparent;
 }
-ul.tree li:last-child:before {
-    border-left:3px solid rgb(100,100,100); /* line bold*/
+
+ul > li:last-child {
+    border-left: 2px solid transparent;
 }
+
+
+
+/*!*line between each nodes*!*/
+/*ul.tree, ul.tree ul {*/
+/*    list-style: none;  !* remove the dot for each subNodes*!*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
+/*ul.tree ul {*/
+/*    !*margin-left: 10px;*!*/
+/*}*/
+/*ul.tree li {*/
+/*    margin: 0;*/
+/*    padding: 0 7px;  !* position  of li element f.eks. node *!*/
+/*    !*line-height: 20px;*!*/
+/*    !*color: #369;*!*/
+/*    !*font-weight: bold;*!*/
+/*    !*border-left:1px solid rgb(100,100,100);*!*/
+
+/*}*/
+/*ul.tree li:last-child {*/
+/*    border-left:none;*/
+/*}*/
+/*ul.tree li:before {*/
+/*    position:relative;*/
+/*    top:-0.1em; !* line top position*!*/
+/*    height:1em; !* line height*!*/
+/*    width:15px; !* line vertical length*!*/
+/*    !*color:white;*!*/
+/*    border-bottom:3px solid rgb(100,100,100);  !* line bold*!*/
+/*    content:"";*/
+/*    display:inline-block;*/
+/*    left:2px;  !* line alignment to the left*!*/
+/*}*/
+/*ul.tree li:last-child:before {*/
+/*    border-left:3px solid rgb(100,100,100); !* line bold*!*/
+/*}*/

@@ -53,7 +53,7 @@ const search = (current, target, parent) => {
                 found= <EnTable table = {element}></EnTable>
                 return found
             } else if( element['type'] == 'NODE') {
-                found = <Tree tree = {element}></Tree>
+                found = <Tree tree = {element}  index = {Math.random().toString(36).slice(2, 7)}></Tree>
                 return found
             }
 
@@ -88,7 +88,7 @@ export function JsonParser(props){
             var tabs = []
             return (
                 <div>
-                    {(search(data, 'xyzzt', []))}
+                    {search(data, 'xyzzt', [])}
                 </div>
 
             );
