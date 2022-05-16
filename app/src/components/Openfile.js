@@ -1,6 +1,6 @@
 import React, {useCallback} from "react";
 import {Button} from "@navikt/ds-react";
-import Run from "./Run";
+import FetchGUIModel from "./FetchGUIModel";
 
 export default function Openfile({satsTabell, onResultChange}) {
 
@@ -19,8 +19,8 @@ export default function Openfile({satsTabell, onResultChange}) {
         // setIsSending(true)
         let className =  parseRequestFromXML(body)
         let contentType =  'application/xml'
-        let environment = "localhost:8080/"
-        Run({body, className, environment,satsTabell, onResultChange, contentType})
+        let environment = "pensjon-regler-q4"
+        FetchGUIModel({body, className, environment,satsTabell, onResultChange, contentType})
         // let url = 'http://localhost:8080/api/beregn?className='+className+ satsTabell
         // // let url = 'https://'+environment+'.dev.adeo.no/api/beregn?className='+className+satsTabell
         // try {

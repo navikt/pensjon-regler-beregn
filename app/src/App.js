@@ -11,6 +11,9 @@ import Footer from "./components/Footer";
 import FindService from "./components/FindService";
 import SatsDropdown from "./components/Small/SatsDropdown";
 import Openfile from "./components/Openfile";
+import {Button} from "@navikt/ds-react";
+import FetchGUIModel from "./components/FetchGUIModel";
+import Run from "./components/Run";
 
 //var servicetype= 'BeregnAlderspensjon2011ForsteUttakRequest'; //http://localhost:3000/#/246355100/
 //var servicetype = 'RevurderingAlderspensjon2016Request'
@@ -21,15 +24,16 @@ import Openfile from "./components/Openfile";
 export default function App() {
   //API fetch constants
   const [metaData, setMetadata] = useState([]);
-  const [serviceType, setServiceType] = useState("")
+  // const [serviceType, setServiceType] = useState("")
   const [environment, setEnvironment] = useState("");
   const [satsTabell,setSatsTabell] = useState("");
   const [logResponse, setLogResponse] = useState([])
 
   const [result, setResult] = useState([]);
-  const [isSending, setIsSending] = useState(false)
+  const [body, setBody] = useState([]);
+  const [name, setName] = useState([]);
   const [isFetched, setIsFetched] = useState(false)
-  const isMounted = useRef(true)
+
 
   function FetchByLogID() {
     const {id} = useParams();
@@ -48,6 +52,8 @@ export default function App() {
         .then(response => setLogResponse(response))
         .then(() => setMetadata(JSON.parse(logResponse['metadata'])))
         .then(() => setEnvironment(logResponse['environment']))
+        .then(() => setBody(logResponse['xml']))
+        .then(() => setName(metaData['className']))
         .then(() => setIsFetched(true))
       } catch(error) {
         console.log('Error:',error)
@@ -74,39 +80,38 @@ export default function App() {
     );
   }
 
-// set isMounted to false when we unmount the component, unsure if neccessary
-useEffect(() => {
-  return () => {
-    isMounted.current = false
-  }
-}, [])
 
-const fetchGuiModel = useCallback(async() => {
-  if (isSending) return
-  setIsSending(true)
-  let className = metaData['className']
-  //let url = 'http://localhost:8080/api/beregn?className='+className+satsTabell
-  let url = 'https://'+environment+'.dev.adeo.no/api/beregn?className='+className+satsTabell
-  let body = logResponse['xml']
-  console.log(body)
-  try {
-    fetch(url, {
-      method: 'POST',
-      headers:  {
-          'Content-Type':  'application/json',
-          'accept': 'application/json',
-          'X-pensjonregler-log': 'disabled'
-      },
-      body: (body)
-    })
-    .then(response => response.json())
-    .then(response => setResult(response));
-    } catch(error) {
-        console.log('Error:', error)
-    }
-    if (isMounted.current) // only update if we are still mounted
-    setIsSending(false)
-},[isSending, environment, serviceType, satsTabell])
+
+// const fetchGuiModel = useCallback(async() => {
+//   if (isSending) return
+//   setIsSending(true)
+//   let className = metaData['className']
+//   //let url = 'http://localhost:8080/api/beregn?className='+className+satsTabell
+//   let url = 'https://'+environment+'.dev.adeo.no/api/beregn?className='+className+satsTabell
+//   let body = logResponse['xml']
+//     Run({body, className, environment,satsTabell, onResultChange, contentType})
+//   // console.log(body)
+//   // try {
+//   //   fetch(url, {
+//   //     method: 'POST',
+//   //     headers:  {
+//   //         'Content-Type':  'application/json',
+//   //         'accept': 'application/json',
+//   //         'X-pensjonregler-log': 'disabled'
+//   //     },
+//   //     body: (body)
+//   //   })
+//   //   .then(response => response.json())
+//   //   .then(response => setResult(response));
+//   //   } catch(error) {
+//   //       console.log('Error:', error)
+//   //   }
+//     if (isMounted.current) // only update if we are still mounted
+//     setIsSending(false)
+// },[isSending, environment, serviceType, satsTabell])
+//
+
+
   
   return (
     <div className = "App">
@@ -116,7 +121,7 @@ const fetchGuiModel = useCallback(async() => {
           <div className="HeaderTitle">Beregn Pensjon</div>
           <div className="HeaderButton"> <SatsDropdown tabellChanger = {setSatsTabell}></SatsDropdown></div>
           <div className="HeaderButton"><Openfile satsTabell={satsTabell} onResultChange={setResult}></Openfile></div>
-          <div className="HeaderButton" disabled = {isSending} onClick = {fetchGuiModel}> Run </div>
+          <div className="HeaderButton"><Run  name = {name} body={body} environment={environment} satsTabell={satsTabell} onResultChange={setResult} contentType={'application/json'}/></div>
         </div>
       </div>
       <div className = "main-container">
