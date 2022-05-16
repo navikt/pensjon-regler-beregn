@@ -7,6 +7,7 @@ export default function SatsDropdown(props) {
 
     
     const [tabeller, setTabeller] = useState([[],[]])
+    let defaultSats = "Default Sats"
 
     useEffect(() => {
         let satsUrl = 'https://pensjon-regler-q4.dev.adeo.no/alleSatstabeller'
@@ -29,7 +30,7 @@ export default function SatsDropdown(props) {
     }, [])
 
     function tabellHandler(e) {
-        if(e.target.value == 'Default') {
+        if(e.target.value == {defaultSats}) {
             props.tabellChanger("")
         } else {
         props.tabellChanger('&sats='+e.target.value)
@@ -43,7 +44,7 @@ export default function SatsDropdown(props) {
         onChange={e => tabellHandler(e)}
         hideLabel
         >
-            <option>Default Sats</option>
+            <option>{defaultSats}</option>
             {tabeller[1].map((data,key) => {
                 return (
                     <option 

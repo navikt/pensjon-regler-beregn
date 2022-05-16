@@ -1,7 +1,10 @@
 import React, {useCallback} from "react";
 import {Button} from "@navikt/ds-react";
+import Run from "./Run";
 
 export default function Openfile({satsTabell, onResultChange}) {
+
+    // console.log("setRuetls open file" , setResult, "satsTabeller", satsTabell)
 
     function parseRequestFromXML(body) {
         const xml = new window.DOMParser().parseFromString(body, "application/xml")
@@ -15,24 +18,27 @@ export default function Openfile({satsTabell, onResultChange}) {
         // if (isSending) return
         // setIsSending(true)
         let className =  parseRequestFromXML(body)
-        let url = 'http://localhost:8080/api/beregn?className='+className+ satsTabell
-        // let url = 'https://'+environment+'.dev.adeo.no/api/beregn?className='+className+satsTabell
-        try {
-            fetch(url, {
-                method: 'POST',
-                headers:  {
-                    'Content-Type':  'application/xml',
-                    'accept': 'application/json',
-                    'X-pensjonregler-log': 'disabled'
-                },
-                body: (body)
-            })
-                .then(response => response.json())
-                .then(response => onResultChange(response));
-            // console.log("result", result)
-        } catch(error) {
-            console.log('Error:', error)
-        }
+        let contentType =  'application/xml'
+        let environment = "localhost:8080/"
+        Run({body, className, environment,satsTabell, onResultChange, contentType})
+        // let url = 'http://localhost:8080/api/beregn?className='+className+ satsTabell
+        // // let url = 'https://'+environment+'.dev.adeo.no/api/beregn?className='+className+satsTabell
+        // try {
+        //     fetch(url, {
+        //         method: 'POST',
+        //         headers:  {
+        //             'Content-Type':  'application/xml',
+        //             'accept': 'application/json',
+        //             'X-pensjonregler-log': 'disabled'
+        //         },
+        //         body: (body)
+        //     })
+        //         .then(response => response.json())
+        //         .then(response => onResultChange(response));
+        //     // console.log("result", result)
+        // } catch(error) {
+        //     console.log('Error:', error)
+        // }
         // if (isMounted.current) // only update if we are still mounted
         //     setIsSending(false)
     })
