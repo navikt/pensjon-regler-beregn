@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Select } from "@navikt/ds-react/esm/form";
+import "./SatsDropdown.css"
 
 export default function SatsDropdown(props) {
 
@@ -40,8 +41,9 @@ export default function SatsDropdown(props) {
         size = "small"
         label = "Kjør med annen sats"
         onChange={e => tabellHandler(e)}
+        hideLabel
         >
-            <option>Default</option>
+            <option>Default Sats</option>
             {tabeller[1].map((data,key) => {
                 return (
                     <option 
