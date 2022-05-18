@@ -10,10 +10,10 @@ import ResponsePane from "./components/ResponsePane";
 import Footer from "./components/Footer";
 import FindService from "./components/FindService";
 import SatsDropdown from "./components/Small/SatsDropdown";
-import Openfile from "./components/Openfile";
+import Openfile from "./components/Small/Openfile";
 import {Button} from "@navikt/ds-react";
-import FetchGUIModel from "./components/FetchGUIModel";
-import Run from "./components/Run";
+import FetchGUIModel from "./components/Small/FetchGUIModel";
+import Run from "./components/Small/Run";
 
 //var servicetype= 'BeregnAlderspensjon2011ForsteUttakRequest'; //http://localhost:3000/#/246355100/
 //var servicetype = 'RevurderingAlderspensjon2016Request'

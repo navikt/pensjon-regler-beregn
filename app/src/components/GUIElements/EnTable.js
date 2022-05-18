@@ -2,6 +2,7 @@ import React, {useRef, useState} from "react";
 import {JsonParser} from "./JsonParser";
 import {Button, Heading, Popover, Table} from '@navikt/ds-react';
 import data from "bootstrap/js/src/dom/data";
+import './CSS/EnTable.css'
 
 export function EnTable(props) {
     let [table] = useState(props.table)
@@ -51,10 +52,10 @@ export function EnTable(props) {
                             {subitem['data']}</Button>
                             <Popover open={open} onClose={() => setOpen(false)} anchorEl={buttonRef.current}
                                      arrow={true} placement="auto" offset={32}>
-                                <Popover.Content>
-                                    <div className="scroll" /*style={{overflow:"scroll"}}*/>
+                                <Popover.Content className="scroll">
+                                    {/*<div  /*style={{overflow:"scroll"}}*/}
                                         {generateTables(subitem['popoverContent'][1])}
-                                    </div>
+                                    {/*// </div>*/}
                                 </Popover.Content>
                             </Popover></Table.HeaderCell>;
                         row.push(popOver)
@@ -64,10 +65,11 @@ export function EnTable(props) {
                             {subitem['data']}</Button><Popover open={open} onClose={() => setOpen(false)}
                                                                anchorEl={buttonRef.current}
                                                                arrow={true} placement="auto" offset={32}>
-                            <Popover.Content>
-                                <div className="scroll" /*style={{overflow:"scroll"}}*/>
+
+                            <Popover.Content  className={"scroll"} >
+                                {/*<div  /*style={{overflow:"scroll"}}*/}
                                     {generateTables(subitem['popoverContent'][1])}
-                                </div>
+                                {/*// </div>*/}
                             </Popover.Content>
                         </Popover></Table.DataCell>;
                         row.push(popOver)
