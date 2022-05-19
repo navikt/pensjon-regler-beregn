@@ -14,6 +14,7 @@ import Openfile from "./components/Small/Openfile";
 import {Button} from "@navikt/ds-react";
 import FetchGUIModel from "./components/Small/FetchGUIModel";
 import Run from "./components/Small/Run";
+import EnvironmentsDropdown from "./components/Small/EnvironmentsDropdown";
 
 //var servicetype= 'BeregnAlderspensjon2011ForsteUttakRequest'; //http://localhost:3000/#/246355100/
 //var servicetype = 'RevurderingAlderspensjon2016Request'
@@ -70,7 +71,7 @@ export default function App() {
 
   function Request() {
     return ( //Send request ID from url to component
-        <RequestPane request = {result.request}></RequestPane>
+        <RequestPane request = {result.request} name = {name}></RequestPane>
     );
   } 
 
@@ -119,9 +120,12 @@ export default function App() {
       <div>
         <div className="Header">
           <div className="HeaderTitle">Beregn Pensjon</div>
+          <div className="HeaderButton"> <EnvironmentsDropdown environmentsChanger = {environment}></EnvironmentsDropdown></div>
           <div className="HeaderButton"> <SatsDropdown tabellChanger = {setSatsTabell}></SatsDropdown></div>
           <div className="HeaderButton"><Openfile satsTabell={satsTabell} onResultChange={setResult}></Openfile></div>
           <div className="HeaderButton"><Run  name = {name} body={body} environment={environment} satsTabell={satsTabell} onResultChange={setResult} contentType={'application/json'}/></div>
+          {/*<div className="HeaderSpace"></div>*/}
+          {/*<div className="HeaderEnvironment"><p>Nåværende Miljø:</p><p id="insertEnvironment">{{environment}?"-NA-":{environment}}</p></div>*/}
         </div>
       </div>
       <div className = "main-container">
@@ -133,7 +137,7 @@ export default function App() {
         {<Request />}
         {<Response />}
       </div>
-      <div className = "footer"><Footer></Footer></div>
+      <div className = "footeConsole"><Footer></Footer></div>
     </div>
   );
 }

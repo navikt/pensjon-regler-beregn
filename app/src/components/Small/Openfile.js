@@ -6,18 +6,19 @@ export default function Openfile({satsTabell, onResultChange}) {
 
     // console.log("setRuetls open file" , setResult, "satsTabeller", satsTabell)
 
-    function parseRequestFromXML(body) {
+    function parseRequestFromXML(body, fileName) {
         const xml = new window.DOMParser().parseFromString(body, "application/xml")
         // console.log("parsexml", xml.documentElement.nodeName )
         let fullName =  xml.documentElement.nodeName
         const requestType = fullName.split(".")[fullName.split(".").length-1]
+        document.getElementById("footerConsole").innerText= requestType + " from file: " + fileName
         return fullName;
     }
 
-    const fetchGuiModelOnXML = useCallback(async body => {
+    const fetchGuiModelOnXML = useCallback(async (body, fileName) => {
         // if (isSending) return
         // setIsSending(true)
-        let className =  parseRequestFromXML(body)
+        let className =  parseRequestFromXML(body, fileName)
         let contentType =  'application/xml'
         let environment = "pensjon-regler-q4"
         FetchGUIModel({body, className, environment,satsTabell, onResultChange, contentType})
@@ -48,11 +49,15 @@ export default function Openfile({satsTabell, onResultChange}) {
 
         reader.addEventListener("loadend", () => {
             // send  xml request to server
-            fetchGuiModelOnXML(reader.result)
+            fetchGuiModelOnXML(reader.result, e.target.files[0]['name'])
         }, false);
 
         if (e.target.files[0]!=null) {
             reader.readAsText(e.target.files[0]);
+            // console.log("file load", e.target.files[0]['name'])
+
+            // reader.readAsDataURL(e.target.files[0])
+            // console.log("file load url", reader.result)
         }
     }
 

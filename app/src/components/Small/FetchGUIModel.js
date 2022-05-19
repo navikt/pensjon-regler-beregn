@@ -5,6 +5,12 @@ export default function FetchGUIModel({body, className, environment, satsTabell,
     // let url = 'http://localhost:8080/api/beregn?className='+className+ satsTabell
     let url = 'https://'+environment+'.dev.adeo.no/api/beregn?className='+className+satsTabell
     console.log("url", url)
+
+    function insertEnvironment(environment) {
+        document.getElementById("insertEnvironment").innerText=environment
+        return undefined;
+    }
+
     try {
         fetch(url, {
             method: 'POST',
@@ -16,7 +22,8 @@ export default function FetchGUIModel({body, className, environment, satsTabell,
             body: (body)
         })
             .then(response => response.json())
-            .then(response => onResultChange(response));
+            .then(response => onResultChange(response))
+            // .then(insertEnvironment(environment));
     } catch(error) {
         console.log('Error:', error)
     }
