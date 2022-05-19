@@ -120,9 +120,9 @@ export default function App() {
       <div>
         <div className="Header">
           <div className="HeaderTitle">Beregn Pensjon</div>
-          <div className="HeaderButton"> <EnvironmentsDropdown environmentsChanger = {environment}></EnvironmentsDropdown></div>
+          <div className="HeaderButton"> <EnvironmentsDropdown environmentsChanger = {setEnvironment}  innitialEnvironment={environment}></EnvironmentsDropdown></div>
           <div className="HeaderButton"> <SatsDropdown tabellChanger = {setSatsTabell}></SatsDropdown></div>
-          <div className="HeaderButton"><Openfile satsTabell={satsTabell} onResultChange={setResult}></Openfile></div>
+          <div className="HeaderButton"><Openfile satsTabell={satsTabell} onResultChange={setResult} environment={environment}></Openfile></div>
           <div className="HeaderButton"><Run  name = {name} body={body} environment={environment} satsTabell={satsTabell} onResultChange={setResult} contentType={'application/json'}/></div>
           {/*<div className="HeaderSpace"></div>*/}
           {/*<div className="HeaderEnvironment"><p>Nåværende Miljø:</p><p id="insertEnvironment">{{environment}?"-NA-":{environment}}</p></div>*/}

@@ -11,7 +11,7 @@ export default function Run({ name, body,environment, satsTabell,onResultChange,
             setIsSending(true)
         let className = name
         const requestType = className.split(".")[className.split(".").length-1]
-        document.getElementById("footerConsole").innerText= requestType + " from logviewer  "
+        document.getElementById("footerConsole").innerText= requestType + " from logviewer  i miljø: "+ environment
         // let url = 'http://localhost:8080/api/beregn?className='+className+satsTabell
         // let url = 'https://'+environment+'.dev.adeo.no/api/beregn?className='+className+satsTabell
         // let body = logResponse['xml']

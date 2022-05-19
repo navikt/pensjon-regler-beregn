@@ -2,8 +2,13 @@ import React from "react";
 
 export default function FetchGUIModel({body, className, environment, satsTabell, onResultChange, contentType}) {
 
-    // let url = 'http://localhost:8080/api/beregn?className='+className+ satsTabell
-    let url = 'https://'+environment+'.dev.adeo.no/api/beregn?className='+className+satsTabell
+    let url = ""
+    if(environment==='local')
+        url = 'http://localhost:8080/api/beregn?className='+className+ satsTabell
+    else if(environment==="default miljø")
+        return  url = 'https://pensjon-regler-q4.dev.adeo.no/api/beregn?className='+className+satsTabell
+    else
+        url = 'https://'+environment+'.dev.adeo.no/api/beregn?className='+className+satsTabell
     console.log("url", url)
 
     function insertEnvironment(environment) {

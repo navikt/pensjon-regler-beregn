@@ -2,7 +2,7 @@ import React, {useCallback} from "react";
 import {Button} from "@navikt/ds-react";
 import FetchGUIModel from "./FetchGUIModel";
 
-export default function Openfile({satsTabell, onResultChange}) {
+export default function Openfile({satsTabell, onResultChange,environment }) {
 
     // console.log("setRuetls open file" , setResult, "satsTabeller", satsTabell)
 
@@ -10,8 +10,6 @@ export default function Openfile({satsTabell, onResultChange}) {
         const xml = new window.DOMParser().parseFromString(body, "application/xml")
         // console.log("parsexml", xml.documentElement.nodeName )
         let fullName =  xml.documentElement.nodeName
-        const requestType = fullName.split(".")[fullName.split(".").length-1]
-        document.getElementById("footerConsole").innerText= requestType + " from file: " + fileName
         return fullName;
     }
 
@@ -20,7 +18,9 @@ export default function Openfile({satsTabell, onResultChange}) {
         // setIsSending(true)
         let className =  parseRequestFromXML(body, fileName)
         let contentType =  'application/xml'
-        let environment = "pensjon-regler-q4"
+        // let environment = "pensjon-regler-q4"
+        const requestType = className.split(".")[className.split(".").length-1]
+        document.getElementById("footerConsole").innerText= requestType + " from file: " + fileName + " i miljø: " + environment
         FetchGUIModel({body, className, environment,satsTabell, onResultChange, contentType})
         // let url = 'http://localhost:8080/api/beregn?className='+className+ satsTabell
         // // let url = 'https://'+environment+'.dev.adeo.no/api/beregn?className='+className+satsTabell

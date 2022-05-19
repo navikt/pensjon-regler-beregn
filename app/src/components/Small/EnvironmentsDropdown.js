@@ -7,37 +7,46 @@ export default function EnvironmentsDropdown(props) {
 
 
     // const [environment, setEnvironment] = useState(props.environmentsChanger)
-    let chooseEnvironemnt = "Velge miljø"
-    // environmentsHandler(environment)
-
-    function environmentsHandler(value) {
-        props.environmentsChanger(value)
-        // if(value == {chooseEnvironemnt}) {
-        //     props.environmentsChanger("")
-        // }
-        // else if(value == 'local') {
-        //     props.environmentsChanger("localhost:8080")
-        // }
+    let chooseEnvironemnt = "default miljø"
+    console.log(props.innitialEnvironment)
+    if(props.innitialEnvironment) {
+        // if(props.innitialEnvironment==="local"||props.innitialEnvironment==={chooseEnvironemnt})
+        //     document.getElementById("environmentselect").innerText = props.innitialEnvironment
         // else {
-        //     props.environmentsChanger('pensjon-regler-'+e.target.value +'.dev.adeo.no')
+        //     console.log("environment", props.innitialEnvironment.replace("pensjon-regler-",""))
+        //     document.getElementById("environmentselect").innerHTML = <option>{props.innitialEnvironment.replace("pensjon-regler-","")}</option>
         // }
     }
 
+
+    function environmentsHandler(value) {
+        props.environmentsChanger(value)
+        if(value === {chooseEnvironemnt}) {
+            props.environmentsChanger(value)
+        }
+        else if(value === 'local') {
+            props.environmentsChanger(value)
+        }
+        else {
+            props.environmentsChanger('pensjon-regler-'+ value)
+        }
+    }
+
     return(
-        <Select
+        <Select id="environmentselect"
             size = "small"
             label = "velge et miljø"
             onChange={e => environmentsHandler(e.target.value)}
             hideLabel
         >
-            <option>{chooseEnvironemnt}</option>
-            <option>local</option>
-            <option>T0</option>
-            <option>Q0</option>
-            <option>Q1</option>
-            <option>Q2</option>
-            <option>Q4</option>
-            <option>Q5</option>
+            <option value="">{chooseEnvironemnt}</option>
+            <option value = "local">local</option>
+            <option value = "t0">t0</option>
+            <option value="q0">q0</option>
+            <option value="q1">q1</option>
+            <option value="q2">q2</option>
+            <option value="q4">q4</option>
+            <option value="q5">q5</option>
         </Select>
     )
 
