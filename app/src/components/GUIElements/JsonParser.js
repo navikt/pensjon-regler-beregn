@@ -4,7 +4,7 @@ import { TabList } from "./TabList";
 import { EnTable } from "./EnTable";
 import { Tree } from "./Tree";
 
-const search = (current, target, parent) => {
+const search = (current) => {
     var element = []
 
     for (var child in current) {
@@ -14,16 +14,12 @@ const search = (current, target, parent) => {
         } else if (current.hasOwnProperty('type')) {
             element = current;
         }
-        // find TOP ,then data, then recursive , last is type....  In the   model of backend.. move type to the beginning.
-        //one level can only has recursive when child = data.
         if(current[child].hasOwnProperty('type') || current.hasOwnProperty('type')) {
             if(  element['type'] == 'TABLIST') {
-                //parseTabList(name, current['data'], parent)
                 found= <TabList tabs = {element}></TabList>
                 return found
             }
             else if( element['type'] == 'TAB') {
-                //parseTab(name, current['data'], parent)
                 found= <Tab tab = {element}></Tab>
                 return found
             }
@@ -37,11 +33,9 @@ const search = (current, target, parent) => {
 
         }
         else if(Array.isArray(current[child])) {
-            found = search(current[child], target, current);
+            found = search(current[child]);
         }
-
-        //console.log("found:" +found)
-        if(found!=null&&found.length != 0) {
+        if(found != null && found.length != 0) {
             return found
         }
 
@@ -52,7 +46,7 @@ export function JsonParser(props){
             let [data] = useState(props.data)
             return (
                 <div>
-                    {search(data, 'xyzzt', [])}
+                    {search(data)}
                 </div>
 
             );
