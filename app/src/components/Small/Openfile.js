@@ -20,6 +20,8 @@ export default function Openfile({satsTabell, onResultChange,environment }) {
         let contentType =  'application/xml'
         // let environment = "pensjon-regler-q4"
         const requestType = className.split(".")[className.split(".").length-1]
+        if(environment==null ||environment==="")
+            environment = "pensjon-regler-q4"
         document.getElementById("footerConsole").innerText= requestType + " from file: " + fileName + " i miljø: " + environment
         FetchGUIModel({body, className, environment,satsTabell, onResultChange, contentType})
         // let url = 'http://localhost:8080/api/beregn?className='+className+ satsTabell

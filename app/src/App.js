@@ -4,28 +4,18 @@ import React, {useEffect, useState, useRef, useCallback} from "react";
 import ReactDOM from "react-dom";
 
 import Header from "./components/Header";
-import HeaderButton from "./components/Small/HeaderButton";
 import RequestPane from "./components/RequestPane";
 import ResponsePane from "./components/ResponsePane";
 import Footer from "./components/Footer";
-import FindService from "./components/FindService";
 import SatsDropdown from "./components/Small/SatsDropdown";
 import Openfile from "./components/Small/Openfile";
-import {Button} from "@navikt/ds-react";
-import FetchGUIModel from "./components/Small/FetchGUIModel";
 import Run from "./components/Small/Run";
 import EnvironmentsDropdown from "./components/Small/EnvironmentsDropdown";
 
-//var servicetype= 'BeregnAlderspensjon2011ForsteUttakRequest'; //http://localhost:3000/#/246355100/
-//var servicetype = 'RevurderingAlderspensjon2016Request'
-//var url = 'http://localhost:8080/api/beregn?requestType='+servicetype;
-//const d = require('./components/Testdata/RequestData.json');
-//const d = require('./components/Testdata/RequestWithTree.json');
 
 export default function App() {
   //API fetch constants
   const [metaData, setMetadata] = useState([]);
-  // const [serviceType, setServiceType] = useState("")
   const [environment, setEnvironment] = useState("");
   const [satsTabell,setSatsTabell] = useState("");
   const [logResponse, setLogResponse] = useState([])
@@ -46,7 +36,7 @@ export default function App() {
           method: 'GET',
           headers: {
             'Content-Type':  'application/json',
-            'accept': 'application/json' 
+            'accept': 'application/json'
           }
         })
         .then(response => response.json())
@@ -61,7 +51,7 @@ export default function App() {
       }
     })
     fetchLog();
-    
+
   }
   return (
     <div>
@@ -73,7 +63,7 @@ export default function App() {
     return ( //Send request ID from url to component
         <RequestPane request = {result.request} name = {name}></RequestPane>
     );
-  } 
+  }
 
   function Response() {
     return (
@@ -81,39 +71,6 @@ export default function App() {
     );
   }
 
-
-
-// const fetchGuiModel = useCallback(async() => {
-//   if (isSending) return
-//   setIsSending(true)
-//   let className = metaData['className']
-//   //let url = 'http://localhost:8080/api/beregn?className='+className+satsTabell
-//   let url = 'https://'+environment+'.dev.adeo.no/api/beregn?className='+className+satsTabell
-//   let body = logResponse['xml']
-//     Run({body, className, environment,satsTabell, onResultChange, contentType})
-//   // console.log(body)
-//   // try {
-//   //   fetch(url, {
-//   //     method: 'POST',
-//   //     headers:  {
-//   //         'Content-Type':  'application/json',
-//   //         'accept': 'application/json',
-//   //         'X-pensjonregler-log': 'disabled'
-//   //     },
-//   //     body: (body)
-//   //   })
-//   //   .then(response => response.json())
-//   //   .then(response => setResult(response));
-//   //   } catch(error) {
-//   //       console.log('Error:', error)
-//   //   }
-//     if (isMounted.current) // only update if we are still mounted
-//     setIsSending(false)
-// },[isSending, environment, serviceType, satsTabell])
-//
-
-
-  
   return (
     <div className = "App">
 

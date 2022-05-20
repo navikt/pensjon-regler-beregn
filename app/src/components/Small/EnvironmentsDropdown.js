@@ -7,7 +7,7 @@ export default function EnvironmentsDropdown(props) {
 
 
     // const [environment, setEnvironment] = useState(props.environmentsChanger)
-    let chooseEnvironemnt = "default miljø"
+    let chooseEnvironemnt = "Default miljø"
     console.log(props.innitialEnvironment)
     if(props.innitialEnvironment) {
         // if(props.innitialEnvironment==="local"||props.innitialEnvironment==={chooseEnvironemnt})
