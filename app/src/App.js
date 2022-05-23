@@ -94,7 +94,7 @@ export default function App() {
         {<Request />}
         {<Response />}
       </div>
-      <div className = "footeConsole"><Footer></Footer></div>
+      <div className = "footerConsole"><Footer></Footer></div>
     </div>
   );
 }
