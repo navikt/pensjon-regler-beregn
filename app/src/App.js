@@ -7,10 +7,10 @@ import Header from "./components/Header";
 import RequestPane from "./components/RequestPane";
 import ResponsePane from "./components/ResponsePane";
 import Footer from "./components/Footer";
-import SatsDropdown from "./components/Small/SatsDropdown";
-import Openfile from "./components/Small/Openfile";
-import Run from "./components/Small/Run";
-import EnvironmentsDropdown from "./components/Small/EnvironmentsDropdown";
+import SatsDropdown from "./components/Navigation/SatsDropdown";
+import Openfile from "./components/Navigation/Openfile";
+import Run from "./components/Navigation/Run";
+import EnvironmentsDropdown from "./components/Navigation/EnvironmentsDropdown";
 
 
 export default function App() {
