@@ -7,7 +7,7 @@ export default function SatsDropdown(props) {
 
     
     const [tabeller, setTabeller] = useState([[],[]])
-    let defaultSats = "Default Sats"
+    let defaultSats = "Velg sats"
 
     useEffect(() => {
         let satsUrl = 'https://pensjon-regler-q4.dev.adeo.no/alleSatstabeller'
@@ -48,7 +48,8 @@ export default function SatsDropdown(props) {
             {tabeller[1].map((data,key) => {
                 return (
                     <option 
-                    value = {data}>
+                    value = {data}
+                    key = {key}>
                         {data}
                     </option>
                 )
