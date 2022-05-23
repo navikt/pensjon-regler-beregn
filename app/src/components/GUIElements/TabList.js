@@ -29,6 +29,7 @@ export function TabList(props){
                     <Tabs.Tab
                       value = {data['name']+key}
                       label = {data['name']}
+                      key = {key}
                       id = {data['name'] + '-tab'} //Creating references from header button to tab content
                       aria-controls = {data['name'] + '-panel'}
                       >
@@ -43,6 +44,7 @@ export function TabList(props){
                   role = "tabpanel"
                   hidden = {value !== data['name']+key }
                   aria-labelledby = {data['name'] + '-tab'}
+                  key = {key}
                   id = {data['name'] + '-panel'}
                 >
                   <JsonParser data = {data}></JsonParser> {/*Sending tab content back to parser function*/}
@@ -60,6 +62,7 @@ export function TabList(props){
                   <div 
                     className = "sidetab-button"
                     onClick={() => setValue(data['name']+key)}
+                    key = {key}
                     id = {data['name'] + '-tab'} //Creating references from header button to tab content
                     aria-controls = {data['name'] + '-panel'}
                   >
@@ -75,6 +78,7 @@ export function TabList(props){
                     role = "tabpanel"
                     hidden = {value !== data['name']+key }
                     aria-labelledby = {data['name'] + '-tab'}
+                    key = {key}
                     id = {data['name'] + '-panel'}>
                       <JsonParser data = {data}></JsonParser> {/*Sending tab content back to parser function*/}
                   </div>

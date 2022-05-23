@@ -47,7 +47,9 @@ export function Tab(props){
         <div>
             {tab['data'][1].map((data,key) => {
                 return (
-                    <div>
+                    <div
+                    key = {key}
+                    >
                       <JsonParser data = {data}></JsonParser>
                     </div>
                 )
