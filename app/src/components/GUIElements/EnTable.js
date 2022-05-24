@@ -15,7 +15,7 @@ export function EnTable(props) {
         if (item[index] == null)
             return (null)
         else if (item[index].hasOwnProperty('header'))
-            return <Table.HeaderCell scope="col">{item[index][0]['data']}</Table.HeaderCell>
+            return <Table.HeaderCell key ={index} scope="col">{item[index][0]['data']}</Table.HeaderCell>
     }
 
     function generateTables(tables) {
@@ -23,7 +23,7 @@ export function EnTable(props) {
         let enTable
         tables.map((data, k) => {
             enTable =
-                <div>
+                <div key = {k}>
                     <JsonParser data={data}></JsonParser>
                 </div>
             t.push(enTable)
@@ -43,7 +43,7 @@ export function EnTable(props) {
                     const buttonRef = useRef(null);
                     const [open, setOpen] = useState(false);
                     if (subitem['header']) {
-                        popOver = <Table.HeaderCell scope="col"><Button ref={buttonRef} onClick={() => setOpen(true)}
+                        popOver = <Table.HeaderCell key = {j} scope="col"><Button ref={buttonRef} onClick={() => setOpen(true)}
                                                                         size="xsmall">
                             {subitem['data']}</Button>
                             <Popover open={open} onClose={() => setOpen(false)} anchorEl={buttonRef.current}
@@ -54,7 +54,7 @@ export function EnTable(props) {
                             </Popover></Table.HeaderCell>;
                         row.push(popOver)
                     } else {
-                        popOver = <Table.DataCell><Button ref={buttonRef}
+                        popOver = <Table.DataCell key = {j}><Button ref={buttonRef}
                                                           onClick={() => setOpen(true)} size="xsmall">
                             {subitem['data']}</Button><Popover open={open} onClose={() => setOpen(false)}
                                                                anchorEl={buttonRef.current}
@@ -68,10 +68,10 @@ export function EnTable(props) {
                     }
                 } else {
                     if (subitem['header']) {
-                        row.push(<Table.HeaderCell scope="col">{subitem['data']}</Table.HeaderCell>)
+                        row.push(<Table.HeaderCell key = {j} scope="col">{subitem['data']}</Table.HeaderCell>)
                     }
                     else {
-                        row.push(<Table.DataCell>{subitem['data']}</Table.DataCell>)
+                        row.push(<Table.DataCell key = {j}>{subitem['data']}</Table.DataCell>)
                     }
                 }
             })
@@ -95,7 +95,7 @@ export function EnTable(props) {
                     </Table.Header>
                     <Table.Body>
                         {table['cells'][1].map((item, index) => (
-                            <Table.Row>
+                            <Table.Row key = {index}>
                                 {showRow(item, index)}
                             </Table.Row>
                         ))
