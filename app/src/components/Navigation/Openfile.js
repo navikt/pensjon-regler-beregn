@@ -1,6 +1,7 @@
 import React, {useCallback} from "react";
 import {Button} from "@navikt/ds-react";
 import FetchGUIModel from "./FetchGUIModel";
+import ConsoleOutput from "../FooterConsole/ConsoleOutput"
 
 export default function Openfile({satsTabell, onResultChange,environment }) {
 
@@ -13,12 +14,9 @@ export default function Openfile({satsTabell, onResultChange,environment }) {
     const fetchGuiModelOnXML = useCallback(async (body, fileName) => {
         let className =  parseRequestFromXML(body, fileName)
         let contentType =  'application/xml'
-        // let environment = "pensjon-regler-q4"
-        const requestType = className.split(".")[className.split(".").length-1]
         if(environment==null ||environment==="")
             environment = "pensjon-regler-q4"
-        document.getElementById("footerConsole").innerText= requestType + " from file: " + fileName + " i miljø: " + environment
-        FetchGUIModel({body, className, environment,satsTabell, onResultChange, contentType})
+        FetchGUIModel({body, className, environment,satsTabell, onResultChange, contentType, fileName})
     })
 
     function previewFile(e) {

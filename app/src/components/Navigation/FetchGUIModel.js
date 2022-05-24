@@ -1,6 +1,7 @@
 import React from "react";
+import ConsoleOutput from "../FooterConsole/ConsoleOutput";
 
-export default function FetchGUIModel({body, className, environment, satsTabell, onResultChange, contentType}) {
+export default function FetchGUIModel({body, className, environment, satsTabell, onResultChange, contentType, fileName}) {
 
     let url = ""
     if(environment==='local')
@@ -10,9 +11,9 @@ export default function FetchGUIModel({body, className, environment, satsTabell,
     else
         url = 'https://'+environment+'.dev.adeo.no/api/beregn?className='+className+satsTabell
     console.log("url", url)
+    const requestType = className.split(".")[className.split(".").length-1]
 
-    try {
-        fetch(url, {
+    fetch(url, {
             method: 'POST',
             headers:  {
                 'Content-Type':  contentType,
@@ -21,10 +22,20 @@ export default function FetchGUIModel({body, className, environment, satsTabell,
             },
             body: (body)
         })
-            .then(response => response.json())
+            .then((response)=> {
+                if(response.ok)
+                    return response.json()
+                else  {
+                    let error = `HTTP error status: ${ response.status }`
+                    ConsoleOutput({environment,satsTabell, requestType, fileName,error})
+                    throw new Error(`HTTP error! Status: ${ response.status }`);
+                }
+            })
             .then(response => onResultChange(response))
-    } catch(error) {
-        console.log('Error:', error)
-    }
+            .then(() => ConsoleOutput({environment,satsTabell, requestType, fileName}))
+            .catch(error => {
+                console.log('Error:', error)
+                ConsoleOutput({error})
+            })
 
 }
