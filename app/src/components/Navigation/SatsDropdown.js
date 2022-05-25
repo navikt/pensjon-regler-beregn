@@ -32,21 +32,17 @@ export default function SatsDropdown(props) {
 
     function tabellHandler(e) {
         props.tabellChanger(e.target.value)
-        // if(e.target.value == {defaultSats}) {
-        //     props.tabellChanger("")
-        // } else {
-        //     props.tabellChanger(e.target.value)
-        // }
     }
 
     return(
         <Select
+            id = "satsTabellerSelect"
         size = "small"
         label = "Kjør med annen sats"
         onChange={e => tabellHandler(e)}
         hideLabel
         >
-            <option>{defaultSats}</option>
+            <option value = {defaultSats} >{defaultSats}</option>
             {tabeller[1].map((data,key) => {
                 return (
                     <option 

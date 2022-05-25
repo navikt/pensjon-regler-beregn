@@ -18,6 +18,7 @@ export default function FetchGUIModel({body, className, environment, satsTabell,
 
     if(!satsTabell|| satsTabell===defaultSats) {
         url  = url
+        satsTabell = defaultSats
     }
     else {
         url  = url + "&sats="+satsTabell
@@ -26,7 +27,7 @@ export default function FetchGUIModel({body, className, environment, satsTabell,
 
     //async with correct value from dropdown list
     document.getElementById("environmentselect").value = environment
-    // document.getElementById("satsTabellerSelect").value = satsTabell
+    document.getElementById("satsTabellerSelect").value = satsTabell
 
     const requestType = className.split(".")[className.split(".").length - 1]
 
