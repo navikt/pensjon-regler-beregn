@@ -1,22 +1,19 @@
 import React, {useCallback} from "react";
 import {Button} from "@navikt/ds-react";
 import FetchGUIModel from "./FetchGUIModel";
-import ConsoleOutput from "../FooterConsole/ConsoleOutput"
 
-export default function Openfile({satsTabell, onResultChange,environment }) {
+export default function Openfile({satsTabell, onResultChange, environment}) {
 
     function parseRequestFromXML(body, fileName) {
         const xml = new window.DOMParser().parseFromString(body, "application/xml")
-        let fullName =  xml.documentElement.nodeName
+        let fullName = xml.documentElement.nodeName
         return fullName;
     }
 
     const fetchGuiModelOnXML = useCallback(async (body, fileName) => {
-        let className =  parseRequestFromXML(body, fileName)
-        let contentType =  'application/xml'
-        if(environment==null ||environment==="")
-            environment = "pensjon-regler-q4"
-        FetchGUIModel({body, className, environment,satsTabell, onResultChange, contentType, fileName})
+        let className = parseRequestFromXML(body, fileName)
+        let contentType = 'application/xml'
+        FetchGUIModel({body, className, environment, satsTabell, onResultChange, contentType, fileName})
     })
 
     function previewFile(e) {
@@ -27,7 +24,7 @@ export default function Openfile({satsTabell, onResultChange,environment }) {
             fetchGuiModelOnXML(reader.result, e.target.files[0]['name'])
         }, false);
 
-        if (e.target.files[0]!=null) {
+        if (e.target.files[0] != null) {
             reader.readAsText(e.target.files[0]);
         }
     }
@@ -37,11 +34,12 @@ export default function Openfile({satsTabell, onResultChange,environment }) {
     }
 
     return (
-            <div>
-                {/*<input type="button" id="get_file" value="Åpne" onClick={(e => clickOpen(e))}  style={{background:"transparent",color:"white"}}/>*/}
-                <input type="file" id="file-selector" accept=".xml" onChange={(e) => previewFile(e)} hidden={true}/>
-                <Button id="get_file" onClick={(e => clickOpen(e))}  style={{background:"transparent",color:"white"}} >Åpne</Button>
-            </div>
+        <div>
+            {/*<input type="button" id="get_file" value="Åpne" onClick={(e => clickOpen(e))}  style={{background:"transparent",color:"white"}}/>*/}
+            <input type="file" id="file-selector" accept=".xml" onChange={(e) => previewFile(e)} hidden={true}/>
+            <Button id="get_file" onClick={(e => clickOpen(e))}
+                    style={{background: "transparent", color: "white"}}>Åpne</Button>
+        </div>
 
     )
 }
