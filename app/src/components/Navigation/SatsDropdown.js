@@ -3,11 +3,12 @@ import { useState } from "react";
 import { Select } from "@navikt/ds-react/esm/form";
 import "./SatsDropdown.css"
 
+export const defaultSats = "Velg sats"
+
 export default function SatsDropdown(props) {
 
     
     const [tabeller, setTabeller] = useState([[],[]])
-    let defaultSats = "Velg sats"
 
     useEffect(() => {
         let satsUrl = 'https://pensjon-regler-q4.dev.adeo.no/alleSatstabeller'
@@ -30,21 +31,18 @@ export default function SatsDropdown(props) {
     }, [])
 
     function tabellHandler(e) {
-        if(e.target.value == {defaultSats}) {
-            props.tabellChanger("")
-        } else {
-        props.tabellChanger('&sats='+e.target.value)
-        }
+        props.tabellChanger(e.target.value)
     }
 
     return(
         <Select
+            id = "satsTabellerSelect"
         size = "small"
         label = "Kjør med annen sats"
         onChange={e => tabellHandler(e)}
         hideLabel
         >
-            <option>{defaultSats}</option>
+            <option value = {defaultSats} >{defaultSats}</option>
             {tabeller[1].map((data,key) => {
                 return (
                     <option 

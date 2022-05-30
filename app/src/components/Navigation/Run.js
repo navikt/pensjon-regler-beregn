@@ -10,8 +10,6 @@ export default function Run({ name, body,environment, satsTabell,onResultChange,
         if (isSending) return
             setIsSending(true)
         let className = name
-        const requestType = className.split(".")[className.split(".").length-1]
-        document.getElementById("footerConsole").innerText= requestType + " from logviewer  i miljø: "+ environment
         FetchGUIModel({body, className, environment,satsTabell, onResultChange, contentType})
         if (isMounted.current) // only update if we are still mounted
             setIsSending(false)
