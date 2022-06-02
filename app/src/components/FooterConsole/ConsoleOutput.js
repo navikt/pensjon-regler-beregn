@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 
-export default function ConsoleOutput({ environment, satsTabell, requestType, fileName="",error, text}) {
+export default function ConsoleOutput({ environment, satsTabell, requestType, fileName="",error, text, setFooter}) {
 
     let resource =""
     if(fileName) {
@@ -10,10 +10,17 @@ export default function ConsoleOutput({ environment, satsTabell, requestType, fi
         resource = "logviewer"
 
     if(text) {
-        document.getElementById("footerConsole").innerText = text
+        setFooter(text)
+        // document.getElementById("footerConsole").innerText = text
     }
-    else if(error)
-        document.getElementById("footerConsole").innerText = "Loading error... " + error  + " med "+ requestType + " from " + resource +  " i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", "")
-    else
-        document.getElementById("footerConsole").innerText =  "Loading ferdig! " + requestType + " from " + resource + " i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", "")
+    else if(error) {
+        setFooter("Loading error... " + error  + " med "+ requestType + " from " + resource +  " i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", ""))
+        // document.getElementById("footerConsole").innerText = "Loading error... " + error  + " med "+ requestType + " from " + resource +  " i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", "")
+    }
+
+    else {
+        setFooter( "Loading ferdig! " + requestType + " from " + resource + " i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", ""))
+        // document.getElementById("footerConsole").innerText =  "Loading ferdig! " + requestType + " from " + resource + " i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", "")
+    }
+
 }

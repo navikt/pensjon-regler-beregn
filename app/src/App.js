@@ -24,6 +24,7 @@ export default function App() {
     const [body, setBody] = useState([]);
     const [name, setName] = useState([]);
     const [isFetched, setIsFetched] = useState(false)
+    const [footer, setFooter] = useState("")
 
 
     function FetchByLogID() {
@@ -81,10 +82,10 @@ export default function App() {
                     </div>
                     <div className="HeaderButton"><SatsDropdown tabellChanger={setSatsTabell}></SatsDropdown></div>
                     <div className="HeaderButton"><Openfile satsTabell={satsTabell} onResultChange={setResult}
-                                                            environment={environment}></Openfile></div>
+                                                            environment={environment} setFooter={setFooter}></Openfile></div>
                     <div className="HeaderButton"><Run name={name} body={body} environment={environment}
                                                        satsTabell={satsTabell} onResultChange={setResult}
-                                                       contentType={'application/json'}/></div>
+                                                       contentType={'application/json'} setFooter={setFooter}/></div>
                     {/*<div className="HeaderSpace"></div>*/}
                     {/*<div className="HeaderEnvironment"><p>Nåværende Miljø:</p><p id="insertEnvironment">{{environment}?"-NA-":{environment}}</p></div>*/}
                 </div>
@@ -99,7 +100,7 @@ export default function App() {
                 {<Request/>}
                 {<Response/>}
             </div>
-            <div className="footerConsole"><Footer></Footer></div>
+            <div className="footerConsole"><Footer footer = {footer}></Footer></div>
         </div>
     );
 }

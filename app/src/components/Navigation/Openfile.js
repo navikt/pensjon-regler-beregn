@@ -2,7 +2,7 @@ import React, {useCallback} from "react";
 import {Button} from "@navikt/ds-react";
 import FetchGUIModel from "./FetchGUIModel";
 
-export default function Openfile({satsTabell, onResultChange, environment}) {
+export default function Openfile({satsTabell, onResultChange, environment, setFooter}) {
 
     function parseRequestFromXML(body, fileName) {
         const xml = new window.DOMParser().parseFromString(body, "application/xml")
@@ -13,7 +13,7 @@ export default function Openfile({satsTabell, onResultChange, environment}) {
     const fetchGuiModelOnXML = useCallback(async (body, fileName) => {
         let className = parseRequestFromXML(body, fileName)
         let contentType = 'application/xml'
-        FetchGUIModel({body, className, environment, satsTabell, onResultChange, contentType, fileName})
+        FetchGUIModel({body, className, environment, satsTabell, onResultChange, contentType,fileName, setFooter})
     })
 
     function previewFile(e) {

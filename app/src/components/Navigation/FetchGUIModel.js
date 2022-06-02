@@ -3,9 +3,10 @@ import ConsoleOutput from "../FooterConsole/ConsoleOutput";
 import {chooseEnvironemnt, Local_Environemnt} from "./EnvironmentsDropdown"
 import {defaultSats} from "./SatsDropdown"
 
-export default function FetchGUIModel({body, className, environment, satsTabell, onResultChange, contentType, fileName }) {
+export default function FetchGUIModel({body, className, environment, satsTabell, onResultChange, contentType, fileName, setFooter}) {
     // let text = ""
     // ConsoleOutput({text})
+    setFooter("")
     let url = ""
     if (!environment || environment === chooseEnvironemnt /*||environment==null||environment===""*/) {
         url = 'https://pensjon-regler-q4.dev.adeo.no/api/beregn?className=' + className
@@ -45,15 +46,15 @@ export default function FetchGUIModel({body, className, environment, satsTabell,
                 return response.json()
             else {
                 let error = `HTTP error status: ${response.status}`
-                ConsoleOutput({environment, satsTabell, requestType, fileName, error})
+                ConsoleOutput({environment, satsTabell, requestType, fileName, error, setFooter})
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
         })
         .then(response => onResultChange(response))
-        .then(() => ConsoleOutput({environment, satsTabell, requestType, fileName}))
+        .then(() => ConsoleOutput({environment, satsTabell, requestType, fileName, setFooter}))
         .catch(error => {
             console.log('Error:', error)
-            ConsoleOutput({error})
+            ConsoleOutput({error, setFooter})
         })
 
 }
