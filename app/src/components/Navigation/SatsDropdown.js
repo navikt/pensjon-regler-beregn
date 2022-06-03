@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { Select } from "@navikt/ds-react/esm/form";
 import "./SatsDropdown.css"
+import ConsoleOutput from "../FooterConsole/ConsoleOutput";
 
 export const defaultSats = "Velg sats"
 
@@ -9,11 +10,12 @@ export default function SatsDropdown(props) {
 
     
     const [tabeller, setTabeller] = useState([[],[]])
+    let setFooter = props.onSetFooter
 
     useEffect(() => {
         let satsUrl = 'https://pensjon-regler-q4.dev.adeo.no/alleSatstabeller'
         const fetchData = async () => {
-        try {
+        // try {
             fetch(satsUrl, {
               method: 'GET',
               headers: {
@@ -21,11 +23,22 @@ export default function SatsDropdown(props) {
                 'accept': 'application/json' 
               }
             })
-            .then(response => response.json())
-            .then(response => setTabeller(response))
-          } catch(error) {
-            console.log('Error:',error)
-          }
+                .then(response=> {
+                    console.log("Response", response)
+                    if (response.ok)
+                        return response.json()
+                    else {
+                        let text = `Leser satsTabeller list feil, sjekk nais status: ${response.status}`
+                        ConsoleOutput({text, setFooter})
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                })
+                .then(response => setTabeller(response))
+                .catch(error => {let text =`Leser satsTabeller list feil, sjekk nais status: ${error}`
+                    ConsoleOutput({text, setFooter})
+                    }
+                   )
+          // }
        } 
        fetchData();
     }, [])

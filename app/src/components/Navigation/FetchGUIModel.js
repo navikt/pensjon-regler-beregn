@@ -6,7 +6,7 @@ import {defaultSats} from "./SatsDropdown"
 export default function FetchGUIModel({body, className, environment, satsTabell, onResultChange, contentType, fileName, setFooter}) {
     // let text = ""
     // ConsoleOutput({text})
-    setFooter("")
+    document.getElementById("footerConsole").innerText = ""
     let url = ""
     if (!environment || environment === chooseEnvironemnt /*||environment==null||environment===""*/) {
         url = 'https://pensjon-regler-q4.dev.adeo.no/api/beregn?className=' + className
@@ -54,7 +54,7 @@ export default function FetchGUIModel({body, className, environment, satsTabell,
         .then(() => ConsoleOutput({environment, satsTabell, requestType, fileName, setFooter}))
         .catch(error => {
             console.log('Error:', error)
-            ConsoleOutput({error, setFooter})
+            ConsoleOutput({environment, satsTabell, requestType, fileName, error, setFooter})
         })
 
 }

@@ -80,7 +80,7 @@ export default function App() {
                     <div className="HeaderTitle">Beregn Pensjon</div>
                     <div className="HeaderButton"><EnvironmentsDropdown environmentsChanger={setEnvironment}></EnvironmentsDropdown>
                     </div>
-                    <div className="HeaderButton"><SatsDropdown tabellChanger={setSatsTabell}></SatsDropdown></div>
+                    <div className="HeaderButton"><SatsDropdown tabellChanger={setSatsTabell} onSetFooter={setFooter}></SatsDropdown></div>
                     <div className="HeaderButton"><Openfile satsTabell={satsTabell} onResultChange={setResult}
                                                             environment={environment} setFooter={setFooter}></Openfile></div>
                     <div className="HeaderButton"><Run name={name} body={body} environment={environment}
