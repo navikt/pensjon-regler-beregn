@@ -36,7 +36,10 @@ export function TabList(props){
                       borderRight: '1px solid grey',
                       borderTop: '1px solid grey',
                       borderBottom: value === data['name']+key ? "": "1px solid grey",
-                      borderRadius: '10px 10px 1px 1px'
+                      borderRadius: '10px 10px 1px 1px',
+                      width: '200px',
+                      height: '50px',
+                      overflow:'hidden'
                     }}
                   
                       value = {data['name']+key}
