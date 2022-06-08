@@ -8,14 +8,20 @@ export default function FetchGUIModel({body, className, environment, satsTabell,
     // ConsoleOutput({text})
     document.getElementById("footerConsole").innerText = ""
     let url = ""
+    let endpoint = ""
+    if (className.toString().includes("Request")) {
+        endpoint = "beregn"
+    } else if (className.toString().includes("Response")) {
+        endpoint = "convertResponse"
+    }
     if (!environment || environment === chooseEnvironemnt /*||environment==null||environment===""*/) {
-        url = 'https://pensjon-regler-q4.dev.adeo.no/api/beregn?className=' + className
+        url = 'https://pensjon-regler-q4.dev.adeo.no/api/'+endpoint+'?className=' + className
         environment = "pensjon-regler-q4"
     }
     else if (environment === Local_Environemnt)
-        url = 'http://localhost:8080/api/beregn?className=' + className
+        url = 'http://localhost:8080/api/'+endpoint+'?className=' + className
     else
-        url = 'https://' + environment + '.dev.adeo.no/api/beregn?className=' + className
+        url = 'https://' + environment + '.dev.adeo.no/api/'+endpoint+'?className=' + className
 
     if(!satsTabell|| satsTabell===defaultSats) {
         url  = url
@@ -42,9 +48,9 @@ export default function FetchGUIModel({body, className, environment, satsTabell,
         body: (body)
     })
         .then((response) => {
-            if (response.ok)
+            if (response.ok) {
                 return response.json()
-            else {
+            } else {
                 let error = `HTTP error status: ${response.status}`
                 ConsoleOutput({environment, satsTabell, requestType, fileName, error, setFooter})
                 throw new Error(`HTTP error! Status: ${response.status}`);
