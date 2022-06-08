@@ -77,6 +77,10 @@ export function TabList(props){
                   <div 
                     className = "sidetab-button"
                     onClick={() => setValue(data['name']+key)}
+                    style={{
+                        backgroundColor: value === data['name']+key ? "white": "#a8a1a6",
+                        borderBottom: value === data['name']+key ? "": "1px solid grey",
+                    }}
                     key = {key}
                     id = {data['name'] + '-tab'} //Creating references from header button to tab content
                     aria-controls = {data['name'] + '-panel'}
