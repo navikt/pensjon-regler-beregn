@@ -67,9 +67,11 @@ export default function App() {
     }
 
     function Response() {
-        return (
-            <ResponsePane response={result.response}></ResponsePane>
-        );
+        if(result.hasOwnProperty('response')) {
+            return <ResponsePane response={result.response}></ResponsePane>
+        } else {
+            return <ResponsePane response = {result}> </ResponsePane>
+        }
     }
 
     return (
