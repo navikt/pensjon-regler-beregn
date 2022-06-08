@@ -11,7 +11,7 @@ export function Tree(props) {
         if (value)
             return {'backgroundColor': 'transparent'};
         else
-            return {'color': 'red'};
+            return {'color': 'red', 'backgroundColor': 'transparent'};
     }
 
     function generateTreeNode(node, t, i, tabsName) {
@@ -19,11 +19,11 @@ export function Tree(props) {
             //left treeview panel
             return (
                 <div>
-                    <Button size="xsmall" id={'treeNode' + index + i} key={index + i}
-                            onClick={(e) => click(e, (tabsName + 'treeTabs' + index + i), index)}
+                    <button size="xsmall" id={'treeNode' + index + i} key={index + i}
+                            onClick={(e) => click(e, ('treeNode' + index + i), (tabsName + 'treeTabs' + index + i), index)}
                             style={checkStyle(node['used'])} className={'tree-rootBtn'}>
                         {node.hasOwnProperty('name') ? node['name'] : 'no name'}
-                    </Button>
+                    </button>
                     {generateTreeNode(node, t, i+1)}
                 </div>
             )
@@ -35,7 +35,7 @@ export function Tree(props) {
                     <li key={index + i + key}>
                         <div>
                             <button id={'treeNode' + index + i + key}
-                                    onClick={(e) => click(e, (tabsName + 'treeTabs' + index + i + key), index)}
+                                    onClick={(e) => click(e, ('treeNode' + index + i + key),  (tabsName + 'treeTabs' + index + i + key), index)}
                                     style={checkStyle(subNode['used'])} className='tree-subNodeBtn'>
                                 {subNode.hasOwnProperty('name') ? subNode['name'] : 'no name'}
                             </button>
@@ -73,11 +73,29 @@ export function Tree(props) {
         return t
     }
 
-    function click(evt, id, index) {
+    function click(evt,nodeId, id, index) {
         var x = document.getElementById(id);
         var treeTabs = document.getElementsByClassName("tree-tabs");
         var i;
         var active = 0;
+
+        //set all button unselected.
+        var treeSubNodes = document.getElementsByClassName("tree-subNodeBtn");
+        for (i = 0; i < treeSubNodes.length; i++) { //sometime has to keep two active tabs if they are not belongs to same parent(same index)
+            treeSubNodes[i].style.borderLeft = "5px solid #f1f1f1";
+            treeSubNodes[i].style.fontWeight = "normal";
+        }
+        var treeRootNodes = document.getElementsByClassName("tree-rootBtn");
+        for (i = 0; i < treeRootNodes.length; i++) { //sometime has to keep two active tabs if they are not belongs to same parent(same index)
+            treeRootNodes[i].style.borderLeft = "5px solid #f1f1f1";
+            treeRootNodes[i].style.fontWeight = "normal";
+        }
+        //set button selected
+        var btn = document.getElementById(nodeId);
+        btn.style.borderLeft = "5px solid blueviolet";
+        btn.style.fontWeight = "bold";
+
+        //active tab related to this button
         for (i = 0; i < treeTabs.length; i++) { //sometime has to keep two active tabs if they are not belongs to same parent(same index)
             if (treeTabs[i].id.toString().includes(index)) { //keep all the tree tabs under one parent(same index) deactive.
                 treeTabs[i].style.display = "none";
