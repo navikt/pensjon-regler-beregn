@@ -20,7 +20,6 @@ export default function EnvironmentsDropdown(props) {
         >
             <option value={chooseEnvironemnt} /*selected disabled hidden*/>{chooseEnvironemnt}</option>
             <option value={Local_Environemnt}>{Local_Environemnt}</option>
-            <option value="pensjon-regler-t0">pensjon-regler-t0</option>
             <option value="pensjon-regler-q0">pensjon-regler-q0</option>
             <option value="pensjon-regler-q1">pensjon-regler-q1</option>
             <option value="pensjon-regler-q2">pensjon-regler-q2</option>
