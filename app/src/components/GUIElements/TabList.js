@@ -80,14 +80,11 @@ export function TabList(props){
                     style={{
                         backgroundColor: value === data['name']+key ? "white": "#a8a1a6",
                         borderBottom: value === data['name']+key ? "": "1px solid grey",
+                        color: value === data['name']+key ? "black": "grey"
                     }}
                     key = {key}
                     id = {data['name'] + '-tab'} //Creating references from header button to tab content
                     aria-controls = {data['name'] + '-panel'}
-                    style={{
-                      backgroundColor: value === data['name']+key ? "white": "#a8a1a6",
-                      color: value === data['name']+key ? "black": "grey"
-                    }}
                   >
                     {data['name']}
                   </div>
