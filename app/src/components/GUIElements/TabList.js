@@ -4,7 +4,6 @@ import {JsonParser} from './JsonParser';
 import { Tabs } from '@navikt/ds-react';
 import {Nav} from 'react-bootstrap'
 import './CSS/TabList.css'
-import {Styles} from './CSS/TabStyling';
 
 export function TabList(props){
     
