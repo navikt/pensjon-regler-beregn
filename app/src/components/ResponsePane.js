@@ -12,8 +12,10 @@ function ResponsePane(props) {
     }
 
     return(
-        <div className = "ResponsePane">
-            <h3>RESPONSE</h3>
+        <div className = "ResponsePane">            
+            <div className="headerContainer">
+                <div>Response</div>
+            </div>
             <JsonParser data = {response}/>
         </div>
     )

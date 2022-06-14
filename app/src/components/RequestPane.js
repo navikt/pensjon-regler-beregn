@@ -15,7 +15,9 @@ function RequestPane(props) {
 
     return (
         <div className="RequestPane">
-            <h3>REQUEST</h3>
+            <div className="headerContainer">
+                <div>Request</div>
+            </div>
             <JsonParser data={request}/>
         </div>
 
