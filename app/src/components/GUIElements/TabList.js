@@ -22,9 +22,9 @@ export function TabList(props){
     if(tabs['position'] == "TOP") {
         return(
           <>
-            <Tabs value = {value} onChange={setValue} >
+            <Tabs value = {value} onChange={setValue} size = "small"
+            >
               <Tabs.List
-
               >
                 {tabs['data'][1].map((data,key) => { //Creating header buttons for each Tab
                   return (
@@ -40,7 +40,7 @@ export function TabList(props){
                       height: '50px',
                       overflow:'hidden'
                     }}
-                  
+                    
                       value = {data['name']+key}
                       label = {data['name']}
                       key = {key}
