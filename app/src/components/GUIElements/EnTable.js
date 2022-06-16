@@ -130,7 +130,15 @@ export function EnTable(props) {
         <div>
             <Heading size="xsmall" level="6"> &ensp;
             </Heading>
-            <Heading spacing size="xsmall"
+            <Heading spacing size="large"
+            style = {{
+                borderBottom: table.hasOwnProperty('name') ? "2px solid grey" : "",
+                borderTop: table.hasOwnProperty('name') ? "2px solid grey" : "",
+                backgroundColor: table.hasOwnProperty('name') ? "#f1f1f1" : "",
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
+            }}
                      level="6"> &ensp; {table.hasOwnProperty('name') ? table['name'] : ''}</Heading>
             <Checkname name={table['name']}>
 
