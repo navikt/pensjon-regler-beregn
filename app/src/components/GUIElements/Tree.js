@@ -115,7 +115,7 @@ export function Tree(props) {
         <div className='tree-container'>
             <div className="tree-nodes-container">
                 <Heading spacing size="xsmall"
-                         level="6"> &ensp; {tree.hasOwnProperty('name') ? tree['name'] : 'no name'}</Heading>
+                         level="6"> &ensp; Beregningtræ</Heading>
                 {generateTreeNode(tree, [], 1, tree.hasOwnProperty('name') ? tree['name'] : 'noname', index)}
             </div>
             <div className='tree-content-container'>
