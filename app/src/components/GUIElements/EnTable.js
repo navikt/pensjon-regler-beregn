@@ -81,7 +81,7 @@ export function EnTable(props) {
 
     const Checkname = ({name}) => {
         //console.log(table)
-        if (name != null && name.includes('ingen')) {
+        if (name != null && name.includes('Ingen')) {
             return (null);
         } else
             return <div className="w-full flex flex-col gap-4">
