@@ -31,11 +31,15 @@ export default function App() {
     //setUpErrorReporting(logger);
 
     function log(message) {
-        wondow.frontendlogger.info('Test ' + message)
+        window.frontendlogger.info('Test ' + message)
+        window.frontendlogger.warn('WARNING')
     }
 
     function FetchByLogID() {
         const {id} = useParams();
+        
+        log("api test: ")
+        window.frontendlogger.error('ERROR')
         let logUrl = 'https://pensjon-regler-logviewer-api.dev-fss.nais.io/api/log/' + id;
         if (!isFetched) {
             const fetchLog = useCallback(async () => {
@@ -56,8 +60,6 @@ export default function App() {
                         .then(() => setIsFetched(true))
                 } catch (error) {
                     console.log('Error:', error)
-                    log("api test: ")
-                    window.frontendlogger.error('Error')
                 }
             })
             fetchLog();
