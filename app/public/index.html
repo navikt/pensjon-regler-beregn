@@ -40,4 +40,9 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <script type="application/javascript">
+    window.frontendlogger = { info: function(){}, warn: function(){}, error: function(){}, event: function(){}};
+    window.frontendlogger.appname = 'testapp';
+</script>
+<script type="application/javascript" src="/src/Logger.js"></script>
 </html>
