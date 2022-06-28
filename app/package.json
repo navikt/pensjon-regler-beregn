@@ -8,6 +8,7 @@
     "@navikt/ds-css-internal": "^0.7.7",
     "@navikt/ds-react": "^0.19.14",
     "@navikt/ds-react-internal": "^0.14.15",
+    "@navikt/frontendlogger": "^2.0.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.2.1",
@@ -19,6 +20,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.0",
+    "serialize-error": "^11.0.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -27,19 +29,16 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
   "devDependencies": {
-    "eslint": "^8.18.0"
+    "@babel/core": "^7.18.5",
+    "@babel/preset-env": "^7.18.2",
+    "babel-loader": "^8.2.5",
+    "eslint": "^8.18.0",
+    "webpack": "^5.73.0"
   }
 }
