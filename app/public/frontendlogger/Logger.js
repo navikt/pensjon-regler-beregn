@@ -1,23 +1,46 @@
-const logInfo = info => {
-	window.frontendlogger.info({
-	  info,
-	  stack: info.stack,
-	});
-  };
-  
-  
-  const logWarn = warn => {
-	window.frontendlogger.warn({
-	  warn,
-	  stack: warn.stack,
-	});
-  };
-  
-  const logError = error => {
-	window.frontendlogger.error({
-	  error,
-	  stack: error.stack,
-	});
-  };
-  
-  export { logError as error, logInfo as info, logWarn as warn };
+function log(level, data) {
+    if (typeof data === 'string') {
+        data = { message: data }
+    }
+    if (level === 'error') {
+        // eslint-disable-next-line no-console
+        console.error(data)
+    } else {
+        // eslint-disable-next-line no-console
+        console.log(level, data)
+    }
+}
+
+window.onerror = function(message, url, line, column, error) {
+    const json = {
+        message: message,
+        jsFileUrl: url,
+        lineNumber: line,
+        column: column,
+        messageIndexed: message
+    }
+
+    if (error) {
+        json.stacktrace = error.stack ? error.stack : error
+        json.pinpoint = {
+            message,
+            url,
+            line,
+            column,
+            error: JSON.stringify(error)
+        }
+    }
+
+    log('error', json)
+}
+
+
+window.frontendlogger.info = function(data) {
+    log('info', data)
+}
+window.frontendlogger.warn = function(data) {
+    log('warn', data)
+}
+window.frontendlogger.error = function(data) {
+    log('error', data)
+}
