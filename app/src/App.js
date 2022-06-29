@@ -32,14 +32,14 @@ export default function App() {
 
     function log(message) {
         window.frontendlogger.info('Test ' + message)
-        window.frontendlogger.warn('WARNING')
+        window.frontendlogger.warn('TEST WARNING')
     }
 
     function FetchByLogID() {
         const {id} = useParams();
         
         log("api test: ")
-        window.frontendlogger.info("TESTSTSTSTST")
+        window.frontendlogger.info("Test Info Logging Beregn")
         window.frontendlogger.error('ERROR')
         let logUrl = 'https://pensjon-regler-logviewer-api.dev-fss.nais.io/api/log/' + id;
         if (!isFetched) {
