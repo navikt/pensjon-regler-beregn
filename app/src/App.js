@@ -41,6 +41,8 @@ export default function App() {
         log("api test: ")
         window.frontendlogger.info("Test Info Logging Beregn")
         window.frontendlogger.error('ERROR')
+        console.error('Test error Beregn')
+        console.log('test log')
         let logUrl = 'https://pensjon-regler-logviewer-api.dev-fss.nais.io/api/log/' + id;
         if (!isFetched) {
             const fetchLog = useCallback(async () => {
