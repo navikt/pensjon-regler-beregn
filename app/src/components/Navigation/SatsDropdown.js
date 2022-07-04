@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { Select } from "@navikt/ds-react/esm/form";
+import React, {useEffect, useState} from "react";
+import {Select} from "@navikt/ds-react/esm/form";
 import "./SatsDropdown.css"
 import ConsoleOutput from "../FooterConsole/ConsoleOutput";
 
@@ -8,22 +7,22 @@ export const defaultSats = "Velg sats"
 
 export default function SatsDropdown(props) {
 
-    
-    const [tabeller, setTabeller] = useState([[],[]])
+
+    const [tabeller, setTabeller] = useState([[], []])
     let setFooter = props.onSetFooter
 
     useEffect(() => {
         let satsUrl = 'https://pensjon-regler-q4.dev.adeo.no/alleSatstabeller'
         const fetchData = async () => {
-        // try {
+            // try {
             fetch(satsUrl, {
-              method: 'GET',
-              headers: {
-                'Content-Type':  'application/json',
-                'accept': 'application/json' 
-              }
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'accept': 'application/json'
+                }
             })
-                .then(response=> {
+                .then(response => {
                     console.log("Response", response)
                     if (response.ok)
                         return response.json()
@@ -34,33 +33,34 @@ export default function SatsDropdown(props) {
                     }
                 })
                 .then(response => setTabeller(response))
-                .catch(error => {let text =`Leser satsTabeller list feil, sjekk nais status: ${error}`
-                    ConsoleOutput({text, setFooter})
+                .catch(error => {
+                        let text = `Leser satsTabeller list feil, sjekk nais status: ${error}`
+                        ConsoleOutput({text, setFooter})
                     }
-                   )
-          // }
-       } 
-       fetchData();
+                )
+            // }
+        }
+        fetchData();
     }, [])
 
     function tabellHandler(e) {
         props.tabellChanger(e.target.value)
     }
 
-    return(
+    return (
         <Select
-            id = "satsTabellerSelect"
-        size = "small"
-        label = "Kjør med annen sats"
-        onChange={e => tabellHandler(e)}
-        hideLabel
+            id="satsTabellerSelect"
+            size="small"
+            label="Kjør med annen sats"
+            onChange={e => tabellHandler(e)}
+            hideLabel
         >
-            <option value = {defaultSats} >{defaultSats}</option>
-            {tabeller[1].map((data,key) => {
+            <option value={defaultSats}>{defaultSats}</option>
+            {tabeller[1].map((data, key) => {
                 return (
-                    <option 
-                    value = {data}
-                    key = {key}>
+                    <option
+                        value={data}
+                        key={key}>
                         {data}
                     </option>
                 )
