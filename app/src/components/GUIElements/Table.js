@@ -13,9 +13,9 @@ export function EnTable(props) {
 
     function horizontalHeader(item, index) {
         if (item[index] == null)
-            return (null)
+            return null
         else if (item[index].hasOwnProperty('header'))
-            return <Table.HeaderCell key ={index} scope="col">{item[index][0]['data']}</Table.HeaderCell>
+            return <Table.HeaderCell key={index} scope="col">{item[index][0]['data']}</Table.HeaderCell>
     }
 
     function generateTables(tables) {
@@ -23,7 +23,7 @@ export function EnTable(props) {
         let enTable
         tables.map((data, k) => {
             enTable =
-                <div key = {k}>
+                <div key={k}>
                     <JsonParser data={data}></JsonParser>
                 </div>
             t.push(enTable)
@@ -43,35 +43,35 @@ export function EnTable(props) {
                     const buttonRef = useRef(null);
                     const [open, setOpen] = useState(false);
                     if (subitem['header']) {
-                        popOver = <Table.HeaderCell key = {j} scope="col"><Button ref={buttonRef} onClick={() => setOpen(true)}
-                                                                        size="xsmall">
-                            {subitem['data']}</Button>
-                            <Popover open={open} onClose={() => setOpen(false)} anchorEl={buttonRef.current}
-                                     arrow={true} placement="auto" offset={32}>
-                                <Popover.Content className="scroll">
-                                    {generateTables(subitem['popoverContent'][1])}
-                                </Popover.Content>
-                            </Popover></Table.HeaderCell>;
+                        popOver =
+                            <Table.HeaderCell key={j} scope="col"><Button ref={buttonRef} onClick={() => setOpen(true)}
+                                                                          size="xsmall">
+                                {subitem['data']}</Button>
+                                <Popover open={open} onClose={() => setOpen(false)} anchorEl={buttonRef.current}
+                                         arrow={true} placement="auto" offset={32}>
+                                    <Popover.Content className="scroll">
+                                        {generateTables(subitem['popoverContent'][1])}
+                                    </Popover.Content>
+                                </Popover></Table.HeaderCell>;
                         row.push(popOver)
                     } else {
-                        popOver = <Table.DataCell key = {j}><Button ref={buttonRef}
-                                                          onClick={() => setOpen(true)} size="xsmall">
+                        popOver = <Table.DataCell key={j}><Button ref={buttonRef}
+                                                                  onClick={() => setOpen(true)} size="xsmall">
                             {subitem['data']}</Button><Popover open={open} onClose={() => setOpen(false)}
                                                                anchorEl={buttonRef.current}
                                                                arrow={true} placement="auto" offset={32}>
 
-                            <Popover.Content  className={"scroll"} >
-                                    {generateTables(subitem['popoverContent'][1])}
+                            <Popover.Content className={"scroll"}>
+                                {generateTables(subitem['popoverContent'][1])}
                             </Popover.Content>
                         </Popover></Table.DataCell>;
                         row.push(popOver)
                     }
                 } else {
                     if (subitem['header']) {
-                        row.push(<Table.HeaderCell key = {j} scope="col">{subitem['data']}</Table.HeaderCell>)
-                    }
-                    else {
-                        row.push(<Table.DataCell key = {j}>{subitem['data']}</Table.DataCell>)
+                        row.push(<Table.HeaderCell key={j} scope="col">{subitem['data']}</Table.HeaderCell>)
+                    } else {
+                        row.push(<Table.DataCell key={j}>{subitem['data']}</Table.DataCell>)
                     }
                 }
             })
@@ -82,7 +82,7 @@ export function EnTable(props) {
     const Checkname = ({name}) => {
         //console.log(table)
         if (name != null && name.includes('Ingen')) {
-            return (null);
+            return null;
         } else
             return <div className="w-full flex flex-col gap-4">
                 <Table size="small">
@@ -95,7 +95,7 @@ export function EnTable(props) {
                     </Table.Header>
                     <Table.Body>
                         {table['cells'][1].map((item, index) => (
-                            <Table.Row key = {index}>
+                            <Table.Row key={index}>
                                 {showRow(item, index)}
                             </Table.Row>
                         ))
@@ -131,14 +131,14 @@ export function EnTable(props) {
             <Heading size="xsmall" level="6"> &ensp;
             </Heading>
             <Heading spacing size="large"
-            style = {{
-                borderBottom: table.hasOwnProperty('name') ? "2px solid grey" : "",
-                borderTop: table.hasOwnProperty('name') ? "2px solid grey" : "",
-                backgroundColor: table.hasOwnProperty('name') ? "#f1f1f1" : "",
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center'
-            }}
+                     style={{
+                         borderBottom: table.hasOwnProperty('name') ? "2px solid grey" : "",
+                         borderTop: table.hasOwnProperty('name') ? "2px solid grey" : "",
+                         backgroundColor: table.hasOwnProperty('name') ? "#f1f1f1" : "",
+                         display: 'flex',
+                         flexDirection: 'column',
+                         alignItems: 'center'
+                     }}
                      level="6"> &ensp; {table.hasOwnProperty('name') ? table['name'] : ''}</Heading>
             <Checkname name={table['name']}>
 

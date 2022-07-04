@@ -2,8 +2,6 @@ import {HashRouter, Route, Routes, useParams} from "react-router-dom";
 import './App.css';
 import React, {useCallback, useState} from "react";
 import ReactDOM from "react-dom";
-
-import Header from "./components/Header";
 import RequestPane from "./components/RequestPane";
 import ResponsePane from "./components/ResponsePane";
 import Footer from "./components/Footer";
@@ -11,11 +9,9 @@ import SatsDropdown from "./components/Navigation/SatsDropdown";
 import Openfile from "./components/Navigation/Openfile";
 import Run from "./components/Navigation/Run";
 import EnvironmentsDropdown from "./components/Navigation/EnvironmentsDropdown";
-//import { logger } from "./Logger";
-//import { setUpErrorReporting } from '@navikt/frontendlogger';
 
 export default function App() {
-    
+
     //API fetch constants
     const [metaData, setMetadata] = useState([]);
     const [environment, setEnvironment] = useState("");
@@ -28,17 +24,9 @@ export default function App() {
     const [isFetched, setIsFetched] = useState(false)
     const [footer, setFooter] = useState("")
 
-    //setUpErrorReporting(logger);
-
-    function log(message) {
-        window.frontendlogger.info('Test ' + message)
-        window.frontendlogger.warn('TEST WARNING')
-    }
-
     function FetchByLogID() {
         const {id} = useParams();
-        
-        log("api test: ")
+
         window.frontendlogger.info("Test Info Logging Beregn")
         window.frontendlogger.error('ERROR')
         console.error('Test error Beregn')
@@ -59,7 +47,9 @@ export default function App() {
                         .then(() => setMetadata(JSON.parse(logResponse['metadata'])))
                         .then(() => setEnvironment(logResponse['environment']))
                         .then(() => setBody(logResponse['xml']))
-                        .then(() => {setName(metaData['className'])})
+                        .then(() => {
+                            setName(metaData['className'])
+                        })
                         .then(() => setIsFetched(true))
                 } catch (error) {
                     console.log('Error:', error)
@@ -81,29 +71,29 @@ export default function App() {
     }
 
     function Response() {
-        if(result.hasOwnProperty('response')) {
+        if (result.hasOwnProperty('response')) {
             return <ResponsePane response={result.response}></ResponsePane>
         } else {
-            return <ResponsePane response = {result}> </ResponsePane>
+            return <ResponsePane response={result}> </ResponsePane>
         }
     }
 
     return (
         <div className="App">
-
             <div>
                 <div className="Header">
                     <div className="HeaderTitle">Beregn Pensjon</div>
-                    <div className="HeaderButton"><EnvironmentsDropdown environmentsChanger={setEnvironment}></EnvironmentsDropdown>
+                    <div className="HeaderButton"><EnvironmentsDropdown
+                        environmentsChanger={setEnvironment}></EnvironmentsDropdown>
                     </div>
-                    <div className="HeaderButton"><SatsDropdown tabellChanger={setSatsTabell} onSetFooter={setFooter}></SatsDropdown></div>
+                    <div className="HeaderButton"><SatsDropdown tabellChanger={setSatsTabell}
+                                                                onSetFooter={setFooter}></SatsDropdown></div>
                     <div className="HeaderButton"><Openfile satsTabell={satsTabell} onResultChange={setResult}
-                                                            environment={environment} setFooter={setFooter}></Openfile></div>
+                                                            environment={environment} setFooter={setFooter}></Openfile>
+                    </div>
                     <div className="HeaderButton"><Run name={name} body={body} environment={environment}
                                                        satsTabell={satsTabell} onResultChange={setResult}
                                                        contentType={'application/json'} setFooter={setFooter}/></div>
-                    {/*<div className="HeaderSpace"></div>*/}
-                    {/*<div className="HeaderEnvironment"><p>Nåværende Miljø:</p><p id="insertEnvironment">{{environment}?"-NA-":{environment}}</p></div>*/}
                 </div>
             </div>
             <div className="main-container">
@@ -116,7 +106,7 @@ export default function App() {
                 {<Request/>}
                 {<Response/>}
             </div>
-            <div className="footerConsole"><Footer footer = {footer}></Footer></div>
+            <div className="footerConsole"><Footer footer={footer}></Footer></div>
         </div>
     );
 }

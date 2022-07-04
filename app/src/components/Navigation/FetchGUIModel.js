@@ -3,9 +3,17 @@ import ConsoleOutput from "../FooterConsole/ConsoleOutput";
 import {chooseEnvironemnt, Local_Environemnt} from "./EnvironmentsDropdown"
 import {defaultSats} from "./SatsDropdown"
 
-export default function FetchGUIModel({body, className, environment, satsTabell, onResultChange, contentType, fileName, setFooter}) {
-    // let text = ""
-    // ConsoleOutput({text})
+export default function FetchGUIModel(
+    {
+        body,
+        className,
+        environment,
+        satsTabell,
+        onResultChange,
+        contentType,
+        fileName,
+        setFooter
+    }) {
     document.getElementById("footerConsole").innerText = ""
     let url = ""
     let endpoint = ""
@@ -15,23 +23,18 @@ export default function FetchGUIModel({body, className, environment, satsTabell,
         endpoint = "convertResponse"
     }
     if (!environment || environment === chooseEnvironemnt /*||environment==null||environment===""*/) {
-        url = 'https://pensjon-regler-q4.dev.adeo.no/api/'+endpoint+'?className=' + className
+        url = 'https://pensjon-regler-q4.dev.adeo.no/api/' + endpoint + '?className=' + className
         environment = "pensjon-regler-q4"
-    }
-    else if (environment === Local_Environemnt)
-        url = 'http://localhost:8080/api/'+endpoint+'?className=' + className
+    } else if (environment === Local_Environemnt)
+        url = 'http://localhost:8080/api/' + endpoint + '?className=' + className
     else
-        url = 'https://' + environment + '.dev.adeo.no/api/'+endpoint+'?className=' + className
+        url = 'https://' + environment + '.dev.adeo.no/api/' + endpoint + '?className=' + className
 
-    if(!satsTabell|| satsTabell===defaultSats) {
-        url  = url
+    if (!satsTabell || satsTabell === defaultSats) {
         satsTabell = defaultSats
+    } else {
+        url = url + "&sats=" + satsTabell
     }
-    else {
-        url  = url + "&sats="+satsTabell
-    }
-    console.log("url", url)
-
     //async with correct value from dropdown list
     document.getElementById("environmentselect").value = environment
     document.getElementById("satsTabellerSelect").value = satsTabell
