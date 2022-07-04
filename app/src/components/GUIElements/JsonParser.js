@@ -6,6 +6,12 @@ import {Tree} from "./Tree";
 
 const search = (current) => {
     let element = [];
+    const elementType = {
+        TABLIST: "TABLIST",
+        TAB: "TAB",
+        TABLE: "TABLE",
+        NODE: "NODE"
+    }
 
     for (let child in current) {
         let found = [];
@@ -15,18 +21,21 @@ const search = (current) => {
             element = current;
         }
         if (current[child].hasOwnProperty('type') || current.hasOwnProperty('type')) {
-            if (element['type'] === 'TABLIST') {
-                found = <TabList tabs={element}></TabList>
-                return found
-            } else if (element['type'] === 'TAB') {
-                found = <Tab tab={element}></Tab>
-                return found
-            } else if (element['type'] === 'TABLE') {
-                found = <EnTable table={element}></EnTable>
-                return found
-            } else if (element['type'] === 'NODE') {
-                found = <Tree tree={element} index={Math.random().toString(36).slice(2, 7)}></Tree>
-                return found
+            switch (element['type']) {
+                case elementType.TABLIST:
+                    found = <TabList tabs={element}></TabList>
+                    return found
+                case elementType.TAB:
+                    found = <Tab tab={element}></Tab>
+                    return found
+                case elementType.TABLE:
+                    found = <EnTable table={element}></EnTable>
+                    return found
+                case elementType.NODE:
+                    found = <Tree tree={element} index={Math.random().toString(36).slice(2, 7)}></Tree>
+                    return found
+                default:
+                    throw new Error("Unsupported elementType")
             }
 
         } else if (Array.isArray(current[child])) {
