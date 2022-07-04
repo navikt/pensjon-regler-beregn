@@ -3,15 +3,14 @@ import "@navikt/ds-css";
 import "../../App.css";
 
 class HeaderButton extends React.Component {
-    constructor(props) {
+    constructor(props){
         super(props)
         this.state = {
             text: this.props.text
         }
     }
-
-    render() {
-        return (
+    render(){
+        return(
             <div className="HeaderButton">{this.props.text}</div>
         )
     }
