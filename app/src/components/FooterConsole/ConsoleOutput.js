@@ -1,19 +1,30 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {defaultSats} from "../Navigation/SatsDropdown";
 
-export default function ConsoleOutput({environment, satsTabell, requestType, fileName = "", error, text, setFooter}) {
+export default function ConsoleOutput({ environment, satsTabell, requestType, fileName="",error, text, setFooter}) {
 
-    if (text) {
+    if(text) {
         setFooter(text)
-    } else {
-        let resource
-        if (fileName) {
+        // document.getElementById("footerConsole").innerText = text
+    }
+    else {
+        let resource =""
+        if(fileName) {
             resource = fileName
-        } else
+        }
+        else
             resource = "logviewer"
-        if (error) {
-            setFooter("Loading error (nais status?)... " + error + " med " + requestType + " from " + resource + " i miljø: " + environment + " med " + "satsTabeller: " + satsTabell.toString().replace("&sats=", ""))
-        } else {
-            setFooter("Loading ferdig! " + requestType + " from " + resource + " i miljø: " + environment + " med " + "satsTabeller: " + satsTabell.toString().replace("&sats=", ""))
+        // if(!satsTabell|| satsTabell===defaultSats) {
+        //     satsTabell = "defaultSats"
+        // }
+        if(error) {
+            setFooter("Loading error (nais status?)... " + error  + " med "+ requestType + " from " + resource +  " i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", ""))
+            // document.getElementById("footerConsole").innerText = "Loading error... " + error  + " med "+ requestType + " from " + resource +  " i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", "")
+        }
+
+        else {
+            setFooter( "Loading ferdig! " + requestType + " from " + resource + " i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", ""))
+            // document.getElementById("footerConsole").innerText =  "Loading ferdig! " + requestType + " from " + resource + " i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", "")
         }
     }
 }

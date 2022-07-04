@@ -15,7 +15,7 @@ export function Tree(props) {
     }
 
     function generateTreeNode(node, t, i, tabsName) {
-        if (i === 1) { //rootNode
+        if (i == 1) { //rootNode
             //left treeview panel
             return (
                 <div>
@@ -55,13 +55,13 @@ export function Tree(props) {
     }
 
     function generateTreeContent(node, t, i, tabsName) {
-        if (i === 1) {
+        if (i == 1) {
             //  right panel = tablist, show tablists to left node
             t.push(<div key={index + i} id={tabsName + 'treeTabs' + index + i} style={{display: "block"}} className={'tree-tabs'}>
                 <JsonParser
                     data={node['data']}></JsonParser></div>);
             generateTreeContent(node, t, i+1, tabsName)
-        } else if (node.hasOwnProperty('nodes') && node['nodes'][1].length !== 0) {
+        } else if (node.hasOwnProperty('nodes') && node['nodes'][1].length != 0) {
             //  right panel = tablist, show tablists to left node
             node['nodes'][1].map((subNode, key) => {
                 t.push(<div key={index + i + key} id={tabsName + 'treeTabs' + index + i + key} className={'tree-tabs'}>
@@ -74,21 +74,21 @@ export function Tree(props) {
     }
 
     function click(evt,nodeId, id, index) { //index indicates current root node by using five ramdom characters.
-        const x = document.getElementById(id);
-        const btn = document.getElementById(nodeId);
-        const treeTabs = document.getElementsByClassName("tree-tabs");
-        let i;
-        let active = 0;
+        var x = document.getElementById(id);
+        var btn = document.getElementById(nodeId);
+        var treeTabs = document.getElementsByClassName("tree-tabs");
+        var i;
+        var active = 0;
 
         //set all button unselected.
-        const treeSubNodes = document.getElementsByClassName("tree-subNodeBtn");
+        var treeSubNodes = document.getElementsByClassName("tree-subNodeBtn");
         for (i = 0; i < treeSubNodes.length; i++) { //keep previous selected node and current selected node active if they are not belongs to same parent(same index)
             if(treeSubNodes[i].id.toString().includes(index)) {
                 treeSubNodes[i].style.borderLeft = "5px solid #f1f1f1";
                 treeSubNodes[i].style.fontWeight = "normal";
             }
         }
-        const treeRootNodes = document.getElementsByClassName("tree-rootBtn");
+        var treeRootNodes = document.getElementsByClassName("tree-rootBtn");
         for (i = 0; i < treeRootNodes.length; i++) { //keep previous selected node and current selected node active if they are not belongs to same parent(same index)
             //if btn under this same root node == root node includes current index.
             if(treeRootNodes[i].id.toString().includes(index)) {
@@ -104,7 +104,7 @@ export function Tree(props) {
         for (i = 0; i < treeTabs.length; i++) { //Note - keep previous tab and current tab active if they are not belongs to same parent(same index)
             if (treeTabs[i].id.toString().includes(index)) { //keep all the tree tabs under one parent(same index) deactive.
                 treeTabs[i].style.display = "none";
-            } else if (treeTabs[i].style.display === "block" && active < 2) { //keep the previous tree tab active when not belong to same index
+            } else if (treeTabs[i].style.display == "block" && active < 2) { //keep the previous tree tab active when not belong to same index
                 active++;
             } else treeTabs[i].style.display = "none"; //keep other rest tree tabs deactive.
         }

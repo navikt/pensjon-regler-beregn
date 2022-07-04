@@ -14,7 +14,7 @@ export default function EnvironmentsDropdown(props) {
     return (
         <Select id="environmentselect"
                 size="small"
-                label="Velge et miljø"
+                label="velge et miljø"
                 onChange={e => environmentsHandler(e.target.value)}
                 hideLabel
         >

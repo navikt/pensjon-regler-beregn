@@ -7,6 +7,12 @@ function RequestPane(props) {
     const [name] = useState(props.name)
     const [id] = useState(props.id)
 
+    function test() {
+        console.log("Inside request pane")
+        console.log("name", name)
+        console.log(request)
+    }
+
     return (
         <div className="RequestPane">
             <div className="headerContainer">
@@ -17,5 +23,6 @@ function RequestPane(props) {
 
     );
 }
+
 
 export default RequestPane
