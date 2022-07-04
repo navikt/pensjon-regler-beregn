@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Tab} from "./Tab";
 import {TabList} from "./TabList";
-import {EnTable} from "./Table";
+import {EnTable} from "./EnTable";
 import {Tree} from "./Tree";
 
 const search = (current) => {
