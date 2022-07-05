@@ -1,7 +1,6 @@
 import React, {useRef, useState} from "react";
 import {JsonParser} from "./JsonParser";
 import {Button, Heading, Popover, Table} from '@navikt/ds-react';
-import data from "bootstrap/js/src/dom/data";
 import './CSS/EnTable.css'
 
 export function EnTable(props) {

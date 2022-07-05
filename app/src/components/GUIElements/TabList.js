@@ -16,10 +16,8 @@ export function TabList(props) {
         case position.TOP:
             return (
                 <>
-                    <Tabs value={value} onChange={setValue} size="small"
-                    >
-                        <Tabs.List
-                        >
+                    <Tabs value={value} onChange={setValue} size="small">
+                        <Tabs.List>
                             {tabs['data'][1].map((data, key) => { //Creating header buttons for each Tab
                                 return (
                                     <Tabs.Tab
@@ -94,7 +92,8 @@ export function TabList(props) {
                                     key={key}
                                     id={data['name'] + '-panel'}>
                                     <JsonParser
-                                        data={data}></JsonParser> {/*Sending tab content back to parser function*/}
+                                        data={data}>
+                                    </JsonParser> {/*Sending tab content back to parser function*/}
                                 </div>
                             )
                         })}
