@@ -65,6 +65,21 @@ export function EnTable(props) {
                         </Popover></Table.DataCell>;
                         row.push(popOver)
                     }
+                } else if (subitem['information']) {
+                    console.log("FOUND INFORMATION")
+                    const buttonRef = useRef(null);
+                    const [open, setOpen] = useState(false);
+                        popOver = <Table.DataCell key = {j}><Button ref={buttonRef}
+                                                          onClick={() => setOpen(true)} size="xsmall">
+                            {subitem['data']}</Button><Popover open={open} onClose={() => setOpen(false)}
+                                                               anchorEl={buttonRef.current}
+                                                               arrow={true} placement="auto" offset={32}>
+
+                            <Popover.Content  className={"scroll"} >
+                                    {subitem['informationContent']}
+                            </Popover.Content>
+                        </Popover></Table.DataCell>;
+                        row.push(popOver)
                 } else {
                     if (subitem['header']) {
                         row.push(<Table.HeaderCell key = {j} scope="col">{subitem['data']}</Table.HeaderCell>)
