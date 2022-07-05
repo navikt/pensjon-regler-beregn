@@ -1,7 +1,7 @@
 # pensjon-regler-beregn
 ## Beskrivelse
 
-Dette er et React prosjekt, for å starte kreves node.js.
+Dette er et React prosjekt, for å starte lokalt kreves node.js.
 
 Kan installeres på Mac med homebrev `brew install node` (for andre muligheter https://nodejs.org/en/download/package-manager/#macos, evt. https://nodejs.org/en/download/current/)
 
@@ -12,18 +12,19 @@ For å kjøre appen lokalt må man først installere pakker med kommandoen
 `npm i`
 
 i Node kommando vindu etter å ha navigert til 
-(repo-location)/pensjon-regler-beregn/src.
+(repo-location)/pensjon-regler-beregn.
 
 Deretter kan man starte appen lokalt med kommandoen:
 
 `npm run start`
 
-Appen vil da åpnes i standard nettleseren.
+Appen vil da åpnes i standard nettleseren på adressen *http://localhost:3000/*  
+med mindre denne porten er opptatt (Node vil da finne en annen ledig port)
+eller noe annet er spesifisert.
 
 ## Struktur
 Applikasjonen starter i filen `App.js`, dette er 'roten' for alle komponenter og
 underkomponenter i prosjektet.  
-
 Her initialiseres og vises de mest grunnleggende komponentene:  
 *Header*,*Footer*,*Request Pane* og *Response pane* disse ligger direkte under `/src/components`
   
@@ -31,12 +32,13 @@ Underkomponentene som rendres inne i *Header* ligger i mappen `/src/components/n
   
 Konsollfunksjonen som skriver til *Footer* komponenter ligger under `/src/components/footerconsole`  
   
-Innholdet i *Request- og ResponsePane* komponentene genereres av en rekursiv algoritme  
+Innholdet i *Request- og ResponsePane* komponentene genereres av en rekursiv algoritme
 slik at endringer i modellen ikke trenger å kodes i frontend.  
-Denne rekursive algoritmen er todelt, først brukes `JsonParser.js` til å identifisere rot-element i  
-JSON-objektet. Deretter delegeres rendering av rot-elementet til en komponent. Inne i komponenten  
-kalles `JsonParser.js` igjen på alle under-elementer.  
-`JsonParser.js` og alle underkomponentene som bygger opp GUI-modellen ligger i mappen  
+Denne rekursive algoritmen er todelt, først brukes `JsonParser.js` til å identifisere rot-element i 
+JSON-objektet. Deretter delegeres rendering av rot-elementet til den samsvarende komponent funksjonen. 
+Inne i komponent funksjonen kalles`JsonParser.js` igjen på alle under-elementer.    
+
+`JsonParser.js` og alle underkomponentene som bygger opp GUI-modellen ligger i mappen 
 `src/components/GUIElements`  
 
 ## Intern Informasjonsflyt  
