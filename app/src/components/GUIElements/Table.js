@@ -18,19 +18,6 @@ export function EnTable(props) {
             return <Table.HeaderCell key={index} scope="col">{item[index][0]['data']}</Table.HeaderCell>
     }
 
-    function generateTables(tables) {
-        let t = []
-        let enTable
-        tables.map((data, k) => {
-            enTable =
-                <div key={k}>
-                    <JsonParser data={data}></JsonParser>
-                </div>
-            t.push(enTable)
-        })
-        return t;
-    }
-
     function showRow(item) {
         let row = []
         if (Array.isArray(item[1])) {
