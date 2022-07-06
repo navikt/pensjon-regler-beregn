@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import '../App.css';
-import {JsonParser} from "./GUIElements/JsonParser";
+import { JsonParser } from "./GUIElements/JsonParser";
 
 function RequestPane(props) {
     const [request] = useState(props.request)
@@ -16,10 +16,9 @@ function RequestPane(props) {
     return (
         <div className="RequestPane">
             <div className="headerContainer">
-                {test()}
                 <div>Request</div>
             </div>
-            <JsonParser data={request}/>
+            <JsonParser data={request} />
         </div>
 
     );
