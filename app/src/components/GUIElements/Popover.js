@@ -53,7 +53,7 @@ export function GuiPopover(props) {
         const [open, setOpen] = useState(false);
         popOver =
             <Table.DataCell key={j}>
-                 {subitem['data']}
+                {subitem['data']}
                 <Button
                     className='question-mark-button'
                     ref={buttonRef}
@@ -61,16 +61,16 @@ export function GuiPopover(props) {
                     {'?'}
                 </Button>
                 <Popover
+                    className={"information-popover-content"}
                     open={open}
                     onClose={() => setOpen(false)}
                     anchorEl={buttonRef.current}
                     arrow={true} placement="auto" offset={32}>
-                    <Popover.Content
-                        className={"scroll"} >
+                    <Popover.Content>
                         {subitem['informationContent']}
                     </Popover.Content>
                 </Popover>
-               
+
             </Table.DataCell>;
     }
     return popOver

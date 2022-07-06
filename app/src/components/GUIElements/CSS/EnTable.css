@@ -5,3 +5,9 @@
     overflow: auto;
     white-space:pre-wrap;
 }
+
+.information-popover-content {
+    width: 20%;
+    overflow: auto;
+    white-space:pre-wrap;
+}
