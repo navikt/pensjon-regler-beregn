@@ -1,0 +1,9 @@
+.question-mark-button {
+    background-color:gray;
+    color:white;
+    border-radius: 50px;
+    margin-left: 5%; /* endre hvor langt til høyre knappen ligger i table row */ 
+}
+.question-mark-button:hover {
+    background-color:lightgray;
+}

@@ -11,9 +11,11 @@ import SatsDropdown from "./components/Navigation/SatsDropdown";
 import Openfile from "./components/Navigation/Openfile";
 import Run from "./components/Navigation/Run";
 import EnvironmentsDropdown from "./components/Navigation/EnvironmentsDropdown";
-
+//import { logger } from "./Logger";
+//import { setUpErrorReporting } from '@navikt/frontendlogger';
 
 export default function App() {
+    
     //API fetch constants
     const [metaData, setMetadata] = useState([]);
     const [environment, setEnvironment] = useState("");
@@ -26,9 +28,21 @@ export default function App() {
     const [isFetched, setIsFetched] = useState(false)
     const [footer, setFooter] = useState("")
 
+    //setUpErrorReporting(logger);
+
+    function log(message) {
+        window.frontendlogger.info('Test ' + message)
+        window.frontendlogger.warn('TEST WARNING')
+    }
 
     function FetchByLogID() {
         const {id} = useParams();
+        
+        {/*log("api test: ")
+        window.frontendlogger.info("Test Info Logging Beregn")
+        window.frontendlogger.error('ERROR')
+        console.error('Test error Beregn')
+    console.log('test log')*/}
         let logUrl = 'https://pensjon-regler-logviewer-api.dev-fss.nais.io/api/log/' + id;
         if (!isFetched) {
             const fetchLog = useCallback(async () => {

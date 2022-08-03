@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import '../App.css';
-import {JsonParser} from "./GUIElements/JsonParser";
+import { JsonParser } from "./GUIElements/JsonParser";
 
 function RequestPane(props) {
     const [request] = useState(props.request)
