@@ -18,7 +18,9 @@ function RequestPane(props) {
             <div className="headerContainer">
                 <div>Request</div>
             </div>
-            <JsonParser data={request}/>
+            <div id="requestView">
+                <JsonParser data={request}/>
+            </div>
         </div>
 
     );

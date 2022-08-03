@@ -16,7 +16,9 @@ function ResponsePane(props) {
             <div className="headerContainer">
                 <div>Response</div>
             </div>
-            <JsonParser data = {response}/>
+            <div id="responseView">
+                <JsonParser data = {response}/>
+            </div>
         </div>
     )
 }

@@ -18,12 +18,17 @@ export default function ConsoleOutput({ environment, satsTabell, requestType, fi
         //     satsTabell = "defaultSats"
         // }
         if(error) {
-            setFooter("Loading error (nais status?)... " + error  + " med "+ requestType + " from " + resource +  " i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", ""))
+            setFooter("")
+            setFooter("Lasting "+ requestType + "("+ resource +")"+ " feil i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", "")  + " med " +  error)
             // document.getElementById("footerConsole").innerText = "Loading error... " + error  + " med "+ requestType + " from " + resource +  " i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", "")
+            //clear the previous request and response
+            document.getElementById("requestView").innerText=""
+            document.getElementById("responseView").innerText=""
         }
 
         else {
-            setFooter( "Loading ferdig! " + requestType + " from " + resource + " i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", ""))
+            setFooter("")
+            setFooter( "Lasting " + requestType + "("+ resource +")" + " ferdig i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", ""))
             // document.getElementById("footerConsole").innerText =  "Loading ferdig! " + requestType + " from " + resource + " i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", "")
         }
     }
