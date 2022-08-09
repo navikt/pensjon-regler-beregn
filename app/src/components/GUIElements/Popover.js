@@ -52,7 +52,7 @@ export function GuiPopover(props) {
         const buttonRef = useRef(null);
         const [open, setOpen] = useState(false);
         popOver =
-            <Table.DataCell key={j}>
+            <Table.HeaderCell key={j}>
                 {subitem['data']}
                 <Button
                     className='question-mark-button'
@@ -71,7 +71,7 @@ export function GuiPopover(props) {
                     </Popover.Content>
                 </Popover>
 
-            </Table.DataCell>;
+            </Table.HeaderCell>;
     }
     return popOver
 }
