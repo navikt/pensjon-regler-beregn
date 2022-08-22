@@ -5,7 +5,7 @@
   "homepage": ".",
   "dependencies": {
     "@navikt/ds-css": "^1.0.2",
-    "@navikt/ds-css-internal": "^0.7.7",
+    "@navikt/ds-css-internal": "^1.0.2",
     "@navikt/ds-react": "^0.19.25",
     "@navikt/ds-react-internal": "^1.0.2",
     "@navikt/frontendlogger": "^2.0.0",
