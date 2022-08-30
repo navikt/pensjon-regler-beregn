@@ -1,55 +1,60 @@
 import React, {useState} from "react";
-import { Tab } from "./Tab";
-import { TabList } from "./TabList";
-import { EnTable } from "./EnTable";
-import { Tree } from "./Tree";
+import {Tab} from "./Tab";
+import {TabList} from "./TabList";
+import {EnTable} from "./Table";
+import {Tree} from "./Tree";
 
 const search = (current) => {
-    var element = []
+    let element = [];
+    const elementType = {
+        TABLIST: "TABLIST",
+        TAB: "TAB",
+        TABLE: "TABLE",
+        NODE: "NODE"
+    }
 
-    for (var child in current) {
-        var found = []
-        if(current[child].hasOwnProperty('type')) {
+    for (let child in current) {
+        let found = [];
+        if (current[child].hasOwnProperty('type')) {
             element = current[child];
         } else if (current.hasOwnProperty('type')) {
             element = current;
         }
-        if(current[child].hasOwnProperty('type') || current.hasOwnProperty('type')) {
-            if(  element['type'] == 'TABLIST') {
-                found= <TabList tabs = {element}></TabList>
-                return found
-            }
-            else if( element['type'] == 'TAB') {
-                found= <Tab tab = {element}></Tab>
-                return found
-            }
-            else if( element['type']== 'TABLE') {
-                found= <EnTable table = {element}></EnTable>
-                return found
-            } else if( element['type'] == 'NODE') {
-                found = <Tree tree = {element}  index = {Math.random().toString(36).slice(2, 7)}></Tree>
-                return found
+        if (current[child].hasOwnProperty('type') || current.hasOwnProperty('type')) {
+            switch (element['type']) {
+                case elementType.TABLIST:
+                    found = <TabList tabs={element}></TabList>
+                    return found
+                case elementType.TAB:
+                    found = <Tab tab={element}></Tab>
+                    return found
+                case elementType.TABLE:
+                    found = <EnTable table={element}></EnTable>
+                    return found
+                case elementType.NODE:
+                    found = <Tree tree={element} index={Math.random().toString(36).slice(2, 7)}></Tree>
+                    return found
+                default:
+                    throw new Error("Unsupported elementType")
             }
 
-        }
-        else if(Array.isArray(current[child])) {
+        } else if (Array.isArray(current[child])) {
             found = search(current[child]);
         }
-        if(found != null && found.length != 0) {
+        if (found != null && found.length !== 0) {
             return found
         }
 
     }
-  }
+}
 
-export function JsonParser(props){
-            let [data] = useState(props.data)
-            return (
-                <div>
-                    {search(data)}
-                </div>
-
-            );
-        }
+export function JsonParser(props) {
+    let [data] = useState(props.data)
+    return (
+        <div>
+            {search(data)}
+        </div>
+    );
+}
 
 

@@ -50,17 +50,29 @@ export default function FetchGUIModel({body, className, environment, satsTabell,
         .then((response) => {
             if (response.ok) {
                 return response.json()
-            } else {
+            }
+            else {
                 let error = `HTTP error status: ${response.status}`
                 ConsoleOutput({environment, satsTabell, requestType, fileName, error, setFooter})
-                throw new Error(`HTTP error! Status: ${response.status}`);
+                throw new Error(error);
             }
         })
-        .then(response => onResultChange(response))
+        .then(response => {
+            console.log("response", response)
+                onResultChange(response)
+                if(response.hasOwnProperty("metadata")) {
+                    if(response['metadata']['status'] == 'error') {
+                        let error = response['metadata']['info']
+                        ConsoleOutput({environment, satsTabell, requestType, fileName, error, setFooter})
+                        throw new Error(error);
+                    }
+                }
+            } )
         .then(() => ConsoleOutput({environment, satsTabell, requestType, fileName, setFooter}))
         .catch(error => {
             console.log('Error:', error)
             ConsoleOutput({environment, satsTabell, requestType, fileName, error, setFooter})
+            throw new Error(error);
         })
 
 }

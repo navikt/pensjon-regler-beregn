@@ -64,7 +64,7 @@
 
 .main-container {
   width: 100%;
-  height: 87%;
+  height: 85%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -72,18 +72,31 @@
 
 .RequestPane{
   width: 50%;
-  height: 100%;  
+  height: 100%;
+  border-top: 1px solid black;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
-  overflow:auto;
+  overflow-y:auto;
+  overflow-y: scroll;
 }
 
 .ResponsePane {
   width: 50%;
   height: 100%;
+  border-top: 1px solid black;
   border-left: 1px solid black;
   border-bottom: 1px solid black;
-  overflow:auto;
+  overflow-y:auto;
+  overflow-y: scroll;
+}
+
+.headerContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  align-content: space-around;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .footerConsole {
@@ -96,7 +109,9 @@
   margin-bottom: auto;
   margin-top:auto;
   font-size:large;
-  height: 3%;
+  height: 10%;
+  overflow-y:auto;
+  overflow-y: scroll;
 }
 
 .App {

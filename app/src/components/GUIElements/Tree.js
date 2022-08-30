@@ -24,7 +24,7 @@ export function Tree(props) {
                             style={checkStyle(node['used'])} className={'tree-rootBtn'}>
                         {node.hasOwnProperty('name') ? node['name'] : 'no name'}
                     </button>
-                    {generateTreeNode(node, t, i+1)}
+                    {generateTreeNode(node, t, i+1, tabsName)}
                 </div>
             )
         } else if (node.hasOwnProperty('nodes') && node['nodes'].length > 1) {
@@ -40,7 +40,7 @@ export function Tree(props) {
                                 {subNode.hasOwnProperty('name') ? subNode['name'] : 'no name'}
                             </button>
                         </div>
-                        {generateTreeNode(subNode, t, parseInt(""+ i + key + (i + 1).toString()))}
+                        {generateTreeNode(subNode, t, parseInt(""+ i + key + (i + 1).toString()), tabsName)}
                     </li>
                 )
             })
@@ -60,46 +60,51 @@ export function Tree(props) {
             t.push(<div key={index + i} id={tabsName + 'treeTabs' + index + i} style={{display: "block"}} className={'tree-tabs'}>
                 <JsonParser
                     data={node['data']}></JsonParser></div>);
-            generateTreeContent(node, t, i+1)
+            generateTreeContent(node, t, i+1, tabsName)
         } else if (node.hasOwnProperty('nodes') && node['nodes'][1].length != 0) {
             //  right panel = tablist, show tablists to left node
             node['nodes'][1].map((subNode, key) => {
                 t.push(<div key={index + i + key} id={tabsName + 'treeTabs' + index + i + key} className={'tree-tabs'}>
                     <JsonParser
                         data={subNode['data']}></JsonParser></div>);
-                generateTreeContent(subNode, t, parseInt(""+ i+ key+ (i + 1).toString()))
+                generateTreeContent(subNode, t, parseInt(""+ i+ key+ (i + 1).toString()), tabsName)
             })
         }
         return t
     }
 
-    function click(evt,nodeId, id, index) {
+    function click(evt,nodeId, id, index) { //index indicates current root node by using five ramdom characters.
         var x = document.getElementById(id);
+        var btn = document.getElementById(nodeId);
         var treeTabs = document.getElementsByClassName("tree-tabs");
         var i;
         var active = 0;
 
         //set all button unselected.
         var treeSubNodes = document.getElementsByClassName("tree-subNodeBtn");
-        for (i = 0; i < treeSubNodes.length; i++) { //sometime has to keep two active tabs if they are not belongs to same parent(same index)
-            treeSubNodes[i].style.borderLeft = "5px solid #f1f1f1";
-            treeSubNodes[i].style.fontWeight = "normal";
+        for (i = 0; i < treeSubNodes.length; i++) { //keep previous selected node and current selected node active if they are not belongs to same parent(same index)
+            if(treeSubNodes[i].id.toString().includes(index)) {
+                treeSubNodes[i].style.borderLeft = "5px solid #f1f1f1";
+                treeSubNodes[i].style.fontWeight = "normal";
+            }
         }
         var treeRootNodes = document.getElementsByClassName("tree-rootBtn");
-        for (i = 0; i < treeRootNodes.length; i++) { //sometime has to keep two active tabs if they are not belongs to same parent(same index)
-            treeRootNodes[i].style.borderLeft = "5px solid #f1f1f1";
-            treeRootNodes[i].style.fontWeight = "normal";
+        for (i = 0; i < treeRootNodes.length; i++) { //keep previous selected node and current selected node active if they are not belongs to same parent(same index)
+            //if btn under this same root node == root node includes current index.
+            if(treeRootNodes[i].id.toString().includes(index)) {
+                treeRootNodes[i].style.borderLeft = "5px solid #f1f1f1";
+                treeRootNodes[i].style.fontWeight = "normal";
+            }
         }
         //set button selected
-        var btn = document.getElementById(nodeId);
         btn.style.borderLeft = "5px solid blueviolet";
         btn.style.fontWeight = "bold";
 
         //active tab related to this button
-        for (i = 0; i < treeTabs.length; i++) { //sometime has to keep two active tabs if they are not belongs to same parent(same index)
+        for (i = 0; i < treeTabs.length; i++) { //Note - keep previous tab and current tab active if they are not belongs to same parent(same index)
             if (treeTabs[i].id.toString().includes(index)) { //keep all the tree tabs under one parent(same index) deactive.
                 treeTabs[i].style.display = "none";
-            } else if (treeTabs[i].style.display == "block" && active < 1) { //keep the previous tree tab active when not belong to same index
+            } else if (treeTabs[i].style.display == "block" && active < 2) { //keep the previous tree tab active when not belong to same index
                 active++;
             } else treeTabs[i].style.display = "none"; //keep other rest tree tabs deactive.
         }
@@ -110,7 +115,7 @@ export function Tree(props) {
         <div className='tree-container'>
             <div className="tree-nodes-container">
                 <Heading spacing size="xsmall"
-                         level="6"> &ensp; {tree.hasOwnProperty('name') ? tree['name'] : 'no name'}</Heading>
+                         level="6"> &ensp; Beregningstre</Heading>
                 {generateTreeNode(tree, [], 1, tree.hasOwnProperty('name') ? tree['name'] : 'noname', index)}
             </div>
             <div className='tree-content-container'>
