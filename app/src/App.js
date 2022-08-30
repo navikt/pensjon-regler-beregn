@@ -2,6 +2,7 @@ import {HashRouter, Route, Routes, useParams} from "react-router-dom";
 import './App.css';
 import React, {useCallback, useState} from "react";
 import ReactDOM from "react-dom";
+import Split from "react-split"
 
 import Header from "./components/Header";
 import RequestPane from "./components/RequestPane";
@@ -92,17 +93,20 @@ export default function App() {
                     {/*<div className="HeaderEnvironment"><p>Nåværende Miljø:</p><p id="insertEnvironment">{{environment}?"-NA-":{environment}}</p></div>*/}
                 </div>
             </div>
-            <div className="main-container">
-                <HashRouter>
-                    <Routes>
-                        <Route path="/:id" element={
-                            <FetchByLogID/>}></Route> {/* routing to enable us to read parameter from URL */}
-                    </Routes>
-                </HashRouter>
-                {<Request/>}
-                {<Response/>}
-            </div>
-            <div className="footerConsole"><Footer footer = {footer}></Footer></div>
+            <Split
+                sizes={[85, 15]} gutterSize={15} dragInterval={15} direction="vertical"  cursor="row-resize" style={{ height: `calc(100vh)`}}>
+                <div className="main-container">
+                    <HashRouter>
+                        <Routes>
+                            <Route path="/:id" element={
+                                <FetchByLogID/>}></Route> {/* routing to enable us to read parameter from URL */}
+                        </Routes>
+                    </HashRouter>
+                    {<Request/>}
+                    {<Response/>}
+                </div>
+                <div className="footerConsole"><Footer footer = {footer}></Footer></div>
+            </Split>
         </div>
     );
 }
