@@ -7,7 +7,7 @@
     "@navikt/ds-css": "^1.2.4",
     "@navikt/ds-css-internal": "^1.2.4",
     "@navikt/ds-react": "^1.2.4",
-    "@navikt/ds-react-internal": "^0.14.8",
+    "@navikt/ds-react-internal": "^1.2.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.4.3",
@@ -21,7 +21,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.0",
     "react-split": "^2.0.14",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^3.0.1"
   },
   "scripts": {
     "prebuild": "node src/doc/doc.js && copyfiles -f src/doc/images/*.* public/doc/images",
