@@ -123,3 +123,14 @@
   font-size: calc(10px + 2vmin);
 }
 
+a.bruksanvisning, a:hover.bruksanvisning, a:focus.bruksanvisning, a:active.bruksanvisning {
+  text-decoration: none;
+  color: white !important;
+  font-size: var(--navds-font-size-large);
+  font-weight: var(--navds-font-weight-bold);
+  letter-spacing: 0;
+  line-height: var(--navds-font-line-height-large);
+  margin: 0;
+}
+
+

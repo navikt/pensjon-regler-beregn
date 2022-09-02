@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import SatsDropdown from "./components/Navigation/SatsDropdown";
 import Openfile from "./components/Navigation/Openfile";
 import Run from "./components/Navigation/Run";
+import Bruksanvisning from "./components/Navigation/Bruksanvisning";
 import EnvironmentsDropdown from "./components/Navigation/EnvironmentsDropdown";
 //import { logger } from "./Logger";
 //import { setUpErrorReporting } from '@navikt/frontendlogger';
@@ -103,6 +104,9 @@ export default function App() {
                     <div className="HeaderButton"><Run name={name} body={body} environment={environment}
                                                        satsTabell={satsTabell} onResultChange={setResult}
                                                        contentType={'application/json'} setFooter={setFooter}/></div>
+                    <div className="HeaderButton">
+                        <Bruksanvisning/>
+                    </div>
                     {/*<div className="HeaderSpace"></div>*/}
                     {/*<div className="HeaderEnvironment"><p>Nåværende Miljø:</p><p id="insertEnvironment">{{environment}?"-NA-":{environment}}</p></div>*/}
                 </div>

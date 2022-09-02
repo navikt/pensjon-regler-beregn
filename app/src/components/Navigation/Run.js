@@ -24,7 +24,7 @@ export default function Run({ name, body,environment, satsTabell,onResultChange,
 
     return (
         <div>
-            <Button id="run" onClick={ Click}  style={{background:"transparent",color:"white"}} disabled={isSending} >Run</Button>
+            <Button id="run" onClick={ Click}  style={{background:"transparent",color:"white"}} disabled={isSending} >Kjør</Button>
         </div>
 
     )

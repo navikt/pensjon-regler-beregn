@@ -8,5 +8,5 @@
 
 = Pensjon-Regler-Beregn
 
-== Brukeranvisning
-include::brukeranvisning.adoc[]
+== Bruksanvisning
+include::bruksanvisning.adoc[]
