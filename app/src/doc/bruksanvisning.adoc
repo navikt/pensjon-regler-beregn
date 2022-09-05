@@ -1,1 +1,17 @@
-Placeholder
+=== Start fra beregn pensjon
+
+Hvis du åpner nettsiden uten å gå gjennom logvieweren har du kun mulighet til å laste opp og kjøre egen
+XML.
+
+Dette gjør du ved å klikke på 'Åpne' -> Velg fil -> Velg miljø i nedtrekkslisten -> Velg sats i nedtrekkslisten -> Kjør.
+
+=== Start fra logviewer
+
+Du kan åpne applikasjonen gjennom pensjon-regler-logviewer applikasjonen (https://pensjon-regler-logviewer-app.dev-fss.nais.io/).
+
+Inne på denne nettsiden finnes det en knapp under fanen 'Beregn' som automatisk åpner en ny fane for det valgte loginnslaget.
+
+image::images/logviewer.PNG[]
+
+Ved å gå inn på applikasjonen via denne knappen er det ikke behov for å velge miljø eller sats, da disse videreføres fra logvieweren.
+Hvis du har behov for å teste forespørselen med en annen sats har du fremdeles mulighet for det.

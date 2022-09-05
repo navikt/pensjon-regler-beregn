@@ -1,0 +1,1 @@
+Applikasjonen pensjon-regler-beregn viser grunnlag og beregningsresultat for pensjon.

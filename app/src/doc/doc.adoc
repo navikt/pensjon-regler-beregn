@@ -1,12 +1,10 @@
-:toc: left
-:toclevels: 3
-:doctype: book
-:sectnums:
-:sectnumlevels: 4
+:doctype: article
 :nofooter:
 :imagesdir: images
 
-= Pensjon-Regler-Beregn
+= Beregn Pensjon
+
+include::intro.adoc[]
 
 == Bruksanvisning
 include::bruksanvisning.adoc[]
