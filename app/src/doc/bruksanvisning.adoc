@@ -11,7 +11,7 @@ Du kan åpne applikasjonen gjennom pensjon-regler-logviewer applikasjonen (https
 
 Inne på denne nettsiden finnes det en knapp under fanen 'Beregn' som automatisk åpner en ny fane for det valgte loginnslaget.
 
-image::images/logviewer.PNG[]
+image::logviewer.PNG[]
 
 Ved å gå inn på applikasjonen via denne knappen er det ikke behov for å velge miljø eller sats, da disse videreføres fra logvieweren.
 Hvis du har behov for å teste forespørselen med en annen sats har du fremdeles mulighet for det.
