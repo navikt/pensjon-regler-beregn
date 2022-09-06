@@ -1,4 +1,8 @@
-:doctype: article
+:toc: left
+:toclevels: 3
+:doctype: book
+:toc-title: Innholdsfortegnelse
+:sectnums:
 :nofooter:
 :imagesdir: images
 
@@ -7,4 +11,5 @@
 include::intro.adoc[]
 
 == Bruksanvisning
+
 include::bruksanvisning.adoc[]

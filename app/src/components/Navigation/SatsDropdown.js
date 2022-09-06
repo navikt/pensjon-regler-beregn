@@ -4,7 +4,7 @@ import { Select } from "@navikt/ds-react/esm/form";
 import "./SatsDropdown.css"
 import ConsoleOutput from "../FooterConsole/ConsoleOutput";
 
-export const defaultSats = "Velg sats"
+export const defaultSats = "Sats fra miljø"
 
 export default function SatsDropdown(props) {
 
