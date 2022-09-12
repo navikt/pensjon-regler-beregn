@@ -72,6 +72,10 @@ export default function App() {
 
     function Response() {
         if(result.hasOwnProperty('response')) {
+            console.log("Metadata")
+            console.log(result.metadata)
+            console.log("bruktSats")
+            console.log(result.metadata['bruktSats'])
             const satser = result.metadata['bruktSats'] ? " - " + result.metadata['bruktSats'] : ""
             return <ResponsePane props={result.response} satstabell={satser}></ResponsePane>
         } else {
@@ -116,3 +120,10 @@ export default function App() {
         </div>
     );
 }
+
+// const container = document.getElementById('root');
+//
+// const root = ReactDOMClient.createRoot(container);
+// root.render(<App/>)
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App/>, rootElement);
