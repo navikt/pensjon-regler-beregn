@@ -71,9 +71,10 @@ export default function App() {
 
     function Response() {
         if(result.hasOwnProperty('response')) {
-            return <ResponsePane props={result.response} satstabell={satsTabell}></ResponsePane>
+            const satser = result.metadata['bruktSats'] ? " - " + result.metadata['bruktSats'] : ""
+            return <ResponsePane props={result.response} satstabell={satser}></ResponsePane>
         } else {
-            return <ResponsePane props={result} satstabell={satsTabell}> </ResponsePane>
+            return <ResponsePane props={result} satstabell={result}> </ResponsePane>
         }
     }
 
