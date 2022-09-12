@@ -71,9 +71,9 @@ export default function App() {
 
     function Response() {
         if(result.hasOwnProperty('response')) {
-            return <ResponsePane props={result.response} satstabell={metaData}></ResponsePane>
+            return <ResponsePane props={result.response} satstabell={satsTabell}></ResponsePane>
         } else {
-            return <ResponsePane props={result} satstabell={metaData}> </ResponsePane>
+            return <ResponsePane props={result} satstabell={satsTabell}> </ResponsePane>
         }
     }
 
