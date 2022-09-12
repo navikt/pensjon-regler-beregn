@@ -13,6 +13,7 @@ import Openfile from "./components/Navigation/Openfile";
 import Run from "./components/Navigation/Run";
 import Bruksanvisning from "./components/Navigation/Bruksanvisning";
 import EnvironmentsDropdown from "./components/Navigation/EnvironmentsDropdown";
+import * as ReactDOMClient from "react-dom/client";
 //import { logger } from "./Logger";
 //import { setUpErrorReporting } from '@navikt/frontendlogger';
 
@@ -119,5 +120,3 @@ export default function App() {
         </div>
     );
 }
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App/>, rootElement);
