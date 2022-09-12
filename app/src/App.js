@@ -17,7 +17,7 @@ import EnvironmentsDropdown from "./components/Navigation/EnvironmentsDropdown";
 //import { setUpErrorReporting } from '@navikt/frontendlogger';
 
 export default function App() {
-    
+
     //API fetch constants
     const [metaData, setMetadata] = useState([]);
     const [environment, setEnvironment] = useState("");
@@ -30,21 +30,8 @@ export default function App() {
     const [isFetched, setIsFetched] = useState(false)
     const [footer, setFooter] = useState("")
 
-    //setUpErrorReporting(logger);
-
-    function log(message) {
-        window.frontendlogger.info('Test ' + message)
-        window.frontendlogger.warn('TEST WARNING')
-    }
-
     function FetchByLogID() {
         const {id} = useParams();
-        
-        {/*log("api test: ")
-        window.frontendlogger.info("Test Info Logging Beregn")
-        window.frontendlogger.error('ERROR')
-        console.error('Test error Beregn')
-    console.log('test log')*/}
         let logUrl = 'https://pensjon-regler-logviewer-api.dev-fss.nais.io/api/log/' + id;
         if (!isFetched) {
             const fetchLog = useCallback(async () => {
@@ -78,15 +65,15 @@ export default function App() {
 
     function Request() {
         return ( //Send request ID from url to component
-            <RequestPane request={result.request} name={name}></RequestPane>
+            <RequestPane props={result.request}></RequestPane>
         );
     }
 
     function Response() {
         if(result.hasOwnProperty('response')) {
-            return <ResponsePane response={result.response}></ResponsePane>
+            return <ResponsePane props={result.response} satstabell={metaData}></ResponsePane>
         } else {
-            return <ResponsePane response = {result}> </ResponsePane>
+            return <ResponsePane props={result} satstabell={metaData}> </ResponsePane>
         }
     }
 
@@ -107,12 +94,11 @@ export default function App() {
                     <div className="HeaderButton">
                         <Bruksanvisning/>
                     </div>
-                    {/*<div className="HeaderSpace"></div>*/}
-                    {/*<div className="HeaderEnvironment"><p>Nåværende Miljø:</p><p id="insertEnvironment">{{environment}?"-NA-":{environment}}</p></div>*/}
                 </div>
             </div>
             <Split
-                sizes={[85, 15]} gutterSize={15} dragInterval={15} direction="vertical"  cursor="row-resize" style={{ height: `calc(100vh)`}}>
+                sizes={[85, 15]} gutterSize={15} dragInterval={15} direction="vertical" cursor="row-resize"
+                style={{height: `calc(100vh)`}}>
                 <div className="main-container">
                     <HashRouter>
                         <Routes>
@@ -123,7 +109,7 @@ export default function App() {
                     {<Request/>}
                     {<Response/>}
                 </div>
-                <div className="footerConsole"><Footer footer = {footer}></Footer></div>
+                <div className="footerConsole"><Footer footer={footer}></Footer></div>
             </Split>
         </div>
     );

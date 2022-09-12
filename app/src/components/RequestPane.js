@@ -2,16 +2,7 @@ import React, { useState } from "react";
 import '../App.css';
 import { JsonParser } from "./GUIElements/JsonParser";
 
-function RequestPane(props) {
-    const [request] = useState(props.request)
-    const [name] = useState(props.name)
-    const [id] = useState(props.id)
-
-    function test() {
-        console.log("Inside request pane")
-        console.log("name", name)
-        console.log(request)
-    }
+function RequestPane({props}) {
 
     return (
         <div className="RequestPane">
@@ -19,7 +10,7 @@ function RequestPane(props) {
                 <div>Grunnlag</div>
             </div>
             <div id="requestView">
-                <JsonParser data={request}/>
+                <JsonParser data={props}/>
             </div>
         </div>
 
