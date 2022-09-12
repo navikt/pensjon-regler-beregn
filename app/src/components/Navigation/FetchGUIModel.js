@@ -24,7 +24,6 @@ export default function FetchGUIModel({body, className, environment, satsTabell,
         url = 'https://' + environment + '.dev.adeo.no/api/'+endpoint+'?className=' + className
 
     if(!satsTabell|| satsTabell===defaultSats) {
-        url  = url
         satsTabell = defaultSats
     }
     else {
@@ -58,10 +57,9 @@ export default function FetchGUIModel({body, className, environment, satsTabell,
             }
         })
         .then(response => {
-            console.log("response", response)
                 onResultChange(response)
                 if(response.hasOwnProperty("metadata")) {
-                    if(response['metadata']['status'] == 'error') {
+                    if(response['metadata']['status'] === 'error') {
                         let error = response['metadata']['info']
                         ConsoleOutput({environment, satsTabell, requestType, fileName, error, setFooter})
                         throw new Error(error);
