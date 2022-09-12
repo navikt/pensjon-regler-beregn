@@ -6,8 +6,7 @@ export default function Openfile({satsTabell, onResultChange, environment, setFo
 
     function parseRequestFromXML(body, fileName) {
         const xml = new window.DOMParser().parseFromString(body, "application/xml")
-        let fullName = xml.documentElement.nodeName
-        return fullName;
+        return xml.documentElement.nodeName;
     }
 
     const fetchGuiModelOnXML = useCallback(async (body, fileName) => {
