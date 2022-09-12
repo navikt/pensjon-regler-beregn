@@ -24,7 +24,6 @@ export default function SatsDropdown(props) {
               }
             })
                 .then(response=> {
-                    console.log("Response", response)
                     if (response.ok)
                         return response.json()
                     else {
