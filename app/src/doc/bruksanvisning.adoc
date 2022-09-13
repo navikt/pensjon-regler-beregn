@@ -10,6 +10,23 @@ image::logviewer.PNG[]
 Ved å gå inn på applikasjonen via denne knappen er det ikke behov for å velge miljø, da dette videreføres fra logvieweren.
 Ved behov har du også mulighet til å velge hvilken sats du vil kjøre forespørselen med. Hvis ingen er valgt, velges sats som ligger i valgt miljø.
 
+==== Søkefunksjonalitet i logviewer
+
+image::logviewer-søk.PNG[]
+
+1. Response:
+** Styrer hvorvidt det vises response. Avhuk om det er kun nødvendig å se forespørsler.
+2. Namespace:
+** Styrer hvilket miljø det hentes log fra.
+3. Transaksjonsid:
+** I en kallrekke blir det som regel gjort kall til flere forskjellige tjenester. For å få filtrert ut alle som tilhører en bestemt kallrekke bruker man TransactionId.
+Denne id'en finner man som regel i logs.adeo.no.
+4. Metadata:
+** Her er det mulig å fylle inn både saksid og penpersonid. Førstnevnte er mer relevant for testing.
+5. Dato:
+** Hvis man ikke har transactionid, saksid eller penpersonid så er det mulig å filtrere etter dato.
+Her er det viktig å være så presis som mulig (+/- 10m) for å få korrekt resultat.
+
 === Start fra beregn pensjon
 
 Hvis du åpner nettsiden uten å gå gjennom logvieweren har du kun mulighet til å laste opp og kjøre egen
