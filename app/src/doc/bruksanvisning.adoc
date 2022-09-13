@@ -1,6 +1,6 @@
 === Start fra logviewer
 
-Den mest vanlige måte å åpne pensjon-regler-beregn på er å gå via pensjon-regler-logviewer applikasjonen (https://pensjon-regler-logviewer-app.dev-fss.nais.io/).
+Den mest vanlige måte å åpne pensjon-regler-beregn på er å gå via pensjon-regler-logviewer applikasjonen - https://pensjon-regler-logviewer-app.dev-fss.nais.io
 
 Her har du mulighet til å gå direkte til Beregn Pensjon med det log-innslaget du ønsker å se grunnlag og resultat for.
 Dette gjøres ved å klikke på ikonet under 'Beregn' (vist under). Vinduet åpnes i ny fane.
@@ -24,7 +24,7 @@ Denne id'en finner man som regel i logs.adeo.no.
 4. Metadata:
 ** Her er det mulig å fylle inn både saksid og penpersonid. Førstnevnte er mer relevant for testing.
 5. Dato:
-** Hvis man ikke har transactionid, saksid eller penpersonid så er det mulig å filtrere etter dato.
+** Hvis man ikke har transactionid, saksid eller penpersonid så er det mulig å filtrere etter dato og tidspunkt.
 Her er det viktig å være så presis som mulig (+/- 10m) for å få korrekt resultat.
 
 === Start fra beregn pensjon
