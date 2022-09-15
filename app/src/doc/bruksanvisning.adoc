@@ -14,22 +14,16 @@ Ved behov har du også mulighet til å velge hvilken sats du vil kjøre forespø
 
 image::logviewer-søk.PNG[]
 [%hardbreaks]
-. Dolly/Orkestratoren:
-** Styrer hvorvidt det vises transaksjoner gjort gjennom Dolly og Orkestratoren.
+. *Dolly/Orkestratoren* - Styrer hvorvidt det vises transaksjoner gjort gjennom Dolly og Orkestratoren.
 Skjules ved default.
-. Response:
-** Styrer hvorvidt det vises response. Avhuk om det er kun nødvendig å se forespørsler.
+. *Response* - Styrer hvorvidt det vises response. Avhuk om det er kun nødvendig å se forespørsler.
 Vises ved default.
-. Miljø:
-** Styrer hvilket miljø det hentes log fra.
-. Transaksjonsid:
-** I en kallrekke blir det som regel gjort kall til flere forskjellige tjenester.
+. *Miljø* - Styrer hvilket miljø det hentes log fra.
+. *TransaksjonsId* - Det blir som regel gjort kall til flere forskjellige tjenester.
 For å få filtrert ut alle som tilhører en bestemt kallrekke bruker man TransactionId. Denne id'en finner man som regel i logs.adeo.no.
-. Metadata:
-** Her er det mulig å fylle inn både saksid og penpersonid.
+. *Metadata* - Her er det mulig å fylle inn både saksid og penpersonid.
 Førstnevnte er mer relevant for testing. FNR kan ikke brukes.
-. Dato:
-** Hvis man ikke har transactionid, saksid eller penpersonid så er det mulig å filtrere etter dato og tidspunkt.
+. *Dato* - Hvis man ikke har transactionid, saksid eller penpersonid så er det mulig å filtrere etter dato og tidspunkt.
 Her er det viktig å være så presis som mulig (+/- 10m) for å få korrekt resultat.
 
 === Start fra beregn pensjon
