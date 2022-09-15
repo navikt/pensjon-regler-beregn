@@ -1,3 +1,4 @@
+---
 == Start fra logviewer
 
 Den mest vanlige måte å åpne *Beregn Pensjon* på er å gå inn via https://pensjon-regler-logviewer-app.dev-fss.nais.io[pensjon-regler-logviewer applikasjonen]
@@ -15,9 +16,9 @@ Ved behov har du også mulighet til å velge hvilken sats du vil kjøre forespø
 image::logviewer-søk.PNG[]
 [%hardbreaks]
 . *Dolly/Orkestratoren* - Styrer hvorvidt det vises transaksjoner gjort gjennom Dolly og Orkestratoren.
-Skjules ved default.
+Skjules som standard.
 . *Response* - Styrer hvorvidt det vises response. Fjern avhuking om det er kun nødvendig å se forespørsler.
-Vises ved default.
+Vises som standard.
 . *Miljø* - Styrer hvilket miljø det hentes log fra.
 . *TransaksjonsId* - Det blir som regel gjort kall til flere forskjellige tjenester.
 For å få filtrert ut alle som tilhører en bestemt kallrekke bruker man TransactionId. Denne id'en finner man som regel i logs.adeo.no.
