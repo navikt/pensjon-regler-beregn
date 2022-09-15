@@ -7,10 +7,6 @@ import { GuiPopover } from "./Popover";
 export function EnTable(props) {
     let [table] = useState(props.table)
 
-    function log() {
-        console.log("Inside table", table)
-    }
-
     function horizontalHeader(item, index) {
         if (item[index] == null)
             return (null)
