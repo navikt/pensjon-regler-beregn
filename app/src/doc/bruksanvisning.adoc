@@ -26,6 +26,8 @@ Førstnevnte er mer relevant for testing. FNR kan ikke brukes.
 . *Dato* - Hvis man ikke har transactionid, saksid eller penpersonid så er det mulig å filtrere etter dato og tidspunkt.
 Her er det viktig å være så presis som mulig (+/- 10m) for å få korrekt resultat.
 
+IMPORTANT: Merk at innslag i loggen slettes etter 30 dager (60 dager for Q0). Dersom man ønsker å spare på et innslag utover dette antall dager må loggen lastes ned lokalt. Trykk nedlasting ved XML ikonet.
+
 
 == Kjør beregning av pensjon
 Hvis du åpner nettsiden *uten* å gå gjennom https://pensjon-regler-logviewer-app.dev-fss.nais.io[pensjon-regler-logviewer] har du kun mulighet til å laste opp og kjøre egen
