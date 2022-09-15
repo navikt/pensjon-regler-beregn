@@ -1,4 +1,4 @@
----
+'''
 == Start fra logviewer
 
 Den mest vanlige måte å åpne *Beregn Pensjon* på er å gå inn via https://pensjon-regler-logviewer-app.dev-fss.nais.io[pensjon-regler-logviewer applikasjonen]
