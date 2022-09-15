@@ -5,11 +5,10 @@
 :sectnums:
 :nofooter:
 :imagesdir: images
+:icons: font
 
 = Beregn Pensjon
 
 include::intro.adoc[]
-
-== Bruksanvisning
 
 include::bruksanvisning.adoc[]
