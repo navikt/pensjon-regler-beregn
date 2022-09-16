@@ -22,7 +22,7 @@
     "react-router-dom": "^6.4.0",
     "react-scripts": "^5.0.0",
     "react-split": "^2.0.14",
-    "web-vitals": "^3.0.1"
+    "web-vitals": "^3.0.2"
   },
   "scripts": {
     "prebuild": "node src/doc/doc.js && copyfiles -f src/doc/images/*.* public/doc/images",
