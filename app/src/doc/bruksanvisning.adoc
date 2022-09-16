@@ -1,10 +1,10 @@
 '''
 == Start fra logviewer
 
-Den mest vanlige måte å åpne *Beregn Pensjon* på er å gå inn via https://pensjon-regler-logviewer-app.dev-fss.nais.io[pensjon-regler-logviewer applikasjonen]
+Den mest vanlige måten å åpne *Beregn Pensjon* på er å gå inn via https://pensjon-regler-logviewer-app.dev-fss.nais.io[pensjon-regler-logviewer applikasjonen]
 
 Her har du mulighet til å gå direkte til *Beregn Pensjon* med det log-innslaget du ønsker å se grunnlag og resultat for.
-Dette gjøres ved å klikke på ikonet under 'Beregn' (vist under). Vinduet åpnes i ny fane.
+Dette gjøres ved å klikke på ikonet under _Beregn_. Vinduet åpnes i ny fane.
 
 image::logviewer.PNG[]
 
@@ -31,14 +31,12 @@ IMPORTANT: Merk at innslag i loggen slettes etter 30 dager (60 dager for Q0). De
 
 
 == Kjør beregning av pensjon
-Hvis du åpner nettsiden *uten* å gå gjennom https://pensjon-regler-logviewer-app.dev-fss.nais.io[pensjon-regler-logviewer] har du kun mulighet til å laste opp og kjøre egen
-XML.
 
 image::beregnpensjon.PNG[]
 [%hardbreaks]
 . *Velg miljø* - Velg det miljø du ønsker å gjennomføre beregningen i. Typiske valg her er å bruke Q0 for prodlikt eller testmiljøene Q2, Q4 eller Q5. Se https://confluence.adeo.no/display/PREG/Versjonsoversikt#[Versjonsoversikten] oversikt over hvilke historier som ligger i de forskjellige miljø.
 . *Sats fra miljø* - Dersom man ønsker å gjennomføre beregningen på en spesiell sats kan man overstyre satstabellen. Se https://pensjon-regler-satsviewer.dev-fss.nais.io/[Satsoversikten] for detaljer på satsene. Bruk valget _Sats fra miljø_ for å benytte eksisterende sats i miljøet.
-. *Åpne* - Trykk for å velge hvilken fil (XML) du ønsker å kjøre.
+. *Åpne* - Hvis du åpner nettsiden uten å gå gjennom logvieweren har du kun mulighet til å laste opp og kjøre egen XML. Dette gjør du ved å klikke på 'Åpne' -> Velg fil.
 . *Kjør* - Trykk for å sende forespørselen til valgt miljø. En ny beregning gjennomføres og vises.
 
-IMPORTANT: Hvis du har valgt en response (grå linjer) fra logviewer vil det ikke endringer i miljø eller sats påvirke beregning. I slike tilfeller ser man kun på det resultat som ble produsert akkurat på det tidspunktet.
+IMPORTANT: Hvis du har valgt en response (grå linjer) fra logviewer vil ikke endringer i miljø eller sats påvirke beregning. I slike tilfeller ser man kun på det resultat som ble produsert akkurat på det tidspunktet.
