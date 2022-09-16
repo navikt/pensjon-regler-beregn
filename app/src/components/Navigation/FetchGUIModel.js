@@ -3,7 +3,7 @@ import ConsoleOutput from "../FooterConsole/ConsoleOutput";
 import {chooseEnvironemnt, Local_Environemnt} from "./EnvironmentsDropdown"
 import {defaultSats} from "./SatsDropdown"
 
-export default function FetchGUIModel({body, className, environment, satsTabell, onResultChange, contentType, fileName, setFooter}) {
+export default function FetchGUIModel({body, className, environment, satsTabell, onResultChange, contentType, fileName, setFooter,setIsGUIModelFetched}) {
     // let text = ""
     // ConsoleOutput({text})
     document.getElementById("footerConsole").innerText = ""
@@ -30,7 +30,6 @@ export default function FetchGUIModel({body, className, environment, satsTabell,
         url  = url + "&sats="+satsTabell
     }
     console.log("url", url)
-
     //async with correct value from dropdown list
     document.getElementById("environmentselect").value = environment
     document.getElementById("satsTabellerSelect").value = satsTabell
@@ -67,10 +66,10 @@ export default function FetchGUIModel({body, className, environment, satsTabell,
                 }
             } )
         .then(() => ConsoleOutput({environment, satsTabell, requestType, fileName, setFooter}))
+        .then(setIsGUIModelFetched(true))
         .catch(error => {
             console.log('Error:', error)
             ConsoleOutput({environment, satsTabell, requestType, fileName, error, setFooter})
             throw new Error(error);
         })
-
 }
