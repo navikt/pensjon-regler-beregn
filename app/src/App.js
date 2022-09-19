@@ -20,10 +20,6 @@ import Loading from "./components/Navigation/Loading";
 
 export default function App() {
 
-    const sleep = ms => new Promise(
-        resolve => setTimeout(resolve, ms)
-    );
-
     //API fetch constants
     const [metaData, setMetadata] = useState([]);
     const [environment, setEnvironment] = useState("");
@@ -62,9 +58,7 @@ export default function App() {
                         .then(() => setMetadata(JSON.parse(logResponse['metadata'])))
                         .then(() => setEnvironment(logResponse['environment']))
                         .then(() => setBody(logResponse['xml']))
-                        .then(() => {
-                            setName(metaData['className'])
-                        })
+                        .then(() => setName(metaData['className']))
                         .then(() => setIsFetched(true))
                 } catch (error) {
                     console.log('Error:', error)

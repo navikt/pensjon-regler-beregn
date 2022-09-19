@@ -1,35 +1,23 @@
-import React, {useEffect} from "react";
-import {defaultSats} from "../Navigation/SatsDropdown";
+import React from "react";
 
-export default function ConsoleOutput({ environment, satsTabell, requestType, fileName="",error, text, setFooter}) {
+export default function ConsoleOutput({environment, satsTabell, requestType, fileName = "", error, text, setFooter}) {
 
-    if(text) {
+    if (text) {
         setFooter(text)
-        // document.getElementById("footerConsole").innerText = text
-    }
-    else {
-        let resource =""
-        if(fileName) {
+    } else {
+        let resource
+        if (fileName) {
             resource = fileName
-        }
-        else
+        } else
             resource = "logviewer"
-        // if(!satsTabell|| satsTabell===defaultSats) {
-        //     satsTabell = "defaultSats"
-        // }
-        if(error) {
+        if (error) {
             setFooter("")
-            setFooter("Lasting "+ requestType + "("+ resource +")"+ " feil i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", "")  + " med " +  error)
-            // document.getElementById("footerConsole").innerText = "Loading error... " + error  + " med "+ requestType + " from " + resource +  " i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", "")
-            //clear the previous request and response
-            document.getElementById("requestView").innerText=""
-            document.getElementById("responseView").innerText=""
-        }
-
-        else {
+            setFooter("Feil for " + requestType + " med feilmelding: " + error)
+            document.getElementById("requestView").innerText = ""
+            document.getElementById("responseView").innerText = ""
+        } else {
             setFooter("")
-            setFooter( "Lasting " + requestType + "("+ resource +")" + " ferdig i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", ""))
-            // document.getElementById("footerConsole").innerText =  "Loading ferdig! " + requestType + " from " + resource + " i miljø: " + environment + " med "+ "satsTabeller: " + satsTabell.toString().replace("&sats=", "")
+            setFooter(requestType + "(" + resource + ")" + " har kjørt ferdig i miljø: " + environment + " med " + "satsTabeller: " + satsTabell.toString().replace("&sats=", ""))
         }
     }
 }
