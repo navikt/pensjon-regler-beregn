@@ -4,6 +4,7 @@ import React, {useCallback, useState} from "react";
 import ReactDOM from "react-dom";
 import Split from "react-split"
 
+// noinspection ES6UnusedImports
 import Header from "./components/Header";
 import RequestPane from "./components/RequestPane";
 import ResponsePane from "./components/ResponsePane";
@@ -14,7 +15,13 @@ import Run from "./components/Navigation/Run";
 import Bruksanvisning from "./components/Navigation/Bruksanvisning";
 import EnvironmentsDropdown from "./components/Navigation/EnvironmentsDropdown";
 
+import Loading from "./components/Navigation/Loading";
+
 export default function App() {
+
+    const sleep = ms => new Promise(
+        resolve => setTimeout(resolve, ms)
+    );
 
     //API fetch constants
     const [metaData, setMetadata] = useState([]);
@@ -28,12 +35,15 @@ export default function App() {
     const [isFetched, setIsFetched] = useState(false)
     const [footer, setFooter] = useState("")
 
+    const [isLoading, setIsLoading] = useState(false)
+
     function FetchByLogID() {
         const {id} = useParams();
         let logUrl = 'https://pensjon-regler-logviewer-api.dev-fss.nais.io/api/log/' + id;
         if (!isFetched) {
             const fetchLog = useCallback(async () => {
                 try {
+                    setIsLoading(true)
                     fetch(logUrl, {
                         method: 'GET',
                         headers: {
@@ -42,16 +52,22 @@ export default function App() {
                         }
                     })
                         .then(response => response.json())
-                        .then(response => setLogResponse(response))
+                        .then(response => {
+                            setIsLoading(false)
+                            setLogResponse(response)
+                        })
                         .then(() => setMetadata(JSON.parse(logResponse['metadata'])))
                         .then(() => setEnvironment(logResponse['environment']))
                         .then(() => setBody(logResponse['xml']))
-                        .then(() => {setName(metaData['className'])})
+                        .then(() => {
+                            setName(metaData['className'])
+                        })
                         .then(() => setIsFetched(true))
                 } catch (error) {
                     console.log('Error:', error)
                 }
             })
+
             fetchLog();
 
         }
@@ -62,13 +78,19 @@ export default function App() {
     }
 
     function Request() {
+        if (isLoading) {
+            return <div/>
+        }
         return ( //Send request ID from url to component
             <RequestPane props={result.request}></RequestPane>
         );
     }
 
     function Response() {
-        if(result.hasOwnProperty('response')) {
+        if (isLoading) {
+            return <Loading/>
+        }
+        if (result.hasOwnProperty('response')) {
             const satser = result.metadata['bruktSats'] ? " - " + result.metadata['bruktSats'] : ""
             return <ResponsePane props={result.response} satstabell={satser}></ResponsePane>
         } else {
@@ -82,11 +104,14 @@ export default function App() {
             <div>
                 <div className="Header">
                     <div className="HeaderTitle">Beregn Pensjon</div>
-                    <div className="HeaderButton"><EnvironmentsDropdown environmentsChanger={setEnvironment}></EnvironmentsDropdown>
+                    <div className="HeaderButton"><EnvironmentsDropdown
+                        environmentsChanger={setEnvironment}></EnvironmentsDropdown>
                     </div>
-                    <div className="HeaderButton"><SatsDropdown tabellChanger={setSatsTabell} onSetFooter={setFooter}></SatsDropdown></div>
+                    <div className="HeaderButton"><SatsDropdown tabellChanger={setSatsTabell}
+                                                                onSetFooter={setFooter}></SatsDropdown></div>
                     <div className="HeaderButton"><Openfile satsTabell={satsTabell} onResultChange={setResult}
-                                                            environment={environment} setFooter={setFooter}></Openfile></div>
+                                                            environment={environment} setFooter={setFooter}></Openfile>
+                    </div>
                     <div className="HeaderButton"><Run name={name} body={body} environment={environment}
                                                        satsTabell={satsTabell} onResultChange={setResult}
                                                        contentType={'application/json'} setFooter={setFooter}/></div>
