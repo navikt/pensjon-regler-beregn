@@ -32,7 +32,7 @@ export default function App() {
     const [isFetched, setIsFetched] = useState(false)
     const [isGUIModelFetched, setIsGUIModelFetched] = useState(false)
     const [footer, setFooter] = useState("")
-    let contentType='application/json'
+    let contentType = 'application/json'
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -68,12 +68,22 @@ export default function App() {
             fetchLog();
 
         }
-        if(isFetched) {
-            if(!isGUIModelFetched) {
-                const fetchGUIModel= useCallback(async() => {
+        if (isFetched) {
+            if (!isGUIModelFetched) {
+                const fetchGUIModel = useCallback(async () => {
                     let className = name
                     let onResultChange = setResult
-                    FetchGUIModel({ body,className,environment, satsTabell,onResultChange, contentType,setFooter, setIsGUIModelFetched})
+                    FetchGUIModel({
+                        body,
+                        className,
+                        environment,
+                        satsTabell,
+                        onResultChange,
+                        contentType,
+                        setFooter,
+                        setIsGUIModelFetched,
+                        setIsLoading
+                    })
                 })
                 fetchGUIModel()
             }

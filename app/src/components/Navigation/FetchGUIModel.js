@@ -3,7 +3,18 @@ import ConsoleOutput from "../FooterConsole/ConsoleOutput";
 import {chooseEnvironemnt, Local_Environemnt} from "./EnvironmentsDropdown"
 import {defaultSats} from "./SatsDropdown"
 
-export default function FetchGUIModel({body, className, environment, satsTabell, onResultChange, contentType, fileName, setFooter,setIsGUIModelFetched}) {
+export default function FetchGUIModel({
+                                          body,
+                                          className,
+                                          environment,
+                                          satsTabell,
+                                          onResultChange,
+                                          contentType,
+                                          fileName,
+                                          setFooter,
+                                          setIsGUIModelFetched,
+                                          setIsLoading
+                                      }) {
     // let text = ""
     // ConsoleOutput({text})
     document.getElementById("footerConsole").innerText = ""
@@ -15,19 +26,17 @@ export default function FetchGUIModel({body, className, environment, satsTabell,
         endpoint = "convertResponse"
     }
     if (!environment || environment === chooseEnvironemnt /*||environment==null||environment===""*/) {
-        url = 'https://pensjon-regler-q4.dev.adeo.no/api/'+endpoint+'?className=' + className
+        url = 'https://pensjon-regler-q4.dev.adeo.no/api/' + endpoint + '?className=' + className
         environment = "pensjon-regler-q4"
-    }
-    else if (environment === Local_Environemnt)
-        url = 'http://localhost:8080/api/'+endpoint+'?className=' + className
+    } else if (environment === Local_Environemnt)
+        url = 'http://localhost:8080/api/' + endpoint + '?className=' + className
     else
-        url = 'https://' + environment + '.dev.adeo.no/api/'+endpoint+'?className=' + className
+        url = 'https://' + environment + '.dev.adeo.no/api/' + endpoint + '?className=' + className
 
-    if(!satsTabell|| satsTabell===defaultSats) {
+    if (!satsTabell || satsTabell === defaultSats) {
         satsTabell = defaultSats
-    }
-    else {
-        url  = url + "&sats="+satsTabell
+    } else {
+        url = url + "&sats=" + satsTabell
     }
     console.log("url", url)
     //async with correct value from dropdown list
@@ -48,25 +57,25 @@ export default function FetchGUIModel({body, className, environment, satsTabell,
         .then((response) => {
             if (response.ok) {
                 return response.json()
-            }
-            else {
+            } else {
                 let error = `HTTP error status: ${response.status}`
                 ConsoleOutput({environment, satsTabell, requestType, fileName, error, setFooter})
                 throw new Error(error);
             }
         })
         .then(response => {
-                onResultChange(response)
-                if(response.hasOwnProperty("metadata")) {
-                    if(response['metadata']['status'] === 'error') {
-                        let error = response['metadata']['info']
-                        ConsoleOutput({environment, satsTabell, requestType, fileName, error, setFooter})
-                        throw new Error(error);
-                    }
+            onResultChange(response)
+            if (response.hasOwnProperty("metadata")) {
+                if (response['metadata']['status'] === 'error') {
+                    let error = response['metadata']['info']
+                    ConsoleOutput({environment, satsTabell, requestType, fileName, error, setFooter})
+                    throw new Error(error);
                 }
-            } )
+            }
+        })
         .then(() => ConsoleOutput({environment, satsTabell, requestType, fileName, setFooter}))
         .then(setIsGUIModelFetched(true))
+        .then(setIsLoading(false))
         .catch(error => {
             console.log('Error:', error)
             ConsoleOutput({environment, satsTabell, requestType, fileName, error, setFooter})
