@@ -14,6 +14,7 @@ import Openfile from "./components/Navigation/Openfile";
 import Run from "./components/Navigation/Run";
 import Bruksanvisning from "./components/Navigation/Bruksanvisning";
 import EnvironmentsDropdown from "./components/Navigation/EnvironmentsDropdown";
+import FetchGUIModel from "./components/Navigation/FetchGUIModel";
 
 import Loading from "./components/Navigation/Loading";
 
@@ -33,7 +34,9 @@ export default function App() {
     const [body, setBody] = useState([]);
     const [name, setName] = useState([]);
     const [isFetched, setIsFetched] = useState(false)
+    const [isGUIModelFetched, setIsGUIModelFetched] = useState(false)
     const [footer, setFooter] = useState("")
+    let contentType='application/json'
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -47,8 +50,8 @@ export default function App() {
                     fetch(logUrl, {
                         method: 'GET',
                         headers: {
-                            'Content-Type': 'application/json',
-                            'accept': 'application/json'
+                            'Content-Type': contentType,
+                            'accept': contentType
                         }
                     })
                         .then(response => response.json())
@@ -70,6 +73,16 @@ export default function App() {
 
             fetchLog();
 
+        }
+        if(isFetched) {
+            if(!isGUIModelFetched) {
+                const fetchGUIModel= useCallback(async() => {
+                    let className = name
+                    let onResultChange = setResult
+                    FetchGUIModel({ body,className,environment, satsTabell,onResultChange, contentType,setFooter, setIsGUIModelFetched})
+                })
+                fetchGUIModel()
+            }
         }
         return (
             <div>
