@@ -127,11 +127,11 @@ export default function App() {
                     <div className="HeaderButton"><SatsDropdown tabellChanger={setSatsTabell}
                                                                 onSetFooter={setFooter}></SatsDropdown></div>
                     <div className="HeaderButton"><Openfile satsTabell={satsTabell} onResultChange={setResult}
-                                                            environment={environment} setFooter={setFooter}></Openfile>
+                                                            environment={environment} setFooter={setFooter} setIsGUIModelFetched = {setIsGUIModelFetched} setIsLoading = {setIsLoading}></Openfile>
                     </div>
                     <div className="HeaderButton"><Run name={name} body={body} environment={environment}
                                                        satsTabell={satsTabell} onResultChange={setResult}
-                                                       contentType={'application/json'} setFooter={setFooter}/></div>
+                                                       contentType={'application/json'} setFooter={setFooter} setIsGUIModelFetched = {setIsGUIModelFetched} setIsLoading = {setIsLoading}/></div>
                     <div className="HeaderButton">
                         <Bruksanvisning/>
                     </div>

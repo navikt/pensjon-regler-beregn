@@ -55,6 +55,7 @@ export default function FetchGUIModel({
         body: (body)
     })
         .then((response) => {
+            setIsGUIModelFetched(true)
             if (response.ok) {
                 return response.json()
             } else {
@@ -74,7 +75,6 @@ export default function FetchGUIModel({
             }
         })
         .then(() => ConsoleOutput({environment, satsTabell, requestType, fileName, setFooter}))
-        .then(setIsGUIModelFetched(true))
         .then(setIsLoading(false))
         .catch(error => {
             console.log('Error:', error)
