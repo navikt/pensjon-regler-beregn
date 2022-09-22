@@ -55,7 +55,11 @@ export default function App() {
                             setIsLoading(false)
                             setLogResponse(response)
                         })
-                        .then(() => setMetadata(JSON.parse(logResponse['metadata'])))
+                        .then(() => {
+                            if(logResponse['metadata']==undefined)
+                                throw new Error("retry connecting")
+                            setMetadata(JSON.parse(logResponse['metadata']))
+                        })
                         .then(() => setEnvironment(logResponse['environment']))
                         .then(() => setBody(logResponse['xml']))
                         .then(() => setName(metaData['className']))

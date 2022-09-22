@@ -20,6 +20,9 @@ export default function FetchGUIModel({
     document.getElementById("footerConsole").innerText = ""
     let url = ""
     let endpoint = ""
+    if(className==undefined||className==null) {
+        return
+    }
     if (className.toString().includes("Request")) {
         endpoint = "beregn"
     } else if (className.toString().includes("Response")) {
@@ -38,7 +41,7 @@ export default function FetchGUIModel({
     } else {
         url = url + "&sats=" + satsTabell
     }
-    console.log("url", url)
+    // console.log("url", url)
     //async with correct value from dropdown list
     document.getElementById("environmentselect").value = environment
     document.getElementById("satsTabellerSelect").value = satsTabell

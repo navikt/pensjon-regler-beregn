@@ -50,11 +50,9 @@ const createLogger = () => {
 	  return console.log;
 	}
 	return () => undefined;
-  };
-  
-  export const log = createLogger();
-  
-  const Logger = function () {
+  }
+
+ const Logger = function () {
 	this.error = (...args) => {
 	  return window.frontendlogger.info(...args);
 	};
@@ -67,6 +65,6 @@ const createLogger = () => {
 	this.event = (...args) => {
 	  return window.frontendlogger.event(...args);
 	};
-  };
-  
-  export default new Logger();
+  }
+
+  exports = {createLogger, Logger}
