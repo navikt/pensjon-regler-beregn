@@ -3,6 +3,11 @@ import React, { useRef, useState } from "react";
 import { JsonParser } from "./JsonParser";
 import './CSS/Button.css'
 
+export const popoverType_None = "NONE"
+const popoverType_INFO = "INFO"
+const popoverType_DESCRIPTION = "DESCRIPTION"
+const popoverTyoe_FORMEL = "FORMEL"
+const popoverType_FAKTUM = "FAKTUM"
 
 function generateTables(tables) {
     let t = []
@@ -23,7 +28,7 @@ export function GuiPopover(props) {
     let j = props.j
     let subitem = element[0]
     let popOver;
-    if (subitem['popover']) {
+    if (subitem['popoverType'] == popoverType_DESCRIPTION) {
         const buttonRef = useRef(null);
         const [open, setOpen] = useState(false);
         if (subitem['header']) {
@@ -48,7 +53,7 @@ export function GuiPopover(props) {
                     </Popover.Content>
                 </Popover></Table.DataCell>;
         }
-    } else if (subitem['information']) {
+    } else if (subitem['popoverType'] == popoverType_INFO) {
         const buttonRef = useRef(null);
         const [open, setOpen] = useState(false);
         popOver =
@@ -67,11 +72,15 @@ export function GuiPopover(props) {
                     anchorEl={buttonRef.current}
                     arrow={true} placement="auto" offset={32}>
                     <Popover.Content>
-                        {subitem['informationContent']}
+                        {subitem['popoverInfo']}
                     </Popover.Content>
                 </Popover>
-
             </Table.HeaderCell>;
+    } else if(subitem['popoverType'] == popoverTyoe_FORMEL) {
+
+
+    } else if(subitem['popoverType'] == popoverType_FAKTUM) {
+
     }
     return popOver
 }

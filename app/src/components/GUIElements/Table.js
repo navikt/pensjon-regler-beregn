@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { JsonParser } from "./JsonParser";
 import { Button, Heading, Table } from '@navikt/ds-react';
 import './CSS/EnTable.css'
-import { GuiPopover } from "./Popover";
+import {GuiPopover, popoverType_None} from "./Popover";
 
 export function EnTable(props) {
     let [table] = useState(props.table)
@@ -18,7 +18,7 @@ export function EnTable(props) {
         let row = []
         if (Array.isArray(item[1])) {
             item[1].map((subitem, j) => {
-                if (subitem['popover'] || subitem['information']) {
+                if (subitem['popoverType'] != popoverType_None) {
                     row.push(<GuiPopover element={subitem} j={j}></GuiPopover>)
                 } else {
                     if (subitem['header']) {
