@@ -23,7 +23,6 @@ export default function EnvironmentsDropdown(props) {
             <option value="pensjon-regler-q0">pensjon-regler-q0</option>
             <option value="pensjon-regler-q1">pensjon-regler-q1</option>
             <option value="pensjon-regler-q2">pensjon-regler-q2</option>
-            <option value="pensjon-regler-q4">pensjon-regler-q4</option>
             <option value="pensjon-regler-q5">pensjon-regler-q5</option>
         </Select>
     )
