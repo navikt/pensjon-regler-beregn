@@ -18,7 +18,7 @@ export function EnTable(props) {
         let row = []
         if (Array.isArray(item[1])) {
             item[1].map((subitem, j) => {
-                if (subitem['popoverType'] != popoverType_None) {
+                if (subitem["tooltip"]!=undefined ||subitem['popoverType'] != popoverType_None) {
                     row.push(<GuiPopover element={subitem} j={j}></GuiPopover>)
                 } else {
                     if (subitem['header']) {

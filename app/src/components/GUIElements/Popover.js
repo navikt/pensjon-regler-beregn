@@ -53,7 +53,7 @@ export function GuiPopover(props) {
                     </Popover.Content>
                 </Popover></Table.DataCell>;
         }
-    } else if (subitem['tooltip']) {
+    } else if (subitem['popoverType'] == popoverType_None&&subitem['tooltip']!=undefined) {
         const buttonRef = useRef(null);
         const [open, setOpen] = useState(false);
         popOver =
