@@ -1,8 +1,7 @@
-import React, { useRef, useState } from "react";
-import { JsonParser } from "./JsonParser";
-import { Button, Heading, Table } from '@navikt/ds-react';
+import React, {useState} from "react";
+import {Heading, Table} from '@navikt/ds-react';
 import './CSS/EnTable.css'
-import {GuiPopover, popoverType_None} from "./Popover";
+import {Cell, popoverType_None} from "./Cell";
 
 export function EnTable(props) {
     let [table] = useState(props.table)
@@ -18,22 +17,22 @@ export function EnTable(props) {
         let row = []
         if (Array.isArray(item[1])) {
             item[1].map((subitem, j) => {
-                if (subitem["tooltip"]!=undefined ||subitem['popoverType'] != popoverType_None) {
-                    row.push(<GuiPopover element={subitem} j={j}></GuiPopover>)
-                } else {
-                    if (subitem['header']) {
-                        row.push(<Table.HeaderCell key={j} scope="col">{subitem['data']}</Table.HeaderCell>)
-                    }
-                    else {
-                        row.push(<Table.DataCell key={j}>{subitem['data']}</Table.DataCell>)
-                    }
-                }
+                row.push(<Cell element={subitem} j={j}></Cell>)
+                // if (subitem["tooltip"] != undefined || subitem['popoverType'] != popoverType_None) {
+                //     row.push(<Cell element={subitem} j={j}></Cell>)
+                // } else {
+                //     if (subitem['header']) {
+                //         row.push(<Table.HeaderCell key={j} scope="col">{subitem['data']}</Table.HeaderCell>)
+                //     } else {
+                //         row.push(<Table.DataCell key={j}>{subitem['data']}</Table.DataCell>)
+                //     }
+                // }
             })
         }
         return row
     }
 
-    const Checkname = ({ name }) => {
+    const Checkname = ({name}) => {
         if (name != null && name.includes('Ingen')) {
             return (null);
         } else
@@ -63,15 +62,15 @@ export function EnTable(props) {
             <Heading size="xsmall" level="6"> &ensp;
             </Heading>
             <Heading spacing size="large"
-                style={{
-                    borderBottom: table.hasOwnProperty('name') ? "2px solid grey" : "",
-                    borderTop: table.hasOwnProperty('name') ? "2px solid grey" : "",
-                    backgroundColor: table.hasOwnProperty('name') ? "#f1f1f1" : "",
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center'
-                }}
-                level="6"> &ensp; {table.hasOwnProperty('name') ? table['name'] : ''}</Heading>
+                     style={{
+                         borderBottom: table.hasOwnProperty('name') ? "2px solid grey" : "",
+                         borderTop: table.hasOwnProperty('name') ? "2px solid grey" : "",
+                         backgroundColor: table.hasOwnProperty('name') ? "#f1f1f1" : "",
+                         display: 'flex',
+                         flexDirection: 'column',
+                         alignItems: 'center'
+                     }}
+                     level="6"> &ensp; {table.hasOwnProperty('name') ? table['name'] : ''}</Heading>
             <Checkname name={table['name']}>
 
             </Checkname>
