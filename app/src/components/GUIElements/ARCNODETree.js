@@ -16,7 +16,7 @@ export function ARCNODETree(props) {
             return (
                 <ul className="arcnodeTree-container">
                     <li>
-                        <span className={isActive ? "caret caret-down" : "caret"} style={checkStyle(node)}
+                        <span className={isActive ? "caret" : "caret caret-down"} style={checkStyle(node)}
                               onClick={(e) => toggleClass()}>
                             {node.hasOwnProperty('name') ? node['name'] : 'no name'}
                         </span>
@@ -28,27 +28,55 @@ export function ARCNODETree(props) {
             node['children'][1].map((subNode) => {
                 if (subNode['children'][1].length == 0) {
                     treenode.push(
+                        // <ul className={isActive ? "nested activex" : "nested"}>
                         <li>
                             {subNode.hasOwnProperty('name') ? subNode['name'] : 'no name'}
                         </li>
+                        // </ul>
                     )
-                } else {
+                }
+                else if(i<3) {
                     treenode.push(
                         <li>
-                        <span className={isActive ? "caret caret-down" : "caret"} style={checkStyle(subNode)}
-                              onClick={(e) => toggleClass()}>
+                        <span className={isActive ? "caret" : "caret caret-down"} style={checkStyle(subNode)}
+                              onClick={(event) => toggleClass()}>
                             {subNode.hasOwnProperty('name') ? subNode['name'] : 'no name'}
                         </span>
                             {generateArcnodeTreeNode(subNode, i + 1)}
                         </li>
                     )
                 }
+
+                else {
+                    treenode.push(
+                        // <ul className={isActive ? "nested activex" : "nested"}>
+                        <li>
+                        <span className={isActive ? "caret caret-down" : "caret"} style={checkStyle(subNode)}
+                              onClick={(event) => toggleClass()}>
+                            {subNode.hasOwnProperty('name') ? subNode['name'] : 'no name'}
+                        </span>
+                            {generateArcnodeTreeNode(subNode, i + 1)}
+                        </li>
+                        // </ul>
+                    )
+                }
             })
-            return (
-                <ul className={isActive ? "nested activex" : "nested"}>
-                    {treenode}
-                </ul>
-            )
+
+            if(i<4) {
+                return (
+                    <ul className={isActive ? "nested" : "nested activex"}>
+                        {treenode}
+                    </ul>
+                )
+            }
+            else {
+                return (
+                    <ul className={isActive ? "nested activex" : "nested"}>
+                        {treenode}
+                    </ul>
+                )
+            }
+
         }
 
     }
