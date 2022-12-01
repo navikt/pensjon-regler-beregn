@@ -3,6 +3,7 @@ import {Tab} from "./Tab";
 import {TabList} from "./TabList";
 import {EnTable} from "./Table";
 import {Tree} from "./Tree";
+import {ARCNODETree} from "./ARCNODETree";
 
 const search = (current) => {
     let element = [];
@@ -10,7 +11,9 @@ const search = (current) => {
         TABLIST: "TABLIST",
         TAB: "TAB",
         TABLE: "TABLE",
-        NODE: "NODE"
+        NODE: "NODE",
+        BEREGNINGNODE: "BEREGNINGNODE",
+        ARCNODE: "ARCNODE"
     }
 
     for (let child in current) {
@@ -33,6 +36,12 @@ const search = (current) => {
                     return found
                 case elementType.NODE:
                     found = <Tree tree={element} index={Math.random().toString(36).slice(2, 7)}></Tree>
+                    return found
+                case elementType.BEREGNINGNODE:
+                    found = <Tree tree={element} index={Math.random().toString(36).slice(2, 7)}></Tree>
+                    return found
+                case elementType.ARCNODE:
+                    found = <ARCNODETree arcnodetree={element}></ARCNODETree>
                     return found
                 default:
                     throw new Error("Unsupported elementType")
