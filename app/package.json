@@ -4,7 +4,7 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@navikt/ds-css": "^2.0.9",
+    "@navikt/ds-css": "^2.0.10",
     "@navikt/ds-css-internal": "^2.0.9",
     "@navikt/ds-react": "^2.0.10",
     "@navikt/ds-react-internal": "^2.0.9",
