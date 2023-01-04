@@ -31,16 +31,23 @@ export function Cell(props) {
     const buttonPopoverRef = useRef(null);
     const buttonTooltipRef = useRef(null);
     const [open, setOpen] = useState(false);
-    if (subitem['header']) {
-        let tooltip=<></>
-        if (subitem['tooltip'] != undefined) {
-            dataBtn = subitem['data']
-            tooltip = <><Button
-                className='question-mark-button'
-                ref={buttonTooltipRef}
-                onClick={() => setOpen(!open)} size="xsmall">
-                {'?'}
-            </Button>
+
+    const modifiers = {
+        preventOverflow: {
+            enabled: false,
+        },
+        flip: {
+            enabled: false,
+        },
+    };
+
+    function getTooltip() {
+        return <><Button
+            className='question-mark-button'
+            ref={buttonTooltipRef}
+            onClick={() => setOpen(!open)} size="xsmall">
+            {'?'}
+        </Button>
             <Popover
                 className={"information-popover-content"}
                 open={open}
@@ -50,65 +57,47 @@ export function Cell(props) {
                 <Popover.Content>
                     {subitem['tooltip']}
                 </Popover.Content>
-            </Popover></>
+            </Popover></>;
+    }
+
+    function getPopOver() {
+        return <Popover open={open} onClose={() => setOpen(false)}
+                        anchorEl={buttonPopoverRef.current}
+                        placement="bottom" modifiers={modifiers}
+                        arrow={true} offset={32}>
+            <Popover.Content className={"scroll"}>
+                {generateTables(subitem['popoverContent'][1])}
+            </Popover.Content>
+        </Popover>;
+    }
+
+    function createCell() {
+        let tooltip = <></>
+        if (subitem['tooltip'] != undefined) {
+            dataBtn = subitem['data']
+            tooltip = getTooltip()
         }
-        let popOver=<></>
+        let popOver = <></>
         if (subitem['popoverType'] != popoverType_None) {
             dataBtn = <Button ref={buttonPopoverRef}
                               onClick={() => setOpen(!open)} size="xsmall">
                 {subitem['data']}</Button>
-            popOver = <Popover open={open} onClose={() => setOpen(false)}
-                               anchorEl={buttonPopoverRef.current}
-                               arrow={true} placement="auto" offset={32}>
-                <Popover.Content className={"scroll"}>
-                    {generateTables(subitem['popoverContent'][1])}
-                </Popover.Content>
-            </Popover>
-        }else {
+            popOver = getPopOver()
+        } else {
             dataBtn = subitem['data']
         }
+        return {tooltip, popOver};
+    }
+
+    if (subitem['header']) {
+        let {tooltip, popOver} = createCell();
         cellInTable = <Table.HeaderCell key={j} scope="col">
             {dataBtn}
             {tooltip}
             {popOver}
         </Table.HeaderCell>
     } else {
-        let tooltip=<></>
-        if (subitem['tooltip'] != undefined) {
-            dataBtn = subitem['data']
-            tooltip = <><Button
-                className='question-mark-button'
-                ref={buttonTooltipRef}
-                onClick={() => setOpen(!open)} size="xsmall">
-                {'?'}
-            </Button>
-            <Popover
-                className={"information-popover-content"}
-                open={open}
-                onClose={() => setOpen(false)}
-                anchorEl={buttonTooltipRef.current}
-                arrow={true} placement="auto" offset={32}>
-                <Popover.Content>
-                    {subitem['tooltip']}
-                </Popover.Content>
-            </Popover></>
-        }
-        let popOver=<></>
-        if (subitem['popoverType'] != popoverType_None) {
-            dataBtn = <Button ref={buttonPopoverRef}
-                              onClick={() => setOpen(!open)} size="xsmall">
-                {subitem['data']}</Button>
-            popOver = <Popover open={open} onClose={() => setOpen(false)}
-                               anchorEl={buttonPopoverRef.current}
-                               arrow={true} placement="auto" offset={32}>
-                <Popover.Content className={"scroll"}>
-                    {generateTables(subitem['popoverContent'][1])}
-                </Popover.Content>
-            </Popover>
-        }
-        else {
-            dataBtn = subitem['data']
-        }
+        let {tooltip, popOver} = createCell();
         cellInTable = <Table.DataCell key={j}>
             {dataBtn}
             {tooltip}
