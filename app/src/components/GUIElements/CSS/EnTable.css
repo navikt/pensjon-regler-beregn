@@ -1,6 +1,6 @@
 
 .scroll {
-    height: 450px;
+    max-height: 450px;
     width: 650px;
     overflow: auto;
     white-space:pre-wrap;
