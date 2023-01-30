@@ -29,8 +29,8 @@ export default function FetchGUIModel({
         endpoint = "convertResponse"
     }
     if (!environment || environment === chooseEnvironemnt /*||environment==null||environment===""*/) {
-        url = 'https://pensjon-regler-q4.dev.adeo.no/api/' + endpoint + '?className=' + className
-        environment = "pensjon-regler-q4"
+        url = 'https://pensjon-regler-q2.dev.adeo.no/api/' + endpoint + '?className=' + className
+        environment = "pensjon-regler-q2"
     } else if (environment === Local_Environemnt)
         url = 'http://localhost:8080/api/' + endpoint + '?className=' + className
     else

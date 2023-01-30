@@ -13,7 +13,7 @@ export default function SatsDropdown(props) {
     let setFooter = props.onSetFooter
 
     useEffect(() => {
-        let satsUrl = 'https://pensjon-regler-q4.dev.adeo.no/alleSatstabeller'
+        let satsUrl = 'https://pensjon-regler-q2.dev.adeo.no/alleSatstabeller'
         const fetchData = async () => {
         // try {
             fetch(satsUrl, {
