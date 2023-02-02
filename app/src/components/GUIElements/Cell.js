@@ -2,6 +2,7 @@ import {Button, Popover, Table} from '@navikt/ds-react';
 import React, {useRef, useState} from "react";
 import {JsonParser} from "./JsonParser";
 import './CSS/Button.css'
+import {renderToString} from "react-dom/server";
 
 export const popoverType_None = "NONE"
 const popoverType_INFO = "INFO"
@@ -61,14 +62,26 @@ export function Cell(props) {
     }
 
     function getPopOver() {
+        let detail = generateTables(subitem['popoverContent'][1])
+        console.log("detail" ,detail)
         return <Popover open={open} onClose={() => setOpen(false)}
                         anchorEl={buttonPopoverRef.current}
                         placement="bottom" modifiers={modifiers}
                         arrow={true} offset={32}>
             <Popover.Content className={"scroll"}>
-                {generateTables(subitem['popoverContent'][1])}
+                {detail}
             </Popover.Content>
         </Popover>;
+    }
+
+    function getDetailView() {
+        let detail = generateTables(subitem['popoverContent'][1])
+        // console.log("detail" ,renderToString(detail))
+        // let text = '<div>'+'{{$detail}}'+'</div>'
+        document.getElementById("datailView").innerHTML =  renderToString(detail)
+        // detailView.style.
+        return <div open={open} onClose={() => setOpen(false)}>
+        </div>;
     }
 
     function createCell() {
@@ -79,10 +92,12 @@ export function Cell(props) {
         }
         let popOver = <></>
         if (subitem['popoverType'] != popoverType_None) {
-            dataBtn = <Button ref={buttonPopoverRef}
-                              onClick={() => setOpen(!open)} size="xsmall">
+            dataBtn = <Button onClick={() => setOpen(!open)} size="xsmall">
+            {/*dataBtn = <Button ref={buttonPopoverRef}*/}
+            {/*                      onClick={() => setOpen(!open)} size="xsmall">    */}
                 {subitem['data']}</Button>
-            popOver = getPopOver()
+            // popOver = getPopOver()
+            popOver = getDetailView()
         } else {
             dataBtn = subitem['data']
         }

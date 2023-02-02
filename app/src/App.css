@@ -99,6 +99,21 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.detailView {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+  align-content: space-around;
+  border-right: 1px solid black;
+  margin-bottom: auto;
+  margin-top:auto;
+  font-size:large;
+  height: 10%;
+  overflow-y:auto;
+  overflow-y: scroll;
+}
+
 .footerConsole {
   width: 100%;
   display: flex;

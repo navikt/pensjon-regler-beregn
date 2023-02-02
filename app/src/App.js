@@ -17,6 +17,8 @@ import EnvironmentsDropdown from "./components/Navigation/EnvironmentsDropdown";
 import FetchGUIModel from "./components/Navigation/FetchGUIModel";
 
 import Loading from "./components/Navigation/Loading";
+import DetailView from "./components/DetailView";
+import detailView from "./components/DetailView";
 
 export default function App() {
 
@@ -31,6 +33,7 @@ export default function App() {
     const [name, setName] = useState([]);
     const [isFetched, setIsFetched] = useState(false)
     const [isGUIModelFetched, setIsGUIModelFetched] = useState(false)
+    const [detailView, setDetailView] = useState("")
     const [footer, setFooter] = useState("")
     let contentType = 'application/json'
 
@@ -142,7 +145,7 @@ export default function App() {
                 </div>
             </div>
             <Split
-                sizes={[85, 15]} gutterSize={15} dragInterval={15} direction="vertical" cursor="row-resize"
+                sizes={[65,20, 15]} gutterSize={15} dragInterval={15} direction="vertical" cursor="row-resize"
                 style={{height: `calc(100vh)`}}>
                 <div className="main-container">
                     <HashRouter>
@@ -154,6 +157,7 @@ export default function App() {
                     {<Request/>}
                     {<Response/>}
                 </div>
+                <div className="detailView"><DetailView footer={footer}></DetailView></div>
                 <div className="footerConsole"><Footer footer={footer}></Footer></div>
             </Split>
         </div>
