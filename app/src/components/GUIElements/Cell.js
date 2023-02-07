@@ -63,7 +63,7 @@ export function Cell(props) {
 
     function getPopOver() {
         let detail = generateTables(subitem['popoverContent'][1])
-        console.log("detail" ,detail)
+        // console.log("detail" ,detail)
         return <Popover open={open} onClose={() => setOpen(false)}
                         anchorEl={buttonPopoverRef.current}
                         placement="bottom" modifiers={modifiers}
@@ -92,12 +92,11 @@ export function Cell(props) {
         }
         let popOver = <></>
         if (subitem['popoverType'] != popoverType_None) {
-            dataBtn = <Button onClick={() => setOpen(!open)} size="xsmall">
-            {/*dataBtn = <Button ref={buttonPopoverRef}*/}
-            {/*                      onClick={() => setOpen(!open)} size="xsmall">    */}
+            // dataBtn = <Button onClick={() => setOpen(!open)} size="xsmall">
+            dataBtn = <Button ref={buttonPopoverRef}  onClick={() => setOpen(!open)} size="xsmall">
                 {subitem['data']}</Button>
-            // popOver = getPopOver()
-            popOver = getDetailView()
+            popOver = getPopOver()
+            // popOver = getDetailView()
         } else {
             dataBtn = subitem['data']
         }

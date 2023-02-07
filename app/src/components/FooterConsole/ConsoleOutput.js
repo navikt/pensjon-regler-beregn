@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ConsoleOutput({environment, satsTabell, requestType, fileName = "", error, text, setFooter}) {
+export default function ConsoleOutput({environment, satsTabell, requestType, fileName = "", error, text, setFooter, setShowWarning}) {
 
     if (text) {
         setFooter(text)
@@ -11,13 +11,15 @@ export default function ConsoleOutput({environment, satsTabell, requestType, fil
         } else
             resource = "logviewer"
         if (error) {
-            setFooter("")
+            // setFooter("")
             setFooter("Feil for " + requestType + " med feilmelding: " + error)
-            document.getElementById("requestView").innerText = ""
-            document.getElementById("responseView").innerText = ""
+            set
+            // document.getElementById("requestView").innerText = "<p></p>"
+            // document.getElementById("responseView").innerText = "<p></p>"
         } else {
-            setFooter("")
+            // setFooter("")
             setFooter(requestType + "(" + resource + ")" + " har kjørt ferdig i miljø: " + environment + " med " + "satsTabeller: " + satsTabell.toString().replace("&sats=", ""))
         }
     }
+    setShowWarning(true)
 }
