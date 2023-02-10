@@ -4,6 +4,7 @@ import {TabList} from "./TabList";
 import {EnTable} from "./Table";
 import {Tree} from "./Tree";
 import {ARCNODETree} from "./ARCNODETree";
+import {FORMELTree} from "./FORMELTree";
 
 const search = (current) => {
     let element = [];
@@ -13,7 +14,8 @@ const search = (current) => {
         TABLE: "TABLE",
         NODE: "NODE",
         BEREGNINGNODE: "BEREGNINGNODE",
-        ARCNODE: "ARCNODE"
+        ARCNODE: "ARCNODE",
+        FORMELNODE:"FORMELNODE"
     }
 
     for (let child in current) {
@@ -42,6 +44,9 @@ const search = (current) => {
                     return found
                 case elementType.ARCNODE:
                     found = <ARCNODETree arcnodetree={element}></ARCNODETree>
+                    return found
+                case elementType.FORMELNODE:
+                    found = <FORMELTree formeltree={element}></FORMELTree>
                     return found
                 default:
                     throw new Error("Unsupported elementType")

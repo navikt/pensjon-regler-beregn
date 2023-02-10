@@ -2,9 +2,9 @@
 .scroll {
     min-height: 450px;
     min-width: 650px;
-    overflow: scroll;
+    overflow: auto;
     white-space:pre-wrap;
-    resize: horizontal;
+    resize: both;
 }
 
 .information-popover-content {
