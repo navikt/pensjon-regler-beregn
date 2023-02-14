@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {Button, Heading} from "@navikt/ds-react";
 import './CSS/FormelTree.css'
 
 export function FORMELTree(props) {
@@ -17,7 +16,7 @@ export function FORMELTree(props) {
                             <td style={{backgroundColor:"lightgrey"}}>{n['notasjon']}</td>
                         </tr>
                         <tr>
-                            <td style={{backgroundColor:"lightgrey"}}>{n['innhold']}</td>
+                            <td style={{backgroundColor:"lightgrey"}}>{n['innhold']} = {n['result']}</td>
                         </tr>
                     </table>
                 </div>
@@ -57,17 +56,6 @@ export function FORMELTree(props) {
     return (
         <div className='formeltree-container'>
             <div className="formeltree-nodes-container">
-                {/*<Heading spacing size="small"*/}
-                {/*         level="5" style={{}}> &ensp; Formel format:*/}
-                {/*    <table className={'formeltree-subNodeBtn'}>*/}
-                {/*    <tr>*/}
-                {/*        <th rowSpan={2} style={{backgroundColor:"lightsalmon"}}>foreldre navn   &ensp; </th>*/}
-                {/*        <td style={{backgroundColor:"lightgrey"}}>notasjon</td>*/}
-                {/*    </tr>*/}
-                {/*    <tr>*/}
-                {/*        <td style={{backgroundColor:"lightgrey"}}>innhold</td>*/}
-                {/*    </tr>*/}
-                {/*</table> </Heading>*/}
                 {generateTreeNode(tree,  1)}
             </div>
         </div>
