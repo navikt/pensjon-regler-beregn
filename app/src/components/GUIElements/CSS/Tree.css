@@ -9,7 +9,6 @@
     align-items: flex-start;
     width: 25%;
     height: 100%;
-    height: auto;
     background-color: #f1f1f1;
     border-right: 1px solid black;
     border-radius: 10px 10px 1px 1px;
@@ -96,8 +95,8 @@
     position: absolute;
     top: 0;
     left: -2px;
-    bottom: 35%; /*vertical line position*/
-    width: 0.3em;  /*length of the vertical line */
+    bottom: 35%; /*horizontal line position*/
+    width: 0.3em;  /*length of the horizontal line */
     border: 2px solid #000;
     border-top: 0 none transparent;
     border-right: 0 none transparent;

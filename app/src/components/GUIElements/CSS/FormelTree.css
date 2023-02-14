@@ -70,10 +70,10 @@ th,td {
 .formeltree-nodes-container li div::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: -2px;
-    bottom: 40%; /*vertical line position*/
-    width: 0.8em;  /*length of the vertical line */
+    top: -2px;/* vertical line to the top */
+    left: -2px; /* vertical line position to the left*/
+    bottom: 50%; /*horizontal line position*/
+    width: 0.8em;  /*length of the horizontal line */
     border: 2px solid #000;
     border-top: 0 none transparent;
     border-right: 0 none transparent;
