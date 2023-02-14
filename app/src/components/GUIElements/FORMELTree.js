@@ -57,19 +57,17 @@ export function FORMELTree(props) {
     return (
         <div className='formeltree-container'>
             <div className="formeltree-nodes-container">
-                <Heading spacing size="small"
-                         level="5" style={{}}> &ensp; Formel format:
-                    <table className={'formeltree-subNodeBtn'}>
-                    <tr>
-                        <th rowSpan={2} style={{backgroundColor:"lightsalmon"}}>foreldre navn   &ensp; </th>
-                        <td style={{backgroundColor:"lightgrey"}}>notasjon</td>
-                    </tr>
-                    <tr>
-                        <td style={{backgroundColor:"lightgrey"}}>innhold</td>
-                    </tr>
-                </table> </Heading>
-
-
+                {/*<Heading spacing size="small"*/}
+                {/*         level="5" style={{}}> &ensp; Formel format:*/}
+                {/*    <table className={'formeltree-subNodeBtn'}>*/}
+                {/*    <tr>*/}
+                {/*        <th rowSpan={2} style={{backgroundColor:"lightsalmon"}}>foreldre navn   &ensp; </th>*/}
+                {/*        <td style={{backgroundColor:"lightgrey"}}>notasjon</td>*/}
+                {/*    </tr>*/}
+                {/*    <tr>*/}
+                {/*        <td style={{backgroundColor:"lightgrey"}}>innhold</td>*/}
+                {/*    </tr>*/}
+                {/*</table> </Heading>*/}
                 {generateTreeNode(tree,  1)}
             </div>
         </div>

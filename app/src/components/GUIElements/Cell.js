@@ -5,7 +5,6 @@ import './CSS/Button.css'
 import {renderToString} from "react-dom/server";
 
 export const popoverType_None = "NONE"
-const popoverType_INFO = "INFO"
 const popoverType_DESCRIPTION = "DESCRIPTION"
 const popoverTyoe_FORMEL = "FORMEL"
 const popoverType_FAKTUM = "FAKTUM"
@@ -86,7 +85,7 @@ export function Cell(props) {
 
     function createCell() {
         let tooltip = <></>
-        if (subitem['tooltip'] != undefined) {
+        if (subitem['tooltip'] != undefined ) {
             dataBtn = subitem['data']
             tooltip = getTooltip()
         }
