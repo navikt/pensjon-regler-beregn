@@ -11,7 +11,7 @@ function WarningToast(props) {
     return (
         <div  style={{zIndex: 19, position: "absolute",  right: "10px", top:"15px", background:"white", borderRadius:"5px", boxSizing:"border-box", width:"30%", opacity:"0.9"}} >
             <ToastContainer >
-                <Toast  onClose={() => setShowWarning(false)} show={showWarning} delay={5000} autohide animation>
+                <Toast  onClose={() => setShowWarning(false)} show={showWarning} delay={3000} autohide animation>
                      <Toast.Header closeButton={false} >
                         <strong style={{color:"red",fontsize:"8px", padding:"5px"}} >Informasjon:</strong>
                     </Toast.Header>

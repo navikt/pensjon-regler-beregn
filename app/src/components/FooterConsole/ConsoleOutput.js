@@ -4,6 +4,7 @@ export default function ConsoleOutput({environment, satsTabell, requestType, fil
 
     if (text) {
         setFooter(text)
+        setShowWarning(true)
     } else {
         let resource
         if (fileName) {
@@ -11,15 +12,10 @@ export default function ConsoleOutput({environment, satsTabell, requestType, fil
         } else
             resource = "logviewer"
         if (error) {
-            // setFooter("")
             setFooter("Feil for " + requestType + " med feilmelding: " + error)
-            set
-            // document.getElementById("requestView").innerText = "<p></p>"
-            // document.getElementById("responseView").innerText = "<p></p>"
         } else {
-            // setFooter("")
             setFooter(requestType + "(" + resource + ")" + " har kjørt ferdig i miljø: " + environment + " med " + "satsTabeller: " + satsTabell.toString().replace("&sats=", ""))
+            setShowWarning(true)
         }
     }
-    setShowWarning(true)
 }
