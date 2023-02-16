@@ -11,13 +11,15 @@ export function FORMELTree(props) {
             return (
                 <div >
                     <table >
-                        <tr>
-                            <th rowSpan={2} style={{backgroundColor:"lightsalmon"}}>{n['name']}</th>
-                            <td style={{backgroundColor:"lightgrey"}}>{n['notasjon']}</td>
-                        </tr>
-                        <tr>
-                            <td style={{backgroundColor:"lightgrey"}}>{n['innhold']} = {n['result']}</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <th rowSpan={2} style={{backgroundColor:"lightsalmon"}}>{n['name']}</th>
+                                <td style={{backgroundColor:"lightgrey"}}>{n['notasjon']}</td>
+                            </tr>
+                            <tr>
+                                <td style={{backgroundColor:"lightgrey"}}>{n['innhold']} = {n['result']}</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
 
