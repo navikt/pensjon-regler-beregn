@@ -11,6 +11,7 @@ export default function SatsDropdown(props) {
     
     const [tabeller, setTabeller] = useState([[],[]])
     let setFooter = props.onSetFooter
+    let setShowWarning = props.setShowWarning
 
     useEffect(() => {
         let satsUrl = 'https://pensjon-regler-q2.dev.adeo.no/alleSatstabeller'
@@ -28,13 +29,14 @@ export default function SatsDropdown(props) {
                         return response.json()
                     else {
                         let text = `Leser satsTabeller list feil, sjekk nais status: ${response.status}`
-                        ConsoleOutput({text, setFooter})
+                        setShowWarning(true)
+                        ConsoleOutput({text, setFooter, setShowWarning})
                         throw new Error(`HTTP error! Status: ${response.status}`);
                     }
                 })
                 .then(response => setTabeller(response))
                 .catch(error => {let text =`Leser satsTabeller list feil, sjekk nais status: ${error}`
-                    ConsoleOutput({text, setFooter})
+                    ConsoleOutput({text, setFooter, setShowWarning})
                     }
                    )
           // }

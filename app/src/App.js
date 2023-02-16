@@ -17,6 +17,7 @@ import EnvironmentsDropdown from "./components/Navigation/EnvironmentsDropdown";
 import FetchGUIModel from "./components/Navigation/FetchGUIModel";
 
 import Loading from "./components/Navigation/Loading";
+import WarningToast from "./components/WarningToast";
 
 export default function App() {
 
@@ -31,10 +32,13 @@ export default function App() {
     const [name, setName] = useState([]);
     const [isFetched, setIsFetched] = useState(false)
     const [isGUIModelFetched, setIsGUIModelFetched] = useState(false)
+    // const [detailView, setDetailView] = useState("")
     const [footer, setFooter] = useState("")
     let contentType = 'application/json'
 
     const [isLoading, setIsLoading] = useState(false)
+
+    const [showWarning, setShowWarning] = useState(false)
 
     function FetchByLogID() {
         const {id} = useParams();
@@ -120,42 +124,45 @@ export default function App() {
     }
 
     return (
-        <div className="App">
-
-            <div>
-                <div className="Header">
-                    <div className="HeaderTitle">Beregn Pensjon</div>
-                    <div className="HeaderButton"><EnvironmentsDropdown
-                        environmentsChanger={setEnvironment}></EnvironmentsDropdown>
-                    </div>
-                    <div className="HeaderButton"><SatsDropdown tabellChanger={setSatsTabell}
-                                                                onSetFooter={setFooter}></SatsDropdown></div>
-                    <div className="HeaderButton"><Openfile satsTabell={satsTabell} onResultChange={setResult}
-                                                            environment={environment} setFooter={setFooter} setIsGUIModelFetched = {setIsGUIModelFetched} setIsLoading = {setIsLoading}></Openfile>
-                    </div>
-                    <div className="HeaderButton"><Run name={name} body={body} environment={environment}
-                                                       satsTabell={satsTabell} onResultChange={setResult}
-                                                       contentType={'application/json'} setFooter={setFooter} setIsGUIModelFetched = {setIsGUIModelFetched} setIsLoading = {setIsLoading}/></div>
-                    <div className="HeaderButton">
-                        <Bruksanvisning/>
+        <div>
+            <WarningToast footer={footer} showWarning={showWarning} setShowWarning = {setShowWarning} ></WarningToast>
+            <div className="App">
+                <div>
+                    <div className="Header">
+                        <div className="HeaderTitle">Beregn Pensjon</div>
+                        <div className="HeaderButton"><EnvironmentsDropdown
+                            environmentsChanger={setEnvironment}></EnvironmentsDropdown>
+                        </div>
+                        <div className="HeaderButton"><SatsDropdown tabellChanger={setSatsTabell}
+                                                                    onSetFooter={setFooter} setShowWarning = {setShowWarning}></SatsDropdown></div>
+                        <div className="HeaderButton"><Openfile satsTabell={satsTabell} onResultChange={setResult}
+                                                                environment={environment} setFooter={setFooter} setIsGUIModelFetched = {setIsGUIModelFetched} setIsLoading = {setIsLoading} setShowWarning = {setShowWarning}></Openfile>
+                        </div>
+                        <div className="HeaderButton"><Run name={name} body={body} environment={environment}
+                                                           satsTabell={satsTabell} onResultChange={setResult}
+                                                           contentType={'application/json'} setFooter={setFooter} setIsGUIModelFetched = {setIsGUIModelFetched} setIsLoading = {setIsLoading} setShowWarning = {setShowWarning}/></div>
+                        <div className="HeaderButton">
+                            <Bruksanvisning/>
+                        </div>
                     </div>
                 </div>
+                <Split
+                    sizes={[80, 20]} gutterSize={15} dragInterval={15} direction="vertical" cursor="row-resize"
+                    style={{height: `calc(100vh)`}}>
+                    <div className="main-container">
+                        <HashRouter>
+                            <Routes>
+                                <Route path="/:id" element={
+                                    <FetchByLogID/>}></Route> {/* routing to enable us to read parameter from URL */}
+                            </Routes>
+                        </HashRouter>
+                        {<Request/>}
+                        {<Response/>}
+                    </div>
+                    {/*<div className="detailView"><DetailView footer={footer}></DetailView></div>*/}
+                    <div className="footerConsole"><Footer footer={footer}></Footer></div>
+                </Split>
             </div>
-            <Split
-                sizes={[85, 15]} gutterSize={15} dragInterval={15} direction="vertical" cursor="row-resize"
-                style={{height: `calc(100vh)`}}>
-                <div className="main-container">
-                    <HashRouter>
-                        <Routes>
-                            <Route path="/:id" element={
-                                <FetchByLogID/>}></Route> {/* routing to enable us to read parameter from URL */}
-                        </Routes>
-                    </HashRouter>
-                    {<Request/>}
-                    {<Response/>}
-                </div>
-                <div className="footerConsole"><Footer footer={footer}></Footer></div>
-            </Split>
         </div>
     );
 }

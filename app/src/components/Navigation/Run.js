@@ -2,7 +2,7 @@ import {Button} from "@navikt/ds-react";
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import FetchGUIModel from "./FetchGUIModel";
 
-export default function Run({ name, body,environment, satsTabell,onResultChange, contentType, setFooter, setIsGUIModelFetched, setIsLoading}) {
+export default function Run({ name, body,environment, satsTabell,onResultChange, contentType, setFooter, setIsGUIModelFetched, setIsLoading, setShowWarning}) {
 
     const [isSending, setIsSending] = useState(false)
     const isMounted = useRef(true)
@@ -10,7 +10,7 @@ export default function Run({ name, body,environment, satsTabell,onResultChange,
         if (isSending) return
             setIsSending(true)
         let className = name
-        FetchGUIModel({body, className, environment,satsTabell, onResultChange, contentType, setFooter, setIsGUIModelFetched,setIsLoading})
+        FetchGUIModel({body, className, environment,satsTabell, onResultChange, contentType, setFooter, setIsGUIModelFetched,setIsLoading, setShowWarning})
         if (isMounted.current) // only update if we are still mounted
             setIsSending(false)
     })

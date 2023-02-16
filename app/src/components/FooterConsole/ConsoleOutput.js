@@ -1,9 +1,10 @@
 import React from "react";
 
-export default function ConsoleOutput({environment, satsTabell, requestType, fileName = "", error, text, setFooter}) {
+export default function ConsoleOutput({environment, satsTabell, requestType, fileName = "", error, text, setFooter, setShowWarning}) {
 
     if (text) {
         setFooter(text)
+        setShowWarning(true)
     } else {
         let resource
         if (fileName) {
@@ -11,13 +12,10 @@ export default function ConsoleOutput({environment, satsTabell, requestType, fil
         } else
             resource = "logviewer"
         if (error) {
-            setFooter("")
             setFooter("Feil for " + requestType + " med feilmelding: " + error)
-            document.getElementById("requestView").innerText = ""
-            document.getElementById("responseView").innerText = ""
         } else {
-            setFooter("")
             setFooter(requestType + "(" + resource + ")" + " har kjørt ferdig i miljø: " + environment + " med " + "satsTabeller: " + satsTabell.toString().replace("&sats=", ""))
+            setShowWarning(true)
         }
     }
 }

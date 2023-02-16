@@ -13,11 +13,14 @@ export default function FetchGUIModel({
                                           fileName,
                                           setFooter,
                                           setIsGUIModelFetched,
-                                          setIsLoading
+                                          setIsLoading,
+    setShowWarning
                                       }) {
     // let text = ""
     // ConsoleOutput({text})
-    document.getElementById("footerConsole").innerText = ""
+    // document.getElementById("footerConsole").innerText = ""
+    setFooter("")
+    onResultChange("")
     let url = ""
     let endpoint = ""
     if(className==undefined||className==null) {
@@ -63,7 +66,7 @@ export default function FetchGUIModel({
                 return response.json()
             } else {
                 let error = `HTTP error status: ${response.status}`
-                ConsoleOutput({environment, satsTabell, requestType, fileName, error, setFooter})
+                ConsoleOutput({environment, satsTabell, requestType, fileName, error, setFooter, setShowWarning})
                 throw new Error(error);
             }
         })
@@ -72,12 +75,12 @@ export default function FetchGUIModel({
             if (response.hasOwnProperty("metadata")) {
                 if (response['metadata']['status'] === 'error') {
                     let error = response['metadata']['info']
-                    ConsoleOutput({environment, satsTabell, requestType, fileName, error, setFooter})
+                    ConsoleOutput({environment, satsTabell, requestType, fileName, error, setFooter,setShowWarning})
                     throw new Error(error);
                 }
             }
         })
-        .then(() => ConsoleOutput({environment, satsTabell, requestType, fileName, setFooter}))
+        .then(() => ConsoleOutput({environment, satsTabell, requestType, fileName, setFooter,setShowWarning}))
         .then(setIsLoading(false))
         .catch(error => {
             console.log('Error:', error)
