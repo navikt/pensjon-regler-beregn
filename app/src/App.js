@@ -30,6 +30,7 @@ export default function App() {
     const [result, setResult] = useState([]);
     const [body, setBody] = useState([]);
     const [name, setName] = useState([]);
+    const [fileName, setFileName] = useState([]);
     const [isFetched, setIsFetched] = useState(false)
     const [isGUIModelFetched, setIsGUIModelFetched] = useState(false)
     // const [detailView, setDetailView] = useState("")
@@ -131,12 +132,14 @@ export default function App() {
                     <div className="Header">
                         <div className="HeaderTitle">Beregn Pensjon</div>
                         <div className="HeaderButton"><EnvironmentsDropdown
-                            environmentsChanger={setEnvironment}></EnvironmentsDropdown>
+                            environmentsChanger={setEnvironment} satsTabell={satsTabell} onResultChange={setResult}
+                            setFooter={setFooter} setIsGUIModelFetched = {setIsGUIModelFetched} setIsLoading = {setIsLoading} setShowWarning = {setShowWarning} body={body} name={name} fileName = {fileName}></EnvironmentsDropdown>
                         </div>
                         <div className="HeaderButton"><SatsDropdown tabellChanger={setSatsTabell}
-                                                                    onSetFooter={setFooter} setShowWarning = {setShowWarning}></SatsDropdown></div>
+                                                                    onResultChange={setResult}
+                                                                    environment={environment} setFooter={setFooter} setIsGUIModelFetched = {setIsGUIModelFetched} setIsLoading = {setIsLoading} setShowWarning = {setShowWarning} body={body} name={name} fileName = {fileName}></SatsDropdown></div>
                         <div className="HeaderButton"><Openfile satsTabell={satsTabell} onResultChange={setResult}
-                                                                environment={environment} setFooter={setFooter} setIsGUIModelFetched = {setIsGUIModelFetched} setIsLoading = {setIsLoading} setShowWarning = {setShowWarning}></Openfile>
+                                                                environment={environment} setFooter={setFooter} setIsGUIModelFetched = {setIsGUIModelFetched} setIsLoading = {setIsLoading} setShowWarning = {setShowWarning} setBody = {setBody} setName = {setName} setFileName = {setFileName}></Openfile>
                         </div>
                         <div className="HeaderButton"><Run name={name} body={body} environment={environment}
                                                            satsTabell={satsTabell} onResultChange={setResult}

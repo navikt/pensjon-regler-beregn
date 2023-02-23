@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Select } from "@navikt/ds-react/esm/form";
 import "./SatsDropdown.css"
 import ConsoleOutput from "../FooterConsole/ConsoleOutput";
+import FetchGUIModel from "./FetchGUIModel";
 
 export const defaultSats = "Sats fra miljø"
 
@@ -46,6 +47,21 @@ export default function SatsDropdown(props) {
 
     function tabellHandler(e) {
         props.tabellChanger(e.target.value)
+
+        let body = props.body
+        let className = props.name
+        let environment = props.environment
+        let satsTabell = e.target.value
+        let onResultChange = props.onResultChange
+        let fileName = props.fileName
+        let setFooter = props.setFooter
+        let setIsGUIModelFetched = props.setIsGUIModelFetched
+        let setIsLoading = props.setIsLoading
+        let setShowWarning = props.setShowWarning
+        let contentType = fileName==""?'application/json':'application/xml'
+        //load new if request is from Apne. (clear request and response)
+        FetchGUIModel({body,className,environment,satsTabell,onResultChange,contentType,fileName ,setFooter,setIsGUIModelFetched, setIsLoading,setShowWarning})
+
     }
 
     return(

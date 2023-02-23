@@ -1,14 +1,29 @@
 import React from "react";
 import {Select} from "@navikt/ds-react/esm/form";
 import "./SatsDropdown.css"
+import FetchGUIModel from "./FetchGUIModel";
 
 // global constant
 export const chooseEnvironemnt = "Velg miljø"
 export const Local_Environemnt = "local"
 
 export default function EnvironmentsDropdown(props) {
-    function environmentsHandler(value) {
-        props.environmentsChanger(value)
+    function environmentsHandler(environment) {
+        props.environmentsChanger(environment)
+
+        let body = props.body
+        let className = props.name
+        let satsTabell = props.satsTabell
+        let onResultChange = props.onResultChange
+        let fileName = props.fileName
+        let setFooter = props.setFooter
+        let setIsGUIModelFetched = props.setIsGUIModelFetched
+        let setIsLoading = props.setIsLoading
+        let setShowWarning = props.setShowWarning
+        let contentType = fileName==""?'application/json':'application/xml'
+        //load new if request is from Apne. (clear request and response)
+        FetchGUIModel({body,className,environment,satsTabell,onResultChange,contentType,fileName ,setFooter,setIsGUIModelFetched, setIsLoading,setShowWarning})
+
     }
 
     return (

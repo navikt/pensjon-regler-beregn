@@ -19,7 +19,7 @@ export default function FetchGUIModel({
     // let text = ""
     // ConsoleOutput({text})
     // document.getElementById("footerConsole").innerText = ""
-    setFooter("")
+    setFooter("Loading...")
     onResultChange("")
     let url = ""
     let endpoint = ""
@@ -50,7 +50,7 @@ export default function FetchGUIModel({
     document.getElementById("satsTabellerSelect").value = satsTabell
 
     const requestType = className.split(".")[className.split(".").length - 1]
-
+    console.log("url", url)
     fetch(url, {
         method: 'POST',
         headers: {
