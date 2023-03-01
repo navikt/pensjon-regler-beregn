@@ -5,6 +5,9 @@ import './CSS/Button.css'
 import {renderToString} from "react-dom/server";
 
 export const popoverType_None = "NONE"
+export const popoverType_DESCRIPTION = "DESCRIPTION"
+export const popoverType_FORMEL = "FORMEL"
+export const popoverType_FAKTUM = "FAKTUM"
 
 function generateTables(tables) {
     let t = []
@@ -89,7 +92,7 @@ export function Cell(props) {
         let popOver = <></>
         if (subitem['popoverType'] != popoverType_None) {
             // dataBtn = <Button onClick={() => setOpen(!open)} size="xsmall">
-            dataBtn = <Button ref={buttonPopoverRef}  onClick={() => setOpen(!open)} size="xsmall">
+            dataBtn = <Button ref={buttonPopoverRef}  onClick={() => setOpen(!open)} size="xsmall" style={popOverColor(subitem['popoverType'])} >
                 {subitem['data']}</Button>
             popOver = getPopOver()
             // popOver = getDetailView()
@@ -97,6 +100,15 @@ export function Cell(props) {
             dataBtn = subitem['data']
         }
         return {tooltip, popOver};
+    }
+
+    function popOverColor(value) {
+        if (value==popoverType_DESCRIPTION)
+            return {'backgroundColor': 'blue'};
+        else if(value==popoverType_FORMEL)
+            return {'color': 'orange', 'backgroundColor': 'grey'};
+        else if(value==popoverType_FAKTUM)
+            return {'color': 'white', 'backgroundColor': 'grey'};
     }
 
     if (subitem['header']) {
