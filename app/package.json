@@ -5,7 +5,7 @@
   "homepage": ".",
   "dependencies": {
     "@navikt/ds-css": "^2.4.2",
-    "@navikt/ds-css-internal": "^2.4.2",
+    "@navikt/ds-css-internal": "^2.6.0",
     "@navikt/ds-react": "^2.1.0",
     "@navikt/ds-react-internal": "^2.4.2",
     "@testing-library/jest-dom": "^5.16.5",
