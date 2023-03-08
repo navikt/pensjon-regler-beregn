@@ -141,9 +141,9 @@ export default function App() {
                         <div className="HeaderButton"><Openfile satsTabell={satsTabell} onResultChange={setResult}
                                                                 environment={environment} setFooter={setFooter} setIsGUIModelFetched = {setIsGUIModelFetched} setIsLoading = {setIsLoading} setShowWarning = {setShowWarning} setBody = {setBody} setName = {setName} setFileName = {setFileName}></Openfile>
                         </div>
-                        <div className="HeaderButton"><Run name={name} body={body} environment={environment}
-                                                           satsTabell={satsTabell} onResultChange={setResult}
-                                                           contentType={'application/json'} setFooter={setFooter} setIsGUIModelFetched = {setIsGUIModelFetched} setIsLoading = {setIsLoading} setShowWarning = {setShowWarning}/></div>
+                        {/*<div className="HeaderButton"><Run name={name} body={body} environment={environment}*/}
+                        {/*                                   satsTabell={satsTabell} onResultChange={setResult}*/}
+                        {/*                                   contentType={'application/json'} setFooter={setFooter} setIsGUIModelFetched = {setIsGUIModelFetched} setIsLoading = {setIsLoading} setShowWarning = {setShowWarning}/></div>*/}
                         <div className="HeaderButton">
                             <Bruksanvisning/>
                         </div>

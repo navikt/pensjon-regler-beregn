@@ -7,7 +7,7 @@
     resize: both;
 }
 
-.information-popover-content {
-    width: 20%;
+.tooltip {
+    min-width: 5%;
 }
 

@@ -49,7 +49,7 @@ export function Cell(props) {
             {'?'}
         </Button>
             <Popover
-                className={"information-popover-content"}
+                className={"tooltip"}
                 open={open}
                 onClose={() => setOpen(false)}
                 anchorEl={buttonTooltipRef.current}
