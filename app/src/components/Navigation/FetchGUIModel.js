@@ -16,14 +16,17 @@ export default function FetchGUIModel({
                                           setIsLoading,
     setShowWarning
                                       }) {
-    // let text = ""
-    // ConsoleOutput({text})
-    // document.getElementById("footerConsole").innerText = ""
+
     setFooter("Loading...")
     onResultChange("")
     let url = ""
     let endpoint = ""
+    if(body==null||body=="") {
+        setFooter("null content, running stopped")
+        return
+    }
     if(className==undefined||className==null) {
+        setFooter("missing className from content, running stopped")
         return
     }
     if (className.toString().includes("Request")) {
