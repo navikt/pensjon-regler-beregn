@@ -16,14 +16,17 @@ export default function FetchGUIModel({
                                           setIsLoading,
     setShowWarning
                                       }) {
-    // let text = ""
-    // ConsoleOutput({text})
-    // document.getElementById("footerConsole").innerText = ""
-    setFooter("")
+
+    setFooter("Loading...")
     onResultChange("")
     let url = ""
     let endpoint = ""
+    if(body==null||body=="") {
+        setFooter("null content, running stopped")
+        return
+    }
     if(className==undefined||className==null) {
+        setFooter("missing className from content, running stopped")
         return
     }
     if (className.toString().includes("Request")) {
@@ -50,7 +53,7 @@ export default function FetchGUIModel({
     document.getElementById("satsTabellerSelect").value = satsTabell
 
     const requestType = className.split(".")[className.split(".").length - 1]
-
+    console.log("url", url)
     fetch(url, {
         method: 'POST',
         headers: {
