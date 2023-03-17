@@ -4,7 +4,7 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@navikt/ds-css": "^2.7.7",
+    "@navikt/ds-css": "^2.7.8",
     "@navikt/ds-css-internal": "^2.7.7",
     "@navikt/ds-react": "^2.7.6",
     "@navikt/ds-react-internal": "^2.7.7",
@@ -28,7 +28,7 @@
   "scripts": {
     "prebuild": "node src/doc/doc.js && copyfiles -f src/doc/images/*.* public/doc/images",
     "start": "react-scripts start",
-    "build": "CI= react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
