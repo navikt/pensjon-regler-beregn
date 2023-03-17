@@ -66,7 +66,7 @@ export function Cell(props) {
         return <Popover open={open} onClose={() => setOpen(false)}
                         anchorEl={buttonPopoverRef.current}
                         placement="bottom" modifiers={modifiers}
-                        arrow={true} offset={32}>
+                        arrow={true} >
             <Popover.Content className={"scroll"}>
                 {detail}
             </Popover.Content>
