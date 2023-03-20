@@ -141,10 +141,10 @@
 a.bruksanvisning, a:hover.bruksanvisning, a:focus.bruksanvisning, a:active.bruksanvisning {
   text-decoration: none;
   color: white !important;
-  font-size: var(--navds-font-size-large);
-  font-weight: var(--navds-font-weight-bold);
+  font-size: 1.125rem;
+  font-weight: 600;
   letter-spacing: 0;
-  line-height: var(--navds-font-line-height-large);
+  line-height: 1.5rem;
   margin: 0;
 }
 
