@@ -4,9 +4,9 @@
     min-width: 400px;
     min-height: 20vh;
     max-height: 85vh !important;
-    overflow: auto;
+    overflow: scroll;
     white-space:pre-wrap;
-    /*resize: both;*/
+    resize: both;
     padding-bottom: 10vh;
 }
 
