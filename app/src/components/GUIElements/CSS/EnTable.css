@@ -3,7 +3,7 @@
     z-index: 999;
     min-width: 400px;
     min-height: 20vh;
-    max-height: 85vh !important;
+    max-height: 70vh !important;
     overflow: scroll;
     white-space:pre-wrap;
     resize: both;
