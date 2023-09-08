@@ -1,12 +1,21 @@
 
-.scroll {
+.Popoverscroll  {
     z-index: 999;
-    min-height: 450px;
-    min-width: 650px;
-    height: 650px;
+    min-width: 400px;
+    min-height: 20vh;
+    max-height: 70vh !important;
     overflow: scroll;
     white-space:pre-wrap;
     resize: both;
+    padding-bottom: 10vh;
+}
+
+.Popoverscroll .tableHeading {
+    font-size: 18px  !important;
+}
+
+.tableHeading {
+    font-size:30px
 }
 
 .tooltip {

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Heading, Table} from '@navikt/ds-react';
 import './CSS/EnTable.css'
-import {Cell, popoverType_None} from "./Cell";
+import {Cell} from "./Cell";
 
 export function EnTable(props) {
     let [table] = useState(props.table)
@@ -18,15 +18,6 @@ export function EnTable(props) {
         if (Array.isArray(item[1])) {
             item[1].map((subitem, j) => {
                 row.push(<Cell element={subitem} j={j}></Cell>)
-                // if (subitem["tooltip"] != undefined || subitem['popoverType'] != popoverType_None) {
-                //     row.push(<Cell element={subitem} j={j}></Cell>)
-                // } else {
-                //     if (subitem['header']) {
-                //         row.push(<Table.HeaderCell key={j} scope="col">{subitem['data']}</Table.HeaderCell>)
-                //     } else {
-                //         row.push(<Table.DataCell key={j}>{subitem['data']}</Table.DataCell>)
-                //     }
-                // }
             })
         }
         return row
@@ -36,7 +27,7 @@ export function EnTable(props) {
         if (name != null && name.includes('Ingen')) {
             return (null);
         } else
-            return <div className="w-full flex flex-col gap-4">
+            return <div className="w-full flex flex-col gap-4"  >
                 <Table size="small">
                     <Table.Header>
                         <Table.Row>
@@ -61,7 +52,7 @@ export function EnTable(props) {
         <div>
             <Heading size="xsmall" level="6"> &ensp;
             </Heading>
-            <Heading spacing size="large"
+            <Heading spacing className={"tableHeading"}
                      style={{
                          borderBottom: table.hasOwnProperty('name') ? "2px solid grey" : "",
                          borderTop: table.hasOwnProperty('name') ? "2px solid grey" : "",
@@ -71,7 +62,7 @@ export function EnTable(props) {
                          alignItems: 'center'
                      }}
                      level="6"> &ensp; {table.hasOwnProperty('name') ? table['name'] : ''}</Heading>
-            <Checkname name={table['name']}>
+            <Checkname name={table['name']} className={"tableBody"}>
 
             </Checkname>
         </div>

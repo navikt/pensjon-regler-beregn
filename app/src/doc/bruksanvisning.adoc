@@ -37,6 +37,7 @@ image::beregnpensjon.PNG[]
 . *Velg miljø* - Velg det miljø du ønsker å gjennomføre beregningen i. Typiske valg her er å bruke Q0 for prodlikt eller testmiljøene Q2 eller Q5. Se https://confluence.adeo.no/display/PREG/Versjonsoversikt#[Versjonsoversikten] oversikt over hvilke historier som ligger i de forskjellige miljø.
 . *Sats fra miljø* - Dersom man ønsker å gjennomføre beregningen på en spesiell sats kan man overstyre satstabellen. Se https://pensjon-regler-satsviewer.dev-fss.nais.io/[Satsoversikten] for detaljer på satsene. Bruk valget _Sats fra miljø_ for å benytte eksisterende sats i miljøet.
 . *Åpne* - Hvis du åpner nettsiden uten å gå gjennom logvieweren har du kun mulighet til å laste opp og kjøre egen XML. Dette gjør du ved å klikke på 'Åpne' -> Velg fil.
-. *Kjør* - Trykk for å sende forespørselen til valgt miljø. En ny beregning gjennomføres og vises.
+
+En ny beregning gjennomføres og vises automatisk hvergang etter valg.
 
 IMPORTANT: Hvis du har valgt en response (grå linjer) fra logviewer vil ikke endringer i miljø eller sats påvirke beregning. I slike tilfeller ser man kun på det resultat som ble produsert akkurat på det tidspunktet.
