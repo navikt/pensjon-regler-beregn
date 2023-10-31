@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { Select } from "@navikt/ds-react/esm/form";
+import React, {useEffect, useState} from "react";
+import {Select} from "@navikt/ds-react/esm/form";
 import "./SatsDropdown.css"
 import ConsoleOutput from "../FooterConsole/ConsoleOutput";
 import FetchGUIModel from "./FetchGUIModel";
@@ -8,6 +7,7 @@ import FetchGUIModel from "./FetchGUIModel";
 export const defaultSats = "Sats fra miljø"
 
 export default function SatsDropdown(props) {
+
 
     
     const [tabeller, setTabeller] = useState([[],[]])

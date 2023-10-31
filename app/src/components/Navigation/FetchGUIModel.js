@@ -52,7 +52,7 @@ export default function FetchGUIModel({
     document.getElementById("environmentselect").value = environment
     document.getElementById("satsTabellerSelect").value = satsTabell
 
-    const requestType = className.split(".")[className.split(".").length - 1]
+    const requestType = className.split(".")[className.split(".").length - 1] //TODO
     console.log("url", url)
     fetch(url, {
         method: 'POST',
