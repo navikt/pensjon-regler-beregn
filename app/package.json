@@ -9,7 +9,7 @@
     "@navikt/ds-react": "^5.9.2",
     "@navikt/ds-react-internal": "^3.4.3",
     "@testing-library/jest-dom": "^6.1.4",
-    "@testing-library/react": "^14.0.0",
+    "@testing-library/react": "^14.1.0",
     "@testing-library/user-event": "^14.5.1",
     "asciidoctor": "^3.0.2",
     "bootstrap": "^5.3.2",
