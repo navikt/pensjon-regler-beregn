@@ -43,7 +43,7 @@ export default function App() {
 
     function FetchByLogID() {
         const {id} = useParams();
-        let logUrl = 'https://pensjon-regler-logviewer-api.dev-fss.nais.io/api/log/' + id;
+        let logUrl = 'https://pensjon-regler-logviewer-api.dev.adeo.no/api/log/' + id;
         if (!isFetched) {
             const fetchLog = useCallback(async () => {
                 try {
