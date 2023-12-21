@@ -41,7 +41,7 @@ const DetailViewFile: React.FC = () => {
     }
 
     return (
-        !!isSuccess &&
+        isSuccess &&
         <>
             <div className="detailcontainer">
                 <div id="requestview">

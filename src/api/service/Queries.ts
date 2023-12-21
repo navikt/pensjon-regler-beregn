@@ -45,7 +45,6 @@ const fetchGuiModelByFile = async (body: string, clazzName: string, environment:
     } else {
         url = `https://pensjon-regler-${environment}.dev.adeo.no/api/${endpoint}?className=${clazzName}`
     }
-    console.log(url)
 
     if (sats) {
         url += `&sats=${sats}`
@@ -59,7 +58,7 @@ const fetchGuiModelByFile = async (body: string, clazzName: string, environment:
                 'Accept': 'application/json',
             }
         })
-    console.log("from fetchGuiModelByFile => ", response.data)
+
     return response.data as GuiModel
 
 
@@ -85,7 +84,7 @@ const fetchGuiModel = async (body: string, clazzName: string, environment: strin
     } else {
         url = `https://pensjon-regler-${environment}.dev.adeo.no/api/${endpoint}?className=${clazzName}`
     }
-    console.log(url)
+
 
     if (sats) {
         url += `&sats=${sats}`
@@ -100,7 +99,7 @@ const fetchGuiModel = async (body: string, clazzName: string, environment: strin
                 'Accept': 'application/json',
             }
         })
-    console.log("from fetchGuiModel => ", response.data)
+
     return response.data as GuiModel
 }
 

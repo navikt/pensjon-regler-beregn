@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { queryLogResponseById } from "../api/service/Queries";
-import { currentEnvironment, currentSats, fileSelected } from "../signal/Signals";
+import { currentEnvironment, currentSats } from "../signal/Signals";
 import DetailView from "./DetailView";
 import { Loader } from "@navikt/ds-react";
 import ConsoleLog from "./ConsoleLog";
@@ -12,8 +12,6 @@ interface MainProps {
 const Main: React.FC<MainProps> = ({ id }): ReactNode => {
 
 
-
-    console.log("fileSet => ", fileSelected)
 
     const { data, isError, isLoading, isSuccess } = queryLogResponseById(id)
 
@@ -31,7 +29,7 @@ const Main: React.FC<MainProps> = ({ id }): ReactNode => {
     }
 
     return (
-        !!isSuccess &&
+        isSuccess &&
         <>
             <DetailView logResponse={data} environment={currentEnvironment.value} sats={currentSats.value} />
             <ConsoleLog />

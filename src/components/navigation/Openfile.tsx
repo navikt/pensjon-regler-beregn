@@ -8,12 +8,9 @@ const Openfile = () => {
 
     const previewFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         const reader = new FileReader()
-        reader.addEventListener("loadend", () => {
-            console.log("body => ", reader.result as string)
-            console.log("filename => ", e.target.files?.item(0)?.name || "")
-            console.log("clazzname => ", parseRequestFromXML(reader.result))
-            navigate("/file", { state: { body: reader.result, filename: e.target.files?.item(0)?.name || "", clazzname: parseRequestFromXML(reader.result) } })
 
+        reader.addEventListener("loadend", () => {
+            navigate("/file", { state: { body: reader.result, filename: e.target.files?.item(0)?.name || "", clazzname: parseRequestFromXML(reader.result as string) } })
         }, false)
 
         if (e.target.files) {
@@ -26,7 +23,7 @@ const Openfile = () => {
         document.getElementById('file-selector')?.click()
     }
 
-    const parseRequestFromXML = (body: any): any => {
+    const parseRequestFromXML = (body: string): any => {
         const xml = new DOMParser().parseFromString(body, "application/xml")
         return xml.documentElement.nodeName
     }
