@@ -8,7 +8,7 @@
     "@navikt/ds-css-internal": "^3.4.3",
     "@navikt/ds-react": "^5.12.2",
     "@navikt/ds-react-internal": "^3.4.3",
-    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/jest-dom": "^6.1.6",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.1",
     "asciidoctor": "^3.0.2",
