@@ -3,11 +3,11 @@ import express, {Application, Response} from 'express'
 const app: Application = express()
 const port = process.env.PORT || 8080
 
-app.get('/isAlive', (_, res: Response) => {
+app.get('/isAlive', (res: Response) => {
     res.status(200).json("OK")
 })
 
-app.get('/isReady', (_, res: Response) => {
+app.get('/isReady', (res: Response) => {
     res.status(200).json("OK")
 })
 
