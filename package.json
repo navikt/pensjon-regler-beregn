@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "devserver": "cd src/server && npm run dev -- --watch",
     "dev": "vite",
+    "dev:server": "npm-run-all --parallel devserver dev",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -33,6 +35,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "npm-run-all": "^4.1.5",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   }

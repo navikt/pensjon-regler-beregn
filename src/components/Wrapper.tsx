@@ -7,7 +7,6 @@ const Wrapper: React.FC = () => {
     const [logId, setLogId] = useState<string>(id || "")
 
     useEffect(() => {
-        console.log("id => ", id)
         setLogId(id || "")
     }, [id])
 
