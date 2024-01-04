@@ -2,12 +2,8 @@
 FROM node:lts-alpine3.19 as build
 WORKDIR /.
 COPY package.json package-lock.json tsconfig.json tsconfig.node.json vite.config.ts ./
-WORKDIR /src/server
-COPY /src/server/package.json /src/server/package-lock.json /src/server/tsconfig.json ./src/server/
 RUN npm ci
 
-
-WORKDIR /.
 COPY /. ./
 RUN npm run build
 
