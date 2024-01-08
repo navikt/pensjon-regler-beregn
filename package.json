@@ -4,9 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "devserver": "cd src/server && npm run dev -- --watch",
     "dev": "vite",
-    "dev:server": "npm-run-all --parallel devserver dev",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
