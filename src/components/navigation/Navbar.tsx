@@ -18,7 +18,7 @@ const Navbar: React.FC<NavbarProps> = (): ReactNode => {
             <Spacer />
             <Openfile />
             <DebugLogModal />
-            <InternalHeader.User name="Bruksanvisning" />
+            <InternalHeader.Button onClick={() => { window.open("/doc/index.html", '_blank') }}>Bruksanvisning</InternalHeader.Button>
         </InternalHeader>
     );
 }

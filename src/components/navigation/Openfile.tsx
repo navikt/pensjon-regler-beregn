@@ -1,5 +1,5 @@
-import { Button } from "@navikt/ds-react"
-import { useNavigate } from "react-router-dom"
+import {InternalHeader} from "@navikt/ds-react"
+import {useNavigate} from "react-router-dom"
 
 
 const Openfile = () => {
@@ -23,16 +23,16 @@ const Openfile = () => {
         document.getElementById('file-selector')?.click()
     }
 
-    const parseRequestFromXML = (body: string): any => {
+    const parseRequestFromXML = (body: string): string => {
         const xml = new DOMParser().parseFromString(body, "application/xml")
         return xml.documentElement.nodeName
     }
 
     return (
-        <div className="vcenternavbar">
+        <>
             <input type="file" accept=".xml" hidden={true} id="file-selector" onChange={(e) => previewFile(e)} />
-            <Button variant="primary-neutral" onClick={clickUpload}>Åpne</Button>
-        </div >
+            <InternalHeader.Button onClick={clickUpload}>Åpne</InternalHeader.Button>
+        </>
     )
 }
 

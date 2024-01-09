@@ -1,4 +1,4 @@
-import { Button, CopyButton, Modal } from "@navikt/ds-react";
+import { Button, CopyButton, InternalHeader, Modal } from "@navikt/ds-react";
 import React, { useEffect } from "react";
 import { currentDebugLog } from "../signal/Signals";
 import { LinkIcon, ThumbUpIcon } from "@navikt/aksel-icons";
@@ -18,9 +18,10 @@ const DebugLogModal: React.FC = () => {
     }, [currentDebugLog.value])
 
 
+
     return (
-        <div className="vcenternavbar">
-            <Button variant="primary-neutral" disabled={showDebugLog} onClick={() => { ref.current?.showModal() }}>Vis regel-logg</Button>
+        <>
+            <InternalHeader.Button as="button" disabled={showDebugLog} className={showDebugLog ? "disable-regel-logg": ""} onClick={() => { ref.current?.showModal() }}>Vis regel-logg</InternalHeader.Button>
             <Modal ref={ref} header={{ heading: "Regel-logg" }} width={`${windowSize[0] - 100}`}>
                 <Modal.Body>
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -46,7 +47,7 @@ const DebugLogModal: React.FC = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-        </div>
+        </>
     )
 }
 
