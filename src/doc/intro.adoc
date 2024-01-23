@@ -1,0 +1,3 @@
+Applikasjonen *Beregn Pensjon* viser grunnlag og beregningsresultat for pensjon.
+
+TIP: Applikasjonen er under utvikling og vi vil gjerne høre hvordan vi kan forbedre den. Besøk oss på vår slack-kanal https://nav-it.slack.com/archives/CDWRP7S4B[#pensjon-regler].
