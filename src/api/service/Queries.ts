@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 import { LogResponse } from "../domain/LogResponse"
 import { GuiModel } from "../domain/GuiModel"
+import {currentEnvironment, currentSats} from "../../signal/Signals.ts";
 
 const fetchByLogId = async (id: string): Promise<LogResponse> => {
     const response = await axios.get(`https://pensjon-regler-logviewer-api.dev.adeo.no/api/log/${id}`, {
@@ -25,6 +26,7 @@ const fetchSatsTabeller = async (): Promise<string[]> => {
 }
 
 const fetchGuiModelByFile = async (body: string, clazzName: string, environment: string, sats: string): Promise<any> => {
+    console.log("fetchGuiModelByFile satstabell: " + sats)
 
     let url = ""
     let endpoint = ""
@@ -43,7 +45,8 @@ const fetchGuiModelByFile = async (body: string, clazzName: string, environment:
     } else if (environment === "local") {
         url = `http://localhost:8080/api/${endpoint}?className=${clazzName}`
     } else {
-        url = `https://pensjon-regler-${environment}.dev.adeo.no/api/${endpoint}?className=${clazzName}`
+        const env = environment.split("-").pop()
+        url = `https://pensjon-regler-${env}.dev.adeo.no/api/${endpoint}?className=${clazzName}`
     }
 
     if (sats) {
@@ -65,6 +68,7 @@ const fetchGuiModelByFile = async (body: string, clazzName: string, environment:
 }
 
 const fetchGuiModel = async (body: string, clazzName: string, environment: string, sats: string): Promise<any> => {
+    console.log("fetchGuiModel satstabell: " + sats)
     let url = ""
     let endpoint = ""
 
@@ -82,7 +86,8 @@ const fetchGuiModel = async (body: string, clazzName: string, environment: strin
     } else if (environment === "local") {
         url = `http://localhost:8080/api/${endpoint}?className=${clazzName}`
     } else {
-        url = `https://pensjon-regler-${environment}.dev.adeo.no/api/${endpoint}?className=${clazzName}`
+        const env = environment.split("-").pop()
+        url = `https://pensjon-regler-${env}.dev.adeo.no/api/${endpoint}?className=${clazzName}`
     }
 
 
@@ -103,15 +108,15 @@ const fetchGuiModel = async (body: string, clazzName: string, environment: strin
     return response.data as GuiModel
 }
 
-export const queryGuiModelByFile = (body: string, clazzName: string, environment: string, sats: string) => useQuery({
-    queryKey: ['guiModelFile', clazzName, environment, sats],
-    queryFn: () => fetchGuiModelByFile(body, clazzName, environment, sats),
+export const queryGuiModelByFile = (body: string, clazzName: string) => useQuery({
+    queryKey: ['guiModelFile'],
+    queryFn: () => fetchGuiModelByFile(body, clazzName, currentEnvironment.value, currentSats.value),
     throwOnError: true,
 })
 
-export const queryGuiModel = (body: string, clazzName: string, environment: string, sats: string) => useQuery({
-    queryKey: ['guiModel', clazzName, environment, sats],
-    queryFn: () => fetchGuiModel(body, clazzName, environment, sats),
+export const queryGuiModel = (body: string, clazzName: string) => useQuery({
+    queryKey: ['guiModel'],
+    queryFn: () => fetchGuiModel(body, clazzName, currentEnvironment.value, currentSats.value),
     throwOnError: true,
 })
 

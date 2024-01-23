@@ -31,7 +31,7 @@ const Openfile = () => {
     return (
         <>
             <input type="file" accept=".xml" hidden={true} id="file-selector" onChange={(e) => previewFile(e)} />
-            <InternalHeader.Button onClick={clickUpload}>Åpne</InternalHeader.Button>
+            <InternalHeader.Button onClick={clickUpload}>Åpne fra fil</InternalHeader.Button>
         </>
     )
 }

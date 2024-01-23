@@ -1,9 +1,11 @@
 import { Dropdown, Button } from "@navikt/ds-react"
-import { currentEnvironment } from "../../signal/Signals"
+import environments from "../constants/Environments.ts";
+import {currentEnvironment} from "../../signal/Signals.ts";
+
 
 const EnvironmentDropdown: React.FC = () => {
 
-    const data = ["local", "q0", "q1", "q2", "q5"]
+    const data = environments
 
     function handleChangedEnvironment(event: React.MouseEvent): void {
         currentEnvironment.value = event.currentTarget.textContent || ""

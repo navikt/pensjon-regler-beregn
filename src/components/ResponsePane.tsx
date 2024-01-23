@@ -7,6 +7,7 @@ interface ResponsePaneProps {
 const ResponsePane: React.FC<ResponsePaneProps> = ({ response, satstabell }) => {
 
     return (
+        !!response &&
         <div className="ResponsePane">
             <div className="headerContainer">
                 <div>

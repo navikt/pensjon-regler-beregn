@@ -7,6 +7,7 @@ interface RequestProps {
 const RequestPane: React.FC<RequestProps> = ({ request }) => {
 
     return (
+        !!request &&
         <div className="RequestPane">
             <div className="headerContainer">
                 <div>
