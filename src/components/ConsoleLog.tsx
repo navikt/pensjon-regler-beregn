@@ -1,11 +1,13 @@
 import { currentConsolelog } from "../signal/Signals"
 
 
-const ConsoleLog: React.FC = () => {
+interface ConsoleLogProps {
+    isFetching: boolean
+}
+const ConsoleLog: React.FC<ConsoleLogProps> = ( {isFetching}) => {
     const runLog = currentConsolelog.value
-
     return (
-        !!runLog &&
+        !!runLog && !isFetching &&
         <div id="consoleview">
             <div id="consolelog">
                 <div className="consolelog">

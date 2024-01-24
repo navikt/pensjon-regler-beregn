@@ -1,13 +1,18 @@
 import { JsonParser } from "./guielements/JsonParser"
+import {useEffect} from "react";
 
 interface ResponsePaneProps {
     response: any[]
     satstabell: string
+    isFetching: boolean
 }
-const ResponsePane: React.FC<ResponsePaneProps> = ({ response, satstabell }) => {
+const ResponsePane: React.FC<ResponsePaneProps> = ({ response, satstabell, isFetching }) => {
+
+    useEffect(() => {
+    }, [isFetching]);
 
     return (
-        !!response &&
+        !isFetching &&
         <div className="ResponsePane">
             <div className="headerContainer">
                 <div>

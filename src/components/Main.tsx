@@ -12,7 +12,7 @@ interface MainProps {
 
 const Main: React.FC<MainProps> = ({ id }): ReactNode => {
 
-    const { data, isError, isLoading, isSuccess } = queryLogResponseById(id)
+    const { data, isError, isLoading, isSuccess, isFetching } = queryLogResponseById(id)
 
     if (isError) {
         throw new Error(`Klarte ikke å hente logg fra miljø ${currentEnvironment.value}`)
@@ -28,11 +28,15 @@ const Main: React.FC<MainProps> = ({ id }): ReactNode => {
         document.title = metaData?.saksId && !metaData?.saksId.includes("Det finnes ingen tilgjengelige") ? `SaksID ${metaData?.saksId} - Beregn pensjon` : `Beregn pensjon`
     }
 
+    if (isFetching) {
+        return <Loader size="3xlarge" title="Laster ..." className="loader" />
+    }
+
     return (
         isSuccess &&
         <>
             <DetailView logResponse={data} />
-            <ConsoleLog />
+            <ConsoleLog isFetching={isFetching}/>
         </>
     )
 }

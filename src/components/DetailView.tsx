@@ -24,7 +24,7 @@ const DetailView: React.FC<DetailViewProps> = ({ logResponse}) => {
     const bruktSats = currentSats.value ? currentSats.value : "Sats fra miljø"
     const metaData = JSON.parse(logResponse.metadata) as Metadata
     const body = JSON.parse(logResponse.xml) as string
-    const { data, isError, isLoading, isSuccess } = queryGuiModel(body, metaData.className)
+    const { data, isError, isLoading, isSuccess, isFetching } = queryGuiModel(body, metaData.className)
 
 
     if (isError) {
@@ -43,15 +43,17 @@ const DetailView: React.FC<DetailViewProps> = ({ logResponse}) => {
         })
     }
 
+    if (isFetching) {
+        return <Loader size="3xlarge" title="Laster ..." className="loader" />;
+    }
+
     return (
         <div className="detailcontainer">
             <div id="requestview">
-                {data?.request &&
-                    <RequestPane request={data?.request} />}
+                <RequestPane request={data?.request} isFetching={isFetching} />
             </div>
             <div id="responseview">
-                {data?.response &&
-                    <ResponsePane response={data?.response} satstabell={currentSats.value} />}
+                <ResponsePane response={data?.response} satstabell={currentSats.value} isFetching={isFetching}/>
             </div>
         </div>
     )

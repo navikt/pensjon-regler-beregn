@@ -20,7 +20,7 @@ const DetailViewFile: React.FC = () => {
     const bruktSats = currentSats.value ? currentSats.value : "Sats fra miljø"
     const environment = currentEnvironment.value
 
-    const { data, isError, isLoading, isSuccess } = queryGuiModelByFile(body, clazzName)
+    const { data, isError, isLoading, isSuccess, isFetching } = queryGuiModelByFile(body, clazzName)
 
     const query = useQueryClient()
     useEffect(() => {
@@ -47,19 +47,23 @@ const DetailViewFile: React.FC = () => {
         })
     }
 
+    if (isFetching) {
+        return <Loader size="3xlarge" title="Laster ..." className="loader" />;
+    }
+
     return (
         <>
             <div className="detailcontainer">
                 <div id="requestview">
                     {data?.request &&
-                        <RequestPane request={data?.request} />}
+                        <RequestPane request={data?.request} isFetching={isFetching}/>}
                 </div>
                 <div id="responseview">
                     {data?.response &&
-                        <ResponsePane response={data?.response} satstabell={currentSats.value} />}
+                        <ResponsePane response={data?.response} satstabell={currentSats.value} isFetching={isFetching} />}
                 </div>
             </div>
-            <ConsoleLog />
+            <ConsoleLog isFetching={isFetching}/>
         </>
     )
 
