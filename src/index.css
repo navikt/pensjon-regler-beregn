@@ -3,7 +3,7 @@
     height: 100%;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    grid-gap: 0px;
+    grid-gap: 0;
     grid-template-areas:
         "requestview responseview"
         "consoleview consoleview";
@@ -14,6 +14,7 @@
     grid-area: requestview;
     overflow: scroll;
     border-right-style: solid;
+    border-right-width: thin;
 }
 
 #responseview {
@@ -21,6 +22,7 @@
     grid-area: responseview;
     overflow: scroll;
     border-left-style: solid;
+    border-left-width: thin;
 }
 
 #consoleview {
@@ -63,6 +65,19 @@
             "requestview"
             "responseview"
             "consoleview";
+    }
+
+    #requestview {
+        margin-top: 70px;
+        border-left-style: none;
+        border-bottom-style: solid;
+        border-bottom-width: medium;
+    }
+
+    #responseview {
+
+        margin-top: 10px;
+        border-left-style: none;
     }
 
 }

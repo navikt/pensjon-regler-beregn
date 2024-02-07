@@ -1,16 +1,25 @@
 import {InternalHeader} from "@navikt/ds-react"
 import {useNavigate} from "react-router-dom"
+import {useGlobalState} from "../../store";
 
 
 const Openfile = () => {
 
     const navigate = useNavigate();
+    const state = useGlobalState()
 
     const previewFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         const reader = new FileReader()
 
         reader.addEventListener("loadend", () => {
-            navigate("/file", { state: { body: reader.result, filename: e.target.files?.item(0)?.name || "", clazzname: parseRequestFromXML(reader.result as string) } })
+            const path = crypto.randomUUID()
+            state.setFile(path)
+            navigate(`/file/${path}`, { state:
+                    { body: reader.result,
+                        filename: e.target.files?.item(0)?.name || "",
+                        clazzname: parseRequestFromXML(reader.result as string),
+                    }
+            })
         }, false)
 
         if (e.target.files) {

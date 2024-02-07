@@ -1,13 +1,13 @@
-import { currentConsolelog } from "../signal/Signals"
+import {useGlobalState} from "../store";
 
 
-interface ConsoleLogProps {
-    isFetching: boolean
-}
-const ConsoleLog: React.FC<ConsoleLogProps> = ( {isFetching}) => {
-    const runLog = currentConsolelog.value
+const ConsoleLog: React.FC = () => {
+
+    const state = useGlobalState()
+
+    const runLog = state.getConsoleLog()
     return (
-        !!runLog && !isFetching &&
+        !!runLog && runLog?.length > 0 &&
         <div id="consoleview">
             <div id="consolelog">
                 <div className="consolelog">

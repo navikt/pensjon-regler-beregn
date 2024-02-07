@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Tab } from "./Tab";
 import { TabList } from "./TabList";
 import { EnTable } from "./Table";
@@ -64,6 +64,12 @@ const search = (current) => {
 
 export function JsonParser(props) {
     let [data] = useState(props.data)
+    let [isFetching] = useState(props.isFetching)
+
+    useEffect(() => {
+
+    }, [isFetching]);
+
     return (
         <div>
             {search(data)}

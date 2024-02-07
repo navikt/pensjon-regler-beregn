@@ -4,10 +4,9 @@ import {LogResponse} from "../api/domain/LogResponse"
 import {Metadata} from "../api/domain/Metadata"
 import ResponsePane from "./ResponsePane"
 import RequestPane from "./RequestPane"
-import {currentConsolelog, currentDebugLog, currentEnvironment, currentSats} from "../signal/Signals"
-import {batch} from "@preact/signals-react"
 import {useEffect} from "react";
 import {useQueryClient} from "@tanstack/react-query";
+import {useGlobalState} from "../store";
 
 
 interface DetailViewProps {
@@ -16,19 +15,21 @@ interface DetailViewProps {
 
 const DetailView: React.FC<DetailViewProps> = ({ logResponse}) => {
 
+    const state = useGlobalState()
     const query = useQueryClient()
-    useEffect(() => {
-        query.invalidateQueries({queryKey: ["guiModel"]})
-    }, [currentEnvironment.value, currentSats.value]);
 
-    const bruktSats = currentSats.value ? currentSats.value : "Sats fra miljø"
+    useEffect(() => {
+        query.invalidateQueries({queryKey: ["guiModel", state.getEnvironment(), state.getSats()],})
+    }, [state.getEnvironment(), state.getSats()]);
+
+    const bruktSats = state.getSats() ? state.getSats() : "Sats fra miljø"
     const metaData = JSON.parse(logResponse.metadata) as Metadata
     const body = JSON.parse(logResponse.xml) as string
-    const { data, isError, isLoading, isSuccess, isFetching } = queryGuiModel(body, metaData.className)
+    const { data, isError, isLoading, isSuccess, isFetching } = queryGuiModel(body, metaData.className, state.getEnvironment(), state.getSats())
 
 
     if (isError) {
-        throw new Error(`Klarte ikke å hente data fra miljø ${currentEnvironment.value} med sats ${bruktSats}`)
+        throw new Error(`Klarte ikke å hente data fra miljø ${state.getEnvironment()} med sats ${bruktSats}`)
     }
 
     if (isLoading) {
@@ -37,10 +38,8 @@ const DetailView: React.FC<DetailViewProps> = ({ logResponse}) => {
 
     if (isSuccess) {
         const clazzName = metaData?.className?.split(".").pop()
-        batch(() => {
-            currentConsolelog.value = `${clazzName} har kjørt ferdig i miljø: ${currentEnvironment.value} - med sats: ${bruktSats}`
-            currentDebugLog.value = data?.metadata?.debugLog || ""
-        })
+        state.setConsoleLog(`${clazzName} har kjørt ferdig i miljø: ${state.getEnvironment()} - med sats: ${bruktSats}`)
+        state.setDebugLog(data?.metadata?.debugLog || "")
     }
 
     if (isFetching) {
@@ -53,7 +52,7 @@ const DetailView: React.FC<DetailViewProps> = ({ logResponse}) => {
                 <RequestPane request={data?.request} isFetching={isFetching} />
             </div>
             <div id="responseview">
-                <ResponsePane response={data?.response} satstabell={currentSats.value} isFetching={isFetching}/>
+                <ResponsePane response={data?.response} satstabell={state.getSats()} isFetching={isFetching}/>
             </div>
         </div>
     )

@@ -9,7 +9,6 @@ interface RequestProps {
 const RequestPane: React.FC<RequestProps> = ({ request,isFetching }) => {
 
     useEffect(() => {
-
     }, [isFetching]);
 
     return (
@@ -21,7 +20,7 @@ const RequestPane: React.FC<RequestProps> = ({ request,isFetching }) => {
                 </div>
             </div>
             <div id="requestView">
-                <JsonParser data={request} />
+                <JsonParser data={request} isFetching={isFetching} />
             </div>
         </div>
     )

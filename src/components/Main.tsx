@@ -1,9 +1,9 @@
 import {ReactNode} from "react";
 import {queryLogResponseById} from "../api/service/Queries";
-import {currentEnvironment} from "../signal/Signals";
 import DetailView from "./DetailView";
 import {Loader} from "@navikt/ds-react";
 import ConsoleLog from "./ConsoleLog";
+import {useGlobalState} from "../store";
 
 
 interface MainProps {
@@ -12,10 +12,11 @@ interface MainProps {
 
 const Main: React.FC<MainProps> = ({ id }): ReactNode => {
 
+    const state = useGlobalState()
     const { data, isError, isLoading, isSuccess, isFetching } = queryLogResponseById(id)
 
     if (isError) {
-        throw new Error(`Klarte ikke å hente logg fra miljø ${currentEnvironment.value}`)
+        throw new Error(`Klarte ikke å hente logg fra miljø ${state.getEnvironment()}`)
     }
 
     if (isLoading) {
@@ -24,7 +25,7 @@ const Main: React.FC<MainProps> = ({ id }): ReactNode => {
 
     if (isSuccess) {
         const metaData = JSON.parse(data?.metadata || "{}")
-        currentEnvironment.value = data?.environment
+        state.setEnvironment(data?.environment)
         document.title = metaData?.saksId && !metaData?.saksId.includes("Det finnes ingen tilgjengelige") ? `SaksID ${metaData?.saksId} - Beregn pensjon` : `Beregn pensjon`
     }
 
@@ -36,7 +37,7 @@ const Main: React.FC<MainProps> = ({ id }): ReactNode => {
         isSuccess &&
         <>
             <DetailView logResponse={data} />
-            <ConsoleLog isFetching={isFetching}/>
+            <ConsoleLog />
         </>
     )
 }

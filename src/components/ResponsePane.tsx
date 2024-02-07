@@ -20,7 +20,7 @@ const ResponsePane: React.FC<ResponsePaneProps> = ({ response, satstabell, isFet
                 </div>
             </div>
             <div id="responseView">
-                <JsonParser data={response} />
+                <JsonParser data={response} isFetching={isFetching}/>
             </div>
         </div>
     )

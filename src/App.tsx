@@ -5,25 +5,21 @@ import {Route, Routes} from 'react-router-dom';
 import Wrapper from './components/Wrapper';
 import ErrorBoundary from './components/error/ErrorBoundary';
 import DetailViewFile from './components/DetailViewFile';
-import EnvContextProvider from "./api/context/EnvContext.tsx";
-
 
 
 function App() {
 
-    const queryClient = new QueryClient()
+    const queryClient = new QueryClient({defaultOptions: {queries: {refetchOnWindowFocus: false,},},})
 
     return (
         <QueryClientProvider client={queryClient}>
-            <EnvContextProvider>
-                <Navbar/>
-                <ErrorBoundary>
-                    <Routes>
-                        <Route path='/:id' element={<Wrapper/>}></Route>
-                        <Route path='/file' element={<DetailViewFile/>}></Route>
-                    </Routes>
-                </ErrorBoundary>
-            </EnvContextProvider>
+            <Navbar/>
+            <ErrorBoundary>
+                <Routes>
+                    <Route path='/:id' element={<Wrapper/>}></Route>
+                    <Route path='/file/*' element={<DetailViewFile/>}></Route>
+                </Routes>
+            </ErrorBoundary>
         </QueryClientProvider>
     )
 }
