@@ -1,0 +1,109 @@
+.tree-container {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.tree-nodes-container {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 25%;
+    background-color: #f1f1f1;
+    border-right: 1px solid black;
+    border-radius: 10px 10px 1px 1px;
+}
+
+
+
+.tree-content-container {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
+
+
+.tree-rootBtn {
+    font-size: 16px;
+    font-weight: bold;
+    max-width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #262626;
+    border: none;
+    border-left: 5px solid blueviolet;
+}
+
+.tree-subNodeBtn {
+    font-size: 16px;
+    width: 100%;
+    display: compact;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #262626;
+    text-align: left;
+    border: none;
+    border-left: 5px solid #f1f1f1;
+}
+
+.tree-rootBtn:hover {
+    cursor: pointer;
+    overflow: visible;
+}
+
+.tree-subNodeBtn:hover {
+    cursor: pointer;
+    overflow: visible;
+}
+
+.tree-tabs {
+    display: none;
+}
+
+/*tree view*/
+/* root node*/
+/*ul.rootNode {*/
+/*    list-style: none; !* remove the dot from root node*!*/
+/*    margin: 0;*/
+/*    padding: 1px;*/
+/*}*/
+
+
+.tree-nodes-container ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    position: relative;
+}
+
+.tree-nodes-container li {
+    list-style-type: none;
+    border-left: 2px solid #000;
+    margin-left: 1em;
+}
+
+.tree-nodes-container li div {
+    padding-left: 0.15em;
+    /*distance of the font to the left*/
+    position: relative;
+}
+
+.tree-nodes-container li div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -2px;
+    bottom: 35%;
+    /*horizontal line position*/
+    width: 0.3em;
+    /*length of the horizontal line */
+    border: 2px solid #000;
+    border-top: 0 none transparent;
+    border-right: 0 none transparent;
+}
+
+.tree-nodes-container ul>li:last-child {
+    border-left: 2px solid transparent;
+}

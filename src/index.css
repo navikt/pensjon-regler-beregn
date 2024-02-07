@@ -1,0 +1,105 @@
+.detailcontainer {
+    display: grid;
+    height: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 0;
+    grid-template-areas:
+        "requestview responseview"
+        "consoleview consoleview";
+}
+
+#requestview {
+    margin-top: 30px;
+    grid-area: requestview;
+    overflow: scroll;
+    border-right-style: solid;
+    border-right-width: thin;
+}
+
+#responseview {
+    margin-top: 30px;
+    grid-area: responseview;
+    overflow: scroll;
+    border-left-style: solid;
+    border-left-width: thin;
+}
+
+#consoleview {
+    min-height: 100px;
+    max-height: 100px;
+    width: 100%;
+    bottom: 0;
+    overflow: scroll;
+    position: fixed;
+    grid-area: consoleview;
+    background-color: aliceblue;
+}
+
+.consolelog {
+    border-top-style: solid;
+    display: grid;
+    min-height: 131px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "consolelog_detail consolelog_detail"
+}
+
+#consolelog_detail {
+    grid-area: consolelog_detail;
+    overflow: scroll;
+    padding: 8px;
+}
+
+.headerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .detailcontainer {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas:
+            "requestview"
+            "responseview"
+            "consoleview";
+    }
+
+    #requestview {
+        margin-top: 70px;
+        border-left-style: none;
+        border-bottom-style: solid;
+        border-bottom-width: medium;
+    }
+
+    #responseview {
+
+        margin-top: 10px;
+        border-left-style: none;
+    }
+
+}
+
+.loader {
+    margin-top: 50px;
+}
+
+.vcenternavbar {
+    padding-left: 2px;
+    padding-right: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.disable-regel-logg {
+    cursor: not-allowed;
+    opacity: 0.5;
+    color: gray;
+}
+
+.disable-regel-logg:hover {
+    cursor: not-allowed;
+    background-color: transparent;
+}
