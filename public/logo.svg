@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 768 768" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-576,-156)">
+        <g>
+            <g transform="matrix(1.01453,0,0,1.01453,-116.925,-16.4703)">
+                <path d="M1061.5,170C1270.4,170 1440,339.6 1440,548.5C1440,757.4 1270.4,927 1061.5,927C852.6,927 683,757.4 683,548.5C683,339.6 852.6,170 1061.5,170ZM1061.5,204.255C1251.49,204.255 1405.75,358.506 1405.75,548.5C1405.75,738.494 1251.49,892.745 1061.5,892.745C871.506,892.745 717.255,738.494 717.255,548.5C717.255,358.506 871.506,204.255 1061.5,204.255Z"/>
+            </g>
+            <g transform="matrix(0.990085,0,0,0.990085,-148.385,-56.5411)">
+                <circle cx="1121" cy="601" r="353" style="fill:white;"/>
+            </g>
+            <g transform="matrix(2.50163,0,0,2.50163,-1277.65,-380.927)">
+                <text x="805.579px" y="471.209px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:288px;">P</text>
+            </g>
+        </g>
+    </g>
+</svg>
