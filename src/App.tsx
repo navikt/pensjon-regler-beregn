@@ -5,6 +5,7 @@ import {Route, Routes} from 'react-router-dom';
 import Wrapper from './components/Wrapper';
 import ErrorBoundary from './components/error/ErrorBoundary';
 import DetailViewFile from './components/DetailViewFile';
+import ErrorFallback from "./components/error/ErrorFallback.tsx";
 
 
 function App() {
@@ -13,8 +14,8 @@ function App() {
 
     return (
         <QueryClientProvider client={queryClient}>
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
             <Navbar/>
-            <ErrorBoundary>
                 <Routes>
                     <Route path='/:id' element={<Wrapper/>}></Route>
                     <Route path='/file/*' element={<DetailViewFile/>}></Route>

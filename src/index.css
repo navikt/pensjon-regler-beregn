@@ -103,3 +103,9 @@
     cursor: not-allowed;
     background-color: transparent;
 }
+
+.copyButton {
+    color: blue;
+    background: white;
+    border-color: blue;
+}

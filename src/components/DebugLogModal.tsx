@@ -44,7 +44,6 @@ const DebugLogModal: React.FC = () => {
                                 text="Kopier til utklippstavle"
                                 activeText="Kopierte til utklippstavle"
                     />
-
                     <Button variant="secondary" type="button" onClick={() => ref.current?.close()}>
                         Lukk
                     </Button>

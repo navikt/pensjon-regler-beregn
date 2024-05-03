@@ -1,34 +1,48 @@
-import { Alert } from '@navikt/ds-react';
-import React, { Component, ErrorInfo } from 'react';
+import React, { Component, ErrorInfo, ReactNode } from 'react';
 
-interface Props {
-    children: React.ReactNode;
+interface FallbackProps {
+    error: Error;
+    errorInfo: ErrorInfo;
+}
+interface ErrorBoundaryProps {
+    children: ReactNode;
+    FallbackComponent: React.ComponentType<FallbackProps>;
 }
 
-interface State {
+interface ErrorBoundaryState {
     hasError: boolean;
-    errorMessage: string;
+    error?: Error;
+    errorInfo?: ErrorInfo;
 }
 
-class ErrorBoundary extends Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-        this.state = { hasError: false, errorMessage: '' };
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+    state: ErrorBoundaryState = {
+        hasError: false,
+        error: undefined,
+        errorInfo: undefined
+    };
+
+    static getDerivedStateFromError(error: Error): Partial<ErrorBoundaryState> {
+        // Update state so the next render will show the fallback UI.
+        return { hasError: true, error };
     }
 
-    componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-        console.error('ErrorBoundary fanget opp en feil: ', error, errorInfo);
-        this.setState({ hasError: true, errorMessage: error.message });
+    componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+        console.log("ErrorBoundary caught an error")
+        console.log("error is: ", error)
+        console.log("errorInfo is: ", errorInfo)
+        console.error("Uncaught error:", error, errorInfo);
+        this.setState({ errorInfo });
     }
 
-    render() {
-        if (this.state.hasError) {
-            return (
-                <Alert variant='error' style={{ paddingTop: "60px" }}>
-                    {`En feil har oppstått: ${this.state.errorMessage}`}
-                </Alert>
-            )
+    render(): ReactNode {
+        if (this.state.hasError && this.state.error) {
+            const { FallbackComponent } = this.props;
+            const { error, errorInfo } = this.state;
+            // @ts-ignore
+            return <FallbackComponent error={error} errorInfo={errorInfo} />;
         }
+
         return this.props.children;
     }
 }

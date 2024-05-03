@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query"
-import axios from "axios"
-import { LogResponse } from "../domain/LogResponse"
-import { GuiModel } from "../domain/GuiModel"
+import axios, { AxiosResponse } from "axios"
+import {LogResponse} from "../domain/LogResponse"
+import {GuiModel} from "../domain/GuiModel"
+import GuiModelMetadata from "../domain/GuiModelMetadata.ts";
 
 
 const fetchByLogId = async (id: string): Promise<LogResponse> => {
@@ -61,6 +62,8 @@ const fetchGuiModelByFile = async (body: string, clazzName: string, environment:
             }
         })
 
+    checkResponseForSoftErrors(response)
+
     return response.data as GuiModel
 
 
@@ -101,7 +104,7 @@ const fetchGuiModel = async (body: string, clazzName: string, environment: strin
                 'Accept': 'application/json',
             }
         })
-
+    checkResponseForSoftErrors(response)
     return response.data as GuiModel
 }
 
@@ -128,3 +131,13 @@ export const querySatstabeller = () => useQuery({
     queryFn: () => fetchSatsTabeller(),
     throwOnError: false,
 })
+
+function checkResponseForSoftErrors(response: AxiosResponse<unknown, GuiModelMetadata>) {
+    // @ts-ignore
+    if (response.status === 207 && response.data?.metadata?.status === "error") {
+        // @ts-ignore
+        throw new Error(response.data?.metadata?.info)
+    }
+
+}
+
