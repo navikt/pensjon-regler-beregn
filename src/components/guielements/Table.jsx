@@ -10,13 +10,13 @@ export function EnTable(props) {
         if (item[index] == null)
             return (null)
         else if (item[index].hasOwnProperty('header'))
-            return <Table.HeaderCell key={index} scope="col">{item[index][0]['data']}</Table.HeaderCell>
+            return <Table.HeaderCell key={index} scope="col">{item[index]['data']}</Table.HeaderCell>
     }
 
     function showRow(item) {
         let row = []
-        if (Array.isArray(item[1])) {
-            item[1].map((subitem, j) => {
+        if (Array.isArray(item)) {
+            item.map((subitem, j) => {
                 row.push(<Cell element={subitem} j={j}></Cell>)
             })
         }
@@ -37,7 +37,7 @@ export function EnTable(props) {
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                        {table['cells'][1].map((item, index) => (
+                        {table['cells'].map((item, index) => (
                             <Table.Row key={index}>
                                 {showRow(item, index)}
                             </Table.Row>

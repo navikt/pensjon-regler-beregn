@@ -26,7 +26,7 @@ export function ARCNODETree(props) {
         } else if (node.hasOwnProperty('children') && node['children'].length > 1) {
             let treenode = []
             node['children'][1].map((subNode) => {
-                if (subNode['children'][1].length == 0) {
+                if (subNode['children'].length == 0) {
                     treenode.push(
                         // <ul className={isActive ? "nested activex" : "nested"}>
                         <li>

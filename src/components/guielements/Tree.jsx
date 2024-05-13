@@ -30,7 +30,7 @@ export function Tree(props) {
         } else if (node.hasOwnProperty('children') && node['children'].length > 1) {
             //left treeview panel
             let treenode = []
-            node['children'][1].map((subNode, key) => {
+            node['children'].map((subNode, key) => {
                 treenode.push(
                     <li key={index + i + key}>
                         <div>
@@ -61,9 +61,9 @@ export function Tree(props) {
                 <JsonParser
                     data={node['data']}></JsonParser></div>);
             generateTreeContent(node, t, i + 1, tabsName)
-        } else if (node.hasOwnProperty('children') && node['children'][1].length != 0) {
+        } else if (node.hasOwnProperty('children') && node['children'].length != 0) {
             //  right panel = tablist, show tablists to left node
-            node['children'][1].map((subNode, key) => {
+            node['children'].map((subNode, key) => {
                 t.push(<div key={index + i + key} id={tabsName + 'treeTabs' + index + i + key} className={'tree-tabs'}>
                     <JsonParser
                         data={subNode['data']}></JsonParser></div>);

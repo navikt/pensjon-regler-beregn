@@ -10,7 +10,7 @@ export function TabList(props) {
     }
 
     let [tabs] = useState(props.tabs);
-    const [value, setValue] = useState(props.tabs['data'][1][0]['name'] + 0)
+    const [value, setValue] = useState(props.tabs['data'][0]['name'] + 0)
 
     switch (tabs['position']) {
         case position.TOP:
@@ -18,7 +18,7 @@ export function TabList(props) {
                 <>
                     <Tabs value={value} onChange={setValue} size="small">
                         <Tabs.List>
-                            {tabs['data'][1].map((data, key) => { //Creating header buttons for each Tab
+                            {tabs['data'].map((data, key) => { //Creating header buttons for each Tab
                                 return (
                                     <Tabs.Tab
                                         style={{
@@ -44,7 +44,7 @@ export function TabList(props) {
                             })}
                         </Tabs.List>
                     </Tabs>
-                    {tabs['data'][1].map((data, key) => { //Creating div for each tab with reference to header button
+                    {tabs['data'].map((data, key) => { //Creating div for each tab with reference to header button
                         return (
                             <div
                                 role="tabpanel"
@@ -63,7 +63,7 @@ export function TabList(props) {
             return (
                 <div className='sidetab-container'>
                     <div className="sidetab-menu-container">
-                        {tabs['data'][1].map((data, key) => {
+                        {tabs['data'].map((data, key) => {
                             return (
                                 <div
                                     className="sidetab-button"
@@ -83,7 +83,7 @@ export function TabList(props) {
                         })}
                     </div>
                     <div className='sidetab-content-container'>
-                        {tabs['data'][1].map((data, key) => {
+                        {tabs['data'].map((data, key) => {
                             return (
                                 <div
                                     role="tabpanel"

@@ -23,7 +23,7 @@ const fetchSatsTabeller = async (): Promise<string[]> => {
             'Accept': 'application/json',
         }
     })
-    return response.data[1]
+    return response.data
 }
 
 const fetchGuiModelByFile = async (body: string, clazzName: string, environment: string, sats: string): Promise<any> => {

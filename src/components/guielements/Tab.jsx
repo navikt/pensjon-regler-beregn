@@ -6,7 +6,7 @@ export function Tab(props) {
 
     return (
         <div>
-            {tab['data'][1].map((data, key) => {
+            {tab['data'].map((data, key) => {
                 return (
                     <div
                         key={key}

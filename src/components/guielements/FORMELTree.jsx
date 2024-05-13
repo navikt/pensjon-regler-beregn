@@ -37,7 +37,7 @@ export function FORMELTree(props) {
         } else if (node.hasOwnProperty('children') && node['children'].length > 1) {
             //left treeview panel
             let treenode = []
-            node['children'][1].map((subNode) => {
+            node['children'].map((subNode) => {
                 treenode.push(
                     <li >
                         {getFormelDetail(subNode)}

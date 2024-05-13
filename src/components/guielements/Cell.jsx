@@ -12,7 +12,7 @@ export const popoverType_FAKTUM = "FAKTUM"
 function generateTables(tables) {
     let t = []
     let enTable
-    tables.map((data, k) => {
+    tables && tables.map((data, k) => {
         enTable = <div key={k}>
             <JsonParser data={data}></JsonParser>
         </div>
@@ -61,7 +61,7 @@ export function Cell(props) {
     }
 
     function getPopOver() {
-        let detail = generateTables(subitem['popoverContent'][1])
+        let detail = generateTables(subitem['popoverContent'])
         // console.log("detail" ,detail)
         return <Popover open={open} onClose={() => setOpen(false)}
             anchorEl={buttonPopoverRef.current}
@@ -74,7 +74,7 @@ export function Cell(props) {
     }
 
     function getDetailView() {
-        let detail = generateTables(subitem['popoverContent'][1])
+        let detail = generateTables(subitem['popoverContent'])
         // console.log("detail" ,renderToString(detail))
         // let text = '<div>'+'{{$detail}}'+'</div>'
         document.getElementById("datailView").innerHTML = renderToString(detail)
