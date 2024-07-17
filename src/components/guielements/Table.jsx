@@ -7,10 +7,11 @@ export function EnTable(props) {
     let [table] = useState(props.table)
 
     function horizontalHeader(item, index) {
-        if (item[index] == null)
+        if (item[index] == null || undefined)
             return (null)
-        else if (item[index].hasOwnProperty('header'))
+        else if (Object.hasOwn(item[index],'header') ) {
             return <Table.HeaderCell key={index} scope="col">{item[index]['data']}</Table.HeaderCell>
+            }
     }
 
     function showRow(item) {
@@ -54,14 +55,14 @@ export function EnTable(props) {
             </Heading>
             <Heading spacing className={"tableHeading"}
                 style={{
-                    borderBottom: table.hasOwnProperty('name') ? "2px solid grey" : "",
-                    borderTop: table.hasOwnProperty('name') ? "2px solid grey" : "",
-                    backgroundColor: table.hasOwnProperty('name') ? "#f1f1f1" : "",
+                    borderBottom: Object.hasOwn(table,'name') ? "2px solid grey" : "",
+                    borderTop: Object.hasOwn(table,'name') ? "2px solid grey" : "",
+                    backgroundColor: Object.hasOwn(table,'name') ? "#f1f1f1" : "",
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center'
                 }}
-                level="6"> &ensp; {table.hasOwnProperty('name') ? table['name'] : ''}</Heading>
+                level="6"> &ensp; {Object.hasOwn(table,'name') ? table['name'] : ''}</Heading>
             <Checkname name={table['name']} className={"tableBody"}>
 
             </Checkname>
