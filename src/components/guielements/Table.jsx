@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Heading, Table } from '@navikt/ds-react';
+import React, {useState} from "react";
+import {Heading, Table} from '@navikt/ds-react';
 import './CSS/EnTable.css'
-import { Cell } from "./Cell";
+import {Cell} from "./Cell";
 
 export function EnTable(props) {
     let [table] = useState(props.table)
@@ -26,20 +26,21 @@ export function EnTable(props) {
         let row = [];
         if (Array.isArray(item)) {
             item.map((subitem, j) => {
-                row.push(<Cell key={`cell-${index}-${j}`} index={index} element={subitem} j={j} isVertical={isVertical} />);
+                row.push(<Cell key={`cell-${index}-${j}`} index={index} element={subitem} j={j}
+                               isVertical={isVertical}/>);
             });
         }
         return row;
     }
 
-    const Checkname = ({ name }) => {
+    const Checkname = ({name}) => {
         if (name != null && name.includes('Ingen')) {
             return null;
         } else
             return <div className="w-full flex flex-col gap-4">
                 <Table size="small">
                     <Table.Header>
-                        <Table.Row >
+                        <Table.Row>
                             {table['orientation'] === 'HORIZONTAL' && table['cells'][0].map((item, index) => (
                                 horizontalHeader(table['cells'][0], index)
                             ))}
