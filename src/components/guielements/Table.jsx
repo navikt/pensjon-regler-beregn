@@ -7,7 +7,7 @@ export function EnTable(props) {
     let [table] = useState(props.table)
 
     function horizontalHeader(item, index) {
-        if (item[index] == null || item[index] == undefined) {
+        if (item[index] == null) {
             return null;
         } else if (Object.hasOwn(item[index], 'header') && item[index]['header'] === true) {
             return <Table.HeaderCell key={index} scope="col">{item[index]['data']}</Table.HeaderCell>;
@@ -15,7 +15,7 @@ export function EnTable(props) {
     }
 
     function verticalHeader(item, index) {
-        if (item == null || item == undefined) {
+        if (item == null) {
             return null;
         } else if (Object.hasOwn(item, 'header') && item['header'] === true) {
             return <Table.HeaderCell key={index} scope="row">{item['data']}</Table.HeaderCell>;
@@ -47,12 +47,12 @@ export function EnTable(props) {
                     </Table.Header>
                     <Table.Body>
                         {table['orientation'] === 'HORIZONTAL' && table['cells'].slice(1).map((item, index) => (
-                            <Table.Row key={`row-${index}`}>
+                            <Table.Row key={`horizontal-row-${index}`}>
                                 {showRow(item, index)}
                             </Table.Row>
                         ))}
                         {table['orientation'] === 'VERTICAL' && table['cells'].map((item, index) => (
-                            <Table.Row key={index}>
+                            <Table.Row key={`vertical-row-${index}`}>
                                 {verticalHeader(item[0])}
                                 {showRow(item.slice(1), true)}
                             </Table.Row>
@@ -66,7 +66,7 @@ export function EnTable(props) {
         <div>
             <Heading size="xsmall" level="6"> &ensp;
             </Heading>
-            <Heading spacing className={"tableHeading"}
+            <Heading spacing className={"tableHeading"} size={"medium"}
                      style={{
                          borderBottom: Object.hasOwn(table, 'name') ? "2px solid grey" : "",
                          borderTop: Object.hasOwn(table, 'name') ? "2px solid grey" : "",
