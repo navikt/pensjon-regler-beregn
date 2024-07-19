@@ -75,8 +75,6 @@ export function Cell(props) {
 
     function getDetailView() {
         let detail = generateTables(subitem['popoverContent'])
-        // console.log("detail" ,renderToString(detail))
-        // let text = '<div>'+'{{$detail}}'+'</div>'
         document.getElementById("datailView").innerHTML = renderToString(detail)
         // detailView.style.
         return <div open={open} onClose={() => setOpen(false)}>
