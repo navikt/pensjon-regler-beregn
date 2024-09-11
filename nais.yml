@@ -34,5 +34,8 @@ spec:
       runtime: java
       destinations:
         - id: elastic-apm
+  env:
+    - name: "OTEL_RESOURCE_ATTRIBUTES"
+      value: "deployment.environment.name=p"
   ingresses:
     - "https://pensjon-regler-beregn.dev.adeo.no"
