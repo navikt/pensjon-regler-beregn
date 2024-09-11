@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { JsonParser } from "./JsonParser";
+import React, {useState} from "react";
+import {JsonParser} from "./JsonParser";
 
 export function Tab(props) {
     let [tab] = useState(props.tab);

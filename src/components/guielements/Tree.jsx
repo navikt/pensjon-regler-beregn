@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { JsonParser } from './JsonParser';
-import { Button, Heading } from "@navikt/ds-react";
+import React, {useState} from "react";
+import {JsonParser} from './JsonParser';
+import {Heading} from "@navikt/ds-react";
 import './CSS/Tree.css'
 
 export function Tree(props) {
@@ -22,12 +22,12 @@ export function Tree(props) {
                     <button size="xsmall" id={'treeNode' + index + i} key={index + i}
                         onClick={(e) => click(e, ('treeNode' + index + i), (tabsName + 'treeTabs' + index + i), index)}
                         style={checkStyle(node['used'])} className={'tree-rootBtn'}>
-                        {node.hasOwnProperty('name') ? node['name'] : 'no name'}
+                        {Object.hasOwn(node,'name') ? node['name'] : 'no name'}
                     </button>
                     {generateTreeNode(node, t, i + 1, tabsName)}
                 </div>
             )
-        } else if (node.hasOwnProperty('children') && node['children'].length > 1) {
+        } else if (Object.hasOwn(node,'children') && node['children'].length > 1) {
             //left treeview panel
             let treenode = []
             node['children'].map((subNode, key) => {
@@ -37,7 +37,7 @@ export function Tree(props) {
                             <button id={'treeNode' + index + i + key}
                                 onClick={(e) => click(e, ('treeNode' + index + i + key), (tabsName + 'treeTabs' + index + i + key), index)}
                                 style={checkStyle(subNode['used'])} className='tree-subNodeBtn'>
-                                {subNode.hasOwnProperty('name') ? subNode['name'] : 'no name'}
+                                {Object.hasOwn(subNode,'name') ? subNode['name'] : 'no name'}
                             </button>
                         </div>
                         {generateTreeNode(subNode, t, parseInt("" + i + key + (i + 1).toString()), tabsName)}
@@ -61,7 +61,7 @@ export function Tree(props) {
                 <JsonParser
                     data={node['data']}></JsonParser></div>);
             generateTreeContent(node, t, i + 1, tabsName)
-        } else if (node.hasOwnProperty('children') && node['children'].length != 0) {
+        } else if (Object.hasOwn(node,'children') && node['children'].length != 0) {
             //  right panel = tablist, show tablists to left node
             node['children'].map((subNode, key) => {
                 t.push(<div key={index + i + key} id={tabsName + 'treeTabs' + index + i + key} className={'tree-tabs'}>
@@ -116,10 +116,10 @@ export function Tree(props) {
             <div className="tree-nodes-container">
                 <Heading spacing size="xsmall"
                     level="6"> &ensp; Beregningstre</Heading>
-                {generateTreeNode(tree, [], 1, tree.hasOwnProperty('name') ? tree['name'] : 'noname', index)}
+                {generateTreeNode(tree, [], 1, Object.hasOwn(tree,'name') ? tree['name'] : 'noname', index)}
             </div>
             <div className='tree-content-container'>
-                {generateTreeContent(tree, [], 1, tree.hasOwnProperty('name') ? tree['name'] : 'noname', index)}
+                {generateTreeContent(tree, [], 1, Object.hasOwn(tree,'name') ? tree['name'] : 'noname', index)}
             </div>
         </div>
     )
