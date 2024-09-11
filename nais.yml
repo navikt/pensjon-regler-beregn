@@ -28,5 +28,11 @@ spec:
     requests:
       cpu: "100m"
       memory: "512Mi"
+  observability:
+    autoInstrumentation:
+      enabled: true
+      runtime: java
+      destinations:
+        - id: elastic-apm
   ingresses:
     - "https://pensjon-regler-beregn.dev.adeo.no"
