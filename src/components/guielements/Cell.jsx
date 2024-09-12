@@ -2,7 +2,6 @@ import { Button, Popover, Table } from '@navikt/ds-react';
 import React, { useRef, useState } from "react";
 import { JsonParser } from "./JsonParser";
 import './CSS/Button.css'
-import { renderToString } from "react-dom/server";
 
 export const popoverType_None = "NONE"
 export const popoverType_DESCRIPTION = "DESCRIPTION"
@@ -23,7 +22,7 @@ function generateTables(tables) {
 }
 
 export function Cell(props) {
-    let element = useState(props.element)
+    let element = useState(props.element);
     let j = props.j
     let subitem = element[0]
     let cellInTable;
@@ -62,7 +61,6 @@ export function Cell(props) {
 
     function getPopOver() {
         let detail = generateTables(subitem['popoverContent'])
-        // console.log("detail" ,detail)
         return <Popover open={open} onClose={() => setOpen(false)}
             anchorEl={buttonPopoverRef.current}
             placement="left" modifiers={modifiers}
@@ -73,51 +71,42 @@ export function Cell(props) {
         </Popover>;
     }
 
-    function getDetailView() {
-        let detail = generateTables(subitem['popoverContent'])
-        document.getElementById("datailView").innerHTML = renderToString(detail)
-        // detailView.style.
-        return <div open={open} onClose={() => setOpen(false)}>
-        </div>;
-    }
-
     function createCell() {
         let tooltip = <></>
-        if (subitem['tooltip'] != undefined) {
+        if (subitem['tooltip']) {
             dataBtn = subitem['data']
             tooltip = getTooltip()
         }
         let popOver = <></>
-        if (subitem['popoverType'] != popoverType_None) {
-            // dataBtn = <Button onClick={() => setOpen(!open)} size="xsmall">
+        if (subitem['popoverType'] !== popoverType_None) {
             dataBtn = <Button ref={buttonPopoverRef} onClick={() => setOpen(!open)} size="xsmall" style={popOverColor(subitem['popoverType'])} >
                 {subitem['data']}</Button>
-            popOver = getPopOver()
-            // popOver = getDetailView()
+                popOver = getPopOver()
         } else {
             dataBtn = subitem['data']
         }
-        return { tooltip, popOver };
+        return { tooltip, dataBtn, popOver };
     }
 
     function popOverColor(value) {
-        if (value == popoverType_DESCRIPTION)
+        if (value === popoverType_DESCRIPTION)
             return { 'backgroundColor': 'blue' };
-        else if (value == popoverType_FORMEL)
+        else if (value === popoverType_FORMEL)
             return { 'color': 'orange', 'backgroundColor': 'grey' };
-        else if (value == popoverType_FAKTUM)
+        else if (value === popoverType_FAKTUM)
             return { 'color': 'white', 'backgroundColor': 'grey' };
     }
 
-    if (subitem['header']) {
-        let { tooltip, popOver } = createCell();
+    if (Object.hasOwn(subitem, "header") && subitem['header'] === true) {
+        let { tooltip, dataBtn, popOver } = createCell();
+        console.log("header is true in cell", subitem)
         cellInTable = <Table.HeaderCell key={j} scope="col">
             {dataBtn}
             {tooltip}
             {popOver}
         </Table.HeaderCell>
     } else {
-        let { tooltip, popOver } = createCell();
+        let { tooltip, dataBtn, popOver } = createCell();
         cellInTable = <Table.DataCell key={j}>
             {dataBtn}
             {tooltip}

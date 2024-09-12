@@ -14,10 +14,10 @@ export function ARCNODETree(props) {
     function generateArcnodeTreeNode(node) {
         if (Object.hasOwn(node,'children')) {
             let treenode = []
-            node['children'].map((subNode) => {
+            node['children'].map((subNode, index) => {
                     treenode.push(
                         // <ul className={isActive ? "nested activex" : "nested"}>
-                        <li style={checkStyle(subNode)}>
+                        <li style={checkStyle(subNode)} key={index}>
                             {Object.hasOwn(subNode, 'name') ? subNode['name'] : 'no name'}
                             {generateArcnodeTreeNode(subNode)}
                         </li>
