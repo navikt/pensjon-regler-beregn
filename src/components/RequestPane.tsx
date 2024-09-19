@@ -1,12 +1,13 @@
-import { JsonParser } from "./guielements/JsonParser"
+import { JsonParser } from "../tsguielement/JsonParser"
 import {useEffect} from "react";
+import { GuiModel } from "../api/domain/types/guimodel.ts";
 
 
 interface RequestProps {
-    request: string[]
+    data: GuiModel | undefined
     isFetching: boolean
 }
-const RequestPane: React.FC<RequestProps> = ({ request,isFetching }) => {
+const RequestPane: React.FC<RequestProps> = ({ data,isFetching }) => {
 
     useEffect(() => {
     }, [isFetching]);
@@ -20,7 +21,7 @@ const RequestPane: React.FC<RequestProps> = ({ request,isFetching }) => {
                 </div>
             </div>
             <div id="requestView">
-                <JsonParser data={request} isFetching={isFetching} />
+                <JsonParser data={data?.request[0]} isFetching={isFetching} />
             </div>
         </div>
     )

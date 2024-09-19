@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {JsonParser} from './JsonParser';
+import {JsonParser} from "./../../tsguielement/JsonParser.tsx";
 import {Heading} from "@navikt/ds-react";
 import './CSS/Tree.css'
 

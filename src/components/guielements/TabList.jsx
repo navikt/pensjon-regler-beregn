@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { JsonParser } from './JsonParser';
+import {JsonParser} from "./../../tsguielement/JsonParser.tsx";
 import { Tabs } from '@navikt/ds-react';
 import './CSS/TabList.css'
 

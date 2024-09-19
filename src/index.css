@@ -1,11 +1,12 @@
 .detailcontainer {
     display: grid;
     height: 100%;
-    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
     grid-gap: 0;
     grid-template-areas:
-        "requestview responseview"
+        "detailcontainer "
         "consoleview consoleview";
 }
 
@@ -108,4 +109,15 @@
     color: blue;
     background: white;
     border-color: blue;
+}
+
+.panel_resize {
+    width: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background: #1d4b8f;
+}
+
+.panel_resize {
+    height: 100%;
 }

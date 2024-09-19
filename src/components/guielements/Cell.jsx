@@ -1,6 +1,6 @@
 import { Button, Popover, Table } from '@navikt/ds-react';
 import React, { useRef, useState } from "react";
-import { JsonParser } from "./JsonParser";
+import {JsonParser} from "./../../tsguielement/JsonParser.tsx";
 import './CSS/Button.css'
 
 export const popoverType_None = "NONE"

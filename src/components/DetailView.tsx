@@ -1,19 +1,20 @@
 import {Loader} from "@navikt/ds-react"
 import {queryGuiModel} from "../api/service/Queries"
 import {LogResponse} from "../api/domain/LogResponse"
-import {Metadata} from "../api/domain/Metadata"
+import {Metadata} from "../api/domain/types/guimodel"
 import ResponsePane from "./ResponsePane"
 import RequestPane from "./RequestPane"
 import {useEffect} from "react";
 import {useQueryClient} from "@tanstack/react-query";
 import {useGlobalState} from "../store";
+import {Panel, PanelGroup, PanelResizeHandle} from "react-resizable-panels";
 
 
 interface DetailViewProps {
     logResponse: LogResponse
 }
 
-const DetailView: React.FC<DetailViewProps> = ({ logResponse}) => {
+const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
 
     const state = useGlobalState()
     const query = useQueryClient()
@@ -25,7 +26,13 @@ const DetailView: React.FC<DetailViewProps> = ({ logResponse}) => {
     const bruktSats = state.getSats() ? state.getSats() : "Sats fra miljø"
     const metaData = JSON.parse(logResponse.metadata) as Metadata
     const body = JSON.parse(logResponse.xml) as string
-    const { data, isError, isLoading, isSuccess, isFetching } = queryGuiModel(body, metaData.className, state.getEnvironment(), state.getSats())
+    const {
+        data,
+        isError,
+        isLoading,
+        isSuccess,
+        isFetching
+    } = queryGuiModel(body, metaData.className, state.getEnvironment(), state.getSats())
 
 
     if (isError) {
@@ -33,7 +40,7 @@ const DetailView: React.FC<DetailViewProps> = ({ logResponse}) => {
     }
 
     if (isLoading) {
-        return <Loader size="3xlarge" title="Laster ..." className="loader" />;
+        return <Loader size="3xlarge" title="Laster ..." className="loader"/>;
     }
 
     if (isSuccess) {
@@ -43,17 +50,24 @@ const DetailView: React.FC<DetailViewProps> = ({ logResponse}) => {
     }
 
     if (isFetching) {
-        return <Loader size="3xlarge" title="Laster ..." className="loader" />;
+        return <Loader size="3xlarge" title="Laster ..." className="loader"/>;
     }
 
     return (
         <div className="detailcontainer">
-            <div id="requestview">
-                <RequestPane request={data?.request} isFetching={isFetching} />
-            </div>
-            <div id="responseview">
-                <ResponsePane response={data?.response} satstabell={state.getSats()} isFetching={isFetching}/>
-            </div>
+            <PanelGroup direction={"horizontal"} className={"panel_resizegroup"}>
+                <Panel defaultSize={50}>
+                    <div id="requestview">
+                        <RequestPane data={data} isFetching={isFetching}/>
+                    </div>
+                </Panel>
+                <PanelResizeHandle className="panel_resize" />
+                <Panel defaultSize={50}>
+                    <div id="responseview">
+                        <ResponsePane data={data} satstabell={state.getSats()} isFetching={isFetching}/>
+                    </div>
+                </Panel>
+            </PanelGroup>
         </div>
     )
 

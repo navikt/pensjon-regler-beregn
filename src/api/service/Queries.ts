@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import axios, { AxiosResponse } from "axios"
 import {LogResponse} from "../domain/LogResponse"
-import {GuiModel} from "../domain/GuiModel"
-import GuiModelMetadata from "../domain/GuiModelMetadata.ts";
+import {GuiModel} from "../domain/types/guimodel.ts"
 
 
 const fetchByLogId = async (id: string): Promise<LogResponse> => {
@@ -26,7 +25,7 @@ const fetchSatsTabeller = async (): Promise<string[]> => {
     return response.data
 }
 
-const fetchGuiModelByFile = async (body: string, clazzName: string, environment: string, sats: string): Promise<any> => {
+const fetchGuiModelByFile = async (body: string, clazzName: string, environment: string, sats: string): Promise<GuiModel> => {
 
     let url = ""
     let endpoint = ""
@@ -69,7 +68,7 @@ const fetchGuiModelByFile = async (body: string, clazzName: string, environment:
 
 }
 
-const fetchGuiModel = async (body: string, clazzName: string, environment: string, sats: string): Promise<any> => {
+const fetchGuiModel = async (body: string, clazzName: string, environment: string, sats: string): Promise<GuiModel> => {
 
     let url = ""
     let endpoint = ""
@@ -132,7 +131,8 @@ export const querySatstabeller = () => useQuery({
     throwOnError: false,
 })
 
-function checkResponseForSoftErrors(response: AxiosResponse<unknown, GuiModelMetadata>) {
+function checkResponseForSoftErrors(response: AxiosResponse<unknown, GuiModel>) {
+    console.log(response);
     // @ts-ignore
     if (response.status === 207 && response.data?.metadata?.status === "error") {
         // @ts-ignore
