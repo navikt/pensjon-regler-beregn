@@ -85,6 +85,7 @@ export interface TabList extends Element {
 }
 
 export interface Metadata {
+    className: string;
     status: string;
     info: string;
     bruktSats: string;

@@ -12,7 +12,7 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
 
     const [tabs] = useState(props.tabs);
     const position = tabs.position;
-    const [value, setValue] = useState(props.tabs[0].name + 0)
+    const [value, setValue] = useState(tabs.children[0].name + "0")
 
     switch (position) {
         case Position.TOP:

@@ -1,8 +1,8 @@
-import {ReactNode, useEffect, useState} from "react";
-import { EnTable } from "../tsguielement/TableComponent.tsx";
-import { TreeComponent } from "../tsguielement/TreeComponent.tsx"
-import { ARCNODETreeComponent } from "../tsguielement/ARCNODETreeComponent.tsx";
-import { FORMELTreeComponent } from "../tsguielement/FORMELTreeComponent.tsx";
+import {useEffect, useState} from "react";
+import {EnTable} from "../tsguielement/TableComponent.tsx";
+import {TreeComponent} from "../tsguielement/TreeComponent.tsx"
+import {ARCNODETreeComponent} from "../tsguielement/ARCNODETreeComponent.tsx";
+import {FORMELTreeComponent} from "../tsguielement/FORMELTreeComponent.tsx";
 import {
     ArcNode,
     BeregningNode,
@@ -18,39 +18,40 @@ import {TabListComponent} from "./TabListComponent.tsx";
 import {TabComponent} from "./TabComponent.tsx";
 
 
-const search = (current: Element ): React.ReactElement | null => {
+const search = (current: Element): React.ReactElement | null => {
     let element: Element[] | Element | null = null;
-    for (const child of current.data) {
+    for (let child of current.data) {
 
-        let found: ReactNode | null = null;
+        let found: React.ReactElement | null = null;
 
         if (child.type) {
             element = child;
         } else if (current.type) {
             element = current;
         }
-        if (element && ( child.type || current.type)) {
+        if (element && (child.type || current.type)) {
             switch (element.type) {
                 case ElementType.TABLIST:
-                    found = <TabListComponent tabs={element as TabList} />;
+                    found = <TabListComponent tabs={element as TabList}/>;
                     return found;
                 case ElementType.TAB:
-                    found = <TabComponent tab={element as Tab} />;
+                    found = <TabComponent tab={element as Tab}/>;
                     return found;
                 case ElementType.TABLE:
-                    found = <EnTable table={element as Table} />;
+                    found = <EnTable table={element as Table}/>;
                     return found;
                 case ElementType.NODE:
-                    found = <TreeComponent tree={element as Node} index={Math.random().toString(36).slice(2, 7)} />;
+                    found = <TreeComponent tree={element as Node} index={Math.random().toString(36).slice(2, 7)}/>;
                     return found;
                 case ElementType.BEREGNINGNODE:
-                    found = <TreeComponent tree={element as BeregningNode} index={Math.random().toString(36).slice(2, 7)} />;
+                    found =
+                        <TreeComponent tree={element as BeregningNode} index={Math.random().toString(36).slice(2, 7)}/>;
                     return found;
                 case ElementType.ARCNODE:
-                    found = <ARCNODETreeComponent arcnodetree={element as ArcNode} />;
+                    found = <ARCNODETreeComponent arcnodetree={element as ArcNode}/>;
                     return found;
                 case ElementType.FORMELNODE:
-                    found = <FORMELTreeComponent formeltree={element as FormelNode} />;
+                    found = <FORMELTreeComponent formeltree={element as FormelNode}/>;
                     return found;
                 default:
                     throw new Error("Unsupported elementType");
@@ -66,7 +67,7 @@ const search = (current: Element ): React.ReactElement | null => {
 };
 
 interface JsonParserProps {
-    data:  Element[] | Element;
+    data: Element[] | Element;
     isFetching?: boolean;
 }
 

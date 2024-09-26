@@ -21,7 +21,7 @@ const RequestPane: React.FC<RequestProps> = ({ data,isFetching }) => {
                 </div>
             </div>
             <div id="requestView">
-                <JsonParser data={data?.request[0]} isFetching={isFetching} />
+                {data && <JsonParser data={data?.request} isFetching={isFetching} />}
             </div>
         </div>
     )
