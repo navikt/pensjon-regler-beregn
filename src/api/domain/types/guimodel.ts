@@ -73,13 +73,13 @@ export interface Table extends Element{
 }
 
 export interface Tab extends Element {
-    [key: string]: any;
+    [key: string]: unknown;
     name: string;
     data: Element[];
 }
 
 export interface TabList extends Element {
-    [key: string]: any;
+    [key: string]: unknown;
     position: Position;
     children: Tab[];
 }

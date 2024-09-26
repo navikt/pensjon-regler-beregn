@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {ReactNode, useEffect, useState} from "react";
 import { EnTable } from "../tsguielement/TableComponent.tsx";
 import { TreeComponent } from "../tsguielement/TreeComponent.tsx"
 import { ARCNODETreeComponent } from "../tsguielement/ARCNODETreeComponent.tsx";
@@ -19,10 +19,10 @@ import {TabComponent} from "./TabComponent.tsx";
 
 
 const search = (current: Element ): React.ReactElement | null => {
-    let element: Element | null = null;
+    let element: Element[] | Element | null = null;
     for (const child of current.data) {
 
-        let found: React.ReactElement | null = null;
+        let found: ReactNode | null = null;
 
         if (child.type) {
             element = child;
