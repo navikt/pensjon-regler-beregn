@@ -1,12 +1,12 @@
 import {useState} from "react";
-import {JsonParser} from "./../../tsguielement/JsonParser.tsx";
+import {JsonParser} from "./JsonParser.tsx";
 import {Tab} from "../../api/domain/types/guimodel.ts";
 
 interface TabProps {
     tab: Tab;
 }
 
-export function Tab(tabProps: TabProps) {
+export function TabComponent(tabProps: TabProps) {
     const [tab] = useState(tabProps.tab);
 
 

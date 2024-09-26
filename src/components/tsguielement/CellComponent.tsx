@@ -1,6 +1,6 @@
 import { Button, Popover, Table } from '@navikt/ds-react';
 import React, { useRef, useState } from "react";
-import {JsonParser} from "./../../tsguielement/JsonParser.tsx";
+import {JsonParser} from "./JsonParser.tsx";
 import './CSS/Button.css'
 
 export const popoverType_None = "NONE"
@@ -21,7 +21,7 @@ function generateTables(tables) {
     return t;
 }
 
-export function Cell(props) {
+export function CellComponent(props) {
     let element = useState(props.element);
     let j = props.j
     let subitem = element[0]
