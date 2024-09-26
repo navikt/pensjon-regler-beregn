@@ -1,4 +1,4 @@
-import { JsonParser } from "../tsguielement/JsonParser"
+import { JsonParser } from "./tsguielement/JsonParser"
 import {useEffect} from "react";
 import {GuiModel} from "../api/domain/types/guimodel.ts";
 

@@ -8,6 +8,22 @@ export enum ElementType {
     FORMELNODE = "FORMELNODE"
 }
 
+export interface Element {
+    type: ElementType;
+    children: Element[];
+    data: Element[];
+}
+
+export enum Orientation {
+    VERTICAL = "VERTICAL",
+    HORIZONTAL = "HORIZONTAL"
+}
+
+export enum Position {
+    TOP = "TOP",
+    SIDE = "SIDE"
+}
+
 export enum PopoverType {
     NONE = "NONE",
     DESCRIPTION = "DESCRIPTION",
@@ -15,43 +31,60 @@ export enum PopoverType {
     FAKTUM = "FAKTUM"
 }
 
-export type GuiModel = {
-    request: Tab[] | TabList[];
-    response: Tab[] | TabList[];
+export interface GuiModel {
+    request: Element[];
+    response: Element[];
     metadata: Metadata;
     fromFile?: boolean;
 }
 
-export type Cell = {
-    data: string;
+export interface Cell extends Omit<Element, 'data'> {
     header: boolean;
     popoverType: PopoverType;
-    popoverContent?: Table[];
+    popoverContent?: Element[];
     tooltip?: string;
+    data: string;
 }
 
-export type Table = {
-    type: string;
+export interface Node extends Element {
+    name: string;
+    used: boolean;
+    children: Node[];
+    elementType: ElementType;
+}
+
+export interface ArcNode extends Node {
+}
+
+export interface BeregningNode extends Node {
+    data: Tab[];
+}
+
+export interface FormelNode extends Node {
+    notasjon?: string;
+    innhold?: string;
+    result?: string;
+}
+
+export interface Table extends Element{
     name?: string;
-    orientation: string;
-    cells: Cell[];
+    orientation: Orientation;
+    cells: Cell[][];
 }
 
-export type Tab = {
+export interface Tab extends Element {
     [key: string]: any;
     name: string;
-    data: Table[];
-    type: string;
+    data: Element[];
 }
 
-export type TabList = {
+export interface TabList extends Element {
     [key: string]: any;
-    position: string;
-    type: string;
+    position: Position;
     children: Tab[];
 }
 
-export type Metadata  = {
+export interface Metadata {
     status: string;
     info: string;
     bruktSats: string;
