@@ -4,61 +4,71 @@ import {TreeComponent} from "../tsguielement/TreeComponent.tsx"
 import {ARCNODETreeComponent} from "../tsguielement/ARCNODETreeComponent.tsx";
 import {FORMELTreeComponent} from "../tsguielement/FORMELTreeComponent.tsx";
 import {
-    ArcNode,
-    BeregningNode,
-    Element,
+    ArcNodeElement,
+    BeregningNodeElement,
+    DataElement,
     ElementType,
-    FormelNode,
-    Node,
-    Tab,
-    Table,
-    TabList
-} from "../../api/domain/types/guimodel.ts";
+    FormelNodeElement,
+    TabElement,
+    TableElement,
+    TabListElement
+} from "../../api/domain/types/guimodelx.ts";
 import {TabListComponent} from "./TabListComponent.tsx";
 import {TabComponent} from "./TabComponent.tsx";
+import {DataElement} from "../../api/domain/types/guimodelx.ts";
 
+function hasTypeProperty(obj: any): obj is DataElement {
+    return obj && typeof obj === "object" && "type" in obj;
+}
 
-const search = (current: Element): React.ReactElement | null => {
-    let element: Element[] | Element | null = null;
-    for (let child of current.data) {
+const search = (current: DataElement): React.ReactNode | null => {
 
-        let found: React.ReactElement | null = null;
+    if (current === null) return null;
 
-        if (child.type) {
-            element = child;
-        } else if (current.type) {
+    for (const child in current) {
+        let element: unknown = null;
+        let found : React.ReactNode = null;
+
+        if (current[child] && hasTypeProperty(current[child])) {
+            element = current[child];
+        } else if (hasTypeProperty(current)) {
             element = current;
         }
-        if (element && (child.type || current.type)) {
+        if (element) {
+            // @ts-ignore
             switch (element.type) {
                 case ElementType.TABLIST:
-                    found = <TabListComponent tabs={element as TabList}/>;
+                    found = <TabListComponent tabs={element as TabListElement}/>;
                     return found;
                 case ElementType.TAB:
-                    found = <TabComponent tab={element as Tab}/>;
+                    found = <TabComponent tab={element as TabElement}/>;
                     return found;
                 case ElementType.TABLE:
-                    found = <EnTable table={element as Table}/>;
+                    found = <EnTable table={element as TableElement}/>;
                     return found;
                 case ElementType.NODE:
                     found = <TreeComponent tree={element as Node} index={Math.random().toString(36).slice(2, 7)}/>;
                     return found;
                 case ElementType.BEREGNINGNODE:
                     found =
-                        <TreeComponent tree={element as BeregningNode} index={Math.random().toString(36).slice(2, 7)}/>;
+                        <TreeComponent tree={element as BeregningNodeElement} index={Math.random().toString(36).slice(2, 7)}/>;
                     return found;
                 case ElementType.ARCNODE:
-                    found = <ARCNODETreeComponent arcnodetree={element as ArcNode}/>;
+                    found = <ARCNODETreeComponent arcnodetree={element as ArcNodeElement}/>;
                     return found;
                 case ElementType.FORMELNODE:
-                    found = <FORMELTreeComponent formeltree={element as FormelNode}/>;
+                    found = <FORMELTreeComponent formeltree={element as FormelNodeElement}/>;
                     return found;
                 default:
                     throw new Error("Unsupported elementType");
             }
-        } else if (Array.isArray(child)) {
-            found = search(child as Element);
         }
+        // @ts-ignore
+        else if (Array.isArray(current[child])) {
+            //@ts-ignore
+            found = search(current[child]);
+        }
+
         if (found != null) {
             return found;
         }
@@ -67,21 +77,17 @@ const search = (current: Element): React.ReactElement | null => {
 };
 
 interface JsonParserProps {
-    data: Element[] | Element;
-    isFetching?: boolean;
+    data: DataElement;
+    isFetching: boolean;
 }
 
-export function JsonParser(props: JsonParserProps): React.ReactElement | null {
+export function JsonParser(props: JsonParserProps) {
     const [data] = useState(props.data);
     const [isFetching] = useState(props.isFetching);
 
     useEffect(() => {
-        // Add any side effects here if needed
+        // Your effect logic here
     }, [isFetching]);
 
-    return (
-        <div>
-            {Array.isArray(data) ? data.map((element: Element) => search(element)) : search(data)}
-        </div>
-    );
+    return <div>{search(data)}</div>;
 }

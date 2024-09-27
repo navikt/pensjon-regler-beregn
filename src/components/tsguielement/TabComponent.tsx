@@ -1,9 +1,9 @@
 import {useState} from "react";
 import {JsonParser} from "./JsonParser.tsx";
-import {Tab} from "../../api/domain/types/guimodel.ts";
+import {TabElement} from "../../api/domain/types/guimodelx.ts";
 
 interface TabProps {
-    tab: Tab;
+    tab: TabElement;
 }
 
 export function TabComponent(tabProps: TabProps) {

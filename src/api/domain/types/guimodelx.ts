@@ -1,0 +1,84 @@
+export enum ElementType {
+    TABLIST = "TABLIST",
+    TAB = "TAB",
+    TABLE = "TABLE",
+    NODE = "NODE",
+    BEREGNINGNODE = "BEREGNINGNODE",
+    ARCNODE = "ARCNODE",
+    FORMELNODE = "FORMELNODE"
+}
+
+export enum Orientation {
+    VERTICAL = "VERTICAL",
+    HORIZONTAL = "HORIZONTAL"
+}
+
+export enum Position {
+    TOP = "TOP",
+    SIDE = "SIDE"
+}
+
+export enum PopoverType {
+    NONE = "NONE",
+    DESCRIPTION = "DESCRIPTION",
+    FORMEL = "FORMEL",
+    FAKTUM = "FAKTUM"
+}
+
+export interface BaseElement {
+    type: ElementType;
+    [key: string]: unknown;
+}
+
+export interface TabListElement extends BaseElement {
+    position: Position;
+    data: TabElement[];
+}
+
+export interface TabElement extends BaseElement {
+    name: string;
+    data: BaseElement[];
+}
+
+export interface TableElement extends BaseElement {
+    name: string;
+    orientation: Orientation;
+    cells: CellElement[][];
+}
+
+export interface CellElement extends BaseElement {
+    header: boolean;
+    popoverType: PopoverType;
+    popoverContent?: BaseElement[];
+    tooltip?: string;
+    data: string;
+}
+
+export interface NodeElement extends BaseElement {
+    name: string;
+    used: boolean;
+    children: NodeElement[];
+}
+
+export interface ArcNodeElement extends NodeElement {
+}
+
+export interface BeregningNodeElement extends NodeElement {
+    data: TabElement[];
+}
+
+export interface FormelNodeElement extends BaseElement {
+    notasjon?: string;
+    innhold?: string;
+    result?: string;
+}
+
+export type DataElement =
+    | TabListElement
+    | TabElement
+    | TableElement
+    | CellElement
+    | NodeElement
+    | ArcNodeElement
+    | BeregningNodeElement
+    | FormelNodeElement;

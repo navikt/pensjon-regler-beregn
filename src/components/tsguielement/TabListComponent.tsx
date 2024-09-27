@@ -2,17 +2,17 @@ import React, {useState} from "react";
 import {JsonParser} from "./JsonParser.tsx";
 import {Tabs} from '@navikt/ds-react';
 import './CSS/TabList.css'
-import {Position, TabList} from "../../api/domain/types/guimodel.ts";
+import {Position, TabListElement } from "../../api/domain/types/guimodelx.ts";
 
 export interface TabListProps {
-    tabs: TabList;
+    tabs: TabListElement;
 }
 
 export function TabListComponent(props: TabListProps): React.ReactElement {
 
     const [tabs] = useState(props.tabs);
     const position = tabs.position;
-    const [value, setValue] = useState(tabs.children[0].name + "0")
+    const [value, setValue] = useState(tabs.data[0].name + "0")
 
     switch (position) {
         case Position.TOP:
@@ -20,7 +20,7 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                 <>
                     <Tabs value={value} onChange={setValue} size="small">
                         <Tabs.List>
-                            {tabs.children.map((tab, key) => { //Creating header buttons for each TabComponent
+                            {tabs.data.map((tab, key) => { //Creating header buttons for each TabComponent
                                 return (
                                     <Tabs.Tab as={"button"}
                                               style={{
@@ -47,7 +47,7 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                             })}
                         </Tabs.List>
                     </Tabs>
-                    {tabs.children.map((tab, key) => { //Creating div for each tab with reference to header button
+                    {tabs.data.map((tab, key) => { //Creating div for each tab with reference to header button
                         return (
                             <div
                                 role="tabpanel"
@@ -66,7 +66,7 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
             return (
                 <div className='sidetab-container'>
                     <div className="sidetab-menu-container">
-                        {tabs.children.map((tab, key) => {
+                        {tabs.data.map((tab, key) => {
                             return (
                                 <div
                                     className="sidetab-button"
@@ -86,7 +86,7 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                         })}
                     </div>
                     <div className='sidetab-content-container'>
-                        {tabs.children.map((tab, key) => {
+                        {tabs.data.map((tab, key) => {
                             return (
                                 <div
                                     role="tabpanel"
