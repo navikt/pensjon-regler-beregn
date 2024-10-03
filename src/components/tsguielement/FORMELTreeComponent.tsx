@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import './CSS/FormelTree.css';
-import {FormelNode} from "../../api/domain/types/guimodel.ts";
+import {FormelNodeElement} from "../../api/domain/types/guimodelx.ts";
 
 export interface FORMELTreeProps {
-    formeltree: FormelNode;
+    formeltree: FormelNodeElement;
 }
 
 export function FORMELTreeComponent(props: FORMELTreeProps): React.ReactElement {
-    const [tree] = useState<FormelNode>(props.formeltree);
+    const [tree] = useState<FormelNodeElement>(props.formeltree);
 
-    function getFormelDetail(node: FormelNode): React.ReactNode {
+    function getFormelDetail(node: FormelNodeElement): React.ReactNode {
         return (
             <div>
                 <table>
@@ -27,7 +27,7 @@ export function FORMELTreeComponent(props: FORMELTreeProps): React.ReactElement 
         );
     }
 
-    function generateTreeNode(node: Node, i: number): React.ReactNode {
+    function generateTreeNode(node: FormelNodeElement, i: number): React.ReactNode {
         if (i === 1) { // rootNode
             return (
                 <>

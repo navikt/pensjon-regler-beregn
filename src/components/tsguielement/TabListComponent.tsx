@@ -12,7 +12,7 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
 
     const [tabs] = useState(props.tabs);
     const position = tabs.position;
-    const [value, setValue] = useState(tabs.data[0].name + "0")
+    const [value, setValue] = useState(tabs.data[0].name)
 
     switch (position) {
         case Position.TOP:
@@ -24,19 +24,19 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                                 return (
                                     <Tabs.Tab as={"button"}
                                               style={{
-                                                  backgroundColor: value === tab.name + key ? "white" : "#a8a1a6",
+                                                  backgroundColor: value === tab.name? "white" : "#a8a1a6",
                                                   borderLeft: '1px solid grey',
                                                   borderRight: '1px solid grey',
                                                   borderTop: '1px solid grey',
-                                                  borderBottom: value === tab.name + key ? "" : "1px solid grey",
+                                                  borderBottom: value === tab.name? "" : "1px solid grey",
                                                   borderRadius: '10px 10px 1px 1px',
                                                   width: '200px',
                                                   height: '50px',
                                                   overflow: 'hidden'
                                               }}
 
-                                              value={tab.name + key}
-                                              label={tab.name + key}
+                                              value={tab.name}
+                                              label={tab.name}
                                               key={key}
                                               id={tab.name + '-tab'} //Creating references from header button to tab content
                                               aria-controls={tab.name + '-panel'}
@@ -51,12 +51,12 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                         return (
                             <div
                                 role="tabpanel"
-                                hidden={value !== tab.name + key}
+                                hidden={value !== tab.name}
                                 aria-labelledby={tab.name + '-tab'}
                                 key={key}
                                 id={tab.name + '-panel'}
                             >
-                                <JsonParser data={tab.data}/> {/*Sending tab content back to parser function*/}
+                                <JsonParser data={tab.data}/>
                             </div>
                         )
                     })}

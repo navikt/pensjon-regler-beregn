@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { JsonParser } from "./JsonParser.tsx";
 import { Heading } from "@navikt/ds-react";
 import './CSS/Tree.css';
-import { Node } from "../../api/domain/types/guimodel.ts";
+import { NodeElement } from "../../api/domain/types/guimodelx.ts";
 
 export interface TreeProps {
-    tree: Node;
+    tree: NodeElement;
     index: string;
 }
 

@@ -3,16 +3,19 @@ import { Heading, Table, Tooltip } from '@navikt/ds-react';
 import './CSS/EnTable.css';
 import { CellComponent } from "./CellComponent";
 import { QuestionmarkIcon } from "@navikt/aksel-icons";
-import { Cell, Table as TableType } from "../../api/domain/types/guimodel";
+
+import {CellElement, TableElement} from "../../api/domain/types/guimodelx.ts";
 
 export interface EnTableProps {
-    table: TableType;
+    table: TableElement;
 }
 
 export function EnTable(props: EnTableProps): ReactNode {
-    const [table] = useState<TableType>(props.table);
+    const [table] = useState<TableElement>(props.table);
 
-    function createTooltip(item: Cell): ReactNode | null {
+    console.log("Got table (name): ", table.name);
+
+    function createTooltip(item: CellElement): ReactNode | null {
         if (item && item.tooltip) {
             return (
                 <Tooltip content={item.tooltip} placement="top">
@@ -24,7 +27,7 @@ export function EnTable(props: EnTableProps): ReactNode {
         }
     }
 
-    function horizontalHeader(items: Cell[]): ReactNode | null {
+    function horizontalHeader(items: CellElement[]): ReactNode | null {
         if (!items || items.length === 0) {
             return null;
         }
@@ -42,7 +45,7 @@ export function EnTable(props: EnTableProps): ReactNode {
         });
     }
 
-    function verticalHeader(items: Cell[]): ReactNode | null {
+    function verticalHeader(items: CellElement[]): ReactNode | null {
         if (!items || items.length === 0) {
             return null;
         }
@@ -60,14 +63,14 @@ export function EnTable(props: EnTableProps): ReactNode {
         });
     }
 
-    function showRow(item: Cell[], isVertical = false, index: number): ReactNode[] {
+    function showRow(item: CellElement[], isVertical = false, index: number): ReactNode[] {
         return item.map((subitem, j) => (
             <CellComponent key={`cell-${index}-${j}`} index={index} element={subitem} j={j} isVertical={isVertical} />
         ));
     }
 
     const Checkname: React.FC<{ name: string | undefined }> = ({ name }) => {
-        if (name && name.includes('Ingen')) {
+        if (name && name.includes('Ingen') && table.cells.length === 0) {
             return null;
         } else {
             return (

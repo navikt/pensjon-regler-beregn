@@ -67,7 +67,7 @@ export interface BeregningNodeElement extends NodeElement {
     data: TabElement[];
 }
 
-export interface FormelNodeElement extends BaseElement {
+export interface FormelNodeElement extends NodeElement {
     notasjon?: string;
     innhold?: string;
     result?: string;
