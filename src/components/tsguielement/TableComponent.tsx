@@ -1,10 +1,10 @@
-import React, { ReactNode, useState } from "react";
-import { Heading, Table, Tooltip } from '@navikt/ds-react';
+import React, {ReactNode, useState} from "react";
+import {Heading, Table, Tooltip} from '@navikt/ds-react';
 import './CSS/EnTable.css';
-import { CellComponent } from "./CellComponent";
-import { QuestionmarkIcon } from "@navikt/aksel-icons";
+import {CellComponent} from "./CellComponent";
+import {QuestionmarkIcon} from "@navikt/aksel-icons";
 
-import {CellElement, TableElement} from "../../api/domain/types/guimodelx.ts";
+import {CellElement, Orientation, TableElement} from "../../api/domain/types/guimodelx.ts";
 
 export interface EnTableProps {
     table: TableElement;
@@ -12,8 +12,6 @@ export interface EnTableProps {
 
 export function EnTable(props: EnTableProps): ReactNode {
     const [table] = useState<TableElement>(props.table);
-
-    console.log("Got table (name): ", table.name);
 
     function createTooltip(item: CellElement): ReactNode | null {
         if (item && item.tooltip) {
@@ -69,8 +67,8 @@ export function EnTable(props: EnTableProps): ReactNode {
         ));
     }
 
-    const Checkname: React.FC<{ name: string | undefined }> = ({ name }) => {
-        if (name && name.includes('Ingen') && table.cells.length === 0) {
+    const GenerateTableRows: React.FC<{ name: string | undefined }> = ({ name }) => {
+        if (name && name.includes('Ingen') && table.cells.length === 0) { //TODO rendre det som finnes, trenger ikke noe sjekk på Ingen etc
             return null;
         } else {
             return (
@@ -78,7 +76,7 @@ export function EnTable(props: EnTableProps): ReactNode {
                     <Table size="small">
                         <Table.Header>
                             <Table.Row>
-                                {table.orientation === 'HORIZONTAL' && table.cells[0] && (
+                                {table.orientation === Orientation.VERTICAL && table.cells[0] && (
                                     horizontalHeader(table.cells[0])
                                 )}
                             </Table.Row>
@@ -91,7 +89,7 @@ export function EnTable(props: EnTableProps): ReactNode {
                             ))}
                             {table.orientation === 'VERTICAL' && table.cells.map((item, index) => (
                                 <Table.Row key={`vertical-row-${index}`}>
-                                    {verticalHeader(item)}
+
                                     {showRow(item, true, index)}
                                 </Table.Row>
                             ))}
@@ -104,7 +102,6 @@ export function EnTable(props: EnTableProps): ReactNode {
 
     return (
         <div>
-            <Heading size="xsmall" level="6"> &ensp; </Heading>
             <Heading
                 spacing
                 className={"tableHeading"}
@@ -121,7 +118,7 @@ export function EnTable(props: EnTableProps): ReactNode {
             >
                 &ensp; {table.name || ''}
             </Heading>
-            <Checkname name={table.name} />
+            <GenerateTableRows name={table.name} />
         </div>
     );
 }

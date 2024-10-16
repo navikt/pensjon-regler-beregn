@@ -49,7 +49,7 @@ export interface TableElement extends BaseElement {
 export interface CellElement extends BaseElement {
     header: boolean;
     popoverType: PopoverType;
-    popoverContent?: BaseElement[];
+    popoverContent?: NodeElement[];
     tooltip?: string;
     data: string;
 }

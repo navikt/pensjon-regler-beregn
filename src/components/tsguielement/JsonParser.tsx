@@ -1,10 +1,9 @@
 import {useEffect, useState} from "react";
-import {EnTable} from "../tsguielement/TableComponent.tsx";
 import {TreeComponent} from "../tsguielement/TreeComponent.tsx"
 import {ARCNODETreeComponent} from "../tsguielement/ARCNODETreeComponent.tsx";
 import {FORMELTreeComponent} from "../tsguielement/FORMELTreeComponent.tsx";
 import {
-    ArcNodeElement, BaseElement,
+    ArcNodeElement,
     BeregningNodeElement,
     DataElement,
     ElementType,
@@ -16,70 +15,66 @@ import {
 } from "../../api/domain/types/guimodelx.ts";
 import {TabListComponent} from "./TabListComponent.tsx";
 import {TabComponent} from "./TabComponent.tsx";
+import {Table2Component} from "./Table2Component.tsx";
 
 function hasTypeProperty(obj: DataElement): obj is DataElement {
     return obj && typeof obj === "object" && "type" in obj;
 }
 
-const search = (current: DataElement): React.ReactNode | null => {
+const search = (current: DataElement | DataElement[]): React.ReactElement[] => {
+    if (current === null) return [];
 
-    if (current === null) return null;
+    let foundElements: React.ReactNode[] = [];
 
     for (const child in current) {
-        let element: BaseElement | null = null;
-        let foundElements : React.ReactNode[] = [];
+        let element: DataElement | DataElement[] | null = null;
 
         // @ts-ignore
-        if (current[child] && hasTypeProperty(current[child])) {
+        if (current[child] && !Array.isArray(current[child]) && hasTypeProperty(current[child])) {
             // @ts-ignore
             element = current[child];
         } else if (hasTypeProperty(current)) {
             element = current;
         }
+
         if (element) {
             // @ts-ignore
             switch (element.type) {
                 case ElementType.TABLIST:
-                    foundElements.push(<TabListComponent tabs={element as TabListElement}/>);
-                    return foundElements;
+                    return [<TabListComponent tabs={element as TabListElement} />];
+                    break;
                 case ElementType.TAB:
-                    foundElements.push(<TabComponent tab={element as TabElement}/>)
-                    return foundElements;
+                    return [<TabComponent tab={element as TabElement} />];
+                    break;
                 case ElementType.TABLE:
-                    foundElements.push(<EnTable table={element as TableElement}/>);
-                    return foundElements;
+                    return [<Table2Component table={element as TableElement} />];
+                    break;
                 case ElementType.NODE:
-                    foundElements.push(<TreeComponent tree={element as NodeElement} index={Math.random().toString(36).slice(2, 7)}/>);
-                    return foundElements;
+                    return [<TreeComponent tree={element as NodeElement} index={Math.random().toString(36).slice(2, 7)} />];
+                    break;
                 case ElementType.BEREGNINGNODE:
-                    foundElements.push(
-                        <TreeComponent tree={element as BeregningNodeElement} index={Math.random().toString(36).slice(2, 7)}/>);
-                    return foundElements;
+                    return [<TreeComponent tree={element as BeregningNodeElement} index={Math.random().toString(36).slice(2, 7)} />];
+                    break;
                 case ElementType.ARCNODE:
-                    foundElements.push(<ARCNODETreeComponent arcnodetree={element as ArcNodeElement}/>);
-                    return foundElements;
+                    return [<ARCNODETreeComponent arcnodetree={element as ArcNodeElement} />];
+                    break;
                 case ElementType.FORMELNODE:
-                    foundElements.push(<FORMELTreeComponent formeltree={element as FormelNodeElement}/>);
-                    return foundElements;
+                    return [<FORMELTreeComponent formeltree={element as FormelNodeElement} />];
+                    break;
                 default:
                     throw new Error("Unsupported elementType");
             }
-        }
-        // @ts-ignore
-        else if (Array.isArray(current[child])) {
-            //@ts-ignore
+            // @ts-ignore
+        } else if (Array.isArray(current[child])) {
+            // @ts-ignore
             foundElements = search(current[child]);
         }
-
-        if (foundElements != null) {
-            return foundElements;
-        }
     }
-    return null;
+    return foundElements;
 };
 
 interface JsonParserProps {
-    data: DataElement;
+    data: DataElement | DataElement[];
     isFetching?: boolean;
 }
 
