@@ -1,3 +1,4 @@
+
 export enum ElementType {
     TABLIST = "TABLIST",
     TAB = "TAB",
@@ -73,6 +74,13 @@ export interface FormelNodeElement extends NodeElement {
     innhold?: string;
     result?: string;
 }
+export interface Metadata {
+    className: string;
+    status: string;
+    info: string;
+    bruktSats: string;
+    debugLog: string;
+}
 
 export type DataElement =
     | TabListElement
@@ -83,3 +91,10 @@ export type DataElement =
     | ArcNodeElement
     | BeregningNodeElement
     | FormelNodeElement;
+
+export interface GuiModel {
+    request: DataElement[];
+    response: DataElement[];
+    metadata: Metadata;
+    fromFile?: boolean;
+}

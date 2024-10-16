@@ -1,10 +1,10 @@
 import { JsonParser } from "./tsguielement/JsonParser"
 import {useEffect} from "react";
-import { GuiModel } from "../api/domain/types/guimodel.ts";
+import {DataElement} from "../api/domain/types/guimodelx.ts";
 
 
 interface RequestProps {
-    data: GuiModel | undefined
+    data: DataElement[] | undefined
     isFetching: boolean
 }
 const RequestPane: React.FC<RequestProps> = ({ data,isFetching }) => {
@@ -21,7 +21,7 @@ const RequestPane: React.FC<RequestProps> = ({ data,isFetching }) => {
                 </div>
             </div>
             <div id="requestView">
-                {data && <JsonParser data={data?.request} isFetching={isFetching} />}
+                {data && <JsonParser data={data} isFetching={isFetching} />}
             </div>
         </div>
     )

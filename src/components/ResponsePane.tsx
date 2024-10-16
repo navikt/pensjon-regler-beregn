@@ -1,9 +1,10 @@
 import { JsonParser } from "./tsguielement/JsonParser"
 import {useEffect} from "react";
-import {GuiModel} from "../api/domain/types/guimodel.ts";
+import {DataElement} from "../api/domain/types/guimodelx.ts";
+
 
 interface ResponsePaneProps {
-    data: GuiModel | undefined
+    data: DataElement[] | undefined
     satstabell: string
     isFetching: boolean
 }
@@ -21,7 +22,7 @@ const ResponsePane: React.FC<ResponsePaneProps> = ({ data, satstabell, isFetchin
                 </div>
             </div>
             <div id="responseView">
-                {data && <JsonParser data={data?.response } isFetching={isFetching}></JsonParser>}
+                {data && <JsonParser data={data} isFetching={isFetching}></JsonParser>}
             </div>
         </div>
     )

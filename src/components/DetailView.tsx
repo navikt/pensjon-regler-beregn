@@ -58,13 +58,13 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
             <PanelGroup direction={"horizontal"} className={"panel_resizegroup"}>
                 <Panel defaultSize={50}>
                     <div id="requestview">
-                        <RequestPane data={data} isFetching={isFetching}/>
+                        <RequestPane data={data?.request} isFetching={isFetching}/>
                     </div>
                 </Panel>
                 <PanelResizeHandle className="panel_resize" />
                 <Panel defaultSize={50}>
                     <div id="responseview">
-                        <ResponsePane data={data} satstabell={state.getSats()} isFetching={isFetching}/>
+                        <ResponsePane data={data?.response} satstabell={state.getSats()} isFetching={isFetching}/>
                     </div>
                 </Panel>
             </PanelGroup>

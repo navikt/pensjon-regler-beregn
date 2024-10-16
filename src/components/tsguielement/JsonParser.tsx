@@ -24,11 +24,11 @@ function hasTypeProperty(obj: DataElement): obj is DataElement {
 const search = (current: DataElement | DataElement[]): React.ReactNode[] => {
     if (current === null) return [];
 
+    let element: DataElement | DataElement[] | null = null;
+
     let found: React.ReactNode[] = [];
 
     for (const child in current) {
-        let element: DataElement | DataElement[] | null = null;
-
 
         if (current[child] && !Array.isArray(current[child]) && hasTypeProperty(current[child])) {
             element = current[child];
@@ -40,7 +40,6 @@ const search = (current: DataElement | DataElement[]): React.ReactNode[] => {
             // @ts-ignore
             switch (element.type) {
                 case ElementType.TABLIST:
-
                     found = found.concat(<TabListComponent tabs={element as TabListElement} />);
                     break;
                 case ElementType.TAB:
