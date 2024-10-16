@@ -9,7 +9,7 @@ export interface TreeProps {
     index: string;
 }
 
-export function TreeComponent(props: TreeProps): React.ReactElement {
+export const TreeComponent = React.memo(function TreeComponent(props: TreeProps): React.ReactElement {
     const [tree] = useState(props.tree);
     const index = props.index;
 
@@ -117,4 +117,4 @@ export function TreeComponent(props: TreeProps): React.ReactElement {
             </div>
         </div>
     );
-}
+});

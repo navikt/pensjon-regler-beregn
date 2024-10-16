@@ -31,13 +31,14 @@ export interface BaseElement {
 }
 
 export interface TabListElement extends BaseElement {
+    name: string;
     position: Position;
     data: TabElement[];
 }
 
 export interface TabElement extends BaseElement {
     name: string;
-    data: BaseElement[];
+    data: TableElement[];
 }
 
 export interface TableElement extends BaseElement {

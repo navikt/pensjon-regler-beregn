@@ -7,7 +7,7 @@ export interface Table2Props {
     table: TableElement;
 }
 
-export function Table2Component(props: Table2Props) : React.ReactNode {
+export function Table2Component(props: Table2Props): React.ReactNode {
     const [table] = useState<TableElement>(props.table);
 
     const GenerateRows = (table: TableElement) => {
@@ -15,17 +15,17 @@ export function Table2Component(props: Table2Props) : React.ReactNode {
             <div className="w-full flex flex-col gap-4">
                 <Table size={"small"}>
                     <Table.Body>
-                    { table.cells.map((row, rowIndex) => {
-                        return (
-                            <Table.Row key={rowIndex}>
-                                { row.map((cell) => {
-                                    return (
-                                        <CellComponent2 cell={cell} />
-                                    )
-                                })}
-                            </Table.Row>
-                        )
-                    })}
+                        {table.cells.map((row, rowIndex) => {
+                            return (
+                                <Table.Row key={rowIndex}>
+                                    {row.map((cell) => {
+                                        return (
+                                            <CellComponent2 cell={cell}/>
+                                        )
+                                    })}
+                                </Table.Row>
+                            )
+                        })}
                     </Table.Body>
                 </Table>
             </div>

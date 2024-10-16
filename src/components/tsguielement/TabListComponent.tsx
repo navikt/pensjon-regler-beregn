@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {JsonParser} from "./JsonParser.tsx";
 import {Tabs} from '@navikt/ds-react';
 import './CSS/TabList.css'
-import {Position, TabListElement } from "../../api/domain/types/guimodelx.ts";
+import {Position, TableElement, TabListElement} from "../../api/domain/types/guimodelx.ts";
 
 export interface TabListProps {
     tabs: TabListElement;
@@ -56,7 +56,7 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                                 key={key}
                                 id={tab.name + '-panel'}
                             >
-                                <JsonParser data={tab.data}/>
+                                <JsonParser data={tab.data as TableElement[]}/>
                             </div>
                         )
                     })}
@@ -95,7 +95,7 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                                     key={key}
                                     id={tab.name + '-panel'}>
                                     <JsonParser
-                                        data={tab.data}/>
+                                        data={tab.data as TableElement[]}/>
                                 </div>
                             )
                         })}
