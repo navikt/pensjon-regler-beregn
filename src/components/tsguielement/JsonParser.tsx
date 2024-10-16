@@ -15,7 +15,7 @@ import {
 } from "../../api/domain/types/guimodelx.ts";
 import {TabListComponent} from "./TabListComponent.tsx";
 import {TabComponent} from "./TabComponent.tsx";
-import {Table2Component} from "./Table2Component.tsx";
+import {TableComponent} from "./TableComponent.tsx";
 
 function hasTypeProperty(obj: DataElement): obj is DataElement {
     return obj && typeof obj === "object" && "type" in obj;
@@ -37,7 +37,7 @@ const search = (current: DataElement | DataElement[]): React.ReactNode[] | undef
                         found = found.concat(<TabComponent tab={element as TabElement} />);
                         break;
                     case ElementType.TABLE:
-                        found = found.concat(<Table2Component table={element as TableElement} />);
+                        found = found.concat(<TableComponent table={element as TableElement} />);
                         break;
                     case ElementType.NODE:
                         found = found.concat(<TreeComponent tree={element as NodeElement} index={Math.random().toString(36).slice(2, 7)} />);
@@ -65,7 +65,7 @@ const search = (current: DataElement | DataElement[]): React.ReactNode[] | undef
                 found = found.concat(<TabComponent tab={current as TabElement} />);
                 break;
             case ElementType.TABLE:
-                found = found.concat(<Table2Component table={current as TableElement} />);
+                found = found.concat(<TableComponent table={current as TableElement} />);
                 break;
             case ElementType.NODE:
                 found = found.concat(<TreeComponent tree={current as NodeElement} index={Math.random().toString(36).slice(2, 7)} />);
