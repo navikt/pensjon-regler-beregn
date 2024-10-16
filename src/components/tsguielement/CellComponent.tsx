@@ -3,7 +3,7 @@ import {CellElement, NodeElement, PopoverType} from "../../api/domain/types/guim
 import React, {useRef, useState} from "react";
 import {JsonParser} from "./JsonParser.tsx";
 
-export interface CellComponent2Props {
+export interface CellComponentProps {
     cell: CellElement;
 }
 
@@ -19,7 +19,7 @@ const generatePopoverTables = (tables: NodeElement[]): React.ReactNode[] => {
     return result;
 }
 
-export const CellComponent = (props: CellComponent2Props) => {
+export const CellComponent = (props: CellComponentProps) => {
 
     const buttonPopoverRef = useRef(null);
     const buttonTooltipRef = useRef(null);

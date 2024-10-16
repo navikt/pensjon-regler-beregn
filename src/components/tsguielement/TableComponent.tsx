@@ -3,11 +3,11 @@ import {TableElement} from "../../api/domain/types/guimodelx.ts";
 import {Heading, Table} from "@navikt/ds-react";
 import {CellComponent} from "./CellComponent.tsx";
 
-export interface Table2Props {
+export interface TableProps {
     table: TableElement;
 }
 
-export function TableComponent(props: Table2Props): React.ReactNode {
+export function TableComponent(props: TableProps): React.ReactNode {
     const [table] = useState<TableElement>(props.table);
 
     const GenerateRows = (table: TableElement) => {
@@ -18,9 +18,9 @@ export function TableComponent(props: Table2Props): React.ReactNode {
                         {table.cells.map((row, rowIndex) => {
                             return (
                                 <Table.Row key={rowIndex}>
-                                    {row.map((cell) => {
+                                    {row.map((cell, index) => {
                                         return (
-                                            <CellComponent cell={cell}/>
+                                            <CellComponent cell={cell} key={index}/>
                                         )
                                     })}
                                 </Table.Row>
