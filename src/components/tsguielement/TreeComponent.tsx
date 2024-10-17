@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { JsonParser } from "./JsonParser.tsx";
 import { Heading } from "@navikt/ds-react";
 import './CSS/Tree.css';
-import { NodeElement } from "../../api/domain/types/guimodelx.ts";
+import {BeregningNodeElement, DataElement, NodeElement} from "../../api/domain/types/guimodel.ts";
 
 export interface TreeProps {
-    tree: NodeElement;
+    tree: NodeElement | BeregningNodeElement;
     index: string;
 }
 
-export const TreeComponent = React.memo(function TreeComponent(props: TreeProps): React.ReactElement {
+export const TreeComponent = (props: TreeProps): React.ReactElement => {
     const [tree] = useState(props.tree);
     const index = props.index;
 
@@ -17,7 +17,7 @@ export const TreeComponent = React.memo(function TreeComponent(props: TreeProps)
         return used ? { 'backgroundColor': 'transparent' } : { 'color': 'red', 'backgroundColor': 'transparent' };
     }
 
-    function generateTreeNode(node: Node, t: React.ReactNode[], i: number, tabsName: string): React.ReactNode {
+    function generateTreeNode(node: NodeElement | BeregningNodeElement, t: React.ReactNode[], i: number, tabsName: string): React.ReactNode {
         if (i === 1) { // rootNode
             return (
                 <div>
@@ -54,15 +54,15 @@ export const TreeComponent = React.memo(function TreeComponent(props: TreeProps)
         }
     }
 
-    function generateTreeContent(node: Node, t: React.ReactNode[], i: number, tabsName: string): React.ReactNode[] {
+    function generateTreeContent(node: NodeElement | BeregningNodeElement, t: React.ReactNode[], i: number, tabsName: string): React.ReactNode[] {
         if (i === 1) {
             t.push(<div key={index + i} id={tabsName + 'treeTabs' + index + i} style={{ display: "block" }} className={'tree-tabs'}>
-                <JsonParser data={node.data}></JsonParser></div>);
+                <JsonParser data={node.data as DataElement}></JsonParser></div>);
             generateTreeContent(node, t, i + 1, tabsName);
         } else if (Object.prototype.hasOwnProperty.call(node, 'children') && node.children.length !== 0) {
             node.children.map((subNode, key) => {
                 t.push(<div key={index + i + key} id={tabsName + 'treeTabs' + index + i + key} className={'tree-tabs'}>
-                    <JsonParser data={subNode.data}></JsonParser></div>);
+                    <JsonParser data={subNode.data as DataElement}></JsonParser></div>);
                 generateTreeContent(subNode, t, parseInt("" + i + key + (i + 1).toString()), tabsName);
             });
         }
@@ -117,4 +117,4 @@ export const TreeComponent = React.memo(function TreeComponent(props: TreeProps)
             </div>
         </div>
     );
-});
+};

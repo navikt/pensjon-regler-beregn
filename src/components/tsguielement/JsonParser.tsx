@@ -12,7 +12,7 @@ import {
     TabElement,
     TableElement,
     TabListElement
-} from "../../api/domain/types/guimodelx.ts";
+} from "../../api/domain/types/guimodel.ts";
 import {TabListComponent} from "./TabListComponent.tsx";
 import {TabComponent} from "./TabComponent.tsx";
 import {TableComponent} from "./TableComponent.tsx";

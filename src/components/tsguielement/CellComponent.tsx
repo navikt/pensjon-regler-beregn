@@ -1,5 +1,5 @@
 import {Button, Popover, Table} from "@navikt/ds-react";
-import {CellElement, NodeElement, PopoverType} from "../../api/domain/types/guimodelx.ts";
+import {CellElement, NodeElement, PopoverType} from "../../api/domain/types/guimodel.ts";
 import React, {useRef, useState} from "react";
 import {JsonParser} from "./JsonParser.tsx";
 

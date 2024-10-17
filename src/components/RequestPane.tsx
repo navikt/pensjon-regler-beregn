@@ -1,6 +1,6 @@
 import { JsonParser } from "./tsguielement/JsonParser"
 import {useEffect} from "react";
-import {DataElement} from "../api/domain/types/guimodelx.ts";
+import {DataElement} from "../api/domain/types/guimodel.ts";
 
 
 interface RequestProps {

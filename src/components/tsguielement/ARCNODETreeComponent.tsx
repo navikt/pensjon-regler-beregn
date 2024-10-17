@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './CSS/ARCNODETree.css';
-import { ArcNodeElement } from "../../api/domain/types/guimodelx.ts";
+import { ArcNodeElement } from "../../api/domain/types/guimodel.ts";
 
 export interface ARCNODETreeProps {
     arcnodetree: ArcNodeElement;

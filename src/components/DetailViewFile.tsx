@@ -47,10 +47,10 @@ const DetailViewFile: React.FC = () => {
         <>
             <div className="detailcontainer">
                 <div id="requestview">
-                    <RequestPane request={data?.request} isFetching={isFetching}/>
+                    <RequestPane data={data?.request} isFetching={isFetching}/>
                 </div>
                 <div id="responseview">
-                    <ResponsePane response={data?.response} satstabell={state.getSats()} isFetching={isFetching} />
+                    <ResponsePane data={data?.response} satstabell={state.getSats()} isFetching={isFetching} />
                 </div>
             </div>
             <ConsoleLog />

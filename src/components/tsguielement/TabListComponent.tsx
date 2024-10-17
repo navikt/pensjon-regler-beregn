@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {JsonParser} from "./JsonParser.tsx";
 import {Tabs} from '@navikt/ds-react';
 import './CSS/TabList.css'
-import {Position, TableElement, TabListElement} from "../../api/domain/types/guimodelx.ts";
+import {Position, TableElement, TabListElement} from "../../api/domain/types/guimodel.ts";
 
 export interface TabListProps {
     tabs: TabListElement;
@@ -14,13 +14,18 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
     const position = tabs.position;
     const [value, setValue] = useState(tabs.data[0].name)
 
+    const onHandleChange = (newValue: string) => {
+        setValue(newValue);
+    }
+
     switch (position) {
         case Position.TOP:
             return (
                 <>
-                    <Tabs value={value} onChange={setValue} size="small">
+                    <Tabs value={value} onChange={onHandleChange} size="small">
                         <Tabs.List>
                             {tabs.data.map((tab, key) => { //Creating header buttons for each TabComponent
+
                                 return (
                                     <Tabs.Tab as={"button"}
                                               style={{
@@ -37,8 +42,8 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
 
                                               value={tab.name}
                                               label={tab.name}
-                                              key={key}
-                                              id={tab.name + '-tab'} //Creating references from header button to tab content
+                                              key={tab.name + key}
+                                              id={tab.name + '-tab-'+key} //Creating references from header button to tab content
                                               aria-controls={tab.name + '-panel'}
                                     >
                                         {tab.name}
@@ -48,13 +53,14 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                         </Tabs.List>
                     </Tabs>
                     {tabs.data.map((tab, key) => { //Creating div for each tab with reference to header button
+
                         return (
                             <div
                                 role="tabpanel"
                                 hidden={value !== tab.name}
                                 aria-labelledby={tab.name + '-tab'}
-                                key={key}
-                                id={tab.name + '-panel'}
+                                key={tab.name + key}
+                                id={tab.name + '-tab-'+key}
                             >
                                 <JsonParser data={tab.data as TableElement[]}/>
                             </div>
@@ -76,7 +82,7 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                                         borderBottom: value === tab.name + key ? "" : "1px solid grey",
                                         color: value === tab.name + key ? "black" : "grey"
                                     }}
-                                    key={key}
+                                    key={tab.name + key}
                                     id={tab.name + '-tab'} //Creating references from header button to tab content
                                     aria-controls={tab.name + '-panel'}
                                 >
@@ -92,7 +98,7 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                                     role="tabpanel"
                                     hidden={value !== tab.name + key}
                                     aria-labelledby={tab.name + '-tab'}
-                                    key={key}
+                                    key={tab.name + key}
                                     id={tab.name + '-panel'}>
                                     <JsonParser
                                         data={tab.data as TableElement[]}/>

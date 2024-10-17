@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import axios, { AxiosResponse } from "axios"
 import {LogResponse} from "../domain/LogResponse"
-import  {GuiModel} from "../domain/types/guimodelx"
+import  {GuiModel} from "../domain/types/guimodel.ts"
 
 
 const fetchByLogId = async (id: string): Promise<LogResponse> => {
