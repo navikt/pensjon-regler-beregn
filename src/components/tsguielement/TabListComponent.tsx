@@ -43,7 +43,7 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                                               value={tab.name}
                                               label={tab.name}
                                               key={tab.name + key}
-                                              id={tab.name + '-tab-'+key} //Creating references from header button to tab content
+                                              id={tab.name + '-tab'} //Creating references from header button to tab content
                                               aria-controls={tab.name + '-panel'}
                                     >
                                         {tab.name}
@@ -60,9 +60,9 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                                 hidden={value !== tab.name}
                                 aria-labelledby={tab.name + '-tab'}
                                 key={tab.name + key}
-                                id={tab.name + '-tab-'+key}
+                                id={tab.name + key}
                             >
-                                <JsonParser data={tab.data as TableElement[]}/>
+                                <JsonParser data={tab.data as TableElement[]} key={tab.name + key}/>
                             </div>
                         )
                     })}
@@ -83,7 +83,7 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                                         color: value === tab.name + key ? "black" : "grey"
                                     }}
                                     key={tab.name + key}
-                                    id={tab.name + '-tab'} //Creating references from header button to tab content
+                                    id={tab.name + key} //Creating references from header button to tab content
                                     aria-controls={tab.name + '-panel'}
                                 >
                                     {tab.name}
@@ -99,9 +99,9 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                                     hidden={value !== tab.name + key}
                                     aria-labelledby={tab.name + '-tab'}
                                     key={tab.name + key}
-                                    id={tab.name + '-panel'}>
+                                    id={tab.name + key}>
                                     <JsonParser
-                                        data={tab.data as TableElement[]}/>
+                                        data={tab.data as TableElement[]} key={tab.name+key}/>
                                 </div>
                             )
                         })}

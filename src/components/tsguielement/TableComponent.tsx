@@ -12,7 +12,7 @@ export function TableComponent(props: TableProps): React.ReactNode {
 
     const GenerateRows = (table: TableElement) => {
         return (
-            <div className="w-full flex flex-col gap-4">
+            <div className="w-full flex flex-col gap-4" key={table.type + table.name}>
                 <Table size={"small"}>
                     <Table.Body>
                         {table.cells.map((row, rowIndex) => {

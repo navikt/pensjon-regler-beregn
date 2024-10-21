@@ -31,25 +31,25 @@ const search = (current: DataElement | DataElement[]): React.ReactNode[] | undef
             if (hasTypeProperty(element)) {
                 switch (element.type) {
                     case ElementType.TABLIST:
-                        found = found.concat(<TabListComponent tabs={element as TabListElement} />);
+                        found = found.concat(<TabListComponent tabs={element as TabListElement} key={Math.random().toString(36).slice(2, 7)} />);
                         break;
                     case ElementType.TAB:
-                        found = found.concat(<TabComponent tab={element as TabElement} />);
+                        found = found.concat(<TabComponent tab={element as TabElement} key={Math.random().toString(36).slice(2, 7)} />);
                         break;
                     case ElementType.TABLE:
-                        found = found.concat(<TableComponent table={element as TableElement} />);
+                        found = found.concat(<TableComponent table={element as TableElement} key={Math.random().toString(36).slice(2, 7)}/>);
                         break;
                     case ElementType.NODE:
-                        found = found.concat(<TreeComponent tree={element as NodeElement} index={Math.random().toString(36).slice(2, 7)} />);
+                        found = found.concat(<TreeComponent tree={element as NodeElement} index={Math.random().toString(36).slice(2, 7)} key={Math.random().toString(36).slice(2, 7)} />);
                         break;
                     case ElementType.BEREGNINGNODE:
-                        found = found.concat(<TreeComponent tree={element as BeregningNodeElement} index={Math.random().toString(36).slice(2, 7)} />);
+                        found = found.concat(<TreeComponent tree={element as BeregningNodeElement} index={Math.random().toString(36).slice(2, 7)} key={Math.random().toString(36).slice(2, 7)} />);
                         break;
                     case ElementType.ARCNODE:
-                        found = found.concat(<ARCNODETreeComponent arcnodetree={element as ArcNodeElement} />);
+                        found = found.concat(<ARCNODETreeComponent arcnodetree={element as ArcNodeElement} key={Math.random().toString(36).slice(2, 7)}/>);
                         break;
                     case ElementType.FORMELNODE:
-                        found = found.concat(<FORMELTreeComponent formeltree={element as FormelNodeElement} />);
+                        found = found.concat(<FORMELTreeComponent formeltree={element as FormelNodeElement} key={Math.random().toString(36).slice(2, 7)}/>);
                         break;
                     default:
                         throw new Error("Unsupported elementType");
@@ -59,25 +59,25 @@ const search = (current: DataElement | DataElement[]): React.ReactNode[] | undef
     } else if (hasTypeProperty(current)) {
         switch (current.type) {
             case ElementType.TABLIST:
-                found = found.concat(<TabListComponent tabs={current as TabListElement} />);
+                found = found.concat(<TabListComponent tabs={current as TabListElement} key={Math.random().toString(36).slice(2, 7)} />);
                 break;
             case ElementType.TAB:
-                found = found.concat(<TabComponent tab={current as TabElement} />);
+                found = found.concat(<TabComponent tab={current as TabElement} key={Math.random().toString(36).slice(2, 7)} />);
                 break;
             case ElementType.TABLE:
-                found = found.concat(<TableComponent table={current as TableElement} />);
+                found = found.concat(<TableComponent table={current as TableElement} key={Math.random().toString(36).slice(2, 7)} />);
                 break;
             case ElementType.NODE:
-                found = found.concat(<TreeComponent tree={current as NodeElement} index={Math.random().toString(36).slice(2, 7)} />);
+                found = found.concat(<TreeComponent tree={current as NodeElement} index={Math.random().toString(36).slice(2, 7)} key={Math.random().toString(36).slice(2, 7)}/>);
                 break;
             case ElementType.BEREGNINGNODE:
-                found = found.concat(<TreeComponent tree={current as BeregningNodeElement} index={Math.random().toString(36).slice(2, 7)} />);
+                found = found.concat(<TreeComponent tree={current as BeregningNodeElement} index={Math.random().toString(36).slice(2, 7)} key={Math.random().toString(36).slice(2, 7)}/>);
                 break;
             case ElementType.ARCNODE:
-                found = found.concat(<ARCNODETreeComponent arcnodetree={current as ArcNodeElement} />);
+                found = found.concat(<ARCNODETreeComponent arcnodetree={current as ArcNodeElement} key={Math.random().toString(36).slice(2, 7)}/>);
                 break;
             case ElementType.FORMELNODE:
-                found = found.concat(<FORMELTreeComponent formeltree={current as FormelNodeElement} />);
+                found = found.concat(<FORMELTreeComponent formeltree={current as FormelNodeElement} key={Math.random().toString(36).slice(2, 7)}/>);
                 break;
             default:
                 throw new Error("Unsupported elementType");
@@ -94,5 +94,5 @@ interface JsonParserProps {
 export function JsonParser(props: JsonParserProps) {
     const [data] = useState(props.data);
 
-    return <div>{search(data)}</div>;
+    return <div key={Math.random().toString(36).slice(2, 7)}>{search(data)}</div>;
 }
