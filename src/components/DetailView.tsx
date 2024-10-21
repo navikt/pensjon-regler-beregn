@@ -34,6 +34,13 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
         isFetching
     } = queryGuiModel(body, metaData.className, state.getEnvironment(), state.getSats())
 
+    useEffect(() => {
+        if (isSuccess) {
+            const clazzName = metaData?.className?.split(".").pop()
+            state.setConsoleLog(`${clazzName} har kjørt ferdig i miljø: ${state.getEnvironment()} - med sats: ${bruktSats}`)
+            state.setDebugLog(data?.metadata?.debugLog || "")
+        }
+    }, [isSuccess, data, metaData, state, bruktSats]);
 
     if (isError) {
         throw new Error(`Klarte ikke å hente data fra miljø ${state.getEnvironment()} med sats ${bruktSats}`)
@@ -41,12 +48,6 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
 
     if (isLoading) {
         return <Loader size="3xlarge" title="Laster ..." className="loader"/>;
-    }
-
-    if (isSuccess) {
-        const clazzName = metaData?.className?.split(".").pop()
-        state.setConsoleLog(`${clazzName} har kjørt ferdig i miljø: ${state.getEnvironment()} - med sats: ${bruktSats}`)
-        state.setDebugLog(data?.metadata?.debugLog || "")
     }
 
     if (isFetching) {

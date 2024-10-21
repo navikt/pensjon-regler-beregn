@@ -12,10 +12,12 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
 
     const [tabs] = useState(props.tabs);
     const position = tabs.position;
-    const [value, setValue] = useState(tabs.data[0].name)
+    const [value, setValue] = useState(tabs?.data[0]?.name)
+    const [sideTabValue, setSideTabValue] = useState(tabs?.data[0]?.name + '0');
 
     const onHandleChange = (newValue: string) => {
         setValue(newValue);
+        setSideTabValue(tabs?.data[0]?.name + '0');
     }
 
     switch (position) {
@@ -76,11 +78,11 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                             return (
                                 <div
                                     className="sidetab-button"
-                                    onClick={() => setValue(tab.name + key)}
+                                    onClick={() => setSideTabValue(tab.name + key)}
                                     style={{
-                                        backgroundColor: value === tab.name + key ? "white" : "#a8a1a6",
-                                        borderBottom: value === tab.name + key ? "" : "1px solid grey",
-                                        color: value === tab.name + key ? "black" : "grey"
+                                        backgroundColor: sideTabValue === tab.name + key ? "white" : "#a8a1a6",
+                                        borderBottom: sideTabValue === tab.name + key ? "" : "1px solid grey",
+                                        color: sideTabValue === tab.name + key ? "black" : "grey"
                                     }}
                                     key={tab.name + key}
                                     id={tab.name + key} //Creating references from header button to tab content
@@ -96,7 +98,7 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                             return (
                                 <div
                                     role="tabpanel"
-                                    hidden={value !== tab.name + key}
+                                    hidden={sideTabValue !== tab.name + key}
                                     aria-labelledby={tab.name + '-tab'}
                                     key={tab.name + key}
                                     id={tab.name + key}>
