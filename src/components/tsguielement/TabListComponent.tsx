@@ -26,7 +26,7 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                 <>
                     <Tabs value={value} onChange={onHandleChange} size="small">
                         <Tabs.List>
-                            {tabs.data.map((tab, key) => { //Creating header buttons for each TabComponent
+                            {tabs.data.map((tab, key) => {
 
                                 return (
                                     <Tabs.Tab as={"button"}
@@ -45,7 +45,7 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                                               value={tab.name}
                                               label={tab.name}
                                               key={tab.name + key}
-                                              id={tab.name + '-tab'} //Creating references from header button to tab content
+                                              id={tab.name + '-tab'}
                                               aria-controls={tab.name + '-panel'}
                                     >
                                         {tab.name}
@@ -54,7 +54,7 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                             })}
                         </Tabs.List>
                     </Tabs>
-                    {tabs.data.map((tab, key) => { //Creating div for each tab with reference to header button
+                    {tabs.data.map((tab, key) => {
 
                         return (
                             <div
@@ -82,13 +82,13 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                                     style={{
                                         backgroundColor: sideTabValue === tab.name + key ? "white" : "#a8a1a6",
                                         borderBottom: sideTabValue === tab.name + key ? "" : "1px solid grey",
-                                        color: sideTabValue === tab.name + key ? "black" : "grey"
+                                        color: sideTabValue === tab.name + key ? "black" : "lightslategrey",
                                     }}
                                     key={tab.name + key}
-                                    id={tab.name + key} //Creating references from header button to tab content
+                                    id={tab.name + key}
                                     aria-controls={tab.name + '-panel'}
                                 >
-                                    {tab.name}
+                                    <span className="sidetab-button-text">{tab.name}</span>
                                 </div>
                             )
                         })}

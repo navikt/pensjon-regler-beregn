@@ -1,4 +1,4 @@
-import {Button, Popover, Table} from "@navikt/ds-react";
+import {Button, HelpText, Popover, Table} from "@navikt/ds-react";
 import {CellElement, NodeElement, PopoverType} from "../../api/domain/types/guimodel.ts";
 import React, {useRef, useState} from "react";
 import {JsonParser} from "./JsonParser.tsx";
@@ -22,7 +22,6 @@ const generatePopoverTables = (tables: NodeElement[]): React.ReactNode[] => {
 export const CellComponent = (props: CellComponentProps) => {
 
     const buttonPopoverRef = useRef(null);
-    const buttonTooltipRef = useRef(null);
     const [open, setOpen] = useState(false);
     let currentCell;
     let data;
@@ -60,26 +59,9 @@ export const CellComponent = (props: CellComponentProps) => {
     const createTooltip = (item: CellElement) => {
         if (item && item.tooltip) {
             return (
-                <>
-                    <Button
-                        className={'question-mark-button'}
-                        ref={buttonTooltipRef}
-                        onClick={() => setOpen(!open)}
-                        size="xsmall">
-                        {'?'}
-                    </Button>
-                    <Popover
-                        className={"tooltip"}
-                        open={open}
-                        onClose={() => setOpen(false)}
-                        anchorEl={buttonTooltipRef.current}
-                        arrow={true} placement={"top"}
-                        offset={32}>
-                        <Popover.Content>
-                            {item.tooltip}
-                        </Popover.Content>
-                    </Popover>
-                </>
+                <HelpText title={item.tooltip}>
+                    {item.tooltip}
+                </HelpText>
             );
         } else {
             return null;
@@ -110,14 +92,17 @@ export const CellComponent = (props: CellComponentProps) => {
 
     if (props.cell.header) {
         const {tooltip, data, popOver} = createCell(props.cell);
-        currentCell = <Table.HeaderCell>
-            {data}
-            {tooltip}
+        currentCell = <Table.HeaderCell align={"left"}>
+            { tooltip ?
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{data} {tooltip}</div>
+                :
+                <div>{data}</div>
+            }
             {popOver}
         </Table.HeaderCell>
     } else {
         const {tooltip, data, popOver} = createCell(props.cell);
-        currentCell = <Table.DataCell>
+        currentCell = <Table.DataCell align={"left"}>
             {data}
             {tooltip}
             {popOver}

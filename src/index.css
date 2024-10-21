@@ -115,9 +115,14 @@
     width: 10px;
     margin-left: 5px;
     margin-right: 5px;
-    background: #1d4b8f;
+    background: #7d7d7d;
+    height: 100%;
 }
 
-.panel_resize {
-    height: 100%;
+.panel_resizegroup {
+    border-bottom: #7d7d7d 10px solid;
+}
+
+.panel_resize:hover {
+    background: #1d4b8f;
 }

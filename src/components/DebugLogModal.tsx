@@ -36,16 +36,18 @@ const DebugLogModal: React.FC = () => {
                     </div>
 
                 </Modal.Body>
-                <Modal.Footer>
-                    <CopyButton style={{backgroundColor: "black"}}
+                <Modal.Footer >
+                    <CopyButton
                                 copyText={state.getDebugLog()}
                                 icon={<LinkIcon aria-hidden/>}
                                 activeIcon={<ThumbUpIcon aria-hidden/>}
+                                variant={"action"}
+                                type={"button"}
                                 text="Kopier til utklippstavle"
-                                activeText="Kopierte til utklippstavle"
+                                activeText="Innholdet ble kopiert!"
                     />
                     <Button variant="secondary" type="button" onClick={() => ref.current?.close()}>
-                        Lukk
+                        Lukk logg
                     </Button>
                 </Modal.Footer>
             </Modal>
