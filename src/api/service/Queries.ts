@@ -3,6 +3,12 @@ import axios, { AxiosResponse } from "axios"
 import {LogResponse} from "../domain/LogResponse"
 import  {GuiModel} from "../domain/types/guimodel.ts"
 
+interface ResponseData {
+    metadata?: {
+        status: string;
+        info: string;
+    };
+}
 
 const fetchByLogId = async (id: string): Promise<LogResponse> => {
     const response = await axios.get(`https://pensjon-regler-logviewer-api.dev.adeo.no/api/log/${id}`, {
@@ -64,8 +70,6 @@ const fetchGuiModelByFile = async (body: string, clazzName: string, environment:
     checkResponseForSoftErrors(response)
 
     return response.data as GuiModel
-
-
 }
 
 const fetchGuiModel = async (body: string, clazzName: string, environment: string, sats: string): Promise<GuiModel> => {
@@ -131,11 +135,9 @@ export const querySatstabeller = () => useQuery({
     throwOnError: false,
 })
 
-function checkResponseForSoftErrors(response: AxiosResponse<unknown, GuiModel>) {
-    console.log(response);
-    // @ts-ignore
+function checkResponseForSoftErrors(response: AxiosResponse<ResponseData, GuiModel>) {
+
     if (response.status === 207 && response.data?.metadata?.status === "error") {
-        // @ts-ignore
         throw new Error(response.data?.metadata?.info)
     }
 
