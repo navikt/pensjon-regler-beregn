@@ -94,11 +94,14 @@ export const CellComponent = (props: CellComponentProps) => {
         const {tooltip, data, popOver} = createCell(props.cell);
         currentCell = <Table.HeaderCell align={"left"}>
             { tooltip ?
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{data} {tooltip}</div>
+                <span style={{ display: 'flex', alignItems: 'center' }}>
+                {data} {tooltip} {popOver}
+                </span>
                 :
-                <div>{data}</div>
+                <div>
+                    {data} {popOver}
+                </div>
             }
-            {popOver}
         </Table.HeaderCell>
     } else {
         const {tooltip, data, popOver} = createCell(props.cell);
