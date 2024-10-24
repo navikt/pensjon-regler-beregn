@@ -1,7 +1,7 @@
-import { useQuery } from "@tanstack/react-query"
-import axios, { AxiosResponse } from "axios"
-import {LogResponse} from "../domain/LogResponse"
-import  {GuiModel} from "../domain/types/guimodel.ts"
+import {useQuery} from "@tanstack/react-query"
+import axios, {AxiosResponse} from "axios"
+import {GuiModel, LogResponse} from "../domain/types"
+
 
 interface ResponseData {
     metadata?: {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import './CSS/FormelTree.css';
-import {FormelNodeElement} from "../../api/domain/types/guimodel.ts";
+import './css/FormelTree.css';
+import {FormelNodeElement} from "../../api/domain/types";
 
 export interface FORMELTreeProps {
     formeltree: FormelNodeElement;

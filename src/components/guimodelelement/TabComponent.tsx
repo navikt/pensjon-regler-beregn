@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {JsonParser} from "./JsonParser.tsx";
-import {TabElement,} from "../../api/domain/types/guimodel.ts";
+import {TabElement,} from "../../api/domain/types";
 
 interface TabProps {
     tab: TabElement;
@@ -8,7 +8,6 @@ interface TabProps {
 
 export const TabComponent = (tabProps: TabProps)  => {
     const [tab] = useState(tabProps.tab);
-
 
     return (
         <div>

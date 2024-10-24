@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import Main from "./Main";
+import Main from "./Main.tsx";
 import { useEffect, useState } from "react";
 
 const Wrapper: React.FC = () => {

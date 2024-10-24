@@ -1,12 +1,12 @@
 import {Loader} from "@navikt/ds-react"
-import {queryGuiModel} from "../api/service/Queries"
-import {LogResponse} from "../api/domain/LogResponse"
-import {Metadata} from "../api/domain/types/guimodel"
-import ResponsePane from "./ResponsePane"
-import RequestPane from "./RequestPane"
+import {queryGuiModel} from "../../api/service/Queries.ts"
+import {LogResponse} from "../../api/domain/types"
+import {Metadata} from "../../api/domain/types"
+import ResponsePane from "./ResponsePane.tsx"
+import RequestPane from "./RequestPane.tsx"
 import {useEffect} from "react";
 import {useQueryClient} from "@tanstack/react-query";
-import {useGlobalState} from "../store";
+import {useGlobalState} from "../../store";
 import {Panel, PanelGroup, PanelResizeHandle} from "react-resizable-panels";
 
 

@@ -2,7 +2,7 @@ import { InternalHeader, Spacer } from "@navikt/ds-react";
 import { ReactNode } from "react";
 import SatserDropdown from "./SatserDropdown";
 import EnvironmentDropdown from "./EnvironmentDropdown";
-import DebugLogModal from "../DebugLogModal";
+import DebugLogModal from "../ui-elements/DebugLogModal.tsx";
 
 interface NavbarProps { }
 

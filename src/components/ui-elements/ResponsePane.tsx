@@ -1,6 +1,6 @@
-import { JsonParser } from "./tsguielement/JsonParser"
+import { JsonParser } from "../guimodelelement/JsonParser.tsx"
 import {useEffect} from "react";
-import {DataElement} from "../api/domain/types/guimodel.ts";
+import {DataElement} from "../../api/domain/types";
 
 
 interface ResponsePaneProps {

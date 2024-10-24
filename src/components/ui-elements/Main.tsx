@@ -1,9 +1,9 @@
 import {ReactNode, useEffect} from "react";
-import {queryLogResponseById} from "../api/service/Queries";
-import DetailView from "./DetailView";
+import {queryLogResponseById} from "../../api/service/Queries.ts";
+import DetailView from "./DetailView.tsx";
 import {Loader} from "@navikt/ds-react";
-import ConsoleLog from "./ConsoleLog";
-import {useGlobalState} from "../store";
+import ConsoleLog from "./ConsoleLog.tsx";
+import {useGlobalState} from "../../store";
 
 
 interface MainProps {

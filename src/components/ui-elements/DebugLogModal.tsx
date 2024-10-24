@@ -1,7 +1,7 @@
 import {Button, CopyButton, InternalHeader, Modal} from "@navikt/ds-react";
 import React, {useEffect} from "react";
 import {LinkIcon, ThumbUpIcon} from "@navikt/aksel-icons";
-import {useGlobalState} from "../store";
+import {useGlobalState} from "../../store";
 
 const DebugLogModal: React.FC = () => {
 

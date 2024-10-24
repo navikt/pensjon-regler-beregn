@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {TableElement} from "../../api/domain/types/guimodel.ts";
+import {TableElement} from "../../api/domain/types";
 import {Heading, Table} from "@navikt/ds-react";
 import {CellComponent} from "./CellComponent.tsx";
 

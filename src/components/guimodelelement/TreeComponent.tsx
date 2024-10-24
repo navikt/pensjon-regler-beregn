@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { JsonParser } from "./JsonParser.tsx";
 import { Heading } from "@navikt/ds-react";
-import './CSS/Tree.css';
-import {BeregningNodeElement, DataElement, NodeElement} from "../../api/domain/types/guimodel.ts";
+import './css/Tree.css';
+import {BeregningNodeElement, DataElement, NodeElement} from "../../api/domain/types";
 
 export interface TreeProps {
     tree: NodeElement | BeregningNodeElement;

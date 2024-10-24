@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {JsonParser} from "./JsonParser.tsx";
 import {Tabs} from '@navikt/ds-react';
-import './CSS/TabList.css'
-import {Position, TableElement, TabListElement} from "../../api/domain/types/guimodel.ts";
+import './css/TabList.css'
+import {Position, TableElement, TabListElement} from "../../api/domain/types";
 
 export interface TabListProps {
     tabs: TabListElement;
@@ -55,7 +55,6 @@ export function TabListComponent(props: TabListProps): React.ReactElement {
                         </Tabs.List>
                     </Tabs>
                     {tabs.data.map((tab, key) => {
-
                         return (
                             <div
                                 role="tabpanel"

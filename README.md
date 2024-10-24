@@ -34,7 +34,7 @@ Konsollfunksjonen som skriver til *Footer* komponenter ligger under `/src/compon
 
 Innholdet i *Request- og ResponsePane* komponentene genereres av en rekursiv algoritme
 slik at endringer i modellen ikke trenger å kodes i frontend.  
-Denne rekursive algoritmen er todelt, først brukes `JsonParser.js` til å identifisere rot-element i
+Denne rekursive algoritmen er todelt, først brukes `JsonParser.ts` til å identifisere rot-element i
 JSON-objektet. Deretter delegeres rendering av rot-elementet til den samsvarende komponent funksjonen.
 Inne i komponent funksjonen kalles`JsonParser.js` igjen på alle under-elementer.
 
