@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {TreeComponent} from "../tsguielement/TreeComponent.tsx"
-import {ARCNODETreeComponent} from "../tsguielement/ARCNODETreeComponent.tsx";
-import {FORMELTreeComponent} from "../tsguielement/FORMELTreeComponent.tsx";
+import {ArcNodeTreeComponent} from "./ArcNodeTreeComponent.tsx";
+import {FormelTreeComponent} from "./FormelTreeComponent.tsx";
 import {
     ArcNodeElement,
     BeregningNodeElement,
@@ -46,10 +46,10 @@ const search = (current: DataElement | DataElement[]): React.ReactNode[] | undef
                         found = found.concat(<TreeComponent tree={element as BeregningNodeElement} index={Math.random().toString(36).slice(2, 7)} key={Math.random().toString(36).slice(2, 7)} />);
                         break;
                     case ElementType.ARCNODE:
-                        found = found.concat(<ARCNODETreeComponent arcnodetree={element as ArcNodeElement} key={Math.random().toString(36).slice(2, 7)}/>);
+                        found = found.concat(<ArcNodeTreeComponent arcnodetree={element as ArcNodeElement} key={Math.random().toString(36).slice(2, 7)}/>);
                         break;
                     case ElementType.FORMELNODE:
-                        found = found.concat(<FORMELTreeComponent formeltree={element as FormelNodeElement} key={Math.random().toString(36).slice(2, 7)}/>);
+                        found = found.concat(<FormelTreeComponent formeltree={element as FormelNodeElement} key={Math.random().toString(36).slice(2, 7)}/>);
                         break;
                     default:
                         throw new Error("Unsupported elementType");
@@ -74,10 +74,10 @@ const search = (current: DataElement | DataElement[]): React.ReactNode[] | undef
                 found = found.concat(<TreeComponent tree={current as BeregningNodeElement} index={Math.random().toString(36).slice(2, 7)} key={Math.random().toString(36).slice(2, 7)}/>);
                 break;
             case ElementType.ARCNODE:
-                found = found.concat(<ARCNODETreeComponent arcnodetree={current as ArcNodeElement} key={Math.random().toString(36).slice(2, 7)}/>);
+                found = found.concat(<ArcNodeTreeComponent arcnodetree={current as ArcNodeElement} key={Math.random().toString(36).slice(2, 7)}/>);
                 break;
             case ElementType.FORMELNODE:
-                found = found.concat(<FORMELTreeComponent formeltree={current as FormelNodeElement} key={Math.random().toString(36).slice(2, 7)}/>);
+                found = found.concat(<FormelTreeComponent formeltree={current as FormelNodeElement} key={Math.random().toString(36).slice(2, 7)}/>);
                 break;
             default:
                 throw new Error("Unsupported elementType");

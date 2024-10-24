@@ -6,7 +6,7 @@ export interface FORMELTreeProps {
     formeltree: FormelNodeElement;
 }
 
-export function FORMELTreeComponent(props: FORMELTreeProps): React.ReactElement {
+export function FormelTreeComponent(props: FORMELTreeProps): React.ReactElement {
     const [tree] = useState<FormelNodeElement>(props.formeltree);
 
     function getFormelDetail(node: FormelNodeElement): React.ReactNode {

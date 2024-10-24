@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import './CSS/ARCNODETree.css';
+import './CSS/ArcNodeTree.css';
 import { ArcNodeElement } from "../../api/domain/types/guimodel.ts";
 
-export interface ARCNODETreeProps {
+export interface ArcNodeTreeProps {
     arcnodetree: ArcNodeElement;
 }
 
-export function ARCNODETreeComponent(props: ARCNODETreeProps): React.ReactElement {
+export function ArcNodeTreeComponent(props: ArcNodeTreeProps): React.ReactElement {
     const [tree] = useState<ArcNodeElement>(props.arcnodetree);
 
     function checkStyle(node: ArcNodeElement): React.CSSProperties {
