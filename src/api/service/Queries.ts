@@ -1,9 +1,14 @@
-import { useQuery } from "@tanstack/react-query"
-import axios, { AxiosResponse } from "axios"
-import {LogResponse} from "../domain/LogResponse"
-import {GuiModel} from "../domain/GuiModel"
-import GuiModelMetadata from "../domain/GuiModelMetadata.ts";
+import {useQuery} from "@tanstack/react-query"
+import axios, {AxiosResponse} from "axios"
+import {GuiModel, LogResponse} from "../domain/types"
 
+
+interface ResponseData {
+    metadata?: {
+        status: string;
+        info: string;
+    };
+}
 
 const fetchByLogId = async (id: string): Promise<LogResponse> => {
     const response = await axios.get(`https://pensjon-regler-logviewer-api.dev.adeo.no/api/log/${id}`, {
@@ -26,7 +31,7 @@ const fetchSatsTabeller = async (): Promise<string[]> => {
     return response.data
 }
 
-const fetchGuiModelByFile = async (body: string, clazzName: string, environment: string, sats: string): Promise<any> => {
+const fetchGuiModelByFile = async (body: string, clazzName: string, environment: string, sats: string): Promise<GuiModel> => {
 
     let url = ""
     let endpoint = ""
@@ -65,11 +70,9 @@ const fetchGuiModelByFile = async (body: string, clazzName: string, environment:
     checkResponseForSoftErrors(response)
 
     return response.data as GuiModel
-
-
 }
 
-const fetchGuiModel = async (body: string, clazzName: string, environment: string, sats: string): Promise<any> => {
+const fetchGuiModel = async (body: string, clazzName: string, environment: string, sats: string): Promise<GuiModel> => {
 
     let url = ""
     let endpoint = ""
@@ -132,10 +135,9 @@ export const querySatstabeller = () => useQuery({
     throwOnError: false,
 })
 
-function checkResponseForSoftErrors(response: AxiosResponse<unknown, GuiModelMetadata>) {
-    // @ts-ignore
+function checkResponseForSoftErrors(response: AxiosResponse<ResponseData, GuiModel>) {
+
     if (response.status === 207 && response.data?.metadata?.status === "error") {
-        // @ts-ignore
         throw new Error(response.data?.metadata?.info)
     }
 

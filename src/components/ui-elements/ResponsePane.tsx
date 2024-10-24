@@ -1,12 +1,14 @@
-import { JsonParser } from "./guielements/JsonParser"
+import { JsonParser } from "../guimodelelement/JsonParser.tsx"
 import {useEffect} from "react";
+import {DataElement} from "../../api/domain/types";
+
 
 interface ResponsePaneProps {
-    response: any[]
+    data: DataElement[] | undefined
     satstabell: string
     isFetching: boolean
 }
-const ResponsePane: React.FC<ResponsePaneProps> = ({ response, satstabell, isFetching }) => {
+const ResponsePane: React.FC<ResponsePaneProps> = ({ data, satstabell, isFetching }) => {
 
     useEffect(() => {
     }, [isFetching]);
@@ -20,7 +22,7 @@ const ResponsePane: React.FC<ResponsePaneProps> = ({ response, satstabell, isFet
                 </div>
             </div>
             <div id="responseView">
-                <JsonParser data={response} isFetching={isFetching}/>
+                {data && <JsonParser data={data}></JsonParser>}
             </div>
         </div>
     )

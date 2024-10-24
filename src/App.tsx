@@ -2,9 +2,8 @@ import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import './App.css'
 import Navbar from './components/navigation/Navbar'
 import {Route, Routes} from 'react-router-dom';
-import Wrapper from './components/Wrapper';
+import Wrapper from './components/ui-elements/Wrapper.tsx';
 import ErrorBoundary from './components/error/ErrorBoundary';
-import DetailViewFile from './components/DetailViewFile';
 import ErrorFallback from "./components/error/ErrorFallback.tsx";
 
 
@@ -18,7 +17,6 @@ function App() {
             <Navbar/>
                 <Routes>
                     <Route path='/:id' element={<Wrapper/>}></Route>
-                    <Route path='/file/*' element={<DetailViewFile/>}></Route>
                 </Routes>
             </ErrorBoundary>
         </QueryClientProvider>
