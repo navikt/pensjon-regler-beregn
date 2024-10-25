@@ -31,47 +31,6 @@ const fetchSatsTabeller = async (): Promise<string[]> => {
     return response.data
 }
 
-const fetchGuiModelByFile = async (body: string, clazzName: string, environment: string, sats: string): Promise<GuiModel> => {
-
-    let url = ""
-    let endpoint = ""
-
-    if (!clazzName) {
-        throw new Error("Missing className from content")
-    }
-    if (clazzName?.toString().includes("Request")) {
-        endpoint = "beregn"
-    } else if (clazzName?.toString().includes("Response")) {
-        endpoint = "convertResponse"
-    }
-
-    if (!environment) {
-        url = `https://pensjon-regler-q2.dev.adeo.no/api/${endpoint}?className=${clazzName}`
-    } else if (environment === "local") {
-        url = `http://localhost:8080/api/${endpoint}?className=${clazzName}`
-    } else {
-        const env = environment.split("-").pop()
-        url = `https://pensjon-regler-${env}.dev.adeo.no/api/${endpoint}?className=${clazzName}`
-    }
-
-    if (sats) {
-        url += `&sats=${sats}`
-    }
-
-    const response = await axios.post(url,
-        body,
-        {
-            headers: {
-                'Content-Type': 'application/xml',
-                'Accept': 'application/json',
-            }
-        })
-
-    checkResponseForSoftErrors(response)
-
-    return response.data as GuiModel
-}
-
 const fetchGuiModel = async (body: string, clazzName: string, environment: string, sats: string): Promise<GuiModel> => {
 
     let url = ""
@@ -110,12 +69,6 @@ const fetchGuiModel = async (body: string, clazzName: string, environment: strin
     checkResponseForSoftErrors(response)
     return response.data as GuiModel
 }
-
-export const queryGuiModelByFile = (body: string, clazzName: string, environment: string, sats: string) => useQuery({
-    queryKey: ['guiModelFile', environment, sats, body, clazzName],
-    queryFn: () => fetchGuiModelByFile(body, clazzName, environment, sats),
-    throwOnError: true,
-})
 
 export const queryGuiModel = (body: string, clazzName: string, environment: string, sats: string) => useQuery({
     queryKey: ['guiModel', environment, sats],

@@ -96,7 +96,6 @@ export interface GuiModel {
     request: DataElement[];
     response: DataElement[];
     metadata: Metadata;
-    fromFile?: boolean;
 }
 
 export type LogResponse = {
@@ -112,5 +111,4 @@ export type LogResponse = {
     method: string;
     from: string;
     persons: string;
-
 }
