@@ -20,6 +20,7 @@
     width: 20%;
     height: 100%;
     background-color: #a8a1a6;
+    padding-top: 2px;
 }
 
 .sidetab-button {
@@ -33,8 +34,8 @@
     transition: 0.3s;
 }
 
-.sidetab-button:hover {
-    background-color: rgba(233, 229, 229, 0.911);
+.sidetab-button:hover .sidetab-button-text {
+    color: darkslategrey;
     cursor: pointer;
     overflow: visible;
 }

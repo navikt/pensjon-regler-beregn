@@ -1,7 +1,7 @@
 import {Button, CopyButton, InternalHeader, Modal} from "@navikt/ds-react";
 import React, {useEffect} from "react";
 import {LinkIcon, ThumbUpIcon} from "@navikt/aksel-icons";
-import {useGlobalState} from "../store";
+import {useGlobalState} from "../../store";
 
 const DebugLogModal: React.FC = () => {
 
@@ -36,16 +36,18 @@ const DebugLogModal: React.FC = () => {
                     </div>
 
                 </Modal.Body>
-                <Modal.Footer>
-                    <CopyButton style={{backgroundColor: "black"}}
+                <Modal.Footer >
+                    <CopyButton
                                 copyText={state.getDebugLog()}
                                 icon={<LinkIcon aria-hidden/>}
                                 activeIcon={<ThumbUpIcon aria-hidden/>}
+                                variant={"action"}
+                                type={"button"}
                                 text="Kopier til utklippstavle"
-                                activeText="Kopierte til utklippstavle"
+                                activeText="Innholdet ble kopiert!"
                     />
                     <Button variant="secondary" type="button" onClick={() => ref.current?.close()}>
-                        Lukk
+                        Lukk logg
                     </Button>
                 </Modal.Footer>
             </Modal>
