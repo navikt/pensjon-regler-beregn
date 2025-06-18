@@ -44,3 +44,28 @@ export async function getBaseUrl(): Promise<string> {
     console.log("getBaseUrl: Resolved baseUrl:", url);
     return url;
 }
+
+export async function tryLoadConfigAndLog(): Promise<void> {
+    try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 seconds timeout
+
+        const res = await fetch('/config.json', { signal: controller.signal });
+        clearTimeout(timeoutId);
+
+        if (!res.ok) {
+            console.warn('tryLoadConfigAndLog: Could not load /config.json, status:', res.status);
+            return;
+        }
+
+        const config = await res.json();
+        console.log('tryLoadConfigAndLog: Loaded config:', config);
+
+    } catch (err: any) {
+        if (err.name === 'AbortError') {
+            console.warn('tryLoadConfigAndLog: Fetch aborted (timeout)');
+        } else {
+            console.warn('tryLoadConfigAndLog: Failed to load config.json:', err.message || err);
+        }
+    }
+}
