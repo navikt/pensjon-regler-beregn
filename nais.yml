@@ -33,5 +33,7 @@ spec:
       value: "deployment.environment.name=p"
     - name: "PENSJON_REGLER_CLUSTER"
       value: "FSS"
+    - name: "CLUSTER"
+      value: "FSS"
   ingresses:
     - "https://pensjon-regler-beregn.dev.adeo.no"
