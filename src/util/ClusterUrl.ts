@@ -1,48 +1,45 @@
 // TODO Denne vil forsvinner når vi fjerner FSS, kan bruke URIs.ts da.
 
+export type Cluster = 'GCP' | 'FSS';
+
 export type AppConfig = {
-    cluster: 'GCP' | 'FSS';
+    cluster: Cluster;
 };
 
 let appConfig: AppConfig | null = null;
 
+const baseUrls: Record<Cluster, string> = {
+    GCP: 'https://pensjon-regler-logger-dev.intern.dev.nav.no',
+    FSS: 'https://pensjon-regler-logviewer-api.dev.adeo.no',
+};
+
 export async function loadConfig(): Promise<AppConfig> {
     if (appConfig !== null) {
-        console.log("loadConfig: Returning cached appConfig:", appConfig);
         return appConfig;
     }
 
-    console.log("loadConfig: Fetching /config.json...");
     const res = await fetch('/config.json');
     if (!res.ok) {
-        console.error("loadConfig: Failed to load config.json, status:", res.status);
-        throw new Error('Failed to load config.json');
+        throw new Error(`Failed to load config.json (status ${res.status})`);
     }
 
     const config = await res.json();
-    console.log("loadConfig: Loaded config:", config);
 
     if (config.cluster !== 'GCP' && config.cluster !== 'FSS') {
-        console.error("loadConfig: Invalid cluster value in config.json:", config.cluster);
-        throw new Error('Invalid cluster value in config.json');
+        throw new Error(`Invalid cluster value in config.json: ${config.cluster}`);
     }
 
     appConfig = config as AppConfig;
     return appConfig;
 }
 
+/**
+ * Resolves base URL for the current cluster from config.
+ * Loads config if not cached yet.
+ */
 export async function getBaseUrl(): Promise<string> {
     const config = await loadConfig();
-    console.log("getBaseUrl: Using cluster:", config.cluster);
-
-    const baseUrls: Record<string, string> = {
-        GCP: 'https://pensjon-regler-logger-dev.intern.dev.nav.no',
-        FSS: 'https://pensjon-regler-logviewer-api.dev.adeo.no'
-    };
-
-    const url = baseUrls[config.cluster] ?? baseUrls.FSS
-    console.log("getBaseUrl: Resolved baseUrl:", url);
-    return url;
+    return baseUrls[config.cluster];
 }
 
 export async function tryLoadConfigAndLog(): Promise<void> {

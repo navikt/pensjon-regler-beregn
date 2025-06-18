@@ -1,9 +1,7 @@
 import {useQuery} from "@tanstack/react-query"
 import axios, {AxiosResponse} from "axios"
 import {GuiModel, LogResponse} from "../domain/types"
-// import { getBaseUrl } from '../../util/ClusterUrl';
-
-// let baseUrl: string | undefined;
+import {getBaseUrl} from "../../util/ClusterUrl.ts";
 
 interface ResponseData {
     metadata?: {
@@ -12,19 +10,8 @@ interface ResponseData {
     };
 }
 
-// const getBaseUrlAsync = async () => {
-//     console.log("getBaseUrlAsync called");
-//     if (!baseUrl) {
-//         baseUrl = await getBaseUrl();
-//         console.log("getBaseUrlAsync resolved baseUrl:", baseUrl);
-//     }
-//     return baseUrl;
-// };
 const fetchByLogId = async (id: string): Promise<LogResponse> => {
-    //console.log("fetchByLogId called with id:", id);
-    //const url = await getBaseUrlAsync();
-    //console.log("fetchByLogId URL:", `${url}/api/log/${id}`);
-    const response = await axios.get(`https://pensjon-regler-logviewer-api.dev.adeo.no/api/log/${id}`, {
+    const response = await axios.get(`${getBaseUrl}/api/log/${id}`, {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
