@@ -38,6 +38,6 @@ spec:
     - name: "OTEL_RESOURCE_ATTRIBUTES"
       value: "deployment.environment.name=p"
     - name: "PENSJON_REGLER_CLUSTER"
-      value: "FSS"
+      value: "GCP"
   ingresses:
     - "https://pensjon-regler-beregn.dev.adeo.no"
