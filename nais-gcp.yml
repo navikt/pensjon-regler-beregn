@@ -34,4 +34,4 @@ spec:
     - name: "PENSJON_REGLER_CLUSTER"
       value: "GCP"
   ingresses:
-    - "https://pensjon-regler-beregn.dev.adeo.no"
+    - "https://pensjon-regler-beregn.intern.dev.nav.no"
