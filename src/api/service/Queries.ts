@@ -13,13 +13,15 @@ interface ResponseData {
 }
 
 const getBaseUrlAsync = async () => {
+    console.log("getBaseUrlAsync called");
     if (!baseUrl) {
         baseUrl = await getBaseUrl();
+        console.log("getBaseUrlAsync resolved baseUrl:", baseUrl);
     }
     return baseUrl;
 };
-
 const fetchByLogId = async (id: string): Promise<LogResponse> => {
+    console.log("fetchByLogId called with id:", id);
     const url = await getBaseUrlAsync();
     console.log("fetchByLogId URL:", `${url}/api/log/${id}`);
     const response = await axios.get(`${url}/api/log/${id}`, {
