@@ -11,6 +11,7 @@ interface MainProps {
 }
 
 const Main: React.FC<MainProps> = ({ id }): ReactNode => {
+    console.log("Main rendered with id:", id);
 
     const state = useGlobalState()
     const { data, isError, isLoading, isSuccess, isFetching,  } = queryLogResponseById(id)
