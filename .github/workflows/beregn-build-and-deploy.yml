@@ -36,11 +36,19 @@ jobs:
         with:
           team: pensjon-regler
           tag: ${{ steps.tag.outputs.TAG }}
-      - name: Deploy to Nais
+      - name: Deploy to FSS
         uses: nais/deploy/actions/deploy@v2
         env:
           TZ: Europe/Oslo
           CLUSTER: dev-fss
           RESOURCE: nais.yml
+          VAR: image=${{ steps.docker-build-push.outputs.image }}
+          TELEMETRY: ${{ steps.docker-build-push.outputs.telemetry }}
+      - name: Deploy to GCP
+        uses: nais/deploy/actions/deploy@v2
+        env:
+          TZ: Europe/Oslo
+          CLUSTER: dev-gcp
+          RESOURCE: nais-gcp.yml
           VAR: image=${{ steps.docker-build-push.outputs.image }}
           TELEMETRY: ${{ steps.docker-build-push.outputs.telemetry }}
