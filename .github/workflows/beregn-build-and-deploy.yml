@@ -34,7 +34,8 @@ jobs:
         with:
           team: pensjon-regler
           tag: ${{ steps.tag.outputs.TAG }}
-          dockerfile: Dockerfile
+          dockerfile: DockerfileFSS
+          build-args: CLUSTER=FSS
 
   build_and_push_gcp:
     name: Build and push GCP image
@@ -67,6 +68,7 @@ jobs:
           team: pensjon-regler
           tag: ${{ steps.tag.outputs.TAG }}
           dockerfile: DockerfileGCP
+          build-args: CLUSTER=GCP
 
   deploy_fss:
     name: Deploy to FSS
