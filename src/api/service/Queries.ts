@@ -3,6 +3,7 @@ import axios, {AxiosResponse} from "axios"
 import {GuiModel, LogResponse} from "../domain/types"
 import { getBaseUrl } from '../../util/ClusterUrl';
 
+let baseUrl: string | undefined;
 
 interface ResponseData {
     metadata?: {
@@ -10,10 +11,17 @@ interface ResponseData {
         info: string;
     };
 }
-const baseUrl = await getBaseUrl();
+
+const getBaseUrlAsync = async () => {
+    if (!baseUrl) {
+        baseUrl = await getBaseUrl();
+    }
+    return baseUrl;
+};
 
 const fetchByLogId = async (id: string): Promise<LogResponse> => {
-    const response = await axios.get(`${baseUrl}/api/log/${id}`, {
+    const url = await getBaseUrlAsync();
+    const response = await axios.get(`${url}/api/log/${id}`, {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
