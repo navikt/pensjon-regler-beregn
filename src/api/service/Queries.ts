@@ -10,15 +10,21 @@ interface ResponseData {
     };
 }
 
+let cachedBaseUrl: string | null = null;
+
 const fetchByLogId = async (id: string): Promise<LogResponse> => {
-    const response = await axios.get(`${getBaseUrl}/api/log/${id}`, {
+    if (!cachedBaseUrl) {
+        cachedBaseUrl = await getBaseUrl();
+    }
+
+    const response = await axios.get(`${cachedBaseUrl}/api/log/${id}`, {
         headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-        }
-    })
-    return response.data as LogResponse
-}
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+    });
+    return response.data as LogResponse;
+};
 
 const fetchSatsTabeller = async (): Promise<string[]> => {
 
@@ -93,6 +99,4 @@ function checkResponseForSoftErrors(response: AxiosResponse<ResponseData, GuiMod
     if (response.status === 207 && response.data?.metadata?.status === "error") {
         throw new Error(response.data?.metadata?.info)
     }
-
 }
-

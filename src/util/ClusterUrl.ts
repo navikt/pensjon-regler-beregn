@@ -2,11 +2,11 @@
 
 export type Cluster = 'GCP' | 'FSS';
 
-export type AppConfig = {
+export interface AppConfig {
     cluster: Cluster;
-};
+}
 
-let appConfig: AppConfig | null = null;
+let cachedConfig: AppConfig | null = null;
 
 const baseUrls: Record<Cluster, string> = {
     GCP: 'https://pensjon-regler-logger-dev.intern.dev.nav.no',
@@ -14,28 +14,28 @@ const baseUrls: Record<Cluster, string> = {
 };
 
 export async function loadConfig(): Promise<AppConfig> {
-    if (appConfig !== null) {
-        return appConfig;
+    if (cachedConfig) {
+        return cachedConfig;
     }
 
-    const res = await fetch('/config.json');
-    if (!res.ok) {
-        throw new Error(`Failed to load config.json (status ${res.status})`);
+    const response = await fetch('/config.json');
+
+    if (!response.ok) {
+        throw new Error(`Failed to load config.json (status: ${response.status})`);
     }
 
-    const config = await res.json();
+    const config = await response.json();
 
     if (config.cluster !== 'GCP' && config.cluster !== 'FSS') {
         throw new Error(`Invalid cluster value in config.json: ${config.cluster}`);
     }
 
-    appConfig = config as AppConfig;
-    return appConfig;
+    cachedConfig = config as AppConfig;
+    return cachedConfig;
 }
 
 /**
- * Resolves base URL for the current cluster from config.
- * Loads config if not cached yet.
+ * Get base URL for current cluster from config.
  */
 export async function getBaseUrl(): Promise<string> {
     const config = await loadConfig();
