@@ -28,13 +28,6 @@ spec:
     requests:
       cpu: "100m"
       memory: "512Mi"
-  observability:
-    autoInstrumentation:
-      enabled: true
-      runtime: java
-      destinations:
-        - id: loki
-        - id: elastic
   env:
     - name: "OTEL_RESOURCE_ATTRIBUTES"
       value: "deployment.environment.name=p"
