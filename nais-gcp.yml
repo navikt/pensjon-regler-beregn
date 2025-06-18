@@ -33,7 +33,8 @@ spec:
       enabled: true
       runtime: java
       destinations:
-        - id: elastic-apm
+        - id: loki
+        - id: elastic
   env:
     - name: "OTEL_RESOURCE_ATTRIBUTES"
       value: "deployment.environment.name=p"
