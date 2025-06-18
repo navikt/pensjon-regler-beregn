@@ -42,6 +42,14 @@ jobs:
           tag: ${{ steps.tag.outputs.TAG }}
 
   deploy_fss:
+    permissions:
+      actions: read
+      checks: read
+      contents: read
+      deployments: write
+      packages: write
+      pull-requests: write
+      id-token: write
     name: Deploy to FSS
     runs-on: ubuntu-latest
     needs: build_and_push
@@ -56,6 +64,14 @@ jobs:
           TELEMETRY: ${{ needs.build_and_push.outputs.telemetry }}
 
   deploy_gcp:
+    permissions:
+      actions: read
+      checks: read
+      contents: read
+      deployments: write
+      packages: write
+      pull-requests: write
+      id-token: write
     name: Deploy to GCP
     runs-on: ubuntu-latest
     needs: build_and_push
