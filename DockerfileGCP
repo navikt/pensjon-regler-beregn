@@ -6,7 +6,7 @@ COPY . .
 RUN npm run build
 RUN npm run asciidoc
 # Generate config.json using build arg
-ARG CLUSTER=FSS
+ARG CLUSTER=GCP
 RUN echo "{ \"cluster\": \"${CLUSTER}\" }" > /app/dist/config.json
 # production environment
 FROM nginxinc/nginx-unprivileged:stable-alpine
