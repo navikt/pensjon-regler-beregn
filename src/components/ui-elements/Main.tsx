@@ -22,6 +22,7 @@ const Main: React.FC<MainProps> = ({ id }): ReactNode => {
     }, [isSuccess, data]);
 
     if (isError) {
+        console.error("Error fetching log:", data?.error);
         throw new Error(`Klarte ikke å hente logg fra miljø ${state.getEnvironment()}`)
     }
 

@@ -21,6 +21,7 @@ const getBaseUrlAsync = async () => {
 
 const fetchByLogId = async (id: string): Promise<LogResponse> => {
     const url = await getBaseUrlAsync();
+    console.log("fetchByLogId URL:", `${url}/api/log/${id}`);
     const response = await axios.get(`${url}/api/log/${id}`, {
         headers: {
             'Content-Type': 'application/json',
