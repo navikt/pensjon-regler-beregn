@@ -26,9 +26,6 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
 
     const [responseFormat, setResponseFormat] = useState<'xml' | 'json' | null>(null);
 
-    useEffect(() => {
-        getResponseFormat().then(setResponseFormat);
-    }, []);
 
     const bruktSats = state.getSats() ?? "Sats fra miljø";
     const metaData = JSON.parse(logResponse.metadata) as Metadata
@@ -49,6 +46,10 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
         isSuccess,
         isFetching
     } = queryGuiModel(body, metaData.className, state.getEnvironment(), state.getSats())
+
+    useEffect(() => {
+        getResponseFormat().then(setResponseFormat);
+    }, [data]);
 
     useEffect(() => {
         if (isSuccess) {
