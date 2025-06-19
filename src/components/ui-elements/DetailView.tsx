@@ -31,6 +31,9 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
 
     const bruktSats = state.getSats() ?? "Sats fra miljø";
     const metaData = JSON.parse(logResponse.metadata) as Metadata
+    console.log("responseFormat:", responseFormat);
+    console.log("logResponse.json:", logResponse.json);
+    console.log("logResponse.xml:", logResponse.xml);
     let body: any;
     if (responseFormat === 'json') {
         body = JSON.parse(logResponse.json ?? '{}') as string;
