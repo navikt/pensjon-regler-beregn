@@ -40,6 +40,7 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
     } else {
         body = JSON.parse(logResponse.xml ?? '{}') as string;
     }
+    console.log("body: ", body)
     const {
         data,
         isError,
