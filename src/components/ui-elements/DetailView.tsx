@@ -25,6 +25,7 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
     }, [state.getEnvironment(), state.getSats()]);
 
     const [responseFormat, setResponseFormat] = useState<'xml' | 'json'>('json');
+
     useEffect(() => {
         getResponseFormat().then(setResponseFormat);
     }, []);

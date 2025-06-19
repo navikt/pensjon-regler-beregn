@@ -34,10 +34,16 @@ export async function loadConfig(): Promise<AppConfig> {
     return cachedConfig;
 }
 
+let cachedResponseFormat: 'xml' | 'json' | null = null;
+
 export async function getResponseFormat(): Promise<'xml' | 'json'> {
+    if (cachedResponseFormat) {
+        return cachedResponseFormat;
+    }
     const config = await loadConfig();
-    console.log("getResponseFormat.config.cluster: ", config.cluster)
-    return config.cluster === 'FSS' ? 'xml' : 'json';
+    console.log("getResponseFormat.config.cluster: ", config.cluster);
+    cachedResponseFormat = config.cluster === 'FSS' ? 'xml' : 'json';
+    return cachedResponseFormat;
 }
 
 /**
