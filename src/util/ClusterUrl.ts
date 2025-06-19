@@ -36,6 +36,7 @@ export async function loadConfig(): Promise<AppConfig> {
 
 export async function getResponseFormat(): Promise<'xml' | 'json'> {
     const config = await loadConfig();
+    console.log("getResponseFormat.config.cluster: ", config.cluster)
     return config.cluster === 'FSS' ? 'xml' : 'json';
 }
 
