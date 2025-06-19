@@ -59,6 +59,9 @@ const fetchGuiModel = async (body: string, clazzName: string, environment: strin
         const env = environment.split("-").pop()
         url = `https://pensjon-regler-${env}.dev.adeo.no/api/${endpoint}?className=${clazzName}`
     }
+    console.log("Queries.url: ", url)
+    console.log("Queries.className:" , clazzName)
+    console.log("Queries.body:", body)
 
     if (sats) {
         url += `&sats=${sats}`
