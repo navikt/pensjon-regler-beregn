@@ -33,9 +33,9 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
     const metaData = JSON.parse(logResponse.metadata) as Metadata
     let body: any;
     if (responseFormat === 'json') {
-        body = JSON.parse(logResponse.json) as string;
+        body = JSON.parse(logResponse.json ?? '{}') as string;
     } else {
-        body = logResponse.xml;
+        body = JSON.parse(logResponse.xml ?? '{}') as string;
     }
     const {
         data,
