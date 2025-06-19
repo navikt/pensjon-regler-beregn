@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package.json package-lock.json tsconfig.json tsconfig.node.json vite.config.ts ./
 RUN npm ci
 COPY . .
-RUN npm run build
+RUN npm run build -- --mode fss
 RUN npm run asciidoc
 # Generate config.json using build arg
 ARG CLUSTER=FSS
