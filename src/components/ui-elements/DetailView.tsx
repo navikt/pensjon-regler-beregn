@@ -4,7 +4,7 @@ import {LogResponse} from "../../api/domain/types"
 import {Metadata} from "../../api/domain/types"
 import ResponsePane from "./ResponsePane.tsx"
 import RequestPane from "./RequestPane.tsx"
-import {useEffect} from "react";
+import { useEffect, useState } from "react";
 import {useQueryClient} from "@tanstack/react-query";
 import {useGlobalState} from "../../store";
 import {Panel, PanelGroup, PanelResizeHandle} from "react-resizable-panels";
@@ -29,7 +29,7 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
         getResponseFormat().then(setResponseFormat);
     }, []);
 
-    const bruktSats = state.getSats() ? state.getSats() : "Sats fra miljø"
+    const bruktSats = state.getSats() ?? "Sats fra miljø";
     const metaData = JSON.parse(logResponse.metadata) as Metadata
     let body: any;
     if (responseFormat === 'json') {
