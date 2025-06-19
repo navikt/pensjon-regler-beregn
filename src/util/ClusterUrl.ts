@@ -34,6 +34,11 @@ export async function loadConfig(): Promise<AppConfig> {
     return cachedConfig;
 }
 
+export async function getResponseFormat(): Promise<'xml' | 'json'> {
+    const config = await loadConfig();
+    return config.cluster === 'FSS' ? 'xml' : 'json';
+}
+
 /**
  * Get base URL for current cluster from config.
  */

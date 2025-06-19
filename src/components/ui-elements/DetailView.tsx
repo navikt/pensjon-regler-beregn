@@ -8,6 +8,7 @@ import {useEffect} from "react";
 import {useQueryClient} from "@tanstack/react-query";
 import {useGlobalState} from "../../store";
 import {Panel, PanelGroup, PanelResizeHandle} from "react-resizable-panels";
+import {getResponseFormat} from "../../util/ClusterUrl.ts";
 
 
 interface DetailViewProps {
@@ -23,9 +24,19 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
         query.invalidateQueries({queryKey: ["guiModel", state.getEnvironment(), state.getSats()],})
     }, [state.getEnvironment(), state.getSats()]);
 
+    const [responseFormat, setResponseFormat] = useState<'xml' | 'json'>('json');
+    useEffect(() => {
+        getResponseFormat().then(setResponseFormat);
+    }, []);
+
     const bruktSats = state.getSats() ? state.getSats() : "Sats fra miljø"
     const metaData = JSON.parse(logResponse.metadata) as Metadata
-    const body = JSON.parse(logResponse.xml) as string
+    let body: any;
+    if (responseFormat === 'json') {
+        body = JSON.parse(logResponse.json) as string;
+    } else {
+        body = logResponse.xml;
+    }
     const {
         data,
         isError,

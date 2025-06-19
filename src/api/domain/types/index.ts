@@ -103,9 +103,11 @@ export type LogResponse = {
     correlation_id: string;
     environment: string;
     person?: string;
-    date: string;
+    date?: string;
+    created_at?: string;
     metadata: string
-    xml: string;
+    xml?: string;
+    json?: string;
     type: string;
     transaction_id: string;
     method: string;
