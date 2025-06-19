@@ -24,7 +24,7 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
         query.invalidateQueries({queryKey: ["guiModel", state.getEnvironment(), state.getSats()],})
     }, [state.getEnvironment(), state.getSats()]);
 
-    const [responseFormat, setResponseFormat] = useState<'xml' | 'json'>('json');
+    const [responseFormat, setResponseFormat] = useState<'xml' | 'json' | null>(null);
 
     useEffect(() => {
         getResponseFormat().then(setResponseFormat);
