@@ -10,14 +10,12 @@ interface ResponseData {
     };
 }
 
-let cachedBaseUrl: string | null = null;
 
 const fetchByLogId = async (id: string): Promise<LogResponse> => {
-    if (!cachedBaseUrl) {
-        cachedBaseUrl = await getBaseUrl();
-    }
 
-    const response = await axios.get(`${cachedBaseUrl}/api/log/${id}`, {
+    const baseUrl = getBaseUrl()
+
+    const response = await axios.get(`${baseUrl}/api/log/${id}`, {
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",

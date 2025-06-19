@@ -4,7 +4,7 @@ import {LogResponse} from "../../api/domain/types"
 import {Metadata} from "../../api/domain/types"
 import ResponsePane from "./ResponsePane.tsx"
 import RequestPane from "./RequestPane.tsx"
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {useQueryClient} from "@tanstack/react-query";
 import {useGlobalState} from "../../store";
 import {Panel, PanelGroup, PanelResizeHandle} from "react-resizable-panels";
@@ -24,15 +24,11 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
         query.invalidateQueries({queryKey: ["guiModel", state.getEnvironment(), state.getSats()],})
     }, [state.getEnvironment(), state.getSats()]);
 
-    const [responseFormat, setResponseFormat] = useState<'xml' | 'json' | null>(null);
-
 
     const bruktSats = state.getSats() ?? "Sats fra miljø";
     const metaData = JSON.parse(logResponse.metadata) as Metadata
-    console.log("responseFormat:", responseFormat);
-    console.log("logResponse.json:", logResponse.json);
-    console.log("logResponse.xml:", logResponse.xml);
-    let body: any;
+    const responseFormat = getResponseFormat()
+    let body: string
     if (responseFormat === 'json') {
         body = JSON.parse(logResponse.json ?? '{}') as string;
     } else {
@@ -46,10 +42,6 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
         isSuccess,
         isFetching
     } = queryGuiModel(body, metaData.className, state.getEnvironment(), state.getSats())
-
-    useEffect(() => {
-        getResponseFormat().then(setResponseFormat);
-    }, [data]);
 
     useEffect(() => {
         if (isSuccess) {
