@@ -21,7 +21,7 @@ jobs:
       telemetry: ${{ steps.docker-build-push.outputs.telemetry }}
       tag: ${{ steps.tag.outputs.TAG }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Generate tag
         id: tag
         run: |
@@ -51,7 +51,7 @@ jobs:
       id-token: write
     needs: build_and_push_fss
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Deploy to FSS
         uses: nais/deploy/actions/deploy@v2
         env:
@@ -76,7 +76,7 @@ jobs:
       telemetry: ${{ steps.docker-build-push.outputs.telemetry }}
       tag: ${{ steps.tag.outputs.TAG }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Generate tag
         id: tag
         run: |
@@ -106,7 +106,7 @@ jobs:
       id-token: write
     needs: build_and_push_gcp
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Deploy to GCP
         uses: nais/deploy/actions/deploy@v2
         env:
