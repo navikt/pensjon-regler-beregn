@@ -8,7 +8,6 @@ import { useEffect } from "react";
 import {useQueryClient} from "@tanstack/react-query";
 import {useGlobalState} from "../../store";
 import {Panel, PanelGroup, PanelResizeHandle} from "react-resizable-panels";
-import {getResponseFormat} from "../../util/ClusterUrl.ts";
 
 
 interface DetailViewProps {
@@ -27,14 +26,7 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
 
     const bruktSats = state.getSats() ?? "Sats fra miljø";
     const metaData = JSON.parse(logResponse.metadata) as Metadata
-    const responseFormat = getResponseFormat()
-    let body: string
-    if (responseFormat === 'json') {
-        body = JSON.parse(logResponse.json ?? '{}') as string;
-    } else {
-        body = JSON.parse(logResponse.xml ?? '{}') as string;
-    }
-    console.log("body: ", body)
+    const body = JSON.parse(logResponse.json ?? '{}') as string;
     const {
         data,
         isError,

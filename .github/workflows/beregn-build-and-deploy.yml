@@ -5,60 +5,6 @@ on:
       - main
 
 jobs:
-  build_and_push_fss:
-    name: Build and push FSS image
-    runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      checks: read
-      contents: read
-      deployments: write
-      packages: write
-      pull-requests: write
-      id-token: write
-    outputs:
-      image: ${{ steps.docker-build-push.outputs.image }}
-      telemetry: ${{ steps.docker-build-push.outputs.telemetry }}
-      tag: ${{ steps.tag.outputs.TAG }}
-    steps:
-      - uses: actions/checkout@v5
-      - name: Generate tag
-        id: tag
-        run: |
-          timestamp=$(date '+%Y.%m.%d-%H.%M')
-          workflow="build-push-deploy-fss"
-          sha=$(git rev-parse --short HEAD)
-          echo "TAG=${timestamp}-${workflow}-${sha}" >> $GITHUB_OUTPUT
-      - name: Build and push image
-        uses: nais/docker-build-push@v0
-        id: docker-build-push
-        with:
-          team: pensjon-regler
-          tag: ${{ steps.tag.outputs.TAG }}
-          dockerfile: DockerfileFSS
-          build-args: CLUSTER=FSS
-
-  deploy_fss:
-    name: Deploy to FSS
-    runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      checks: read
-      contents: read
-      deployments: write
-      packages: write
-      pull-requests: write
-      id-token: write
-    needs: build_and_push_fss
-    steps:
-      - uses: actions/checkout@v5
-      - name: Deploy to FSS
-        uses: nais/deploy/actions/deploy@v2
-        env:
-          CLUSTER: dev-fss
-          RESOURCE: nais.yml
-          VAR: image=${{ needs.build_and_push_fss.outputs.image }}
-
   build_and_push_gcp:
     name: Build and push GCP image
     runs-on: ubuntu-latest
@@ -70,7 +16,6 @@ jobs:
       packages: write
       pull-requests: write
       id-token: write
-    needs: deploy_fss
     outputs:
       image: ${{ steps.docker-build-push.outputs.image }}
       telemetry: ${{ steps.docker-build-push.outputs.telemetry }}
@@ -90,8 +35,7 @@ jobs:
         with:
           team: pensjon-regler
           tag: ${{ steps.tag.outputs.TAG }}
-          dockerfile: DockerfileGCP
-          build-args: CLUSTER=GCP
+          dockerfile: Dockerfile
 
   deploy_gcp:
     name: Deploy to GCP
