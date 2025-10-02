@@ -3,11 +3,8 @@ WORKDIR /app
 COPY package.json package-lock.json tsconfig.json tsconfig.node.json vite.config.ts ./
 RUN npm ci
 COPY . .
-RUN npm run build -- --mode gcp
+RUN npm run build
 RUN npm run asciidoc
-# Generate config.json using build arg
-ARG CLUSTER=GCP
-RUN echo "{ \"cluster\": \"${CLUSTER}\" }" > /app/dist/config.json
 # production environment
 FROM nginxinc/nginx-unprivileged:stable-alpine
 COPY --from=build /app/dist /usr/share/nginx/html

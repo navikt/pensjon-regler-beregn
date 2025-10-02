@@ -36,7 +36,6 @@ jobs:
           team: pensjon-regler
           tag: ${{ steps.tag.outputs.TAG }}
           dockerfile: Dockerfile
-          build-args: CLUSTER=GCP
 
   deploy_gcp:
     name: Deploy to GCP
