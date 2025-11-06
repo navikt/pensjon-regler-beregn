@@ -40,6 +40,8 @@ spec:
       rules:
         - application: pensjon-regler-logger-dev
           namespace: pensjon-regler
+        - application: pensjon-regler-logviewer
+          namespace: pensjon-regler
         - application: pensjon-regler-q0
           namespace: pensjon-regler
         - application: pensjon-regler-q1
@@ -51,6 +53,8 @@ spec:
     outbound:
       rules:
         - application: pensjon-regler-logger-dev
+          namespace: pensjon-regler
+        - application: pensjon-regler-logviewer
           namespace: pensjon-regler
         - application: pensjon-regler-q0
           namespace: pensjon-regler
