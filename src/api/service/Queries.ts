@@ -1,7 +1,12 @@
 import {useQuery} from "@tanstack/react-query"
 import axios, {AxiosResponse} from "axios"
 import {GuiModel, LogResponse} from "../domain/types"
-import {getBaseUrl} from "../../util/ClusterUrl.ts";
+import {
+    ALLE_SATSTABELLER_URL,
+    PENSJON_REGLER_LOCAL_URl,
+    PENSJON_REGLER_LOGGER_URL,
+    PENSJON_REGLER_Q2_URl
+} from "../../util/URIs.ts";
 
 interface ResponseData {
     metadata?: {
@@ -13,7 +18,7 @@ interface ResponseData {
 
 const fetchByLogId = async (id: string): Promise<LogResponse> => {
 
-    const baseUrl = getBaseUrl()
+    const baseUrl = PENSJON_REGLER_LOGGER_URL;
 
     const response = await axios.get(`${baseUrl}/api/log/${id}`, {
         headers: {
@@ -26,7 +31,7 @@ const fetchByLogId = async (id: string): Promise<LogResponse> => {
 
 const fetchSatsTabeller = async (): Promise<string[]> => {
 
-    const response = await axios.get('https://pensjon-regler-q2.dev.adeo.no/alleSatstabeller', {
+    const response = await axios.get(ALLE_SATSTABELLER_URL, {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -50,12 +55,12 @@ const fetchGuiModel = async (body: string, clazzName: string, environment: strin
     }
 
     if (!environment) {
-        url = `https://pensjon-regler-q2.dev.adeo.no/api/${endpoint}?className=${clazzName}`
+        url = `${PENSJON_REGLER_Q2_URl}/api/${endpoint}?className=${clazzName}`
     } else if (environment === "local") {
-        url = `http://localhost:8080/api/${endpoint}?className=${clazzName}`
+        url = `${PENSJON_REGLER_LOCAL_URl}/api/${endpoint}?className=${clazzName}`
     } else {
         const env = environment.split("-").pop()
-        url = `https://pensjon-regler-${env}.dev.adeo.no/api/${endpoint}?className=${clazzName}`
+        url = `https://pensjon-regler-${env}.intern.dev.nav.no/api/${endpoint}?className=${clazzName}`
     }
     console.log("Queries.body:", body)
 

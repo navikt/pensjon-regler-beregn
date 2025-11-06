@@ -106,7 +106,6 @@ export type LogResponse = {
     date?: string;
     created_at?: string;
     metadata: string
-    xml?: string;
     json?: string;
     type: string;
     transaction_id: string;

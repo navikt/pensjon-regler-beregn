@@ -33,8 +33,6 @@ spec:
       value: "deployment.environment.name=p"
     - name: "PENSJON_REGLER_CLUSTER"
       value: "GCP"
-    - name: "CLUSTER"
-      value: "GCP"
   accessPolicy:
     inbound:
       rules:
