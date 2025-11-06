@@ -5,7 +5,7 @@ import {
     ALLE_SATSTABELLER_URL,
     PENSJON_REGLER_LOCAL_URl,
     PENSJON_REGLER_LOGGER_URL,
-    PENSJON_REGLER_URL_PREFIX
+    PENSJON_REGLER_Q2_URl
 } from "../../util/URIs.ts";
 
 interface ResponseData {
@@ -55,12 +55,12 @@ const fetchGuiModel = async (body: string, clazzName: string, environment: strin
     }
 
     if (!environment) {
-        url = `${PENSJON_REGLER_URL_PREFIX}-q2/api/${endpoint}?className=${clazzName}`
+        url = `${PENSJON_REGLER_Q2_URl}/api/${endpoint}?className=${clazzName}`
     } else if (environment === "local") {
         url = `${PENSJON_REGLER_LOCAL_URl}/api/${endpoint}?className=${clazzName}`
     } else {
         const env = environment.split("-").pop()
-        url = `${PENSJON_REGLER_URL_PREFIX}-${env}/api/${endpoint}?className=${clazzName}`
+        url = `https://pensjon-regler-${env}.intern.dev.nav.no/api/${endpoint}?className=${clazzName}`
     }
     console.log("Queries.body:", body)
 
