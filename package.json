@@ -11,7 +11,7 @@
     "asciidoc": "node src/doc/doc.js"
   },
   "dependencies": {
-    "@hookstate/core": "^4.0.1",
+    "@hookstate/core": "^4.0.2",
     "@navikt/aksel-icons": "^7.33.2",
     "@navikt/ds-css": "^5.8.0",
     "@navikt/ds-react": "^7.33.2",
