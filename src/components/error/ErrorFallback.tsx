@@ -19,7 +19,7 @@ const ErrorFallback: React.FC<FallbackProps> = ({error}): ReactNode => {
 
         return (
             <div>
-                <Modal ref={ref} open={true} width={`${windowSize[0] - 100}`}>
+                <Modal ref={ref} open={true} width={`${windowSize[0] - 100}`} onClose={() => ref.current?.close()} aria-label="Feilmelding">
                     <Modal.Header>
                         <Alert variant="error">{defaultErrorHeading}</Alert>
                     </Modal.Header>
