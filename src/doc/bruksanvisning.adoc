@@ -13,7 +13,7 @@ Ved behov har du også mulighet til å velge hvilken sats du vil kjøre forespø
 
 === Søkefunksjonalitet i logviewer
 
-image::logviewer-søk-deprecated.PNG[]
+image::logviewer-søk.PNG[]
 [%hardbreaks]
 . *Response* - Styrer hvorvidt det vises response. Fjern avhuking om det er kun nødvendig å se forespørsler.
 Vises som standard.
