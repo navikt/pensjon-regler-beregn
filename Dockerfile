@@ -1,6 +1,5 @@
 # ---------- Build stage ----------
 FROM cgr.dev/chainguard/node:latest-dev AS build
-
 WORKDIR /app
 
 COPY --chown=node:node package*.json tsconfig*.json vite.config.ts ./
@@ -20,4 +19,3 @@ COPY --from=build --chown=nonroot:nonroot /app/src/doc/images /usr/share/nginx/h
 COPY --chown=nonroot:nonroot ./config/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 8080
-CMD ["/usr/bin/nginx", "-g", "daemon off;"]
