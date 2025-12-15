@@ -1,0 +1,59 @@
+name: Build and deploy (DEV)
+on:
+  push:
+    branches:
+      - gcp-entra-auth
+
+jobs:
+  build_and_push_gcp:
+    name: Build and push GCP image
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      checks: read
+      contents: read
+      deployments: write
+      packages: write
+      pull-requests: write
+      id-token: write
+    outputs:
+      image: ${{ steps.docker-build-push.outputs.image }}
+      telemetry: ${{ steps.docker-build-push.outputs.telemetry }}
+      tag: ${{ steps.tag.outputs.TAG }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Generate tag
+        id: tag
+        run: |
+          timestamp=$(date '+%Y.%m.%d-%H.%M')
+          workflow="build-push-deploy-gcp"
+          sha=$(git rev-parse --short HEAD)
+          echo "TAG=${timestamp}-${workflow}-${sha}" >> $GITHUB_OUTPUT
+      - name: Build and push image
+        uses: nais/docker-build-push@v0
+        id: docker-build-push
+        with:
+          team: pensjon-regler
+          tag: ${{ steps.tag.outputs.TAG }}
+          dockerfile: Dockerfile
+
+  deploy_gcp:
+    name: Deploy to GCP (DEV)
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      checks: read
+      contents: read
+      deployments: write
+      packages: write
+      pull-requests: write
+      id-token: write
+    needs: build_and_push_gcp
+    steps:
+      - uses: actions/checkout@v6
+      - name: Deploy to GCP (DEV)
+        uses: nais/deploy/actions/deploy@v2
+        env:
+          CLUSTER: dev-gcp
+          RESOURCE: nais-gcp-dev.yml
+          VAR: image=${{ needs.build_and_push_gcp.outputs.image }}

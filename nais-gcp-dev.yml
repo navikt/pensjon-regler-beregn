@@ -1,0 +1,66 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: "pensjon-regler-beregn-dev"
+  namespace: "pensjon-regler"
+  labels:
+    team: "pensjon-regler"
+  annotations:
+    nais.io/read-only-file-system: "false"
+spec:
+  image: "{{ image }}"
+  port: 8080
+  replicas:
+    min: 2
+    max: 2
+  liveness:
+    path: "/index.html"
+    initialDelay: 40
+    timeout: 3
+  readiness:
+    path: "/index.html"
+    initialDelay: 40
+    timeout: 3
+  resources:
+    limits:
+      cpu: "1"
+      memory: "2048Mi"
+    requests:
+      cpu: "100m"
+      memory: "512Mi"
+  env:
+    - name: "OTEL_RESOURCE_ATTRIBUTES"
+      value: "deployment.environment.name=p"
+    - name: "PENSJON_REGLER_CLUSTER"
+      value: "GCP"
+  accessPolicy:
+    inbound:
+      rules:
+        - application: pensjon-regler-logger-dev
+          namespace: pensjon-regler
+        - application: pensjon-regler-logviewer-app-dev
+          namespace: pensjon-regler
+        - application: pensjon-regler-q0
+          namespace: pensjon-regler
+        - application: pensjon-regler-q1
+          namespace: pensjon-regler
+        - application: pensjon-regler-q2
+          namespace: pensjon-regler
+        - application: pensjon-regler-q5
+          namespace: pensjon-regler
+    outbound:
+      rules:
+        - application: pensjon-regler-logger-dev
+          namespace: pensjon-regler
+        - application: pensjon-regler-logviewer-app-dev
+          namespace: pensjon-regler
+        - application: pensjon-regler-q0
+          namespace: pensjon-regler
+        - application: pensjon-regler-q1
+          namespace: pensjon-regler
+        - application: pensjon-regler-q2
+          namespace: pensjon-regler
+        - application: pensjon-regler-q5
+          namespace: pensjon-regler
+  ingresses:
+    - "https://pensjon-regler-beregn-dev.intern.dev.nav.no"
