@@ -1,0 +1,78 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: "pensjon-regler-beregn-dev"
+  namespace: "pensjon-regler"
+  labels:
+    team: "pensjon-regler"
+  annotations:
+    nais.io/read-only-file-system: "false"
+spec:
+  image: "{{ image }}"
+  port: 8080
+  replicas:
+    min: 2
+    max: 2
+  liveness:
+    path: "/internal/isAlive"
+    initialDelay: 10
+    timeout: 30
+  readiness:
+    path: "/internal/isReady"
+    initialDelay: 10
+    timeout: 30
+  startup:
+    path: "/internal/isReady"
+    initialDelay: 10
+  resources:
+    limits:
+      cpu: "1"
+      memory: "2048Mi"
+    requests:
+      cpu: "100m"
+      memory: "512Mi"
+  env:
+    - name: "OTEL_RESOURCE_ATTRIBUTES"
+      value: "deployment.environment.name=p"
+  accessPolicy:
+    inbound:
+      rules:
+        - application: pensjon-regler-logger-dev
+          namespace: pensjon-regler
+        - application: pensjon-regler-logviewer-app-dev
+          namespace: pensjon-regler
+        - application: pensjon-regler-q1
+          namespace: pensjon-regler
+        - application: pensjon-regler-q2
+          namespace: pensjon-regler
+        - application: pensjon-regler-q5
+          namespace: pensjon-regler
+    outbound:
+      rules:
+        - application: pensjon-regler-logger-dev
+          namespace: pensjon-regler
+        - application: pensjon-regler-logviewer-app-dev
+          namespace: pensjon-regler
+        - application: pensjon-regler-q1
+          namespace: pensjon-regler
+        - application: pensjon-regler-q2
+          namespace: pensjon-regler
+        - application: pensjon-regler-q5
+          namespace: pensjon-regler
+  ingresses:
+    - "https://pensjon-regler-beregn-dev.intern.dev.nav.no"
+    - "https://pensjon-regler-beregn-dev.ansatt.dev.nav.no"
+  azure:
+    application:
+      enabled: false
+      tenant: "trygdeetaten.no"
+      allowAllUsers: true
+      claims:
+        groups:
+          - id: 7f029c57-7ca0-4b31-b0e9-cafd1397e782 # PENSJON_REGLER_LOG_TILGANG trygdeetaten tenant
+    sidecar:
+      enabled: false
+      autoLogin: false
+      autoLoginIgnorePaths:
+        - "/internal/isAlive"
+        - "/internal/isReady"

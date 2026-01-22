@@ -1,4 +1,4 @@
-name: Build and deploy (DEV)
+name: Build and deploy
 on:
   push:
     branches:
@@ -31,19 +31,19 @@ jobs:
           workflow="build-push-deploy-gcp"
           sha=$(git rev-parse --short HEAD)
           echo "TAG=${timestamp}-${workflow}-${sha}" >> $GITHUB_OUTPUT
-      - name: Build APP (Frontend & BFF) and Push Docker Image (DEV)
+      - name: Build APP (Frontend & BFF) and Push Docker Image (PROD)
         uses: nais/docker-build-push@v0
         id: docker-build-push
         with:
           team: pensjon-regler
-          dockerfile: ./app/DockerfileDEV
+          dockerfile: ./app/DockerfilePROD
           docker_context: ./app
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           build_secrets: NODE_AUTH_TOKEN=${{ secrets.READER_TOKEN }}
 
   deploy_gcp:
-    name: Deploy to GCP (DEV)
+    name: Deploy to GCP
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -56,9 +56,9 @@ jobs:
     needs: build_and_push_gcp
     steps:
       - uses: actions/checkout@v6
-      - name: Deploy to GCP (DEV)
+      - name: Deploy to GCP
         uses: nais/deploy/actions/deploy@v2
         env:
-          CLUSTER: dev-gcp
-          RESOURCE: nais-gcp-dev.yml
+          CLUSTER: prod-gcp
+          RESOURCE: nais-gcp-prod.yml
           VAR: image=${{ needs.build_and_push_gcp.outputs.image }}

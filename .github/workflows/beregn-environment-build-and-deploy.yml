@@ -40,6 +40,6 @@ jobs:
         env:
           TZ: Europe/Oslo
           CLUSTER: dev-gcp
-          RESOURCE: nais-gcp.yml
+          RESOURCE: nais-gcp-prod.yml
           VAR: image=${{ steps.docker-build-push.outputs.image }}
           TELEMETRY: ${{ steps.docker-build-push.outputs.telemetry }}
