@@ -1,6 +1,6 @@
 import { Dropdown, Button } from "@navikt/ds-react"
 import environments from "../constants/Environments.ts";
-import {useGlobalState} from "../../store";
+import {useGlobalState} from "../../store/index.ts";
 
 
 const EnvironmentDropdown: React.FC = () => {

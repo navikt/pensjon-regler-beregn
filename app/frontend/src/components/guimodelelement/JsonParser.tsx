@@ -16,7 +16,7 @@ import {
 import {TabListComponent} from "./TabListComponent.tsx";
 import {TabComponent} from "./TabComponent.tsx";
 import {TableComponent} from "./TableComponent.tsx";
-import {generateKey, hasTypeProperty} from "../../util";
+import {generateKey, hasTypeProperty} from "../../util/index.ts";
 
 const search = (current: DataElement | DataElement[]): React.ReactNode[] | undefined => {
     if (current === null) return [];

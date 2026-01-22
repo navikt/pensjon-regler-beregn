@@ -11,6 +11,7 @@
     "asciidoc": "node src/doc/doc.js"
   },
   "dependencies": {
+    "@pensjon/domain": "1.0.0",
     "@hookstate/core": "^4.0.2",
     "@navikt/aksel-icons": "^7.35.2",
     "@navikt/ds-css": "^7.35.2",

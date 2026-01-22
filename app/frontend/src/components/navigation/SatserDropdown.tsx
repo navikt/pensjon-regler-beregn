@@ -1,6 +1,6 @@
 import {querySatstabeller} from "../../api/service/Queries.ts";
 import {Button, Dropdown} from "@navikt/ds-react";
-import {useGlobalState} from "../../store";
+import {useGlobalState} from "../../store/index.ts";
 
 const SatserDropdown: React.FC = () => {
 
