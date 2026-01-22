@@ -1,7 +1,7 @@
 import {Button, CopyButton, InternalHeader, Modal} from "@navikt/ds-react";
 import React, {useEffect} from "react";
 import {LinkIcon, ThumbUpIcon} from "@navikt/aksel-icons";
-import {useGlobalState} from "../../store";
+import {useGlobalState} from "../../store/index.ts";
 
 const DebugLogModal: React.FC = () => {
 
@@ -12,6 +12,7 @@ const DebugLogModal: React.FC = () => {
 
     useEffect(() => {
         if (state.getDebugLog() !== "") {
+            //@ts-ignore
             setShowDebugLog(false)
         } else {
             setShowDebugLog(true)

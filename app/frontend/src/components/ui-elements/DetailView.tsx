@@ -6,7 +6,7 @@ import ResponsePane from "./ResponsePane.tsx"
 import RequestPane from "./RequestPane.tsx"
 import { useEffect } from "react";
 import {useQueryClient} from "@tanstack/react-query";
-import {useGlobalState} from "../../store";
+import {useGlobalState} from "../../store/index.ts";
 import {Panel, PanelGroup, PanelResizeHandle} from "react-resizable-panels";
 
 

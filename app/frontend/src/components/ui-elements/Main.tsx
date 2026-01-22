@@ -3,7 +3,7 @@ import {queryLogResponseById} from "../../api/service/Queries.ts";
 import DetailView from "./DetailView.tsx";
 import {Loader} from "@navikt/ds-react";
 import ConsoleLog from "./ConsoleLog.tsx";
-import {useGlobalState} from "../../store";
+import {useGlobalState} from "../../store/index.ts";
 
 
 interface MainProps {

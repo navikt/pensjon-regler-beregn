@@ -1,4 +1,4 @@
-import {useGlobalState} from "../../store";
+import {useGlobalState} from "../../store/index.ts";
 
 
 const ConsoleLog: React.FC = () => {
