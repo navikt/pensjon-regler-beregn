@@ -1,11 +1,14 @@
 import {querySatstabeller} from "../../api/service/Queries.ts";
 import {Button, Dropdown} from "@navikt/ds-react";
 import {useGlobalState} from "../../store/index.ts";
+import environments from "../constants/Environments.ts";
 
 const SatserDropdown: React.FC = () => {
 
+    const initialEnv = import.meta.env.VITE_PENSJON_ACCESS === "prod" ? environments[1] : environments[1];
+
     const state = useGlobalState()
-    const {data, isError, isLoading, isSuccess} = querySatstabeller(state.getEnvironment())
+    const {data, isError, isLoading, isSuccess} = querySatstabeller(state.getEnvironment() || initialEnv)
 
     if (isError) {
         throw new Error(`Klarte ikke å hente satser fra miljø ${state.getEnvironment()}`)
