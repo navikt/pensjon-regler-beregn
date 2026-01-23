@@ -1,16 +1,24 @@
 import {AuthConfiguration, ServerConfiguration} from "./types";
 import dotenv from 'dotenv'
 import {z} from "zod";
+import fs from "node:fs";
 
-console.log(`Laster miljøvariabler for NODE_ENV=${process.env.NODE_ENV}`)
-const envFile =
-    process.env.NODE_ENV === 'prod-gcp'
-        ? '.env.prod-gcp'
-        : process.env.NODE_ENV === 'dev-gcp'
-            ? '.env.dev-gcp'
-            : '.env'
-console.log(`Laster miljøvariabler fra fil: ${envFile}`)
-dotenv.config({ path: envFile })
+const appEnvSchema = z.enum(['prod-gcp', 'dev-gcp']);
+const appEnvParsed = appEnvSchema.safeParse(process.env.APP_ENV);
+
+if (!appEnvParsed.success) {
+    console.error("Ugyldig eller manglende APP_ENV miljøvariabel. Forventet en av: 'prod-gcp', 'dev-gcp'");
+    throw new Error("Ugyldig eller manglende APP_ENV miljøvariabel");
+}
+
+const appEnv = appEnvParsed.data;
+const envFile: string = appEnv === 'prod-gcp' ? '.env.prod-gcp' : '.env.dev-gcp';
+
+if (!fs.existsSync(envFile)) {
+    throw new Error(`Miljøfilen ${envFile} finnes ikke.`);
+}
+console.log(`Laster miljøvariabler fra fil: ${envFile}`);
+dotenv.config({ path: envFile });
 
 export const serverEnvironmentSchema = z.object({
     PORT: z.preprocess((p) => {

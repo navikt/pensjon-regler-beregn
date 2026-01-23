@@ -24,6 +24,6 @@ app.use((req, res, next) => {
 });
 
 app.listen(port, () => {
-    console.log(`Logviewer server kjører på port ${port}`);
+    console.log(`pensjon-beregn server kjører på port ${port}`);
     console.log(`Tilgangskontroll er ${serverConfig.enableAccessControl ? "på" : "av"}`);
 });

@@ -9,13 +9,11 @@ COPY bff/package*.json bff/
 COPY bff/tsconfig*.json bff/
 COPY frontend/package*.json frontend/
 COPY frontend/tsconfig*.json frontend/
-COPY frontend/.env.dev frontend/.env
+
 
 RUN --mount=type=secret,id=NODE_AUTH_TOKEN \
     npm config set //npm.pkg.github.com/:_authToken=$(cat /run/secrets/NODE_AUTH_TOKEN)
 RUN npm config set @navikt:registry=https://npm.pkg.github.com
-#RUN npm install --no-audit --ignore-scripts
-#RUN npm install @rollup/rollup-linux-x64-gnu --save-optional
 RUN npm ci
 
 FROM base AS builder
@@ -30,6 +28,7 @@ RUN npm prune --omit=dev
 FROM node:22-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=dev-gcp
+ENV APP_ENV=dev-gcp
 ENV PORT=8080
 
 COPY package*.json ./
@@ -41,4 +40,4 @@ COPY --from=builder /.env.dev-gcp ./.env.dev-gcp
 
 USER node
 EXPOSE 8080
-CMD ["sh", "-c", "NODE_ENV=dev-gcp node bff/dist/server.js"]
+CMD ["node", "bff/dist/server.js"]

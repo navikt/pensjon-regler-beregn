@@ -5,7 +5,7 @@ import environments from "../constants/Environments.ts";
 
 const SatserDropdown: React.FC = () => {
 
-    const initialEnv = import.meta.env.VITE_PENSJON_ACCESS === "prod" ? environments[1] : environments[1];
+    const initialEnv =  environments[1];
 
     const state = useGlobalState()
     const {data, isError, isLoading, isSuccess} = querySatstabeller(state.getEnvironment() || initialEnv)

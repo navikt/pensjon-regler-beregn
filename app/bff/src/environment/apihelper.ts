@@ -5,23 +5,23 @@ export const setPensjonReglerRequestScopeAndUrlForEnvironment = async (env: stri
     let requestUrl: string | undefined = "";
 
     switch (env) {
-        case "PROD":
+        case "prod":
             requestScope = serverConfiguration.pensjonReglerProdScope;
             requestUrl = serverConfiguration.pensjonReglerProdURI;
             break;
-        case "Q0":
+        case "q0":
             requestScope = serverConfiguration.pensjonReglerQ0Scope;
             requestUrl = serverConfiguration.pensjonReglerQ0URI;
             break;
-        case "Q1":
+        case "q1":
             requestScope = serverConfiguration.pensjonReglerQ1Scope;
             requestUrl = serverConfiguration.pensjonReglerQ1URI;
             break;
-        case "Q2":
+        case "q2":
             requestScope = serverConfiguration.pensjonReglerQ2Scope;
             requestUrl = serverConfiguration.pensjonReglerQ2URI;
             break;
-        case "Q5":
+        case "q5":
             requestScope = serverConfiguration.pensjonReglerQ5Scope;
             requestUrl = serverConfiguration.pensjonReglerQ5URI;
             break;
