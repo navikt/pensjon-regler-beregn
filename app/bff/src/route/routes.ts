@@ -85,7 +85,7 @@ export default (): Router => {
             const { env } = req.params;
             logInfo(`satstabeller fra miljø: ${env}`);
             const { requestUrl, requestScope } = setPensjonReglerRequestScopeAndUrlForEnvironment(env);
-
+            logInfo(`Henter satstabeller fra miljø: ${env} med url: ${requestUrl} og scope: ${requestScope}`);
             logInfoLevel("Fikk request på /api/alleSatstabeller med query: ", req);
 
             const SATSTABELL_URL = `${requestUrl}/api/alleSatstabeller`;

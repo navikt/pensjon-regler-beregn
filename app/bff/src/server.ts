@@ -1,8 +1,9 @@
+// app/bff/src/server.ts
 import express from "express";
 import routes from "./route/routes";
 import healthRouter from "./health";
 import path from "node:path";
-import {serverConfiguration} from "./environment/config";
+import { serverConfiguration } from "./environment/config";
 
 const serverConfig = serverConfiguration;
 
@@ -11,17 +12,30 @@ const port = serverConfig.exposedPort;
 const staticDir = path.resolve(__dirname, "../../frontend/dist");
 
 app.use(express.json());
-app.use('/internal', healthRouter);
+app.use("/internal", healthRouter);
+
+// TEMP: trace who is calling the legacy route
+app.use((req, _res, next) => {
+    if (req.path === "/api/alleSatstabeller") {
+        console.log("LEGACY_CALL", {
+            method: req.method,
+            url: req.originalUrl,
+            referer: req.headers.referer,
+            userAgent: req.headers["user-agent"],
+        });
+    }
+    next();
+});
 
 app.use(routes());
 
 app.use(express.static(staticDir));
 app.use((req, res, next) => {
-  if (req.method !== 'GET') return next();
-  if (req.path.startsWith("/api/") || req.path.startsWith("/internal")) return next();
-  res.sendFile(path.join(staticDir, 'index.html'), (err) => {
-    if (err) next(err);
-  });
+    if (req.method !== "GET") return next();
+    if (req.path.startsWith("/api/") || req.path.startsWith("/internal")) return next();
+    res.sendFile(path.join(staticDir, "index.html"), (err) => {
+        if (err) next(err);
+    });
 });
 
 app.listen(port, () => {
