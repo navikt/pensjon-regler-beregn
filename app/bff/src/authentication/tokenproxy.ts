@@ -116,16 +116,24 @@ export const fetchApiRequest = async (req: Request, options: ApiRequestOptions) 
             throw error;
         }
     } else {
-        logInfo("Kaller API uten autentisering");
-        return axios.get(options.url, {
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            params: options.query,
-            timeout: 5_000,
-            withCredentials: true,
-        });
+        try {
+
+
+            logInfo("Kaller API uten autentisering");
+            console.log("Kaller API uten autentisering på url:", options.url, "med query:", options.query);
+            return axios.get(options.url, {
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+                params: options.query,
+                timeout: 5_000,
+                withCredentials: true,
+            });
+        } catch (error) {
+            logInfo(`Feil ved kall til API uten autentisering: ${error}`);
+            throw error;
+        }
     }
 
 
