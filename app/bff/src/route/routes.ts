@@ -15,16 +15,6 @@ const API_CONVERT_RESPONSE = "/api/:env/convertResponse";
 const API_ALLE_SATSTABELLER = "/api/:env/alleSatstabeller";
 
 export default (): Router => {
-    // Backward compatible routes (no env): redirect to default env
-    expressRouter.get("/api/alleSatstabeller", (req, res) =>
-        res.redirect(307, `/api/${DEFAULT_ENV}/alleSatstabeller${req.url.includes("?") ? req.url.slice(req.url.indexOf("?")) : ""}`)
-    );
-    expressRouter.post("/api/beregn", (req, res) =>
-        res.redirect(307, `/api/${DEFAULT_ENV}/beregn${req.url.includes("?") ? req.url.slice(req.url.indexOf("?")) : ""}`)
-    );
-    expressRouter.post("/api/convertResponse", (req, res) =>
-        res.redirect(307, `/api/${DEFAULT_ENV}/convertResponse${req.url.includes("?") ? req.url.slice(req.url.indexOf("?")) : ""}`)
-    );
 
     if (serverConfiguration.enableAccessControl) {
         expressRouter.use([API_LOG_BY_ID, API_BEREGN, API_CONVERT_RESPONSE, API_ALLE_SATSTABELLER], ensureAuthenticated());

@@ -1,4 +1,5 @@
 import { serverConfiguration } from "../../environment/config";
+import {logInfo} from "../../logger/logger";
 
 export type PensjonReglerEnv = "prod" | "q0" | "q1" | "q2" | "q5";
 
@@ -66,6 +67,10 @@ export const setPensjonReglerRequestScopeAndUrlForEnvironment = (
     if (!isNonEmpty(scope)) {
         throw new Error(`Missing configuration for requestScope \\(env=${env}\\).`);
     }
+
+    logInfo(`Setter pensjon-regler requestScope og requestUrl for miljø: ${env}`);
+    logInfo(`requestUrl: ${url}`);
+    logInfo(`requestScope: ${scope}`);
 
     return {
         env,

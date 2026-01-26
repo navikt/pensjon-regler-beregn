@@ -1,6 +1,7 @@
 import {useQuery} from "@tanstack/react-query"
 import axios, {AxiosResponse} from "axios"
 import {GuiModel, LogResponse} from "@pensjon/domain"
+import environments from "../../components/constants/Environments.ts";
 
 interface ResponseData {
     metadata?: {
@@ -9,7 +10,7 @@ interface ResponseData {
     };
 }
 
-const ensureEnv = (env?: string) => (env && env.trim().length > 0 ? env.trim() : "q2");
+const ensureEnv = (env?: string) => (env && env.trim().length > 0 ? env.trim() : environments[1]);
 
 const fetchByLogId = async (id: string): Promise<LogResponse> => {
 
@@ -24,6 +25,7 @@ const fetchByLogId = async (id: string): Promise<LogResponse> => {
 
 const fetchSatsTabeller = async (env: string): Promise<string[]> => {
   const environment = ensureEnv(env);
+  console.log(`Henter satstabeller fra miljø: ${environment}`);
   const response = await axios.get(`/api/${environment}/alleSatstabeller`, {
     headers: {
       'Content-Type': 'application/json',
