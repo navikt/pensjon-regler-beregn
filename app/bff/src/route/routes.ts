@@ -88,7 +88,7 @@ export default (): Router => {
             logInfo(`Henter satstabeller fra miljø: ${env} med url: ${requestUrl} og scope: ${requestScope}`);
             logInfoLevel("Fikk request på /api/alleSatstabeller med query: ", req);
 
-            const SATSTABELL_URL = `${requestUrl}/api/alleSatstabeller`;
+            const SATSTABELL_URL = `${requestUrl}/alleSatstabeller`;
             logInfo(`Kaller pensjon-beregn API på ${SATSTABELL_URL}`);
 
             const response = serverConfiguration.enableAccessControl
