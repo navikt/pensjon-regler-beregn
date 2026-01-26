@@ -1,6 +1,5 @@
 import {NextFunction, Request, Response} from "express";
 import {getToken, requestOboToken, validateToken} from "@navikt/oasis";
-import {authConfiguration} from "../environment/config";
 import axios from "axios";
 import {logInfo} from "../logger/logger";
 

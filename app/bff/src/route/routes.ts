@@ -1,10 +1,9 @@
 import {Router} from "express";
-import axios from "axios";
 import {ensureAuthenticated, fetchApiRequest, postApiRequest} from "../authentication/tokenproxy";
-import {logError, logInfo, logInfoLevel} from "../logger/logger";
+import {logInfo, logInfoLevel} from "../logger/logger";
 import {serverConfiguration} from "../environment/config";
-import {Metadata, LogResponse, GuiModel} from "@pensjon/domain";
-import {setPensjonReglerRequestScopeAndUrlForEnvironment} from "../environment/apihelper";
+import {GuiModel, LogResponse, Metadata} from "@pensjon/domain";
+import {setPensjonReglerRequestScopeAndUrlForEnvironment} from "./util";
 
 
 const expressRouter = Router();
@@ -25,7 +24,7 @@ export default (): Router => {
             const { className } = req.query;
             const { sats } = req.query;
             const { body } = req;
-            const { requestScope, requestUrl } = await setPensjonReglerRequestScopeAndUrlForEnvironment(env);
+            const { requestScope, requestUrl } = setPensjonReglerRequestScopeAndUrlForEnvironment(env);
 
             logInfoLevel("Fikk request på /api/convertResponse med query:", req);
             const CONVERT_RESPONSE_URL = `${requestUrl}/api/convertResponse`;
@@ -41,17 +40,12 @@ export default (): Router => {
             const guiModel: GuiModel = response.data;
             return res.status(200).json(guiModel);
         } catch (err: unknown) {
-            const error = err as any;
-            const isAxiosErr = axios.isAxiosError ? axios.isAxiosError(error) : false;
-            const status =
-                error?.status ??
-                error?.response?.status ??
-                (isAxiosErr ? 502 : 500);
-
-            const remoteMessage = error?.response?.data?.message ?? error?.response?.data ?? null;
-            const message = remoteMessage ?? error?.message ?? String(err);
-            logError(message, req);
-            return res.status(status).json({error: `En feil oppstod ved konsumering av pensjon-beregn API, detalj: ${message}`});
+            return respondWithDownstreamError(
+                req,
+                res,
+                err,
+                "En feil oppstod ved konsumering av pensjon-beregn API, detalj: "
+            );
         }
     });
 
@@ -61,7 +55,7 @@ export default (): Router => {
             const { className } = req.query;
             const { sats } = req.query;
             const { body } = req;
-            const { requestScope, requestUrl } = await setPensjonReglerRequestScopeAndUrlForEnvironment(env);
+            const { requestScope, requestUrl } = setPensjonReglerRequestScopeAndUrlForEnvironment(env);
             logInfoLevel("Fikk request på /api/beregn med query:", req);
             const BEREGN_URL = `${requestUrl}/api/beregn`;
             logInfo(`Kaller pensjon-beregn API på ${BEREGN_URL}`);
@@ -75,17 +69,12 @@ export default (): Router => {
             const guiModel: GuiModel = response.data;
             return res.status(200).json(guiModel);
         } catch (err: unknown) {
-            const error = err as any;
-            const isAxiosErr = axios.isAxiosError ? axios.isAxiosError(error) : false;
-            const status =
-                error?.status ??
-                error?.response?.status ??
-                (isAxiosErr ? 502 : 500);
-
-            const remoteMessage = error?.response?.data?.message ?? error?.response?.data ?? null;
-            const message = remoteMessage ?? error?.message ?? String(err);
-            logError(message, req);
-            return res.status(status).json({error: `En feil oppstod ved konsumering av pensjon-beregn API, detalj: ${message}`});
+            return respondWithDownstreamError(
+                req,
+                res,
+                err,
+                "En feil oppstod ved konsumering av pensjon-beregn API, detalj: "
+            );
         }
     });
 
@@ -93,7 +82,7 @@ export default (): Router => {
         try {
             const { env } = req.params;
             logInfo(`satstabeller fra miljø: ${env}`);
-            const { requestUrl, requestScope } = await setPensjonReglerRequestScopeAndUrlForEnvironment(env);
+            const { requestUrl, requestScope } = setPensjonReglerRequestScopeAndUrlForEnvironment(env);
 
             logInfoLevel("Fikk request på /api/alleSatstabeller med query: ", req);
 
@@ -105,17 +94,12 @@ export default (): Router => {
                 : await fetchApiRequest(req, {url: SATSTABELL_URL, scope: requestScope,  authenticationEnabled: false});
             return res.status(200).json(response.data);
         } catch (err: unknown) {
-            const error = err as any;
-            const isAxiosErr = axios.isAxiosError ? axios.isAxiosError(error) : false;
-            const status =
-                error?.status ??
-                error?.response?.status ??
-                (isAxiosErr ? 502 : 500);
-
-            const remoteMessage = error?.response?.data?.message ?? error?.response?.data ?? null;
-            const message = remoteMessage ?? error?.message ?? String(err);
-            logError(message, req);
-            return res.status(status).json({error: `En feil oppstod ved konsumering av pensjon-beregn API, detalj: ${message}`});
+            return respondWithDownstreamError(
+                req,
+                res,
+                err,
+                "En feil oppstod ved konsumering av pensjon-beregn API, detalj: "
+            );
         }
     });
 
@@ -139,18 +123,12 @@ export default (): Router => {
 
             return res.status(200).json({logresponse});
         } catch (err: unknown) {
-            const error = err as any;
-            const isAxiosErr = axios.isAxiosError ? axios.isAxiosError(error) : false;
-            const status =
-                error?.status ??
-                error?.response?.status ??
-                (isAxiosErr ? 502 : 500);
-
-            const remoteMessage = error?.response?.data?.message ?? error?.response?.data ?? null;
-            const message = remoteMessage ?? error?.message ?? String(err);
-
-            logError(message, req);
-            return res.status(status).json({error: `En feil oppstod ved konsumering av logger API, detalj: ${message}`});
+            return respondWithDownstreamError(
+                req,
+                res,
+                err,
+                "En feil oppstod ved konsumering av logger API, detalj: "
+            );
         }
     });
 
