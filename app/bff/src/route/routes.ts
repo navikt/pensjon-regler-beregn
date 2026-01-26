@@ -9,10 +9,10 @@ import {setPensjonReglerRequestScopeAndUrlForEnvironment, respondWithDownstreamE
 const expressRouter = Router();
 const DEFAULT_ENV = process.env.APP_ENV === 'prod-gcp' ? 'q0' : 'q2'; // Default environment based on
 
-const API_LOG_BY_ID = "/api/log/:id";
-const API_BEREGN = "/api/:env/beregn";
-const API_CONVERT_RESPONSE = "/api/:env/convertResponse";
-const API_ALLE_SATSTABELLER = "/api/:env/alleSatstabeller";
+const API_LOG_BY_ID = "/log/:id";
+const API_BEREGN = "/:env/beregn";
+const API_CONVERT_RESPONSE = "/:env/convertResponse";
+const API_ALLE_SATSTABELLER = "/:env/alleSatstabeller";
 
 export default (): Router => {
 

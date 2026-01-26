@@ -13,6 +13,7 @@ const staticDir = path.resolve(__dirname, "../../frontend/dist");
 
 app.use(express.json());
 app.use("/internal", healthRouter);
+app.use("/api", routes());
 
 // TEMP: trace who is calling the legacy route
 app.use((req, _res, next) => {
@@ -26,8 +27,6 @@ app.use((req, _res, next) => {
     }
     next();
 });
-
-app.use(routes());
 
 app.use(express.static(staticDir));
 app.use((req, res, next) => {
