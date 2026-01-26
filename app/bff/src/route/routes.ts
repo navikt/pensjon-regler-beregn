@@ -92,6 +92,7 @@ export default (): Router => {
     expressRouter.get(API_ALLE_SATSTABELLER, async (req, res ) => {
         try {
             const { env } = req.params;
+            logInfo(`satstabeller fra miljø: ${env}`);
             const { requestUrl, requestScope } = await setPensjonReglerRequestScopeAndUrlForEnvironment(env);
 
             logInfoLevel("Fikk request på /api/alleSatstabeller med query: ", req);
