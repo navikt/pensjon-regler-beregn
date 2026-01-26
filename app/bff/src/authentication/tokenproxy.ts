@@ -107,8 +107,7 @@ export const fetchApiRequest = async (req: Request, options: ApiRequestOptions) 
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
-                params: options.query,
-                timeout: 30_000,
+                timeout: 60_000,
                 withCredentials: true,
             });
         } catch (error) {
@@ -126,8 +125,7 @@ export const fetchApiRequest = async (req: Request, options: ApiRequestOptions) 
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
-                params: options.query,
-                timeout: 30_000,
+                timeout: 60_000,
                 withCredentials: true,
             });
         } catch (error) {
