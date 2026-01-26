@@ -59,7 +59,7 @@ export const postApiRequest = async (req: Request, options: ApiRequestOptions, b
                     "Content-Type": "application/json",
                 },
                 params: options.query,
-                timeout: 5_000,
+                timeout: 30_000,
                 withCredentials: true,
             });
         } catch (error) {
@@ -74,7 +74,7 @@ export const postApiRequest = async (req: Request, options: ApiRequestOptions, b
                 "Content-Type": "application/json",
             },
             params: options.query,
-            timeout: 5_000,
+            timeout: 30_000,
             withCredentials: true,
         });
     }
@@ -108,7 +108,7 @@ export const fetchApiRequest = async (req: Request, options: ApiRequestOptions) 
                     "Content-Type": "application/json",
                 },
                 params: options.query,
-                timeout: 5_000,
+                timeout: 30_000,
                 withCredentials: true,
             });
         } catch (error) {
@@ -127,7 +127,7 @@ export const fetchApiRequest = async (req: Request, options: ApiRequestOptions) 
                     "Content-Type": "application/json",
                 },
                 params: options.query,
-                timeout: 5_000,
+                timeout: 30_000,
                 withCredentials: true,
             });
         } catch (error) {
