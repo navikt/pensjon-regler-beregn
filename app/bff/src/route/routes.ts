@@ -3,7 +3,7 @@ import {ensureAuthenticated, fetchApiRequest, postApiRequest} from "../authentic
 import {logInfo, logInfoLevel} from "../logger/logger";
 import {serverConfiguration} from "../environment/config";
 import {GuiModel, LogResponse, Metadata} from "@pensjon/domain";
-import {setPensjonReglerRequestScopeAndUrlForEnvironment} from "./util";
+import {setPensjonReglerRequestScopeAndUrlForEnvironment, respondWithDownstreamError} from "./util";
 
 
 const expressRouter = Router();

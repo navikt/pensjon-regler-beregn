@@ -34,7 +34,7 @@ const extractRouteError = (err: unknown): RouteErrorResult => {
     return { status, message };
 };
 
-const respondWithDownstreamError = (
+export const respondWithDownstreamError = (
     req: any,
     res: any,
     err: unknown,
