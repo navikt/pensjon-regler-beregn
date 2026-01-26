@@ -17,10 +17,11 @@ app.use(routes());
 
 app.use(express.static(staticDir));
 app.use((req, res, next) => {
-    if (req.method !== 'GET') return next();
-    res.sendFile(path.join(staticDir, 'index.html'), (err) => {
-        if (err) next(err);
-    });
+  if (req.method !== 'GET') return next();
+  if (req.path.startsWith("/api/") || req.path.startsWith("/internal")) return next();
+  res.sendFile(path.join(staticDir, 'index.html'), (err) => {
+    if (err) next(err);
+  });
 });
 
 app.listen(port, () => {

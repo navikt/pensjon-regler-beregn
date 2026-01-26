@@ -9,6 +9,7 @@ interface ResponseData {
     };
 }
 
+const ensureEnv = (env?: string) => (env && env.trim().length > 0 ? env.trim() : "q2");
 
 const fetchByLogId = async (id: string): Promise<LogResponse> => {
 
@@ -22,52 +23,39 @@ const fetchByLogId = async (id: string): Promise<LogResponse> => {
 };
 
 const fetchSatsTabeller = async (env: string): Promise<string[]> => {
-
-    const response = await axios.get(`/api/${env}/alleSatstabeller`, {
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-        }
-    })
-    return response.data
+  const environment = ensureEnv(env);
+  const response = await axios.get(`/api/${environment}/alleSatstabeller`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    }
+  })
+  return response.data
 }
 
 const fetchGuiModel = async (body: string, clazzName: string, environment: string, sats: string): Promise<GuiModel> => {
+  let endpoint = ""
 
-    let url = ""
-    let endpoint = ""
+  if (!clazzName) throw new Error("className mangler på forespørselen")
+  if (clazzName.toString().includes("Request")) endpoint = "beregn"
+  else if (clazzName.toString().includes("Response")) endpoint = "convertResponse"
 
-    if (!clazzName) {
-        throw new Error("className mangler på forespørselen")
+  const env = ensureEnv(environment);
+
+  // Always include env segment to match BFF routes (/api/:env/...)
+  let url = `/api/${env}/${endpoint}?className=${encodeURIComponent(clazzName)}`
+
+  if (sats) url += `&sats=${encodeURIComponent(sats)}`
+
+  const response = await axios.post(url, body, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
     }
-    if (clazzName?.toString().includes("Request")) {
-        endpoint = "beregn"
-    } else if (clazzName?.toString().includes("Response")) {
-        endpoint = "convertResponse"
-    }
+  })
 
-    if (!environment) {
-        url = `/api/${endpoint}?className=${clazzName}`
-
-    } else {
-        url = `/api/${environment}/${endpoint}?className=${clazzName}`
-    }
-    console.log("Queries.body:", body)
-
-    if (sats) {
-        url += `&sats=${sats}`
-    }
-
-    const response = await axios.post(url,
-        body,
-        {
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
-        })
-    checkResponseForSoftErrors(response)
-    return response.data as GuiModel
+  checkResponseForSoftErrors(response)
+  return response.data as GuiModel
 }
 
 export const queryGuiModel = (body: string, clazzName: string, environment: string, sats: string) => useQuery({
@@ -83,9 +71,9 @@ export const queryLogResponseById = (id: string) => useQuery({
 })
 
 export const querySatstabeller = (env: string) => useQuery({
-    queryKey: ['satsTabeller'],
-    queryFn: () => fetchSatsTabeller(env),
-    throwOnError: false,
+  queryKey: ['satsTabeller', ensureEnv(env)],
+  queryFn: () => fetchSatsTabeller(env),
+  throwOnError: false,
 })
 
 function checkResponseForSoftErrors(response: AxiosResponse<ResponseData, GuiModel>) {

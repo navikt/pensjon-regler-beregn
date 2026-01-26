@@ -34,6 +34,11 @@ export const ensureAuthenticated = () =>
 export const postApiRequest = async (req: Request, options: ApiRequestOptions, body: any) => {
     if (options.authenticationEnabled) {
         try {
+            if (!options.scope) {
+                const e = new Error("Mangler scope for OBO token");
+                (e as any).status = 500;
+                throw e;
+            }
             const userToken = getToken(req);
             if (!userToken) {
                 const e = new Error("Mangler user token");
@@ -41,7 +46,7 @@ export const postApiRequest = async (req: Request, options: ApiRequestOptions, b
                 throw e;
             }
 
-            const oboResult = await requestOboToken(userToken, options.scope!);
+            const oboResult = await requestOboToken(userToken, options.scope);
             if (!oboResult.ok) {
                 const e = new Error(`Feilet ved utveksling av OBO token: ${oboResult.error.message}`);
                 (e as any).status = 502;
@@ -78,6 +83,11 @@ export const postApiRequest = async (req: Request, options: ApiRequestOptions, b
 export const fetchApiRequest = async (req: Request, options: ApiRequestOptions) => {
     if (options.authenticationEnabled) {
         try {
+            if (!options.scope) {
+                const e = new Error("Mangler scope for OBO token");
+                (e as any).status = 500;
+                throw e;
+            }
             const userToken = getToken(req);
             if (!userToken) {
                 const e = new Error("Mangler user token");
@@ -85,7 +95,7 @@ export const fetchApiRequest = async (req: Request, options: ApiRequestOptions) 
                 throw e;
             }
 
-            const oboResult = await requestOboToken(userToken, options.scope!);
+            const oboResult = await requestOboToken(userToken, options.scope);
             if (!oboResult.ok) {
                 const e = new Error(`Feilet ved utveksling av OBO token: ${oboResult.error.message}`);
                 (e as any).status = 502;

@@ -43,14 +43,14 @@ function App() {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <QueryErrorResetBoundary>
-                <ErrorBoundary FallbackComponent={ErrorFallback}>
-                    <Navbar/>
-                    <Routes>
-                        <Route path='/:id' element={<Wrapper/>}></Route>
-                    </Routes>
-                </ErrorBoundary>
-            </QueryErrorResetBoundary>
+                <QueryErrorResetBoundary>
+                    <ErrorBoundary FallbackComponent={ErrorFallback}>
+                        <Navbar/>
+                        <Routes>
+                            <Route path='/:id' element={<Wrapper/>}></Route>
+                        </Routes>
+                    </ErrorBoundary>
+                </QueryErrorResetBoundary>
         </QueryClientProvider>
     )
 }
