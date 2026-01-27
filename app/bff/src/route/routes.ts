@@ -119,6 +119,8 @@ export default (): Router => {
                 : await fetchApiRequest(req, {url: LOGGER_API_URL, scope: serverConfiguration.pensjonReglerLoggerScope, authenticationEnabled: false});
 
             const logresponse: LogResponse = response.data;
+            logInfo('Raw data fra logger API mottatt :' + response.data);
+            logInfo(`Logger API response: ${JSON.stringify(logresponse)}`);
             return res.status(200).json({logresponse});
         } catch (err: unknown) {
             return respondWithDownstreamError(
