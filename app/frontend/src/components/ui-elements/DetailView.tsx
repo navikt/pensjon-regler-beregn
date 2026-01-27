@@ -23,9 +23,11 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
         query.invalidateQueries({queryKey: ["guiModel", state.getEnvironment(), state.getSats()],})
     }, [state.getEnvironment(), state.getSats()]);
 
-
+    console.log(`Trying to parse`)
     const bruktSats = state.getSats() ?? "Sats fra miljø";
+    console.log(`parsing with sats: ${bruktSats}`)
     const metaData = JSON.parse(logResponse.metadata) as Metadata
+    console.log(`Parsed metadata:`, metaData)
     const body = JSON.parse(logResponse.json ?? '{}') as string;
     const {
         data,
