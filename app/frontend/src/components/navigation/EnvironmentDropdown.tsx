@@ -3,7 +3,7 @@ import environments from "../constants/Environments.ts";
 import {useGlobalState} from "../../store/index.ts";
 import { useEffect } from "react";
 
-const DEFAULT_ENV = "q2";
+const DEFAULT_ENV = environments[1]; // Default til "q2" for dev - eller "q0" for prod
 
 const EnvironmentDropdown: React.FC = () => {
   const state = useGlobalState()

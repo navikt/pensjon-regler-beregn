@@ -34,7 +34,7 @@ const ENV_CONFIG: Record<
         scope: serverConfiguration.pensjonReglerQ2Scope,
         url: serverConfiguration.pensjonReglerQ2URI,
     },
-    "pensjon-regler-q5": {
+    "pensjon-regler-q5" : {
         scope: serverConfiguration.pensjonReglerQ5Scope,
         url: serverConfiguration.pensjonReglerQ5URI,
     },
