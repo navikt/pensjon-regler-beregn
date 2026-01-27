@@ -26,6 +26,8 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
 
     const metaData = logResponse.metadata as LogResponseMetadata;
     console.log(`Parsed metadata:`, metaData);
+    const clazzName = metaData?.className;
+    console.log(`Using className: ${clazzName} for GUI model query.`);
     const body = JSON.parse(logResponse.json ?? '{}') as string;
 
     const {
@@ -34,10 +36,11 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
         isLoading,
         isSuccess,
         isFetching
-    } = queryGuiModel(body, metaData.className, state.getEnvironment(), state.getSats())
+    } = queryGuiModel(body, clazzName, state.getEnvironment(), state.getSats())
 
     useEffect(() => {
         if (isSuccess) {
+            console.log("DetailView.tsx - GUI model fetch successful.");
             const clazzName = metaData?.className?.split(".").pop()
             state.setConsoleLog(`${clazzName} har kjørt ferdig i miljø: ${state.getEnvironment()} - med sats: ${bruktSats}`)
             state.setDebugLog(data?.metadata?.debugLog || "")
