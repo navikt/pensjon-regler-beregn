@@ -6,9 +6,11 @@ import DebugLogModal from "../ui-elements/DebugLogModal.tsx";
 
 const Navbar: React.FC = (): ReactNode => {
 
+    const title = import.meta.env.VITE_PENSJON_ACCESS === "prod" ? "Beregn pensjon (PROD)" : "Beregn pensjon (Q1/Q2/Q5)";
+
     return (
         <InternalHeader style={{ position: `fixed`, width: `100%` }}>
-            <InternalHeader.Title as="h1">Beregn pensjon</InternalHeader.Title>
+            <InternalHeader.Title as="h1">{title}</InternalHeader.Title>
             <Spacer />
             <EnvironmentDropdown />
             <SatserDropdown />
