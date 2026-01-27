@@ -118,11 +118,7 @@ export default (): Router => {
                 ? await fetchApiRequest(req, {url: LOGGER_API_URL, scope: serverConfiguration.pensjonReglerLoggerScope, authenticationEnabled: true})
                 : await fetchApiRequest(req, {url: LOGGER_API_URL, scope: serverConfiguration.pensjonReglerLoggerScope, authenticationEnabled: false});
 
-            const logresponse: LogResponse = response.data.map((transaction: any) => ({
-                ...transaction,
-                metadata: JSON.parse(transaction.metadata) as Metadata,
-            }));
-
+            const logresponse: LogResponse = response.data;
             return res.status(200).json({logresponse});
         } catch (err: unknown) {
             return respondWithDownstreamError(
