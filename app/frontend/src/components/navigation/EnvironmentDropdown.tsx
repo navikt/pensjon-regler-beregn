@@ -1,18 +1,12 @@
 import { Dropdown, Button } from "@navikt/ds-react"
 import environments from "../constants/Environments.ts";
 import {useGlobalState} from "../../store/index.ts";
-import { useEffect } from "react";
-
-const DEFAULT_ENV = environments[1]; // Default til "q2" for dev - eller "q0" for prod
 
 const EnvironmentDropdown: React.FC = () => {
   const state = useGlobalState()
   const data = environments
 
   // Ensure we never render with empty env (store defaults to "q2" anyway)
-  useEffect(() => {
-    if (!state.getEnvironment()) state.setEnvironment(DEFAULT_ENV);
-  }, [state]);
 
   function handleChangedEnvironment(event: React.MouseEvent): void {
     const nyEnvironment = event.currentTarget.textContent || ""

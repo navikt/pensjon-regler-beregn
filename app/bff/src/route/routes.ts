@@ -2,12 +2,11 @@ import {Router} from "express";
 import {ensureAuthenticated, fetchApiRequest, postApiRequest} from "../authentication/tokenproxy";
 import {logInfo, logInfoLevel} from "../logger/logger";
 import {serverConfiguration} from "../environment/config";
-import {GuiModel, LogResponse, GuiModelMetadata} from "@pensjon/domain";
-import {setPensjonReglerRequestScopeAndUrlForEnvironment, respondWithDownstreamError} from "./util";
+import {GuiModel, LogResponse} from "@pensjon/domain";
+import {respondWithDownstreamError, setPensjonReglerRequestScopeAndUrlForEnvironment} from "./util";
 
 
 const expressRouter = Router();
-const DEFAULT_ENV = process.env.APP_ENV === 'prod-gcp' ? 'pensjon-regler-q0' : 'pensjon-regler-q2'; // Default environment based on
 
 const API_LOG_BY_ID = "/log/:id";
 const API_BEREGN = "/:env/beregn";
