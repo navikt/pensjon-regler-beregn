@@ -120,7 +120,7 @@ export default (): Router => {
 
             const logResponse: LogResponse = response.data;
             logInfo(`Logger API response: ${JSON.stringify(logResponse)}`);
-            return res.status(200).json({logResponse});
+            return res.status(200).json(logResponse);
         } catch (err: unknown) {
             return respondWithDownstreamError(
                 req,
