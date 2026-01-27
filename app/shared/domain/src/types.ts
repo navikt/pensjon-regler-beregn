@@ -74,13 +74,6 @@ export interface FormelNodeElement extends NodeElement {
     innhold?: string;
     result?: string;
 }
-export interface Metadata {
-    className: string;
-    status: string;
-    info: string;
-    bruktSats: string;
-    debugLog: string;
-}
 
 export type DataElement =
     | TabListElement
@@ -92,24 +85,42 @@ export type DataElement =
     | BeregningNodeElement
     | FormelNodeElement;
 
+export interface GuiModelMetadata {
+    className: string;
+    status: string;
+    info: string;
+    bruktSats?: string;
+    debugLog?: string;
+}
+
 export interface GuiModel {
     request: DataElement[];
     response: DataElement[];
-    metadata: Metadata;
+    metadata: GuiModelMetadata;
 }
 
+export interface LogResponseMetadata {
+    className: string;
+    endpoint: string;
+    cluster: string;
+    penPersonId?: string;
+    virk: string;
+    satsTabell?: string;
+    kontrollOk?: boolean;
+    httpStatus?: number;
+    saksId?: string;
+
+}
 export type LogResponse = {
     id: string;
     correlation_id: string;
     environment: string;
-    person?: string;
-    date?: string;
+    cluster: string;
     created_at?: string;
-    metadata: string
+    metadata: LogResponseMetadata;
     json?: string;
     type: string;
     transaction_id: string;
-    method: string;
-    from: string;
-    persons: string;
+
+
 }

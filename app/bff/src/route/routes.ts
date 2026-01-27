@@ -2,7 +2,7 @@ import {Router} from "express";
 import {ensureAuthenticated, fetchApiRequest, postApiRequest} from "../authentication/tokenproxy";
 import {logInfo, logInfoLevel} from "../logger/logger";
 import {serverConfiguration} from "../environment/config";
-import {GuiModel, LogResponse, Metadata} from "@pensjon/domain";
+import {GuiModel, LogResponse, GuiModelMetadata} from "@pensjon/domain";
 import {setPensjonReglerRequestScopeAndUrlForEnvironment, respondWithDownstreamError} from "./util";
 
 
@@ -118,9 +118,9 @@ export default (): Router => {
                 ? await fetchApiRequest(req, {url: LOGGER_API_URL, scope: serverConfiguration.pensjonReglerLoggerScope, authenticationEnabled: true})
                 : await fetchApiRequest(req, {url: LOGGER_API_URL, scope: serverConfiguration.pensjonReglerLoggerScope, authenticationEnabled: false});
 
-            const logresponse: LogResponse = response.data;
-            logInfo(`Logger API response: ${JSON.stringify(logresponse)}`);
-            return res.status(200).json({logresponse});
+            const logResponse: LogResponse = response.data;
+            logInfo(`Logger API response: ${JSON.stringify(logResponse)}`);
+            return res.status(200).json({logResponse});
         } catch (err: unknown) {
             return respondWithDownstreamError(
                 req,
