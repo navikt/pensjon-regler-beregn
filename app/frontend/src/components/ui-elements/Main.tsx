@@ -34,7 +34,7 @@ const Main: React.FC<MainProps> = ({ id }): ReactNode => {
     if (isSuccess) {
         console.log("Main.tsx - Log fetch successful.");
         console.log("Fetched log data:", data);
-        const metaData = JSON.parse(data?.metadata || "{}")
+        const metaData = data.metadata;
         document.title = metaData?.saksId && !metaData?.saksId.includes("Det finnes ingen tilgjengelige") ? `SaksID ${metaData?.saksId} - Beregn pensjon` : `Beregn pensjon`
     }
 

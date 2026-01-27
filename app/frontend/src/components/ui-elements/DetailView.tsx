@@ -1,9 +1,9 @@
 import {Loader} from "@navikt/ds-react"
 import {queryGuiModel} from "../../api/service/Queries.ts"
-import {LogResponse, LogResponseMetadata} from "@pensjon/domain";
+import {LogResponse} from "@pensjon/domain";
 import ResponsePane from "./ResponsePane.tsx"
 import RequestPane from "./RequestPane.tsx"
-import { useEffect } from "react";
+import {useEffect} from "react";
 import {useQueryClient} from "@tanstack/react-query";
 import {useGlobalState} from "../../store/index.ts";
 import {Panel, PanelGroup, PanelResizeHandle} from "react-resizable-panels";
@@ -24,7 +24,7 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
 
     const bruktSats = state.getSats() ?? "Sats fra miljø";
 
-    const metaData = JSON.parse(logResponse.metadata) as LogResponseMetadata;
+    const metaData = logResponse.metadata;
     console.log(`Parsed metadata:`, metaData)
     const body = JSON.parse(logResponse.json ?? '{}') as string;
 
