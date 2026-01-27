@@ -35,8 +35,8 @@ export default (): Router => {
             logInfo(`body: ${JSON.stringify(body)}`);
 
             const response = serverConfiguration.enableAccessControl
-                ? await postApiRequest(req, {url: CONVERT_RESPONSE_URL, scope: requestScope , authenticationEnabled: true}, req.body)
-                : await postApiRequest(req, {url: CONVERT_RESPONSE_URL, scope: requestScope, authenticationEnabled: false}, req.body);
+                ? await postApiRequest(req, {url: CONVERT_RESPONSE_URL, scope: requestScope , authenticationEnabled: true, query: req.query}, req.body)
+                : await postApiRequest(req, {url: CONVERT_RESPONSE_URL, scope: requestScope, authenticationEnabled: false, query: req.query}, req.body);
             logInfo(`Kall til ${CONVERT_RESPONSE_URL} med scope: ${requestScope} fullført`);
             logInfo(`Response data: ${JSON.stringify(response.data)}`);
             const guiModel: GuiModel = response.data;
@@ -64,8 +64,8 @@ export default (): Router => {
             logInfo(`Med className: ${className}, sats: ${sats}`);
             logInfo(`body: ${JSON.stringify(body)}`);
             const response = serverConfiguration.enableAccessControl
-                ? await postApiRequest(req, {url: BEREGN_URL, scope: requestScope, authenticationEnabled: true}, req.body)
-                : await postApiRequest(req, {url: BEREGN_URL, scope: requestScope, authenticationEnabled: false}, req.body);
+                ? await postApiRequest(req, {url: BEREGN_URL, scope: requestScope, authenticationEnabled: true, query: req.query}, req.body)
+                : await postApiRequest(req, {url: BEREGN_URL, scope: requestScope, authenticationEnabled: false, query: req.query}, req.body);
             logInfo(`Kall til ${BEREGN_URL} med scope: ${requestScope} fullført`);
             logInfo(`Response data: ${JSON.stringify(response.data)}`);
             const guiModel: GuiModel = response.data;

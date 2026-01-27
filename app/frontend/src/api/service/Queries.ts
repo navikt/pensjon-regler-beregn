@@ -43,6 +43,7 @@ const fetchGuiModel = async (body: string, clazzName: string, environment: strin
   else if (clazzName.toString().includes("Response")) endpoint = "convertResponse"
 
   const env = ensureEnv(environment);
+  console.log(`Henter GuiModel fra miljø: ${env} for klasse: ${clazzName} med sats: ${sats}`);
 
   // Always include env segment to match BFF routes (/api/:env/...)
   let url = `/api/${env}/${endpoint}?className=${encodeURIComponent(clazzName)}`
