@@ -7,7 +7,7 @@ import {setPensjonReglerRequestScopeAndUrlForEnvironment, respondWithDownstreamE
 
 
 const expressRouter = Router();
-const DEFAULT_ENV = process.env.APP_ENV === 'prod-gcp' ? 'q0' : 'q2'; // Default environment based on
+const DEFAULT_ENV = process.env.APP_ENV === 'prod-gcp' ? 'pensjon-regler-q0' : 'pensjon-regler-q2'; // Default environment based on
 
 const API_LOG_BY_ID = "/log/:id";
 const API_BEREGN = "/:env/beregn";
@@ -86,7 +86,7 @@ export default (): Router => {
             logInfo(`satstabeller fra miljø: ${env}`);
             const { requestUrl, requestScope } = setPensjonReglerRequestScopeAndUrlForEnvironment(env);
             logInfo(`Henter satstabeller fra miljø: ${env} med url: ${requestUrl} og scope: ${requestScope}`);
-            logInfoLevel("Fikk request på /api/alleSatstabeller med query: ", req);
+            logInfoLevel("Fikk request på /api/:env/alleSatstabeller med query: ", req);
 
             const SATSTABELL_URL = `${requestUrl}/alleSatstabeller`;
             logInfo(`Kaller pensjon-beregn API på ${SATSTABELL_URL}`);

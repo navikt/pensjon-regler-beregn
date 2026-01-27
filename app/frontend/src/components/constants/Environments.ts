@@ -1,11 +1,11 @@
 const environments: string[] = import.meta.env.VITE_PENSJON_ACCESS === "prod" ?
     [
-        "prod",
-        "q0"
+        "pensjon-regler-prod",
+        "pensjon-regler-q0"
     ] : [
-        "q1",
-        "q2",
-        "q5"
+        "pensjon-regler-q1",
+        "pensjon-regler-q2",
+        "pensjon-regler-q5"
     ];
 
 export default environments

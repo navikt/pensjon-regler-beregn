@@ -24,10 +24,8 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
 
     const bruktSats = state.getSats() ?? "Sats fra miljø";
 
-    const metaData = logResponse.metadata as LogResponseMetadata;
+    const metaData = JSON.parse(logResponse.metadata ?? '{}') as LogResponseMetadata;
     console.log(`Parsed metadata:`, metaData);
-    const clazzName = metaData?.className;
-    console.log(`Using className: ${clazzName} for GUI model query.`);
     const body = JSON.parse(logResponse.json ?? '{}') as string;
 
     const {
@@ -36,7 +34,7 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
         isLoading,
         isSuccess,
         isFetching
-    } = queryGuiModel(body, clazzName, state.getEnvironment(), state.getSats())
+    } = queryGuiModel(body, metaData.className, state.getEnvironment(), state.getSats())
 
     useEffect(() => {
         if (isSuccess) {

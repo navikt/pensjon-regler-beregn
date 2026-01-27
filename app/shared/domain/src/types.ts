@@ -117,7 +117,7 @@ export type LogResponse = {
     environment: string;
     cluster: string;
     created_at?: string;
-    metadata: LogResponseMetadata;
+    metadata: string;
     json?: string;
     type: string;
     transaction_id: string;
