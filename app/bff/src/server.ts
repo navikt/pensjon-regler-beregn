@@ -15,19 +15,6 @@ app.use(express.json());
 app.use("/internal", healthRouter);
 app.use("/api", routes());
 
-// TEMP: trace who is calling the legacy route
-app.use((req, _res, next) => {
-    if (req.path === "/api/alleSatstabeller") {
-        console.log("LEGACY_CALL", {
-            method: req.method,
-            url: req.originalUrl,
-            referer: req.headers.referer,
-            userAgent: req.headers["user-agent"],
-        });
-    }
-    next();
-});
-
 app.use(express.static(staticDir));
 app.use((req, res, next) => {
     if (req.method !== "GET") return next();
