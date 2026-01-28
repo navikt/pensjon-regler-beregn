@@ -35,7 +35,7 @@
 }
 
 .sidetab-button:hover .sidetab-button-text {
-    color: darkslategrey;
+    color: #4a4a4a;;
     cursor: pointer;
     overflow: visible;
 }
