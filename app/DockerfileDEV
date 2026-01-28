@@ -32,7 +32,6 @@ ENV PORT=8080
 
 COPY package*.json ./
 COPY --from=builder /app/node_modules ./node_modules
-
 COPY --from=builder /app/bff/dist ./bff/dist
 COPY --from=builder /app/frontend/dist ./frontend/dist
 COPY --from=builder /.env.dev-gcp ./.env.dev-gcp
