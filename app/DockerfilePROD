@@ -16,8 +16,9 @@ RUN npm ci
 FROM base AS builder
 COPY . .
 COPY environment/.env.prod-gcp /.env.prod-gcp
+COPY frontend/.env.prod-gcp frontend/.env.prod-gcp
 RUN npm run build --workspace @pensjon/domain
-RUN npm run build --workspace frontend
+RUN npm run build --workspace frontend  -- --mode prod-gcp
 RUN npm run build --workspace bff
 
 RUN npm prune --omit=dev
