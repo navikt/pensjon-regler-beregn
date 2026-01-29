@@ -37,7 +37,7 @@ spec:
   accessPolicy:
     inbound:
       rules:
-        - application: pensjon-regler-logger
+        - application: pensjon-regler-logger-prod
           namespace: pensjon-regler
         - application: pensjon-regler-logviewer-app-prod
           namespace: pensjon-regler
@@ -51,7 +51,7 @@ spec:
           namespace: pensjon-regler
     outbound:
       rules:
-        - application: pensjon-regler-logger
+        - application: pensjon-regler-logger-prod
           namespace: pensjon-regler
         - application: pensjon-regler-logviewer-app
           namespace: pensjon-regler
