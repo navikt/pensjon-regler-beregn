@@ -1,6 +1,6 @@
 const environments: string[] = import.meta.env.VITE_PENSJON_ACCESS === "prod" ?
     [
-        "pensjon-regler-prod",
+        "pensjon-regler",
         "pensjon-regler-q0"
     ] : [
         "pensjon-regler-q1",
