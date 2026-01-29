@@ -38,31 +38,19 @@ spec:
     inbound:
       rules:
         - application: pensjon-regler-logger-prod
-          namespace: pensjon-regler
         - application: pensjon-regler-logviewer-app-prod
-          namespace: pensjon-regler
         - application: pensjon-regler-q0
-          namespace: pensjon-regler
         - application: pensjon-regler-q1
-          namespace: pensjon-regler
         - application: pensjon-regler-q2
-          namespace: pensjon-regler
         - application: pensjon-regler-q5
-          namespace: pensjon-regler
     outbound:
       rules:
         - application: pensjon-regler-logger-prod
-          namespace: pensjon-regler
         - application: pensjon-regler-logviewer-app
-          namespace: pensjon-regler
         - application: pensjon-regler-q0
-          namespace: pensjon-regler
         - application: pensjon-regler-q1
-          namespace: pensjon-regler
         - application: pensjon-regler-q2
-          namespace: pensjon-regler
         - application: pensjon-regler-q5
-          namespace: pensjon-regler
   ingresses:
     - "https://pensjon-regler-beregn-prod.intern.nav.no"
     - "https://pensjon-regler-beregn-prod.ansatt.nav.no"

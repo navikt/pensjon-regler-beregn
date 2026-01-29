@@ -25,7 +25,7 @@ export default (): Router => {
             const { className } = req.query;
             const { sats } = req.query;
             const { body } = req;
-            const { requestScope, requestUrl } = setPensjonReglerRequestScopeAndUrlForEnvironment(env);
+            const { requestUrl } = setPensjonReglerRequestScopeAndUrlForEnvironment(env);
 
             logInfoLevel("Fikk request på /api/convertResponse med query:", req);
             const CONVERT_RESPONSE_URL = `${requestUrl}/api/convertResponse`;
@@ -33,10 +33,8 @@ export default (): Router => {
             logInfo(`Med className: ${className}, sats: ${sats}`);
             logInfo(`body: ${JSON.stringify(body)}`);
 
-            const response = serverConfiguration.enableAccessControl
-                ? await postApiRequest(req, {url: CONVERT_RESPONSE_URL, scope: requestScope , authenticationEnabled: true, query: req.query}, req.body)
-                : await postApiRequest(req, {url: CONVERT_RESPONSE_URL, scope: requestScope, authenticationEnabled: false, query: req.query}, req.body);
-            logInfo(`Kall til ${CONVERT_RESPONSE_URL} med scope: ${requestScope} fullført`);
+            const response = await postApiRequest(req, {url: CONVERT_RESPONSE_URL, authenticationEnabled: false, query: req.query}, req.body);
+            logInfo(`Kall til ${CONVERT_RESPONSE_URL} fullført`);
             logInfo(`Response data: ${JSON.stringify(response.data)}`);
             const guiModel: GuiModel = response.data;
             return res.status(200).json(guiModel);
@@ -56,16 +54,14 @@ export default (): Router => {
             const { className } = req.query;
             const { sats } = req.query;
             const { body } = req;
-            const { requestScope, requestUrl } = setPensjonReglerRequestScopeAndUrlForEnvironment(env);
+            const { requestUrl } = setPensjonReglerRequestScopeAndUrlForEnvironment(env);
             logInfoLevel("Fikk request på /api/beregn med query:", req);
             const BEREGN_URL = `${requestUrl}/api/beregn`;
             logInfo(`Kaller pensjon-beregn API på ${BEREGN_URL}`);
             logInfo(`Med className: ${className}, sats: ${sats}`);
             logInfo(`body: ${JSON.stringify(body)}`);
-            const response = serverConfiguration.enableAccessControl
-                ? await postApiRequest(req, {url: BEREGN_URL, scope: requestScope, authenticationEnabled: true, query: req.query}, req.body)
-                : await postApiRequest(req, {url: BEREGN_URL, scope: requestScope, authenticationEnabled: false, query: req.query}, req.body);
-            logInfo(`Kall til ${BEREGN_URL} med scope: ${requestScope} fullført`);
+            const response = await postApiRequest(req, {url: BEREGN_URL, authenticationEnabled: false, query: req.query}, req.body);
+            logInfo(`Kall til ${BEREGN_URL} fullført`);
             logInfo(`Response data: ${JSON.stringify(response.data)}`);
             const guiModel: GuiModel = response.data;
             return res.status(200).json(guiModel);
@@ -83,16 +79,14 @@ export default (): Router => {
         try {
             const { env } = req.params;
             logInfo(`satstabeller fra miljø: ${env}`);
-            const { requestUrl, requestScope } = setPensjonReglerRequestScopeAndUrlForEnvironment(env);
-            logInfo(`Henter satstabeller fra miljø: ${env} med url: ${requestUrl} og scope: ${requestScope}`);
+            const { requestUrl } = setPensjonReglerRequestScopeAndUrlForEnvironment(env);
+            logInfo(`Henter satstabeller fra miljø: ${env} med url: ${requestUrl}`);
             logInfoLevel("Fikk request på /api/:env/alleSatstabeller med query: ", req);
 
             const SATSTABELL_URL = `${requestUrl}/alleSatstabeller`;
             logInfo(`Kaller pensjon-beregn API på ${SATSTABELL_URL}`);
 
-            const response = serverConfiguration.enableAccessControl
-                ? await fetchApiRequest(req, {url: SATSTABELL_URL, scope: requestScope,  authenticationEnabled: true})
-                : await fetchApiRequest(req, {url: SATSTABELL_URL, scope: requestScope,  authenticationEnabled: false});
+            const response = await fetchApiRequest(req, {url: SATSTABELL_URL, authenticationEnabled: false});
             return res.status(200).json(response.data);
         } catch (err: unknown) {
             return respondWithDownstreamError(

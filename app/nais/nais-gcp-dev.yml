@@ -65,11 +65,6 @@ spec:
   azure:
     application:
       enabled: false
-      tenant: "trygdeetaten.no"
-      allowAllUsers: true
-      claims:
-        groups:
-          - id: 7f029c57-7ca0-4b31-b0e9-cafd1397e782 # PENSJON_REGLER_LOG_TILGANG trygdeetaten tenant
     sidecar:
       enabled: false
       autoLogin: false
