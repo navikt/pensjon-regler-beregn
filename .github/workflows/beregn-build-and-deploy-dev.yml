@@ -1,0 +1,64 @@
+name: Build and deploy (DEV)
+on:
+  push:
+    branches:
+      - dev-gcp
+    paths:
+      - 'app/**'
+
+jobs:
+  build_and_push_gcp:
+    name: Build and push GCP image
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      checks: read
+      contents: read
+      deployments: write
+      packages: write
+      pull-requests: write
+      id-token: write
+    outputs:
+      image: ${{ steps.docker-build-push.outputs.image }}
+      telemetry: ${{ steps.docker-build-push.outputs.telemetry }}
+      tag: ${{ steps.tag.outputs.TAG }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Generate tag
+        id: tag
+        run: |
+          timestamp=$(date '+%Y.%m.%d-%H.%M')
+          workflow="build-push-deploy-gcp"
+          sha=$(git rev-parse --short HEAD)
+          echo "TAG=${timestamp}-${workflow}-${sha}" >> $GITHUB_OUTPUT
+      - name: Build APP (Frontend & BFF) and Push Docker Image (DEV)
+        uses: nais/docker-build-push@v0
+        id: docker-build-push
+        with:
+          team: pensjon-regler
+          dockerfile: ./app/DockerfileDEV
+          docker_context: ./app
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+          build_secrets: NODE_AUTH_TOKEN=${{ secrets.READER_TOKEN }}
+
+  deploy_gcp:
+    name: Deploy to GCP (DEV)
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      checks: read
+      contents: read
+      deployments: write
+      packages: write
+      pull-requests: write
+      id-token: write
+    needs: build_and_push_gcp
+    steps:
+      - uses: actions/checkout@v6
+      - name: Deploy to GCP (DEV)
+        uses: nais/deploy/actions/deploy@v2
+        env:
+          CLUSTER: dev-gcp
+          RESOURCE: ./app/nais/nais-gcp-dev.yml
+          VAR: image=${{ needs.build_and_push_gcp.outputs.image }}

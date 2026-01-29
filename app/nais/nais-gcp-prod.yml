@@ -1,0 +1,82 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: "pensjon-regler-beregn-prod"
+  namespace: "pensjon-regler"
+  labels:
+    team: "pensjon-regler"
+  annotations:
+    nais.io/read-only-file-system: "false"
+spec:
+  image: "{{ image }}"
+  port: 8080
+  replicas:
+    min: 2
+    max: 2
+  liveness:
+    path: "/internal/isAlive"
+    initialDelay: 10
+    timeout: 30
+  readiness:
+    path: "/internal/isReady"
+    initialDelay: 10
+    timeout: 30
+  startup:
+    path: "/internal/isReady"
+    initialDelay: 10
+  resources:
+    limits:
+      cpu: "1"
+      memory: "2048Mi"
+    requests:
+      cpu: "100m"
+      memory: "512Mi"
+  env:
+    - name: "OTEL_RESOURCE_ATTRIBUTES"
+      value: "deployment.environment.name=p"
+  accessPolicy:
+    inbound:
+      rules:
+        - application: pensjon-regler-logger-prod
+          namespace: pensjon-regler
+        - application: pensjon-regler-logviewer-app-prod
+          namespace: pensjon-regler
+        - application: pensjon-regler-q0
+          namespace: pensjon-regler
+        - application: pensjon-regler-q1
+          namespace: pensjon-regler
+        - application: pensjon-regler-q2
+          namespace: pensjon-regler
+        - application: pensjon-regler-q5
+          namespace: pensjon-regler
+    outbound:
+      rules:
+        - application: pensjon-regler-logger-prod
+          namespace: pensjon-regler
+        - application: pensjon-regler-logviewer-app
+          namespace: pensjon-regler
+        - application: pensjon-regler-q0
+          namespace: pensjon-regler
+        - application: pensjon-regler-q1
+          namespace: pensjon-regler
+        - application: pensjon-regler-q2
+          namespace: pensjon-regler
+        - application: pensjon-regler-q5
+          namespace: pensjon-regler
+  ingresses:
+    - "https://pensjon-regler-beregn-prod.intern.nav.no"
+    - "https://pensjon-regler-beregn-prod.ansatt.nav.no"
+  azure:
+    application:
+      enabled: true
+      tenant: "nav.no"
+      allowAllUsers: false
+      claims:
+        groups:
+          - id: 0839539a-540e-48e8-b68b-ff3eda49ded5 # PENSJON_REGLER_LOG_TILGANG
+    sidecar:
+        enabled: true
+        autoLogin: true
+        autoLoginIgnorePaths:
+          - "/internal/isAlive"
+          - "/internal/isReady"

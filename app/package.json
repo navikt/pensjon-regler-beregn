@@ -1,0 +1,22 @@
+{
+  "name": "pensjon-regler-beregn",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "bff",
+    "shared/domain"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w bff\" \"npm run dev -w frontend\"",
+    "build": "npm run build -w @pensjon/domain && npm run build -w bff && npm run build -w frontend",
+    "start": "NODE_ENV=prod-gcp node bff/dist/server.js",
+    "local": "NODE_ENV=prod-gcp dotenv -e app/bff/.env.prod-gcp -- node bff/dist/server.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "dotenv-cli": "^11.0.0"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.54.0"
+  }
+}
