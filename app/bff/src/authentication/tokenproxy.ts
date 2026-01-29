@@ -1,7 +1,7 @@
 import {NextFunction, Request, Response} from "express";
 import {getToken, requestOboToken, validateToken} from "@navikt/oasis";
 import axios from "axios";
-import {logInfo} from "../logger/logger";
+import {logError, logInfo} from "../logger/logger";
 
 type ApiRequestOptions = {
     url: string;
@@ -63,7 +63,7 @@ export const postApiRequest = async (req: Request, options: ApiRequestOptions, b
                 withCredentials: true,
             });
         } catch (error) {
-            logInfo(`Feil ved kall til API med autentisering: ${error}`);
+            logError(`Feil ved kall til API med autentisering: ${error}`, req, error);
             throw error;
         }
     } else {
@@ -116,10 +116,7 @@ export const fetchApiRequest = async (req: Request, options: ApiRequestOptions) 
         }
     } else {
         try {
-
-
-            logInfo("Kaller API uten autentisering");
-            console.log("Kaller API uten autentisering på url:", options.url, "med query:", options.query);
+            logInfo(`Kaller API uten autentisering på url: ${options.url} med query: ${JSON.stringify(options.query)}`);
             return axios.get(options.url, {
                 headers: {
                     Accept: "application/json",
@@ -129,7 +126,7 @@ export const fetchApiRequest = async (req: Request, options: ApiRequestOptions) 
                 withCredentials: true,
             });
         } catch (error) {
-            logInfo(`Feil ved kall til API uten autentisering: ${error}`);
+            logError(`Feil ved kall til API uten autentisering på url: ${options.url} med query: ${JSON.stringify(options.query)} - Feil: ${error}`, req, error);
             throw error;
         }
     }

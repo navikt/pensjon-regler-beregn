@@ -25,7 +25,6 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
     const bruktSats = state.getSats() ?? "Sats fra miljø";
 
     const metaData = JSON.parse(logResponse.metadata ?? '{}') as LogResponseMetadata;
-    console.log(`Parsed metadata:`, metaData);
     const body = JSON.parse(logResponse.json ?? '{}') as string;
 
     const {
@@ -38,7 +37,6 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
 
     useEffect(() => {
         if (isSuccess) {
-            console.log("DetailView.tsx - GUI model fetch successful.");
             const clazzName = metaData?.className?.split(".").pop()
             state.setConsoleLog(`${clazzName} har kjørt ferdig i miljø: ${state.getEnvironment()} - med sats: ${bruktSats}`)
             state.setDebugLog(data?.metadata?.debugLog || "")

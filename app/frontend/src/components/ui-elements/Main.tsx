@@ -11,8 +11,6 @@ interface MainProps {
 }
 
 const Main: React.FC<MainProps> = ({ id }): ReactNode => {
-    console.log("Main rendered with id:", id);
-
     const state = useGlobalState()
     const { data, isError, isLoading, isSuccess, isFetching,  } = queryLogResponseById(id)
 
@@ -23,7 +21,6 @@ const Main: React.FC<MainProps> = ({ id }): ReactNode => {
     }, [isSuccess, data]);
 
     if (isError) {
-        console.error("Error fetching log:", data);
         throw new Error(`Klarte ikke å hente logg fra miljø ${state.getEnvironment()}`)
     }
 
@@ -32,8 +29,6 @@ const Main: React.FC<MainProps> = ({ id }): ReactNode => {
     }
 
     if (isSuccess) {
-        console.log("Main.tsx - Log fetch successful.");
-        console.log("Fetched log data:", data);
         const metaData = JSON.parse(data?.metadata || '{}')
         document.title = metaData?.saksId && !metaData?.saksId.includes("Det finnes ingen tilgjengelige") ? `SaksID ${metaData?.saksId} - Beregn pensjon` : `Beregn pensjon`
     }

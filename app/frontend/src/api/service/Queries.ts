@@ -25,7 +25,7 @@ const fetchByLogId = async (id: string): Promise<LogResponse> => {
 
 const fetchSatsTabeller = async (env: string): Promise<string[]> => {
   const environment = ensureEnv(env);
-  console.log(`Henter satstabeller fra miljø: ${environment}`);
+
   const response = await axios.get(`/api/${environment}/alleSatstabeller`, {
     headers: {
       'Content-Type': 'application/json',
@@ -43,9 +43,7 @@ const fetchGuiModel = async (body: string, clazzName: string, environment: strin
   else if (clazzName.toString().includes("Response")) endpoint = "convertResponse"
 
   const env = ensureEnv(environment);
-  console.log(`Henter GuiModel fra miljø: ${env} for klasse: ${clazzName} med sats: ${sats}`);
 
-  // Always include env segment to match BFF routes (/api/:env/...)
   let url = `/api/${env}/${endpoint}?className=${encodeURIComponent(clazzName)}`
 
   if (sats) url += `&sats=${encodeURIComponent(sats)}`
