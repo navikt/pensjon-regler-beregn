@@ -7,8 +7,8 @@ import { dirname } from 'path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default ({ mode }: { mode: string }) => {
-  console.log('Vite build mode:', mode);
-  console.log('Loading env from:', __dirname);
+  console.log('Vite build mode: ', mode);
+  console.log('Loading env from: ', __dirname);
   const env = loadEnv(mode, __dirname, '');
 
   const apiPort = env.PORT || env.API_PORT || '4000';
