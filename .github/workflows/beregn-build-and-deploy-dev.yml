@@ -2,7 +2,7 @@ name: Build and deploy (DEV)
 on:
   push:
     branches:
-      - dev-gcp
+      - main
     paths:
       - 'app/**'
 

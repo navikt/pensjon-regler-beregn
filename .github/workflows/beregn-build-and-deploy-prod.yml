@@ -2,7 +2,7 @@ name: Build and deploy
 on:
   push:
     branches:
-      - gcp-entra-auth-prod
+      - main
     paths:
       - 'app/**'
 
