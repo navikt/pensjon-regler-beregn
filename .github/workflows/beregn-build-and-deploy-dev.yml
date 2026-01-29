@@ -36,6 +36,7 @@ jobs:
         id: docker-build-push
         with:
           team: pensjon-regler
+          image_suffix: -dev
           dockerfile: ./app/DockerfileDEV
           docker_context: ./app
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
