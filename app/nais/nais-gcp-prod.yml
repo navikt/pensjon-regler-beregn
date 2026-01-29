@@ -44,7 +44,7 @@ spec:
     outbound:
       rules:
         - application: pensjon-regler-logger-prod
-        - application: pensjon-regler-logviewer-app
+        - application: pensjon-regler-logviewer-app-prod
         - application: pensjon-regler
         - application: pensjon-regler-q0
   ingresses:
