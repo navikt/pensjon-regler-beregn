@@ -56,7 +56,7 @@ jobs:
     needs: build_and_push_gcp
     steps:
       - uses: actions/checkout@v6
-      - name: Deploy to GCP
+      - name: Deploy to GCP (PROD)
         uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: prod-gcp
