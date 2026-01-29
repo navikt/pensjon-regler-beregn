@@ -1,9 +1,15 @@
 // typescript
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react-swc';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default ({ mode }: { mode: string }) => {
-  const env = loadEnv(mode, process.cwd(), '');
+  console.log('Vite build mode:', mode);
+  console.log('Loading env from:', __dirname);
+  const env = loadEnv(mode, __dirname, '');
 
   const apiPort = env.PORT || env.API_PORT || '4000';
 
