@@ -54,15 +54,10 @@ spec:
     - "https://pensjon-regler-beregn-dev.ansatt.dev.nav.no"
   azure:
     application:
-      enabled: true
-      tenant: "nav.no"
-      allowAllUsers: false
-      claims:
-        groups:
-          - id: 986ffb21-1a83-427a-8479-3354ba965251 # PENSJON_REGLER_LOG_TILGANG_DEV
+      enabled: false
     sidecar:
-      enabled: true
-      autoLogin: true
+      enabled: false
+      autoLogin: false
       autoLoginIgnorePaths:
         - "/internal/isAlive"
         - "/internal/isReady"

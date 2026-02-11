@@ -84,6 +84,6 @@ export const serverConfiguration: ServerConfiguration = {
     pensjonReglerQ2Scope: env.PENSJON_REGLER_Q2_SCOPE,
     pensjonReglerQ5URI: env.PENSJON_REGLER_Q5_URI,
     pensjonReglerQ5Scope: env.PENSJON_REGLER_Q5_SCOPE,
-    enableAccessControl: env.NAIS_CLUSTER_NAME === "dev-gcp" || env.NAIS_CLUSTER_NAME === "prod-gcp",
+    enableAccessControl: env.NAIS_CLUSTER_NAME !== "dev-gcp",
 }
 

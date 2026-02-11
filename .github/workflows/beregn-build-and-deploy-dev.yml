@@ -1,19 +1,14 @@
-name: Build and deploy (Sandbox)
+name: Build and deploy (DEV)
 on:
+  workflow_dispatch:
   push:
     branches:
-      - sandbox
+      - main
     paths:
       - 'app/**'
-  workflow_dispatch:
-
-concurrency:
-  group: deploy-sandbox
-  cancel-in-progress: true
 
 jobs:
   build_and_push_gcp:
-    if: github.ref == 'refs/heads/sandbox'
     name: Build and push GCP image
     runs-on: ubuntu-latest
     permissions:
@@ -37,12 +32,12 @@ jobs:
           workflow="build-push-deploy-gcp"
           sha=$(git rev-parse --short HEAD)
           echo "TAG=${timestamp}-${workflow}-${sha}" >> $GITHUB_OUTPUT
-      - name: Build APP (Frontend & BFF) and Push Docker Image (Sandbox)
+      - name: Build APP (Frontend & BFF) and Push Docker Image (DEV)
         uses: nais/docker-build-push@v0
         id: docker-build-push
         with:
           team: pensjon-regler
-          image_suffix: -sandbox
+          image_suffix: -dev
           dockerfile: ./app/DockerfileDEV
           docker_context: ./app
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
@@ -50,7 +45,7 @@ jobs:
           build_secrets: NODE_AUTH_TOKEN=${{ secrets.READER_TOKEN }}
 
   deploy_gcp:
-    name: Deploy to GCP (Sandbox)
+    name: Deploy to GCP (DEV)
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -63,7 +58,7 @@ jobs:
     needs: build_and_push_gcp
     steps:
       - uses: actions/checkout@v6
-      - name: Deploy to GCP (Sandbox)
+      - name: Deploy to GCP (DEV)
         uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: dev-gcp

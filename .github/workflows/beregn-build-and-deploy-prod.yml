@@ -1,19 +1,14 @@
 name: Build and deploy (PROD)
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
     paths:
       - 'app/**'
-  workflow_dispatch:
-
-concurrency:
-  group: deploy-prod
-  cancel-in-progress: false
 
 jobs:
   build_and_push_gcp:
-    if: github.ref == 'refs/heads/main'
     name: Build and push GCP image
     runs-on: ubuntu-latest
     permissions:
