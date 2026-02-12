@@ -16,7 +16,7 @@ const API_ALLE_SATSTABELLER = "/:env/alleSatstabeller";
 export default (): Router => {
 
     if (serverConfiguration.enableAccessControl) {
-        expressRouter.use([API_LOG_BY_ID, API_BEREGN, API_CONVERT_RESPONSE, API_ALLE_SATSTABELLER], ensureAuthenticated());
+        expressRouter.use([API_LOG_BY_ID], ensureAuthenticated());
     }
 
     // Kall til pensjon-regler, skal ikke ha autentisering
