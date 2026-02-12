@@ -10,7 +10,7 @@ interface ResponseData {
     };
 }
 
-const ensureEnv = (env?: string) => (env && env.trim().length > 0 ? env.trim() : environments[0]);
+const ensureEnv = (env?: string) => (env && env.trim().length > 0 ? env.trim() : environments[1]);
 
 const fetchByLogId = async (id: string): Promise<LogResponse> => {
 
