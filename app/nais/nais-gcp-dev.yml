@@ -39,6 +39,7 @@ spec:
       rules:
         - application: pensjon-regler-logger-dev
         - application: pensjon-regler-logviewer-app-dev
+        - application: pensjon-regler-q0
         - application: pensjon-regler-q1
         - application: pensjon-regler-q2
         - application: pensjon-regler-q5
@@ -46,6 +47,7 @@ spec:
       rules:
         - application: pensjon-regler-logger-dev
         - application: pensjon-regler-logviewer-app-dev
+        - application: pensjon-regler-q0
         - application: pensjon-regler-q1
         - application: pensjon-regler-q2
         - application: pensjon-regler-q5
