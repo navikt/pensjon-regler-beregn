@@ -40,17 +40,13 @@ spec:
         - application: pensjon-regler-logger-prod
         - application: pensjon-regler-logviewer-app-prod
         - application: pensjon-regler
-        - application: pensjon-regler-q0
     outbound:
       rules:
         - application: pensjon-regler-logger-prod
         - application: pensjon-regler-logviewer-app-prod
         - application: pensjon-regler
-        - application: pensjon-regler-q0
           namespace: pensjon-regler
           cluster: dev-gcp
-      external:
-        - host: pensjon-regler-q0.intern.dev.nav.no
   ingresses:
     - "https://pensjon-regler-beregn-prod.intern.nav.no"
     - "https://pensjon-regler-beregn-prod.ansatt.nav.no"
