@@ -4,8 +4,10 @@ console.log("VITE_PENSJON_ACCESS === 'prod':", import.meta.env.VITE_PENSJON_ACCE
 
 const environments: string[] = import.meta.env.VITE_PENSJON_ACCESS === "prod" ?
     [
+        "local",
         "pensjon-regler"
     ] : [
+        "local",
         "pensjon-regler-q0",
         "pensjon-regler-q1",
         "pensjon-regler-q2",
