@@ -45,8 +45,6 @@ spec:
         - application: pensjon-regler-logger-prod
         - application: pensjon-regler-logviewer-app-prod
         - application: pensjon-regler
-          namespace: pensjon-regler
-          cluster: dev-gcp
   ingresses:
     - "https://pensjon-regler-beregn-prod.intern.nav.no"
     - "https://pensjon-regler-beregn-prod.ansatt.nav.no"
