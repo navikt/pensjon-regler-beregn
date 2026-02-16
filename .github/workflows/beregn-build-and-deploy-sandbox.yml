@@ -3,8 +3,10 @@ on:
   push:
     branches:
       - sandbox
-    paths:
-      - 'app/**'
+  workflow_run:
+    workflows: ['Merge Main to Sandbox']
+    types:
+      - completed
   workflow_dispatch:
 
 concurrency:
@@ -13,7 +15,7 @@ concurrency:
 
 jobs:
   build_and_push_gcp:
-    if: github.ref == 'refs/heads/sandbox'
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/sandbox') || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
     name: Build and push GCP image
     runs-on: ubuntu-latest
     permissions:
@@ -30,6 +32,8 @@ jobs:
       tag: ${{ steps.tag.outputs.TAG }}
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: sandbox
       - name: Generate tag
         id: tag
         run: |
@@ -63,6 +67,8 @@ jobs:
     needs: build_and_push_gcp
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: sandbox
       - name: Deploy to GCP (Sandbox)
         uses: nais/deploy/actions/deploy@v2
         env:

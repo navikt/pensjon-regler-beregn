@@ -3,7 +3,7 @@ import environments from "../components/constants/Environments.ts";
 
 const initalState = hookstate({
     sats: "",
-    environment: environments[1] ?? environments[0],
+    environment: environments[1],
     consoleLog: "",
     debugLog: "",
 })
