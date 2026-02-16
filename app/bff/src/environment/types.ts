@@ -16,6 +16,8 @@ export type ServerConfiguration = {
     pensjonReglerLoggerScope: string;
     pensjonReglerProdURI?: string;
     pensjonReglerProdScope?: string;
+    pensjonReglerVerifiseringURI?: string;
+    pensjonReglerVerifiseringScope?: string;
     pensjonReglerQ0URI?: string;
     pensjonReglerQ0Scope?: string;
     pensjonReglerQ1URI?: string;
