@@ -28,7 +28,7 @@ const ENV_CONFIG: Record<
     },
     "pensjon-regler-verifisering": {
         scope: serverConfiguration.pensjonReglerVerifiseringScope,
-        url: serverConfiguration.pensjonReglerVerifiseringScope,
+        url: serverConfiguration.pensjonReglerVerifiseringURI,
     },
     "pensjon-regler-q0": {
         scope: serverConfiguration.pensjonReglerQ0Scope,
