@@ -1,7 +1,7 @@
 import { serverConfiguration } from "../../environment/config";
 import {logInfo} from "../../logger/logger";
 
-export type PensjonReglerEnv = "local" | "pensjon-regler" | "pensjon-regler-q0" | "pensjon-regler-q1" | "pensjon-regler-q2" | "pensjon-regler-q5";
+export type PensjonReglerEnv = "local" | "pensjon-regler" | "pensjon-regler-verifisering" | "pensjon-regler-q0" | "pensjon-regler-q1" | "pensjon-regler-q2" | "pensjon-regler-q5";
 
 export interface PensjonReglerTarget {
     requestScope: string;
@@ -25,6 +25,10 @@ const ENV_CONFIG: Record<
     "pensjon-regler": {
         scope: serverConfiguration.pensjonReglerProdScope,
         url: serverConfiguration.pensjonReglerProdURI,
+    },
+    "pensjon-regler-verifisering": {
+        scope: serverConfiguration.pensjonReglerVerifiseringScope,
+        url: serverConfiguration.pensjonReglerVerifiseringScope,
     },
     "pensjon-regler-q0": {
         scope: serverConfiguration.pensjonReglerQ0Scope,
