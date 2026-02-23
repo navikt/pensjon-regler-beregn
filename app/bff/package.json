@@ -15,7 +15,7 @@
   "dependencies": {
     "@pensjon/domain": "1.0.0",
     "express": "^5.2.1",
-    "@navikt/oasis": "^4.1.1",
+    "@navikt/oasis": "^4.1.4",
     "dotenv": "^17.2.3",
     "axios": "^1.13.5",
     "cookie-parser": "^1.4.7",
