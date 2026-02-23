@@ -15,7 +15,7 @@
     "@hookstate/core": "^4.0.2",
     "@navikt/aksel-icons": "^7.39.1",
     "@navikt/ds-css": "^7.39.0",
-    "@navikt/ds-react": "^7.39.0",
+    "@navikt/ds-react": "^8.5.2",
     "@tanstack/react-query": "^5.90.21",
     "@tanstack/react-query-devtools": "^5.91.3",
     "asciidoctor": "^3.0.4",
