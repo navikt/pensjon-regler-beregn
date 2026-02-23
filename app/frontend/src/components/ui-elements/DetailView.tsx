@@ -6,7 +6,7 @@ import RequestPane from "./RequestPane.tsx"
 import {useEffect} from "react";
 import {useQueryClient} from "@tanstack/react-query";
 import {useGlobalState} from "../../store/index.ts";
-import {Panel, PanelGroup, PanelResizeHandle} from "react-resizable-panels";
+import {Panel, Group, Separator} from "react-resizable-panels";
 
 
 interface DetailViewProps {
@@ -57,19 +57,19 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
 
     return (
         <div className="detailcontainer">
-            <PanelGroup direction={"horizontal"} className={"panel_resizegroup"}>
+            <Group orientation={"horizontal"} className={"panel_resizegroup"}>
                 <Panel defaultSize={50}>
                     <div id="requestview">
                         <RequestPane data={data?.request} isFetching={isFetching}/>
                     </div>
                 </Panel>
-                <PanelResizeHandle className="panel_resize" />
+                <Separator className="panel_resize" />
                 <Panel defaultSize={50}>
                     <div id="responseview">
                         <ResponsePane data={data?.response} satstabell={state.getSats()} isFetching={isFetching}/>
                     </div>
                 </Panel>
-            </PanelGroup>
+            </Group>
         </div>
     )
 
