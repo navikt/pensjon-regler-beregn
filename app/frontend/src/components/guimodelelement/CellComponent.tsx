@@ -50,7 +50,7 @@ export const CellComponent = (props: CellComponentProps) => {
                      offset={32}
                      strategy={"absolute"}>
                 <Popover.Content className={"Popoverscroll"}>
-                    {popoverDetail}
+                    <>{popoverDetail}</>
                 </Popover.Content>
             </Popover>
         );
