@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@hookstate/core": "^4.0.2",
-    "@navikt/aksel-icons": "^8.5.2",
+    "@navikt/aksel-icons": "^8.6.0",
     "@navikt/ds-css": "^8.6.0",
     "@navikt/ds-react": "^8.5.2",
     "@pensjon/domain": "1.0.0",
