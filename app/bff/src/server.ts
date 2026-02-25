@@ -11,7 +11,7 @@ const app = express();
 const port = serverConfig.exposedPort;
 const staticDir = path.resolve(__dirname, "../../frontend/dist");
 
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
 app.use("/internal", healthRouter);
 app.use("/api", routes());
 
