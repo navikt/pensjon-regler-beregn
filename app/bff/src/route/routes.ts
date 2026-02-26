@@ -26,10 +26,10 @@ export default (): Router => {
             const { requestUrl } = setPensjonReglerRequestScopeAndUrlForEnvironment(env);
 
             const CONVERT_RESPONSE_URL = `${requestUrl}/api/convertResponse`;
-            logInfo(`Kaller pensjon-beregn API på ${CONVERT_RESPONSE_URL}`);
+            // logInfo(`Kaller pensjon-beregn API på ${CONVERT_RESPONSE_URL}`);
 
             const response = await postApiRequest(req, {url: CONVERT_RESPONSE_URL, authenticationEnabled: false, query: req.query}, req.body);
-            logInfo(`Kall til ${CONVERT_RESPONSE_URL} fullført`);
+            // logInfo(`Kall til ${CONVERT_RESPONSE_URL} fullført`);
             const guiModel: GuiModel = response.data;
             return res.status(200).json(guiModel);
         } catch (err: unknown) {
@@ -48,9 +48,9 @@ export default (): Router => {
             const { env } = req.params;
             const { requestUrl } = setPensjonReglerRequestScopeAndUrlForEnvironment(env);
             const BEREGN_URL = `${requestUrl}/api/beregn`;
-            logInfo(`Kaller pensjon-beregn API på ${BEREGN_URL}`);
+            // logInfo(`Kaller pensjon-beregn API på ${BEREGN_URL}`);
             const response = await postApiRequest(req, {url: BEREGN_URL, authenticationEnabled: false, query: req.query}, req.body);
-            logInfo(`Kall til ${BEREGN_URL} fullført`);
+            // logInfo(`Kall til ${BEREGN_URL} fullført`);
             const guiModel: GuiModel = response.data;
             return res.status(200).json(guiModel);
         } catch (err: unknown) {
@@ -67,12 +67,12 @@ export default (): Router => {
     expressRouter.get(API_ALLE_SATSTABELLER, async (req, res ) => {
         try {
             const { env } = req.params;
-            logInfo(`satstabeller fra miljø: ${env}`);
+            // logInfo(`satstabeller fra miljø: ${env}`);
             const { requestUrl } = setPensjonReglerRequestScopeAndUrlForEnvironment(env);
-            logInfo(`Henter satstabeller fra miljø: ${env} med url: ${requestUrl}`);
+            // logInfo(`Henter satstabeller fra miljø: ${env} med url: ${requestUrl}`);
 
             const SATSTABELL_URL = `${requestUrl}/alleSatstabeller`;
-            logInfo(`Kaller pensjon-beregn API på ${SATSTABELL_URL}`);
+            // logInfo(`Kaller pensjon-beregn API på ${SATSTABELL_URL}`);
 
             const response = await fetchApiRequest(req, {url: SATSTABELL_URL, authenticationEnabled: false});
             return res.status(200).json(response.data);
@@ -93,7 +93,7 @@ export default (): Router => {
             const {id} = req.params;
 
             const LOGGER_API_URL = `${serverConfiguration.pensjonReglerLoggerAppURI}/api/log/${id}`;
-            logInfo(`Kaller logger API på ${LOGGER_API_URL}`);
+            // logInfo(`Kaller logger API på ${LOGGER_API_URL}`);
 
             // TODO Fjerner ikke enda, da vi trenger trolig noe tilsvarende når vi fristiller Q2 fra EntraID
             // const response = serverConfiguration.enableAccessControl
@@ -103,7 +103,7 @@ export default (): Router => {
             const response = await fetchApiRequest(req, {url: LOGGER_API_URL, scope: serverConfiguration.pensjonReglerLoggerScope, authenticationEnabled: true})
 
             const logResponse: LogResponse = response.data;
-            logInfo(`Logger API response: ${JSON.stringify(logResponse)}`);
+            // logInfo(`Logger API response: ${JSON.stringify(logResponse)}`);
             return res.status(200).json(logResponse);
         } catch (err: unknown) {
             return respondWithDownstreamError(

@@ -13,7 +13,7 @@ type ApiRequestOptions = {
 export const ensureAuthenticated = () =>
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            logInfo("Sjekker userToken")
+            // logInfo("Sjekker userToken")
             const token = getToken(req);
             if (!token) {
                 return res.status(401).json({error: "Mangler bearer token"});
@@ -67,7 +67,7 @@ export const postApiRequest = async (req: Request, options: ApiRequestOptions, b
             throw error;
         }
     } else {
-        logInfo("Kaller API uten autentisering");
+        // logInfo("Kaller API uten autentisering");
         return axios.post(options.url, body, {
             headers: {
                 Accept: "application/json",
@@ -111,12 +111,12 @@ export const fetchApiRequest = async (req: Request, options: ApiRequestOptions) 
                 withCredentials: true,
             });
         } catch (error) {
-            logInfo(`Feil ved kall til API med autentisering: ${error}`);
+            logError(`Feil ved kall til API med autentisering. `, req, error);
             throw error;
         }
     } else {
         try {
-            logInfo(`Kaller API uten autentisering på url: ${options.url} med query: ${JSON.stringify(options.query)}`);
+            // logInfo(`Kaller API uten autentisering på url: ${options.url} med query: ${JSON.stringify(options.query)}`);
             return axios.get(options.url, {
                 headers: {
                     Accept: "application/json",

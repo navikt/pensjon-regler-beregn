@@ -76,9 +76,9 @@ export const setPensjonReglerRequestScopeAndUrlForEnvironment = (
         throw new Error(`Missing configuration for requestScope \\(env=${env}\\).`);
     }
 
-    logInfo(`Setter pensjon-regler requestScope og requestUrl for miljø: ${env}`);
-    logInfo(`requestUrl: ${url}`);
-    logInfo(`requestScope: ${scope}`);
+    // logInfo(`Setter pensjon-regler requestScope og requestUrl for miljø: ${env}`);
+    // logInfo(`requestUrl: ${url}`);
+    // logInfo(`requestScope: ${scope}`);
 
     return {
         env,
