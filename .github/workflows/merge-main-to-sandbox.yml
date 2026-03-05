@@ -4,9 +4,14 @@ on:
   push:
     branches:
       - main
+  workflow_run:
+    workflows: ['Automerge Dependabot']
+    types:
+      - completed
 
 jobs:
   mergeMainToSandbox:
+    if: github.event_name == 'push' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')
     permissions:
       contents: write
     runs-on: ubuntu-latest
