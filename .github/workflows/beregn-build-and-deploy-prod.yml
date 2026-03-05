@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - main
+  workflow_run:
+    workflows: ['Automerge Dependabot']
+    types:
+      - completed
   workflow_dispatch:
 
 concurrency:
@@ -11,7 +15,7 @@ concurrency:
 
 jobs:
   build_and_push_gcp:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') || github.event_name == 'workflow_dispatch'
     name: Build and push GCP image
     runs-on: ubuntu-latest
     permissions:
