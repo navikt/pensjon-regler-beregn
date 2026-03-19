@@ -42,4 +42,4 @@ COPY --from=builder /.env.prod-gcp ./.env.prod-gcp
 
 USER node
 EXPOSE 8080
-CMD ["node", "bff/dist/server.js"]
+CMD ["bff/dist/server.js"]
