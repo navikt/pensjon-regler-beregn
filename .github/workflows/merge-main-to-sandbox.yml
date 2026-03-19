@@ -11,7 +11,7 @@ on:
 
 jobs:
   mergeMainToSandbox:
-    if: github.event_name == 'push' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')
+    if: github.event_name == 'push' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -29,3 +29,4 @@ jobs:
           user_name: GitHub Merge Actions
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
