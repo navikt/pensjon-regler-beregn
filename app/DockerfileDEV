@@ -24,7 +24,7 @@ RUN npm run build --workspace @pensjon/domain
 RUN npm run build --workspace frontend -- --mode ${BUILD_ENV}
 RUN npm run build --workspace bff
 
-RUN npm prune --omit=dev
+RUN npm prune --omit=dev --ignore-scripts
 
 FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:22-slim AS runner
 WORKDIR /app
