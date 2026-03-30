@@ -1,14 +1,9 @@
 {
   "name": "pensjon-regler-beregn",
   "private": true,
-  "workspaces": [
-    "frontend",
-    "bff",
-    "shared/domain"
-  ],
   "scripts": {
-    "dev": "concurrently \"npm run dev -w bff\" \"npm run dev -w frontend\"",
-    "build": "npm run build -w @pensjon/domain && npm run build -w bff && npm run build -w frontend",
+    "dev": "concurrently \"pnpm --filter bff dev\" \"pnpm --filter pensjon-regler-beregn-frontend dev\"",
+    "build": "pnpm --filter @pensjon/domain build && pnpm --filter bff build && pnpm --filter pensjon-regler-beregn-frontend build",
     "start": "NODE_ENV=prod-gcp node bff/dist/server.js",
     "local": "NODE_ENV=prod-gcp dotenv -e app/bff/.env.prod-gcp -- node bff/dist/server.js"
   },
@@ -19,8 +14,10 @@
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "4.60.0"
   },
-  "overrides": {
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+  "pnpm": {
+    "overrides": {
+      "react": "19.2.4",
+      "react-dom": "19.2.4"
+    }
   }
 }

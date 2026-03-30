@@ -2,29 +2,30 @@ FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:22-dev AS bas
 USER root
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY .npmrc ./.npmrc
-COPY bff/package*.json bff/
+COPY bff/package.json bff/
 COPY bff/tsconfig*.json bff/
-COPY frontend/package*.json frontend/
+COPY frontend/package.json frontend/
 COPY frontend/tsconfig*.json frontend/
+COPY shared/domain/package.json shared/domain/
 
+RUN corepack enable && corepack prepare pnpm@latest --activate
 
 RUN --mount=type=secret,id=NODE_AUTH_TOKEN \
-    npm config set //npm.pkg.github.com/:_authToken=$(cat /run/secrets/NODE_AUTH_TOKEN)
-RUN npm config set @navikt:registry=https://npm.pkg.github.com
-RUN npm ci
+    pnpm config set //npm.pkg.github.com/:_authToken $(cat /run/secrets/NODE_AUTH_TOKEN)
+RUN pnpm install --frozen-lockfile
 
 FROM base AS builder
 ARG BUILD_ENV=dev-gcp
 COPY . .
 COPY bff/.env.dev-gcp /.env.dev-gcp
 COPY frontend/.env.dev-gcp frontend/.env.dev-gcp
-RUN npm run build --workspace @pensjon/domain
-RUN npm run build --workspace frontend -- --mode ${BUILD_ENV}
-RUN npm run build --workspace bff
+RUN pnpm --filter @pensjon/domain build
+RUN pnpm --filter pensjon-regler-beregn-frontend build -- --mode ${BUILD_ENV}
+RUN pnpm --filter bff build
 
-RUN npm prune --omit=dev --ignore-scripts
+RUN pnpm prune --prod
 
 FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:22-slim AS runner
 WORKDIR /app
@@ -33,7 +34,7 @@ ENV APP_ENV=dev-gcp
 ENV PORT=8080
 ENV TZ="Europe/Oslo"
 
-COPY package*.json ./
+COPY package.json ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/bff/dist ./bff/dist
 COPY --from=builder /app/frontend/dist ./frontend/dist

@@ -13,7 +13,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@pensjon/domain": "1.0.0",
+    "@pensjon/domain": "workspace:*",
     "express": "^5.2.1",
     "@navikt/oasis": "^4.1.4",
     "dotenv": "^17.3.1",
