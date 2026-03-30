@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "../node_modules/.bin/vite",
-    "build": "../node_modules/.bin/tsc && vite build",
-    "lint": "../node_modules/.bin/eslint  --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "../node_modules/.bin/vite preview",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
     "asciidoc": "node src/doc/doc.js"
   },
   "dependencies": {
@@ -15,7 +15,7 @@
     "@navikt/aksel-icons": "^8.6.0",
     "@navikt/ds-css": "^8.6.0",
     "@navikt/ds-react": "^8.6.0",
-    "@pensjon/domain": "1.0.0",
+    "@pensjon/domain": "workspace:*",
     "@tanstack/react-query": "^5.91.3",
     "@tanstack/react-query-devtools": "^5.91.3",
     "asciidoctor": "^3.0.4",

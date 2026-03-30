@@ -1,0 +1,8 @@
+packages:
+  - 'frontend'
+  - 'bff'
+  - 'shared/domain'
+
+allowBuilds:
+  esbuild: true
+  '@swc/core': true
