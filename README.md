@@ -10,13 +10,13 @@ Kan installeres på Mac med Homebrew: `brew install node` (for andre muligheter,
 
 For å kjøre appen lokalt må man først installere pakker med kommandoen:
 
-`npm i`
+`pnpm install`
 
-i Node-kommando vindu etter å ha navigert til `(repo-location)/pensjon-regler-beregn`.
+i Node-kommando vindu etter å ha navigert til `(repo-location)/pensjon-regler-beregn/app`.
 
 Deretter kan man starte appen lokalt med kommandoen:
 
-`npm run dev`
+`pnpm dev`
 
 Appen vil da åpnes i standard nettleseren på adressen [http://localhost:5173/](http://localhost:5173/) med mindre denne porten er opptatt (Node vil da finne en annen ledig port) eller noe annet er spesifisert.
 

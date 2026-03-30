@@ -11,17 +11,17 @@ pensjon-regler-beregn is a React/TypeScript calculation viewer UI for NAV's pens
 All commands run from `app/`:
 
 ```bash
-npm install                  # Install all workspace dependencies
-npm run dev                  # Run BFF + frontend concurrently (BFF :8080, frontend :5173)
-npm run build                # Build shared domain → BFF → frontend
-npm run dev -w frontend      # Frontend only (Vite dev server)
-npm run dev -w bff           # BFF only (ts-node-dev with hot reload)
-npm run lint -w frontend     # ESLint with --max-warnings=0
+pnpm install                         # Install all workspace dependencies
+pnpm dev                             # Run BFF + frontend concurrently (BFF :8080, frontend :5173)
+pnpm build                           # Build shared domain → BFF → frontend
+pnpm --filter pensjon-regler-beregn-frontend dev  # Frontend only (Vite dev server)
+pnpm --filter bff dev                # BFF only (ts-node-dev with hot reload)
+pnpm --filter pensjon-regler-beregn-frontend lint # ESLint with --max-warnings=0
 ```
 
 ## Architecture
 
-**npm workspaces monorepo** with three packages:
+**pnpm workspaces monorepo** with three packages:
 - `frontend/` — React 18 + Vite + SWC, served on port 5173 in dev
 - `bff/` — Express 5 (CommonJS), serves as API proxy on port 8080
 - `shared/domain/` — `@pensjon/domain` shared TypeScript types/enums
