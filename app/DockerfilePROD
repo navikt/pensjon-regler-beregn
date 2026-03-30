@@ -13,8 +13,9 @@ COPY shared/domain/package.json shared/domain/
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
 RUN --mount=type=secret,id=NODE_AUTH_TOKEN \
-    pnpm config set //npm.pkg.github.com/:_authToken $(cat /run/secrets/NODE_AUTH_TOKEN)
-RUN pnpm install --frozen-lockfile
+    echo "//npm.pkg.github.com/:_authToken=$(cat /run/secrets/NODE_AUTH_TOKEN)" >> .npmrc && \
+    pnpm install --frozen-lockfile && \
+    sed -i '/_authToken/d' .npmrc
 
 FROM base AS builder
 ARG BUILD_ENV=prod-gcp
