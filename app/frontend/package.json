@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:dev-gcp": "tsc && vite build --mode dev-gcp",
+    "build:prod-gcp": "tsc && vite build --mode prod-gcp",
     "lint": "eslint --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "asciidoc": "node src/doc/doc.js"
