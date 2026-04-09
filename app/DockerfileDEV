@@ -22,7 +22,7 @@ COPY . .
 COPY bff/.env.dev-gcp /.env.dev-gcp
 COPY frontend/.env.dev-gcp frontend/.env.dev-gcp
 RUN pnpm --filter @pensjon/domain build
-RUN pnpm --filter pensjon-regler-beregn-frontend build -- --mode ${BUILD_ENV}
+RUN pnpm --filter pensjon-regler-beregn-frontend run build:dev-gcp
 RUN pnpm --filter bff build
 
 RUN pnpm prune --prod --config.confirmModulesPurge=false

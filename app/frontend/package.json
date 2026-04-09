@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:dev-gcp": "tsc && vite build --mode dev-gcp",
+    "build:prod-gcp": "tsc && vite build --mode prod-gcp",
     "lint": "eslint --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "asciidoc": "node src/doc/doc.js"
@@ -39,6 +41,6 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "npm-run-all": "^4.1.5",
     "typescript": "^5.9.3",
-    "vite": "^7.3.1"
+    "vite": "^8.0.8"
   }
 }
