@@ -81,7 +81,7 @@ importers:
         version: 8.9.0
       '@navikt/ds-react':
         specifier: ^8.9.1
-        version: 8.9.1(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.5))(react@19.2.5)
+        version: 8.9.1(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       '@pensjon/domain':
         specifier: workspace:*
         version: link:../shared/domain
@@ -104,14 +104,14 @@ importers:
         specifier: ^19.2.5
         version: 19.2.5
       react-dom:
-        specifier: ^19.2.4
-        version: 19.2.4(react@19.2.5)
+        specifier: ^19.2.5
+        version: 19.2.5(react@19.2.5)
       react-resizable-panels:
         specifier: ^4.7.3
-        version: 4.8.0(react-dom@19.2.4(react@19.2.5))(react@19.2.5)
+        version: 4.8.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       react-router-dom:
         specifier: ^7.14.1
-        version: 7.14.1(react-dom@19.2.4(react@19.2.5))(react@19.2.5)
+        version: 7.14.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
     devDependencies:
       '@types/prismjs':
         specifier: ^1.26.6
@@ -2280,10 +2280,10 @@ packages:
     peerDependencies:
       react: '>=16.8.0'
 
-  react-dom@19.2.4:
-    resolution: {integrity: sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ==}
+  react-dom@19.2.5:
+    resolution: {integrity: sha512-J5bAZz+DXMMwW/wV3xzKke59Af6CHY7G4uYLN1OvBcKEsWOs4pQExj86BBKamxl/Ik5bx9whOrvBlSDfWzgSag==}
     peerDependencies:
-      react: ^19.2.4
+      react: ^19.2.5
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -3097,18 +3097,18 @@ snapshots:
       '@floating-ui/core': 1.7.5
       '@floating-ui/utils': 0.2.11
 
-  '@floating-ui/react-dom@2.1.8(react-dom@19.2.4(react@19.2.5))(react@19.2.5)':
+  '@floating-ui/react-dom@2.1.8(react-dom@19.2.5(react@19.2.5))(react@19.2.5)':
     dependencies:
       '@floating-ui/dom': 1.7.6
       react: 19.2.5
-      react-dom: 19.2.4(react@19.2.5)
+      react-dom: 19.2.5(react@19.2.5)
 
-  '@floating-ui/react@0.27.8(react-dom@19.2.4(react@19.2.5))(react@19.2.5)':
+  '@floating-ui/react@0.27.8(react-dom@19.2.5(react@19.2.5))(react@19.2.5)':
     dependencies:
-      '@floating-ui/react-dom': 2.1.8(react-dom@19.2.4(react@19.2.5))(react@19.2.5)
+      '@floating-ui/react-dom': 2.1.8(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       '@floating-ui/utils': 0.2.11
       react: 19.2.5
-      react-dom: 19.2.4(react@19.2.5)
+      react-dom: 19.2.5(react@19.2.5)
       tabbable: 6.4.0
 
   '@floating-ui/utils@0.2.11': {}
@@ -3163,17 +3163,17 @@ snapshots:
 
   '@navikt/ds-css@8.9.0': {}
 
-  '@navikt/ds-react@8.9.1(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.5))(react@19.2.5)':
+  '@navikt/ds-react@8.9.1(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)':
     dependencies:
-      '@floating-ui/react': 0.27.8(react-dom@19.2.4(react@19.2.5))(react@19.2.5)
-      '@floating-ui/react-dom': 2.1.8(react-dom@19.2.4(react@19.2.5))(react@19.2.5)
+      '@floating-ui/react': 0.27.8(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      '@floating-ui/react-dom': 2.1.8(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       '@navikt/aksel-icons': 8.9.1
       '@navikt/ds-tokens': 8.9.1
       '@types/react': 19.2.14
       date-fns: 4.1.0
       react: 19.2.5
       react-day-picker: 9.7.0(react@19.2.5)
-      react-dom: 19.2.4(react@19.2.5)
+      react-dom: 19.2.5(react@19.2.5)
 
   '@navikt/ds-tokens@8.9.1': {}
 
@@ -5086,31 +5086,31 @@ snapshots:
       date-fns-jalali: 4.1.0-0
       react: 19.2.5
 
-  react-dom@19.2.4(react@19.2.5):
+  react-dom@19.2.5(react@19.2.5):
     dependencies:
       react: 19.2.5
       scheduler: 0.27.0
 
   react-is@16.13.1: {}
 
-  react-resizable-panels@4.8.0(react-dom@19.2.4(react@19.2.5))(react@19.2.5):
+  react-resizable-panels@4.8.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
     dependencies:
       react: 19.2.5
-      react-dom: 19.2.4(react@19.2.5)
+      react-dom: 19.2.5(react@19.2.5)
 
-  react-router-dom@7.14.1(react-dom@19.2.4(react@19.2.5))(react@19.2.5):
+  react-router-dom@7.14.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
     dependencies:
       react: 19.2.5
-      react-dom: 19.2.4(react@19.2.5)
-      react-router: 7.14.1(react-dom@19.2.4(react@19.2.5))(react@19.2.5)
+      react-dom: 19.2.5(react@19.2.5)
+      react-router: 7.14.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
 
-  react-router@7.14.1(react-dom@19.2.4(react@19.2.5))(react@19.2.5):
+  react-router@7.14.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
     dependencies:
       cookie: 1.1.1
       react: 19.2.5
       set-cookie-parser: 2.7.2
     optionalDependencies:
-      react-dom: 19.2.4(react@19.2.5)
+      react-dom: 19.2.5(react@19.2.5)
 
   react@19.2.5: {}
 
