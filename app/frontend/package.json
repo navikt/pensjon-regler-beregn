@@ -15,7 +15,7 @@
   "dependencies": {
     "@hookstate/core": "^4.0.2",
     "@navikt/aksel-icons": "^8.9.1",
-    "@navikt/ds-css": "^8.6.0",
+    "@navikt/ds-css": "^8.9.1",
     "@navikt/ds-react": "^8.9.1",
     "@pensjon/domain": "workspace:*",
     "@tanstack/react-query": "^5.99.0",
@@ -25,7 +25,7 @@
     "prismjs": "^1.30.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-    "react-resizable-panels": "^4.7.3",
+    "react-resizable-panels": "^4.10.0",
     "react-router-dom": "^7.14.1"
   },
   "devDependencies": {
@@ -33,7 +33,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.58.2",
-    "@typescript-eslint/parser": "^8.53.1",
+    "@typescript-eslint/parser": "^8.58.2",
     "@vitejs/plugin-react-swc": "^4.3.0",
     "eslint": "^9.39.2",
     "eslint-plugin-react": "^7.37.5",
