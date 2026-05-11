@@ -25,7 +25,11 @@ const Main: React.FC<MainProps> = ({ id }): ReactNode => {
     }
 
     if (isLoading) {
-        return <Loader size="3xlarge" title="Laster ..." className="loader" />
+        return (
+            <div className="loader-container">
+                <Loader size="3xlarge" title="Laster ..." />
+            </div>
+        )
     }
 
     if (isSuccess) {
@@ -34,7 +38,11 @@ const Main: React.FC<MainProps> = ({ id }): ReactNode => {
     }
 
     if (isFetching) {
-        return <Loader size="3xlarge" title="Laster ..." className="loader" />
+        return (
+            <div className="loader-container">
+                <Loader size="3xlarge" title="Laster ..." />
+            </div>
+        )
     }
 
     return (

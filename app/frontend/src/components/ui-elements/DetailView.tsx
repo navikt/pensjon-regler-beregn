@@ -48,11 +48,19 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
     }
 
     if (isLoading) {
-        return <Loader size="3xlarge" title="Laster ..." className="loader"/>;
+        return (
+            <div className="loader-container">
+                <Loader size="3xlarge" title="Laster ..." />
+            </div>
+        );
     }
 
     if (isFetching) {
-        return <Loader size="3xlarge" title="Laster ..." className="loader"/>;
+        return (
+            <div className="loader-container">
+                <Loader size="3xlarge" title="Laster ..." />
+            </div>
+        );
     }
 
     return (
