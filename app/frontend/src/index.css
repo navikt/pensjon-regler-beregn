@@ -83,8 +83,12 @@
 
 }
 
-.loader {
-    margin-top: 50px;
+.loader-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 3rem);
+    width: 100%;
 }
 
 .vcenternavbar {
