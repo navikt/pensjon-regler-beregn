@@ -13,12 +13,12 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@pensjon/domain": "workspace:*",
-    "express": "^5.2.1",
     "@navikt/oasis": "^4.1.4",
-    "dotenv": "^17.4.2",
+    "@pensjon/domain": "workspace:*",
     "axios": "^1.16.0",
     "cookie-parser": "^1.4.7",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
     "express-http-proxy": "^2.1.2",
     "http-proxy-middleware": "^4.0.0",
     "winston": "^3.19.0",
@@ -29,6 +29,6 @@
     "@types/express": "^5.0.6",
     "@types/node": "^25.6.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   }
 }
