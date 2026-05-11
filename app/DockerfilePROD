@@ -10,7 +10,7 @@ COPY frontend/package.json frontend/
 COPY frontend/tsconfig*.json frontend/
 COPY shared/domain/package.json shared/domain/
 
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN corepack enable && corepack prepare pnpm@10.32.1 --activate
 
 RUN --mount=type=secret,id=NODE_AUTH_TOKEN \
     npm config set //npm.pkg.github.com/:_authToken "$(cat /run/secrets/NODE_AUTH_TOKEN)" && \

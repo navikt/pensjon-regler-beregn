@@ -1,6 +1,7 @@
 {
   "name": "pensjon-regler-beregn",
   "private": true,
+  "packageManager": "pnpm@10.32.1",
   "scripts": {
     "dev": "concurrently \"pnpm --filter bff dev\" \"pnpm --filter pensjon-regler-beregn-frontend dev\"",
     "build": "pnpm --filter @pensjon/domain build && pnpm --filter bff build && pnpm --filter pensjon-regler-beregn-frontend build",
