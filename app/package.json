@@ -10,15 +10,16 @@
   },
   "devDependencies": {
     "concurrently": "^9.2.1",
-    "dotenv-cli": "^11.0.0"
+    "dotenv-cli": "^11.0.0",
+    "react-dom": "19.2.5"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "4.60.3"
   },
   "pnpm": {
     "overrides": {
-      "react": "19.2.5",
-      "react-dom": "19.2.5"
+      "react": "$react-dom",
+      "react-dom": "$react-dom"
     }
   }
 }
