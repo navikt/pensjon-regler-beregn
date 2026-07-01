@@ -99,8 +99,8 @@ importers:
         specifier: ^5.101.2
         version: 5.101.2(@tanstack/react-query@5.101.2(react@19.2.7))(react@19.2.7)
       asciidoctor:
-        specifier: ^4.0.0
-        version: 4.0.0
+        specifier: ^4.0.1
+        version: 4.0.1
       axios:
         specifier: ^1.18.1
         version: 1.18.1
@@ -164,8 +164,8 @@ importers:
 
 packages:
 
-  '@asciidoctor/core@4.0.0':
-    resolution: {integrity: sha512-VWBs5HwU2vRutHTwxbXJE5icmps93o9z7i2qFxbz9jDS8Ga7rlMFIa7QKMAMpdBlTrFip60serEns5hB12IX6Q==}
+  '@asciidoctor/core@4.0.1':
+    resolution: {integrity: sha512-9v1MlSOFRz6G2oO8ZVOj/5+2LqRbxQVqSEcNqgNbMd44aDHbZvDS5KfQa6Sw13Hcl36I99qw/6F5FKktWhDUTQ==}
     engines: {node: '>=20'}
 
   '@babel/code-frame@7.29.7':
@@ -994,8 +994,8 @@ packages:
     resolution: {integrity: sha512-BNoCY6SXXPQ7gF2opIP4GBE+Xw7U+pHMYKuzjgCN3GwiaIR09UUeKfheyIry77QtrCBlC0KK0q5/TER/tYh3PQ==}
     engines: {node: '>= 0.4'}
 
-  asciidoctor@4.0.0:
-    resolution: {integrity: sha512-FTRzsJKe2djhXBnOGkYc7N5JWdnevj4YlFPtQZBxiUXcPnMDs6PSTAiwfALegvuPW6lho7TORSkbwQg1dXB3Yg==}
+  asciidoctor@4.0.1:
+    resolution: {integrity: sha512-LrxqDmOPNTWtwUiQwAd04rb6THfyq93PRnqXm+b+NEelwp7b5ScgoRySGYi8LtuPAqR5woF9PIE/sLRcQ7KZKA==}
     engines: {node: '>=20'}
     hasBin: true
 
@@ -2466,7 +2466,7 @@ packages:
 
 snapshots:
 
-  '@asciidoctor/core@4.0.0': {}
+  '@asciidoctor/core@4.0.1': {}
 
   '@babel/code-frame@7.29.7':
     dependencies:
@@ -3231,9 +3231,9 @@ snapshots:
       get-intrinsic: 1.3.0
       is-array-buffer: 3.0.5
 
-  asciidoctor@4.0.0:
+  asciidoctor@4.0.1:
     dependencies:
-      '@asciidoctor/core': 4.0.0
+      '@asciidoctor/core': 4.0.1
 
   async-function@1.0.0: {}
 
