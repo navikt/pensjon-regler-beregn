@@ -13,6 +13,10 @@ permissions:
   checks: read
   statuses: read
 
+concurrency:
+  group: automerge-dependabot-${{ github.event.pull_request.number || 'schedule' }}
+  cancel-in-progress: true
+
 jobs:
   automerge:
     runs-on: ubuntu-latest
