@@ -21,9 +21,15 @@ jobs:
   automerge:
     runs-on: ubuntu-latest
     steps:
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v3.2.0
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
       - uses: navikt/automerge-dependabot@main
         with:
-          token: ${{ github.token }}
+          token: ${{ steps.app-token.outputs.token }}
           minimum-age-of-pr: "0.25"     # ~6 hours
           semver-filter: "patch,minor"
           merge-method: "merge"

@@ -3,10 +3,6 @@ on:
   push:
     branches:
       - sandbox
-  workflow_run:
-    workflows: ['Merge Main to Sandbox']
-    types:
-      - completed
   workflow_dispatch:
 
 concurrency:
@@ -14,37 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  check_changes:
-    name: Check for new commits since last build
-    runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: read
-    outputs:
-      has_changes: ${{ steps.check.outputs.has_changes }}
-    steps:
-      - uses: actions/checkout@v7.0.0
-        with:
-          ref: sandbox
-      - name: Compare HEAD to last successful sandbox build
-        id: check
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          CURRENT_SHA=$(git rev-parse HEAD)
-          LAST_SHA=$(gh run list --workflow="beregn-build-and-deploy-sandbox.yml" --status success --branch sandbox --limit 1 --json headSha --jq '.[0].headSha')
-          echo "Current sandbox HEAD: $CURRENT_SHA, last successfully built: $LAST_SHA"
-          # Only skip on workflow_run triggers (e.g. no-op Automerge Dependabot runs).
-          # push/workflow_dispatch always mean an explicit request to build.
-          if [ "${{ github.event_name }}" = "workflow_run" ] && [ "$CURRENT_SHA" = "$LAST_SHA" ]; then
-            echo "has_changes=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "has_changes=true" >> "$GITHUB_OUTPUT"
-          fi
-
   build_and_push_gcp:
-    needs: check_changes
-    if: needs.check_changes.outputs.has_changes == 'true' && (github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/sandbox') || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success'))
     name: Build and push GCP image
     runs-on: ubuntu-latest
     permissions:
@@ -71,16 +37,23 @@ jobs:
           sha=$(git rev-parse --short HEAD)
           echo "TAG=${timestamp}-${workflow}-${sha}" >> $GITHUB_OUTPUT
       - name: Build APP (Frontend & BFF) and Push Docker Image (Sandbox)
-        uses: nais/docker-build-push@v0
+        # Wrapped with retry: google-github-actions/auth (used internally) occasionally
+        # fails with a transient 503 "Unable to extract the resource from the request"
+        # during GCP Workload Identity Federation token exchange. Retrying resolves it.
+        uses: Wandalen/wretry.action@v3
         id: docker-build-push
         with:
-          team: pensjon-regler
-          image_suffix: -sandbox
-          dockerfile: ./app/DockerfileDEV
-          docker_context: ./app
-          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-          build_secrets: NODE_AUTH_TOKEN=${{ secrets.READER_TOKEN }}
+          action: nais/docker-build-push@31c3a7321909bcb20799fdf46153fec721fd9512 # v0 @ 2026-07-01
+          attempt_limit: 3
+          attempt_delay: 15000
+          with: |
+            team: pensjon-regler
+            image_suffix: -sandbox
+            dockerfile: ./app/DockerfileDEV
+            docker_context: ./app
+            project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+            identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+            build_secrets: NODE_AUTH_TOKEN=${{ secrets.READER_TOKEN }}
 
   deploy_gcp:
     name: Deploy to GCP (Sandbox)

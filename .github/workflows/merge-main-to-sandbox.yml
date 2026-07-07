@@ -4,10 +4,6 @@ on:
   push:
     branches:
       - main
-  workflow_run:
-    workflows: ['Automerge Dependabot']
-    types:
-      - completed
 
 concurrency:
   group: merge-main-to-sandbox
@@ -15,14 +11,20 @@ concurrency:
 
 jobs:
   mergeMainToSandbox:
-    if: github.event_name == 'push' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
     permissions:
       contents: write
     runs-on: ubuntu-latest
     steps:
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v3.2.0
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
       - uses: actions/checkout@v7.0.0
         with:
           fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
       - name: Merge Main to Sandbox
         uses: robotology/gh-action-nightly-merge@v1.5.2
         with:
@@ -32,5 +34,5 @@ jobs:
           allow_forks: true
           user_name: GitHub Merge Actions
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
 
