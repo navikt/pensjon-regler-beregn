@@ -35,22 +35,15 @@ jobs:
           sha=$(git rev-parse --short HEAD)
           echo "TAG=${timestamp}-${workflow}-${sha}" >> $GITHUB_OUTPUT
       - name: Build APP (Frontend & BFF) and Push Docker Image (PROD)
-        # Wrapped with retry: google-github-actions/auth (used internally) occasionally
-        # fails with a transient 503 "Unable to extract the resource from the request"
-        # during GCP Workload Identity Federation token exchange. Retrying resolves it.
-        uses: Wandalen/wretry.action@v3
         id: docker-build-push
+        uses: nais/docker-build-push@31c3a7321909bcb20799fdf46153fec721fd9512 # v0 @ 2026-07-01
         with:
-          action: nais/docker-build-push@31c3a7321909bcb20799fdf46153fec721fd9512 # v0 @ 2026-07-01
-          attempt_limit: 3
-          attempt_delay: 15000
-          with: |
-            team: pensjon-regler
-            dockerfile: ./app/DockerfilePROD
-            docker_context: ./app
-            project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-            identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-            build_secrets: NODE_AUTH_TOKEN=${{ secrets.READER_TOKEN }}
+          team: pensjon-regler
+          dockerfile: ./app/DockerfilePROD
+          docker_context: ./app
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+          build_secrets: NODE_AUTH_TOKEN=${{ secrets.READER_TOKEN }}
 
   deploy_gcp:
     name: Deploy to GCP
