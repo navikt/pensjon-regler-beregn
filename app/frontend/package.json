@@ -15,7 +15,7 @@
   "dependencies": {
     "@hookstate/core": "^4.0.2",
     "@navikt/aksel-icons": "^8.15.0",
-    "@navikt/ds-css": "^8.14.0",
+    "@navikt/ds-css": "^8.15.0",
     "@navikt/ds-react": "^8.14.0",
     "@pensjon/domain": "workspace:*",
     "@tanstack/react-query": "^5.101.2",
