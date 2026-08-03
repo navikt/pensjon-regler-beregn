@@ -20,10 +20,10 @@
     "@pensjon/domain": "workspace:*",
     "@tanstack/react-query": "^5.101.2",
     "@tanstack/react-query-devtools": "^5.101.2",
-    "asciidoctor": "^4.0.2",
+    "asciidoctor": "^4.0.4",
     "axios": "^1.18.1",
     "prismjs": "^1.30.0",
-    "react": "^19.2.6",
+    "react": "^19.2.8",
     "react-dom": "^19.2.7",
     "react-resizable-panels": "^4.12.1",
     "react-router-dom": "^7.18.1"
@@ -32,7 +32,7 @@
     "@types/prismjs": "^1.26.6",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "@typescript-eslint/eslint-plugin": "^8.63.0",
+    "@typescript-eslint/eslint-plugin": "^8.65.0",
     "@typescript-eslint/parser": "^8.63.0",
     "@vitejs/plugin-react-swc": "^4.3.1",
     "esbuild": "^0.28.1",
@@ -41,6 +41,6 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.3",
     "typescript": "^7.0.2",
-    "vite": "^8.1.4"
+    "vite": "^8.1.5"
   }
 }
