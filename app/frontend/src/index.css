@@ -3,7 +3,7 @@
     top: var(--navbar-height, 49px);
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: var(--console-height, 0px);
     display: flex;
     flex-direction: column;
 }

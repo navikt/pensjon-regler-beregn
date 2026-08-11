@@ -2,6 +2,7 @@ import {useEffect} from "react";
 import axios from "axios";
 import SplitView from "../components/ui-elements/SplitView.tsx"
 import Navbar from "../components/navigation/Navbar.tsx"
+import ConsoleLog from "../components/ui-elements/ConsoleLog.tsx"
 import {useGlobalState} from "../store/index.ts"
 import {mockDebugLog, mockRequestData, mockResponseData, mockSatsTabeller} from "./mockGuiModel.ts"
 
@@ -37,6 +38,7 @@ const DevPreview: React.FC = () => {
 
     useEffect(() => {
         state.setDebugLog(mockDebugLog)
+        state.setConsoleLog("[MOCK] BeregnAlderspensjon2025ForsteUttakRequest har kjørt ferdig i miljø: pensjon-regler-q0 - med sats: Mock sats")
 
         return () => {
             if (satsInterceptorId !== null) {
@@ -55,6 +57,7 @@ const DevPreview: React.FC = () => {
                 satstabell="Mock sats"
                 isFetching={false}
             />
+            <ConsoleLog/>
         </>
     )
 }
