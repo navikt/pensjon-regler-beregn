@@ -61,7 +61,7 @@
 .fullPaneView {
     border-style: none !important;
     height: 100%;
-    overflow: scroll;
+    overflow: scroll !important;
 }
 
 #consoleview {
