@@ -6,6 +6,7 @@ import Wrapper from './components/ui-elements/Wrapper.tsx';
 import ErrorBoundary from './components/error/ErrorBoundary.tsx';
 import ErrorFallback from "./components/error/ErrorFallback.tsx";
 import axios from "axios";
+import DevPreview from "./dev/DevPreview.tsx";
 
 function App() {
 
@@ -43,14 +44,19 @@ function App() {
 
     return (
         <QueryClientProvider client={queryClient}>
-                <QueryErrorResetBoundary>
-                    <ErrorBoundary FallbackComponent={ErrorFallback}>
-                        <Navbar/>
-                        <Routes>
-                            <Route path='/:id' element={<Wrapper/>}></Route>
-                        </Routes>
-                    </ErrorBoundary>
-                </QueryErrorResetBoundary>
+            <Routes>
+                {import.meta.env.DEV &&
+                    <Route path='/dev/preview' element={<DevPreview/>}></Route>
+                }
+                <Route path='/:id' element={
+                    <QueryErrorResetBoundary>
+                        <ErrorBoundary FallbackComponent={ErrorFallback}>
+                            <Navbar/>
+                            <Wrapper/>
+                        </ErrorBoundary>
+                    </QueryErrorResetBoundary>
+                }></Route>
+            </Routes>
         </QueryClientProvider>
     )
 }
