@@ -40,12 +40,32 @@ Når en request åpnes via pensjon-regler-logviewer kommer den med en ID i URL'e
 ## Viktige filer og mapper
 
 - `src/components/navigation`: Inneholder navigasjonskomponenter som `Navbar`, `SatserDropdown` og `EnvironmentDropdown`.
-- `src/components/ui-elements`: Inneholder UI-komponenter som `Wrapper`, `DetailView`, `Main`, `ConsoleLog`, `DebugLogModal`, `RequestPane` og `ResponsePane`.
+- `src/components/ui-elements`: Inneholder UI-komponenter som `Wrapper`, `DetailView`, `SplitView`, `Main`, `ConsoleLog`, `DebugLogModal`, `RequestPane` og `ResponsePane`.
 - `src/components/guimodelelement`: Inneholder komponenter som bygger opp GUI-modellen, inkludert `JsonParser`, `TabListComponent`, `TabComponent`, `TableComponent`, `TreeComponent`, `ArcNodeTreeComponent`, `FormelTreeComponent` og `CellComponent`.
 - `src/store`: Inneholder global state management med Hookstate.
 - `src/api/service`: Inneholder API-kall og queries.
 - `src/api/domain/types`: Inneholder TypeScript-typer og enums brukt i prosjektet.
 - `src/components/error`: Inneholder feilhåndteringskomponenter som `ErrorBoundary` og `ErrorFallback`.
+- `src/dev`: Inneholder dev-only mock-forhåndsvisning (`DevPreview.tsx`, `mockGuiModel.ts`) for visuell testing lokalt uten backend, se egen seksjon under.
+
+## Visningsmodus (Delt visning / Grunnlag / Resultat)
+
+`SplitView`-komponenten (`src/components/ui-elements/SplitView.tsx`) styrer visningen av `RequestPane` og `ResponsePane`. Brukeren kan veksle mellom tre visningsmoduser i en verktøylinje under `Navbar`:
+
+- **Delt visning**: Grunnlag og Resultat vises side ved side (standard).
+- **Grunnlag**: kun `RequestPane` vises i full bredde.
+- **Resultat**: kun `ResponsePane` vises i full bredde.
+
+Komponenten brukes av både `DetailView` (produksjon) og `DevPreview` (mock-forhåndsvisning, se under).
+
+## Visuell testing lokalt uten backend (mock-forhåndsvisning)
+
+Siden appen normalt krever tilgang til `pensjon-regler-logger` og pensjon-regler-motorene, finnes det en dev-only mock-side for å teste layout/visningsmoduser visuelt uten nettverkstilgang:
+
+- Rute: [http://localhost:5173/dev/preview](http://localhost:5173/dev/preview) (kun tilgjengelig i `pnpm dev`, fjernes automatisk fra produksjonsbygg siden ruten er gated på `import.meta.env.DEV` i `App.tsx`)
+- Rendrer den ekte `Navbar`-komponenten sammen med `SplitView`, men med statisk mock-data fra `src/dev/mockGuiModel.ts` i stedet for ekte API-kall
+- Et axios-interceptor i `src/dev/DevPreview.tsx` mocker `/alleSatstabeller`-kallet som ellers ville feilet uten backend-tilgang. Interceptoret er gatet på `window.location.pathname` og påvirker ikke andre ruter eller produksjon
+- Nyttig for å raskt se hvordan layout-endringer i `SplitView`/`index.css` faktisk ser ut, uten å måtte deploye eller ha tilgang til et miljø
 
 ## Feilhåndtering
 
