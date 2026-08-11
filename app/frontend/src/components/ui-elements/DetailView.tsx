@@ -1,13 +1,10 @@
 import {Loader} from "@navikt/ds-react"
 import {queryGuiModel} from "../../api/service/Queries.ts"
 import {LogResponse, LogResponseMetadata} from "@pensjon/domain";
-import ResponsePane from "./ResponsePane.tsx"
-import RequestPane from "./RequestPane.tsx"
+import SplitView from "./SplitView.tsx"
 import {useEffect} from "react";
 import {useQueryClient} from "@tanstack/react-query";
 import {useGlobalState} from "../../store/index.ts";
-import {Panel, Group, Separator} from "react-resizable-panels";
-
 
 interface DetailViewProps {
     logResponse: LogResponse
@@ -64,21 +61,12 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
     }
 
     return (
-        <div className="detailcontainer">
-            <Group orientation={"horizontal"} className={"panel_resizegroup"}>
-                <Panel defaultSize={50}>
-                    <div id="requestview">
-                        <RequestPane data={data?.request} isFetching={isFetching}/>
-                    </div>
-                </Panel>
-                <Separator className="panel_resize" />
-                <Panel defaultSize={50}>
-                    <div id="responseview">
-                        <ResponsePane data={data?.response} satstabell={state.getSats()} isFetching={isFetching}/>
-                    </div>
-                </Panel>
-            </Group>
-        </div>
+        <SplitView
+            request={data?.request}
+            response={data?.response}
+            satstabell={state.getSats()}
+            isFetching={isFetching}
+        />
     )
 
 }

@@ -1,29 +1,64 @@
 .detailcontainer {
-    display: grid;
-    height: 100%;
+    position: fixed;
+    top: var(--navbar-height, 49px);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.detailcontent {
+    flex: 1 1 auto;
+    min-height: 0;
     width: 100%;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-gap: 0;
-    grid-template-areas:
-        "detailcontainer "
-        "consoleview consoleview";
+}
+
+.panel_resizegroup {
+    height: 100%;
 }
 
 #requestview {
-    margin-top: 30px;
-    grid-area: requestview;
+    height: 100%;
+    margin-top: 12px;
     overflow: scroll;
     border-right-style: solid;
     border-right-width: thin;
 }
 
 #responseview {
-    margin-top: 30px;
-    grid-area: responseview;
+    height: 100%;
+    margin-top: 12px;
     overflow: scroll;
     border-left-style: solid;
     border-left-width: thin;
+}
+
+.viewModeToggle {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 10px 24px;
+    flex: 0 0 auto;
+    background-color: var(--ax-bg-neutral-soft, #f5f6f7);
+    border-bottom: 1px solid var(--ax-border-subtle, #cfd3d8);
+}
+
+.viewModeToggle .aksel-toggle-group__wrapper {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+.viewModeToggle .aksel-toggle-group__label {
+    margin: 0;
+}
+
+.fullPaneView {
+    border-style: none !important;
+    height: 100%;
+    overflow: scroll;
 }
 
 #consoleview {
@@ -59,17 +94,8 @@
 }
 
 @media (max-width: 820px) {
-    .detailcontainer {
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
-        grid-template-areas:
-            "requestview"
-            "responseview"
-            "consoleview";
-    }
-
     #requestview {
-        margin-top: 70px;
+        margin-top: 12px;
         border-left-style: none;
         border-bottom-style: solid;
         border-bottom-width: medium;
