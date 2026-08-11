@@ -85,7 +85,7 @@ export const querySatstabeller = (env: string) => useQuery({
   throwOnError: false,
 })
 
-function checkResponseForSoftErrors(response: AxiosResponse<ResponseData, GuiModel>) {
+function checkResponseForSoftErrors(response: AxiosResponse<ResponseData>) {
     if (response.status === 207 && response.data?.metadata?.status === "error") {
         throw new Error(response.data?.metadata?.info)
     }
