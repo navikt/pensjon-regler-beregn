@@ -6,6 +6,10 @@
     bottom: var(--console-height, 0px);
     display: flex;
     flex-direction: column;
+    /* Keep below the fixed Navbar (z-index: 100) so its dropdown menus
+       (Valg miljø / Valg sats), which render inline rather than in a portal,
+       aren't painted over by the toggle bar / content. */
+    z-index: 1;
 }
 
 .detailcontent {

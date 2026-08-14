@@ -27,7 +27,7 @@ const Navbar: React.FC = (): ReactNode => {
     }, []);
 
     return (
-        <InternalHeader ref={headerRef} style={{ position: `fixed`, width: `100%` }}>
+        <InternalHeader ref={headerRef} style={{ position: `fixed`, width: `100%`, zIndex: 100 }}>
             <InternalHeader.Title as="h1">{title}</InternalHeader.Title>
             <Spacer />
             <EnvironmentDropdown />
