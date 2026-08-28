@@ -1,8 +1,12 @@
 name: Automerge Dependabot
 
 on:
-  pull_request_target:
-    types: [opened, synchronize, labeled, ready_for_review]
+  # PRs are never eligible immediately anyway (minimum-age-of-pr gate below), and
+  # triggering on every PR event caused overlapping runs that got cancelled by the
+  # concurrency group below. Cancelled runs leave a "cancelled" check-run conclusion
+  # on the commit, which the automerge action itself then reads back as a failing
+  # check on every subsequent evaluation - permanently blocking that PR from ever
+  # auto-merging. Rely on the daily schedule (+ manual dispatch) instead.
   schedule:
     - cron: "0 7 * * *" # daily at 07:00 UTC
   workflow_dispatch:
@@ -14,8 +18,8 @@ permissions:
   statuses: read
 
 concurrency:
-  group: automerge-dependabot-${{ github.event.pull_request.number || 'schedule' }}
-  cancel-in-progress: true
+  group: automerge-dependabot
+  cancel-in-progress: false
 
 jobs:
   automerge:
