@@ -19,7 +19,7 @@
     "@navikt/ds-react": "^8.16.1",
     "@pensjon/domain": "workspace:*",
     "@tanstack/react-query": "^5.102.3",
-    "@tanstack/react-query-devtools": "^5.102.3",
+    "@tanstack/react-query-devtools": "^5.102.8",
     "asciidoctor": "^4.0.11",
     "axios": "^1.19.0",
     "prismjs": "^1.30.0",
