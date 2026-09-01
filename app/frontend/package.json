@@ -19,14 +19,14 @@
     "@navikt/ds-react": "^8.16.1",
     "@pensjon/domain": "workspace:*",
     "@tanstack/react-query": "^5.102.3",
-    "@tanstack/react-query-devtools": "^5.102.3",
+    "@tanstack/react-query-devtools": "^5.102.8",
     "asciidoctor": "^4.0.11",
-    "axios": "^1.19.0",
+    "axios": "^1.20.0",
     "prismjs": "^1.30.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-resizable-panels": "^4.12.3",
-    "react-router-dom": "^7.18.2"
+    "react-router-dom": "^7.18.3"
   },
   "devDependencies": {
     "@types/prismjs": "^1.26.6",
@@ -39,7 +39,7 @@
     "eslint": "^10.9.1",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-react-refresh": "^0.5.4",
+    "eslint-plugin-react-refresh": "^0.5.5",
     "typescript": "^7.0.2",
     "vite": "^8.2.2"
   }
