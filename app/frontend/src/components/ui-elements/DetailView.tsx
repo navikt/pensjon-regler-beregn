@@ -1,4 +1,4 @@
-import {Alert, Loader} from "@navikt/ds-react"
+import {Loader} from "@navikt/ds-react"
 import {queryGuiModel} from "../../api/service/Queries.ts"
 import {LogResponse, LogResponseMetadata} from "@pensjon/domain";
 import SplitView from "./SplitView.tsx"
@@ -38,7 +38,11 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
         if (isSuccess) {
             const clazzName = metaData?.className?.split(".").pop()
             if (harTekniskFeil) {
-                state.setConsoleLog(`${clazzName} feilet i miljø: ${state.getEnvironment()} - med sats: ${bruktSats}`)
+                // Vis den tekniske feilen (kan inneholde en full stacktrace) i konsoll-loggen
+                // i footeren i stedet for i selve visningen, siden den kan være svært lang.
+                state.setConsoleLog(
+                    `${clazzName} feilet i miljø: ${state.getEnvironment()} - med sats: ${bruktSats}\n\n${data?.metadata?.info || "Ukjent teknisk feil"}`
+                )
             } else {
                 state.setConsoleLog(`${clazzName} har kjørt ferdig i miljø: ${state.getEnvironment()} - med sats: ${bruktSats}`)
             }
@@ -77,11 +81,6 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
             response={data?.response}
             satstabell={state.getSats()}
             isFetching={isFetching}
-            banner={harTekniskFeil ? (
-                <Alert variant="error" size="small" className="guiModelErrorAlert">
-                    Beregningen feilet: {data?.metadata?.info || "Ukjent teknisk feil"}. Grunnlaget vises likevel under.
-                </Alert>
-            ) : undefined}
         />
     )
 

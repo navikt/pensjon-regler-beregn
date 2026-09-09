@@ -1,5 +1,5 @@
 import {ToggleGroup} from "@navikt/ds-react"
-import {ReactNode, useState} from "react";
+import {useState} from "react";
 import {Panel, Group, Separator} from "react-resizable-panels";
 import {DataElement} from "@pensjon/domain";
 import ResponsePane from "./ResponsePane.tsx"
@@ -12,16 +12,14 @@ interface SplitViewProps {
     response: DataElement[] | undefined
     satstabell: string
     isFetching: boolean
-    banner?: ReactNode
 }
 
-const SplitView: React.FC<SplitViewProps> = ({request, response, satstabell, isFetching, banner}) => {
+const SplitView: React.FC<SplitViewProps> = ({request, response, satstabell, isFetching}) => {
 
     const [viewMode, setViewMode] = useState<ViewMode>("split")
 
     return (
         <div className="detailcontainer">
-            {banner}
             <div className="viewModeToggle">
                 <ToggleGroup
                     size="small"
