@@ -51,6 +51,11 @@
     border-bottom: 1px solid var(--ax-border-subtle, #cfd3d8);
 }
 
+.guiModelErrorAlert {
+    flex: 0 0 auto;
+    margin: 8px 24px 0;
+}
+
 .viewModeToggle .aksel-toggle-group__wrapper {
     display: flex;
     flex-direction: row;
