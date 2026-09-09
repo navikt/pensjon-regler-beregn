@@ -1,14 +1,7 @@
 import {useQuery} from "@tanstack/react-query"
-import axios, {AxiosResponse} from "axios"
+import axios from "axios"
 import {GuiModel, LogResponse} from "@pensjon/domain"
 import environments from "../../components/constants/Environments.ts";
-
-interface ResponseData {
-    metadata?: {
-        status: string;
-        info: string;
-    };
-}
 
 const LOCAL_URL = "http://localhost:8080";
 const isLocal = (env: string) => env === "local";
@@ -63,7 +56,10 @@ const fetchGuiModel = async (body: string, clazzName: string, environment: strin
     }
   })
 
-  checkResponseForSoftErrors(response)
+  // Status 207 betyr at backend feilet (faglig eller teknisk) under selve
+  // beregningen, men GuiModel inneholder likevel grunnlaget (requesten) som
+  // ble sendt inn, samt en feilmelding i metadata. Dette skal vises til
+  // brukeren i stedet for å kastes bort, se DetailView.tsx.
   return response.data as GuiModel
 }
 
@@ -71,6 +67,10 @@ export const queryGuiModel = (body: string, clazzName: string, environment: stri
     queryKey: ['guiModel', environment, sats],
     queryFn: () => fetchGuiModel(body, clazzName, environment, sats),
     throwOnError: true,
+    // Feil fra /api/beregn er deterministiske (samme grunnlag gir samme feil),
+    // så automatiske forsøk på nytt hjelper ikke og gjør bare at brukeren
+    // venter unødvendig lenge på en spinner før feilen vises.
+    retry: false,
 })
 
 export const queryLogResponseById = (id: string) => useQuery({
@@ -84,9 +84,3 @@ export const querySatstabeller = (env: string) => useQuery({
   queryFn: () => fetchSatsTabeller(env),
   throwOnError: false,
 })
-
-function checkResponseForSoftErrors(response: AxiosResponse<ResponseData>) {
-    if (response.status === 207 && response.data?.metadata?.status === "error") {
-        throw new Error(response.data?.metadata?.info)
-    }
-}
