@@ -72,19 +72,17 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
     }
 
     return (
-        <>
-            {harTekniskFeil &&
+        <SplitView
+            request={data?.request}
+            response={data?.response}
+            satstabell={state.getSats()}
+            isFetching={isFetching}
+            banner={harTekniskFeil ? (
                 <Alert variant="error" size="small" className="guiModelErrorAlert">
                     Beregningen feilet: {data?.metadata?.info || "Ukjent teknisk feil"}. Grunnlaget vises likevel under.
                 </Alert>
-            }
-            <SplitView
-                request={data?.request}
-                response={data?.response}
-                satstabell={state.getSats()}
-                isFetching={isFetching}
-            />
-        </>
+            ) : undefined}
+        />
     )
 
 }
