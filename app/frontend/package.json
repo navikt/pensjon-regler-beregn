@@ -23,14 +23,14 @@
     "asciidoctor": "^4.0.11",
     "axios": "^1.20.0",
     "prismjs": "^1.30.0",
-    "react": "^19.2.8",
+    "react": "^19.3.0",
     "react-dom": "^19.2.8",
     "react-resizable-panels": "^4.12.4",
     "react-router-dom": "^7.18.3"
   },
   "devDependencies": {
     "@types/prismjs": "^1.26.6",
-    "@types/react": "^19.2.18",
+    "@types/react": "^19.3.0",
     "@types/react-dom": "^19.2.7",
     "@typescript-eslint/eslint-plugin": "^8.70.0",
     "@typescript-eslint/parser": "^8.70.0",
