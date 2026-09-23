@@ -14,7 +14,7 @@
     "react-dom": "19.3.0"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.63.3"
+    "@rollup/rollup-linux-x64-gnu": "4.63.4"
   },
   "pnpm": {
     "overrides": {
