@@ -114,8 +114,8 @@ importers:
         specifier: 19.3.0
         version: 19.3.0(react@19.3.0)
       react-resizable-panels:
-        specifier: ^4.12.4
-        version: 4.12.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: ^4.13.0
+        version: 4.13.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react-router-dom:
         specifier: ^7.18.4
         version: 7.18.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -2272,8 +2272,8 @@ packages:
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
-  react-resizable-panels@4.12.4:
-    resolution: {integrity: sha512-SOsSj4e9U7vxL15MbgTfl35IO4vxSW4Xb0b1gtJVbRPWv7FOezcgOA00Mi0jP8XqC3y7jOQxpsGs/9zLKHPitA==}
+  react-resizable-panels@4.13.0:
+    resolution: {integrity: sha512-ytzgDJveIsxiJjLGyQBxOItAyafYyu0BlHm5pm2wxTl93ij/CYHjabxaQdki/egejDvjuJIM6hZ9Zq+ONsumYw==}
     peerDependencies:
       react: 19.3.0
       react-dom: 19.3.0
@@ -4857,7 +4857,7 @@ snapshots:
 
   react-is@16.13.1: {}
 
-  react-resizable-panels@4.12.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+  react-resizable-panels@4.13.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
     dependencies:
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
