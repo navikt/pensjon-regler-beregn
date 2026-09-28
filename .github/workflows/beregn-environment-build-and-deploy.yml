@@ -36,7 +36,7 @@ jobs:
           team: pensjon-regler
           tag: ${{ steps.tag.outputs.TAG }}
       - name: Deploy to GCP
-        uses: nais/deploy/actions/deploy@v2
+        uses: nais/deploy/actions/deploy@v3
         env:
           TZ: Europe/Oslo
           CLUSTER: dev-gcp
