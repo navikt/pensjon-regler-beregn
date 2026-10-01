@@ -15,17 +15,17 @@
   "dependencies": {
     "@hookstate/core": "^4.0.2",
     "@navikt/aksel-icons": "^8.17.2",
-    "@navikt/ds-css": "^8.16.2",
+    "@navikt/ds-css": "^8.17.2",
     "@navikt/ds-react": "^8.16.2",
     "@pensjon/domain": "workspace:*",
-    "@tanstack/react-query": "^5.103.2",
+    "@tanstack/react-query": "^5.104.0",
     "@tanstack/react-query-devtools": "^5.104.0",
     "asciidoctor": "^4.1.0",
     "axios": "^1.20.0",
     "prismjs": "^1.30.0",
     "react": "^19.2.8",
     "react-dom": "^19.3.0",
-    "react-resizable-panels": "^4.13.3",
+    "react-resizable-panels": "^4.14.1",
     "react-router-dom": "^7.18.4"
   },
   "devDependencies": {

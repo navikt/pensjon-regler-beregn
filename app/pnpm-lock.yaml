@@ -84,8 +84,8 @@ importers:
         specifier: ^8.17.2
         version: 8.17.2
       '@navikt/ds-css':
-        specifier: ^8.16.2
-        version: 8.16.2
+        specifier: ^8.17.2
+        version: 8.17.2
       '@navikt/ds-react':
         specifier: ^8.16.2
         version: 8.16.2(@types/react@19.2.18)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -93,11 +93,11 @@ importers:
         specifier: workspace:*
         version: link:../shared/domain
       '@tanstack/react-query':
-        specifier: ^5.103.2
-        version: 5.103.2(react@19.3.0)
+        specifier: ^5.104.0
+        version: 5.104.0(react@19.3.0)
       '@tanstack/react-query-devtools':
         specifier: ^5.104.0
-        version: 5.104.0(@tanstack/react-query@5.103.2(react@19.3.0))(@types/react@19.2.18)(csstype@3.2.3)(react@19.3.0)
+        version: 5.104.0(@tanstack/react-query@5.104.0(react@19.3.0))(@types/react@19.2.18)(csstype@3.2.3)(react@19.3.0)
       asciidoctor:
         specifier: ^4.1.0
         version: 4.1.0
@@ -114,8 +114,8 @@ importers:
         specifier: 19.3.0
         version: 19.3.0(react@19.3.0)
       react-resizable-panels:
-        specifier: ^4.13.3
-        version: 4.13.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: ^4.14.1
+        version: 4.14.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react-router-dom:
         specifier: ^7.18.4
         version: 7.18.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -558,8 +558,8 @@ packages:
   '@navikt/aksel-icons@8.17.2':
     resolution: {integrity: sha512-P4N/SrXu1BFaanvp83AWb58hP2qutfmL5u+wBpoxtcSP5uSXDmNdT0qtsE8E7kvdY+cCPKfetHLlGX5O7xRD5g==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.17.2/e10ec442fa1f25b24704b55cc77c02a5d908a0f6}
 
-  '@navikt/ds-css@8.16.2':
-    resolution: {integrity: sha512-RMKKQ1OTXGPwSGPsWEvOXpRTxA+QhnHc4oGG0ePg7AeeGQvYE/VjtySL2ddOYwAR8BygyvuB/sDrjm5AkQQ0cw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/8.16.2/a132ee47c528af289b89dd5d806ac1abfc937e44}
+  '@navikt/ds-css@8.17.2':
+    resolution: {integrity: sha512-k+xkEVF5ZBSM5UoLjqDsRAn/mBrlLXL3S8JLQj3syW1i4HIu6N6FaIGMveZeobZef5rIBWwhLGsIJ8doWtgyOQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/8.17.2/b0294b41e7004be0e010c409ae4d42c6167c8538}
 
   '@navikt/ds-react@8.16.2':
     resolution: {integrity: sha512-pJGVltBJT5hNwo+fZee5qaM+Kc+hZZgPU7WoXbUbZxUtTbhHM+5uFo4J5ceMU2KBUhamtqtRGso2dXdztyEiHQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/8.16.2/212af8009cab85a672faa15f0a039eaabec9cbc7}
@@ -866,9 +866,6 @@ packages:
     resolution: {integrity: sha512-aPkUQctDzpXLSWhlx7jUDi3mInsI18xcnrK1hvIyIa88ab1ax88cACr7xU+BKMCGB4NZYNwh4SoNSEbv3RY2NA==}
     engines: {node: '>=20'}
 
-  '@tanstack/query-core@5.103.2':
-    resolution: {integrity: sha512-I8DkFXls5jXLqtm8+QpOhEmG07hIblhSZFzafg9wHsMSEvMzULy9hK17wU1T/ahfhMbtITJhbxutwwCoihkR7A==}
-
   '@tanstack/query-core@5.104.0':
     resolution: {integrity: sha512-JrC2r/JQlXt7khBSdUpsgxNvybzOg+aITa+ARRMlP2AFo93Y8vIqz077rp+e61mJetSZ0T6AJbwW1JHer1vrPQ==}
 
@@ -882,8 +879,8 @@ packages:
       '@types/react': ^18 || ^19
       react: 19.3.0
 
-  '@tanstack/react-query@5.103.2':
-    resolution: {integrity: sha512-B+fWiYZBc+0uUD5zDZAeLw9dKj7XEsdnuu6zRZ+no6LNKpeE3P3bJ+N6HINjcIlWR6fW3vUoTneEaGa2V6ehqw==}
+  '@tanstack/react-query@5.104.0':
+    resolution: {integrity: sha512-e1TZmDCQnWIfiDVryIHeA6Idj+Lfx1hORLOhXS/l5wcgvtVD4yYqbTDl378sGQKIi2cSgb0TEMC9cKK8GGoJEw==}
     peerDependencies:
       react: 19.3.0
 
@@ -2280,8 +2277,8 @@ packages:
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
-  react-resizable-panels@4.13.3:
-    resolution: {integrity: sha512-k41s4nP8IXiGjnso8TsZLzoRbuxBb6buTJUOrFWrYpmbV4PGH5GHYM2RvNWWBRIJ6e+Zxlf3m9Tubk8VoPU9Ww==}
+  react-resizable-panels@4.14.1:
+    resolution: {integrity: sha512-OB1bXDNTLcGgTTbaX6Dn5efZhlMboSnkfr1w4xpsJTHPEbRJpACBhXpgRCXozgPO1ztgFeZRUe5J3mFNCVKm5g==}
     peerDependencies:
       react: 19.3.0
       react-dom: 19.3.0
@@ -3100,7 +3097,7 @@ snapshots:
 
   '@navikt/aksel-icons@8.17.2': {}
 
-  '@navikt/ds-css@8.16.2': {}
+  '@navikt/ds-css@8.17.2': {}
 
   '@navikt/ds-react@8.16.2(@types/react@19.2.18)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
@@ -3327,8 +3324,6 @@ snapshots:
     dependencies:
       remove-accents: 0.5.0
 
-  '@tanstack/query-core@5.103.2': {}
-
   '@tanstack/query-core@5.104.0': {}
 
   '@tanstack/query-devtools@5.104.0(csstype@3.2.3)':
@@ -3347,18 +3342,18 @@ snapshots:
     transitivePeerDependencies:
       - csstype
 
-  '@tanstack/react-query-devtools@5.104.0(@tanstack/react-query@5.103.2(react@19.3.0))(@types/react@19.2.18)(csstype@3.2.3)(react@19.3.0)':
+  '@tanstack/react-query-devtools@5.104.0(@tanstack/react-query@5.104.0(react@19.3.0))(@types/react@19.2.18)(csstype@3.2.3)(react@19.3.0)':
     dependencies:
       '@tanstack/query-devtools': 5.104.0(csstype@3.2.3)
-      '@tanstack/react-query': 5.103.2(react@19.3.0)
+      '@tanstack/react-query': 5.104.0(react@19.3.0)
       '@types/react': 19.2.18
       react: 19.3.0
     transitivePeerDependencies:
       - csstype
 
-  '@tanstack/react-query@5.103.2(react@19.3.0)':
+  '@tanstack/react-query@5.104.0(react@19.3.0)':
     dependencies:
-      '@tanstack/query-core': 5.103.2
+      '@tanstack/query-core': 5.104.0
       react: 19.3.0
 
   '@tsconfig/node10@1.0.12': {}
@@ -4869,7 +4864,7 @@ snapshots:
 
   react-is@16.13.1: {}
 
-  react-resizable-panels@4.13.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+  react-resizable-panels@4.14.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
     dependencies:
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
