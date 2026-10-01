@@ -65,7 +65,7 @@ jobs:
         with:
           ref: sandbox
       - name: Deploy to GCP (Sandbox)
-        uses: nais/deploy/actions/deploy@v2
+        uses: nais/deploy/actions/deploy@v3
         env:
           CLUSTER: dev-gcp
           RESOURCE: ./app/nais/nais-gcp-dev.yml
