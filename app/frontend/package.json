@@ -15,10 +15,10 @@
   "dependencies": {
     "@hookstate/core": "^4.0.2",
     "@navikt/aksel-icons": "^8.17.2",
-    "@navikt/ds-css": "^8.17.2",
+    "@navikt/ds-css": "^8.18.0",
     "@navikt/ds-react": "^8.17.2",
     "@pensjon/domain": "workspace:*",
-    "@tanstack/react-query": "^5.104.0",
+    "@tanstack/react-query": "^5.104.1",
     "@tanstack/react-query-devtools": "^5.104.0",
     "asciidoctor": "^4.1.0",
     "axios": "^1.20.0",
@@ -41,6 +41,6 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.7",
     "typescript": "^7.0.2",
-    "vite": "^8.3.1"
+    "vite": "^8.3.2"
   }
 }
