@@ -16,7 +16,7 @@
     "@hookstate/core": "^4.0.2",
     "@navikt/aksel-icons": "^8.18.0",
     "@navikt/ds-css": "^8.18.0",
-    "@navikt/ds-react": "^8.17.2",
+    "@navikt/ds-react": "^8.18.0",
     "@pensjon/domain": "workspace:*",
     "@tanstack/react-query": "^5.104.1",
     "@tanstack/react-query-devtools": "^5.104.1",
