@@ -41,8 +41,8 @@ importers:
         specifier: ^1.4.7
         version: 1.4.7
       dotenv:
-        specifier: ^18.0.5
-        version: 18.0.5
+        specifier: ^18.0.7
+        version: 18.0.7
       express:
         specifier: ^5.3.0
         version: 5.3.0
@@ -570,6 +570,9 @@ packages:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: 19.3.0
       react-dom: 19.3.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@navikt/ds-tokens@8.19.1':
     resolution: {integrity: sha512-q9Mal+xsOIDWCXhoE7TlvbVwSDJF5O75cdWjK2aG0FKHFAkmowbCUPw2TW83izUgXWLdbnVH/SC2KbWIXNTK5A==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.19.1/1097147ea4e6268dbb5162c5d97a7fd4a1c6d33f}
@@ -1450,8 +1453,8 @@ packages:
     resolution: {integrity: sha512-nI4U3TottKAcAD9LLud4Cb7b2QztQMUEfHbvhTH09bqXTxnSie8WnjPALV/WMCrJZ6UV/qHJ6L03OqO3LcdYZw==}
     engines: {node: '>=12'}
 
-  dotenv@18.0.5:
-    resolution: {integrity: sha512-aBrGvt6KhjxbEnatqMWOMidftwsrCiCvqh1yNIGB9QyF0J+VcWkKDMsvYOEm7ZS82oiV+BT1sTOtIlAmUlTpwQ==}
+  dotenv@18.0.7:
+    resolution: {integrity: sha512-QEvMEF8ca3GNZJJnAbOgxpj5ULhBvnMcURp+XKrtvqFNPgjBvYoswQ0Jl2cO7JzCjxZjJhr9ZuIEhlrRxMft/Q==}
     engines: {node: '>=12'}
     hasBin: true
 
@@ -3112,11 +3115,12 @@ snapshots:
       '@floating-ui/react-dom': 2.1.9(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@navikt/aksel-icons': 8.19.1
       '@navikt/ds-tokens': 8.19.1
-      '@types/react': 19.2.18
       date-fns: 4.4.0
       react: 19.3.0
       react-day-picker: 10.0.1(@types/react@19.2.18)(react@19.3.0)
       react-dom: 19.3.0(react@19.3.0)
+    optionalDependencies:
+      '@types/react': 19.2.18
 
   '@navikt/ds-tokens@8.19.1': {}
 
@@ -3923,7 +3927,7 @@ snapshots:
 
   dotenv@17.4.2: {}
 
-  dotenv@18.0.5: {}
+  dotenv@18.0.7: {}
 
   dunder-proto@1.0.1:
     dependencies:
