@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@hookstate/core": "^4.0.2",
-    "@navikt/aksel-icons": "^8.18.0",
+    "@navikt/aksel-icons": "^8.19.1",
     "@navikt/ds-css": "^8.18.0",
     "@navikt/ds-react": "^8.19.1",
     "@pensjon/domain": "workspace:*",
@@ -41,6 +41,6 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.7",
     "typescript": "^7.0.2",
-    "vite": "^8.3.3"
+    "vite": "^8.3.4"
   }
 }
