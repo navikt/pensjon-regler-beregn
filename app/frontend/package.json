@@ -15,7 +15,7 @@
   "dependencies": {
     "@hookstate/core": "^4.0.2",
     "@navikt/aksel-icons": "^8.19.1",
-    "@navikt/ds-css": "^8.19.1",
+    "@navikt/ds-css": "^8.19.2",
     "@navikt/ds-react": "^8.19.1",
     "@pensjon/domain": "workspace:*",
     "@tanstack/react-query": "^5.104.2",
@@ -24,7 +24,7 @@
     "axios": "^1.20.0",
     "prismjs": "^1.30.0",
     "react": "^19.2.8",
-    "react-dom": "^19.3.0",
+    "react-dom": "^19.3.1",
     "react-resizable-panels": "^4.14.5",
     "react-router-dom": "^7.18.4"
   },
