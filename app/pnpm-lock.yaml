@@ -23,8 +23,8 @@ importers:
         version: 19.3.1(react@19.3.1)
     optionalDependencies:
       '@rollup/rollup-linux-x64-gnu':
-        specifier: 4.64.8
-        version: 4.64.8
+        specifier: 4.64.10
+        version: 4.64.10
 
   bff:
     dependencies:
@@ -570,6 +570,9 @@ packages:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: 19.3.1
       react-dom: 19.3.1
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@navikt/ds-tokens@8.19.2':
     resolution: {integrity: sha512-biANGtITI5PeOFKIuSmwELLajSQBe9hys0D/Mhk+l/J/ARoxolNFVXsg4woRRNP6aRvxGGzHQB45nyDBdgunEA==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.19.2/057a50d0df4a94efe3bb213e5306691b78b2d6f8}
@@ -692,8 +695,8 @@ packages:
   '@rolldown/pluginutils@1.0.1':
     resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
 
-  '@rollup/rollup-linux-x64-gnu@4.64.8':
-    resolution: {integrity: sha512-Bwp7WxFHzzLMuP9u4xuBe1grnUWvue509m/K/x+54MMTvVnl+w2DCRcDr+19GNuCXds0TGjiUA3vEbvGxXunWg==}
+  '@rollup/rollup-linux-x64-gnu@4.64.10':
+    resolution: {integrity: sha512-ntHtQOMw7oIshHRF1swV3vyBw+beQt9PeZ04O3D32EeDZUMoHMJuZKp4/fDllH/+xogeK0GUCONVfjjKusqKLg==}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
@@ -3115,11 +3118,12 @@ snapshots:
       '@floating-ui/react-dom': 2.1.9(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@navikt/aksel-icons': 8.19.2
       '@navikt/ds-tokens': 8.19.2
-      '@types/react': 19.2.18
       date-fns: 4.4.0
       react: 19.3.1
       react-day-picker: 10.0.1(@types/react@19.2.18)(react@19.3.1)
       react-dom: 19.3.1(react@19.3.1)
+    optionalDependencies:
+      '@types/react': 19.2.18
 
   '@navikt/ds-tokens@8.19.2': {}
 
@@ -3188,7 +3192,7 @@ snapshots:
 
   '@rolldown/pluginutils@1.0.1': {}
 
-  '@rollup/rollup-linux-x64-gnu@4.64.8':
+  '@rollup/rollup-linux-x64-gnu@4.64.10':
     optional: true
 
   '@so-ric/colorspace@1.1.6':
