@@ -23,8 +23,8 @@ importers:
         version: 19.3.1(react@19.3.1)
     optionalDependencies:
       '@rollup/rollup-linux-x64-gnu':
-        specifier: 4.64.8
-        version: 4.64.8
+        specifier: 4.64.10
+        version: 4.64.10
 
   bff:
     dependencies:
@@ -81,8 +81,8 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2(react@19.3.1)
       '@navikt/aksel-icons':
-        specifier: ^8.19.1
-        version: 8.19.1
+        specifier: ^8.19.2
+        version: 8.19.2
       '@navikt/ds-css':
         specifier: ^8.19.2
         version: 8.19.2
@@ -93,11 +93,11 @@ importers:
         specifier: workspace:*
         version: link:../shared/domain
       '@tanstack/react-query':
-        specifier: ^5.104.2
-        version: 5.104.2(react@19.3.1)
+        specifier: ^5.104.4
+        version: 5.104.4(@types/react@19.2.18)(react@19.3.1)
       '@tanstack/react-query-devtools':
         specifier: ^5.104.3
-        version: 5.104.3(@tanstack/react-query@5.104.2(react@19.3.1))(@types/react@19.2.18)(csstype@3.2.3)(react@19.3.1)
+        version: 5.104.3(@tanstack/react-query@5.104.4(@types/react@19.2.18)(react@19.3.1))(@types/react@19.2.18)(csstype@3.2.3)(react@19.3.1)
       asciidoctor:
         specifier: ^4.1.1
         version: 4.1.1
@@ -555,9 +555,6 @@ packages:
     peerDependencies:
       solid-js: ^1.8.8
 
-  '@navikt/aksel-icons@8.19.1':
-    resolution: {integrity: sha512-+bUSI3jL4l5QkobFYXUBho46hmET0Z7pxXBgriuKFSw2jH4yB78I+g8zc+fgQavx400l3l7lKtOuBghVjDMqLQ==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.19.1/543f88829691088b9c53163d824b74956cf51ef1}
-
   '@navikt/aksel-icons@8.19.2':
     resolution: {integrity: sha512-QFqO/2GFNKgB1NLQ2KAhWNegn/+Tevj1wlvrImSRdWPg6QGvlrBRjDbZxclRrosqMtYqYzF3BWMtAb5f8tmvgw==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.19.2/93c1fb9b90a3f3cff84b1f4b430940b51f1caa18}
 
@@ -570,6 +567,9 @@ packages:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: 19.3.1
       react-dom: 19.3.1
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@navikt/ds-tokens@8.19.2':
     resolution: {integrity: sha512-biANGtITI5PeOFKIuSmwELLajSQBe9hys0D/Mhk+l/J/ARoxolNFVXsg4woRRNP6aRvxGGzHQB45nyDBdgunEA==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.19.2/057a50d0df4a94efe3bb213e5306691b78b2d6f8}
@@ -692,8 +692,8 @@ packages:
   '@rolldown/pluginutils@1.0.1':
     resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
 
-  '@rollup/rollup-linux-x64-gnu@4.64.8':
-    resolution: {integrity: sha512-Bwp7WxFHzzLMuP9u4xuBe1grnUWvue509m/K/x+54MMTvVnl+w2DCRcDr+19GNuCXds0TGjiUA3vEbvGxXunWg==}
+  '@rollup/rollup-linux-x64-gnu@4.64.10':
+    resolution: {integrity: sha512-ntHtQOMw7oIshHRF1swV3vyBw+beQt9PeZ04O3D32EeDZUMoHMJuZKp4/fDllH/+xogeK0GUCONVfjjKusqKLg==}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
@@ -866,11 +866,11 @@ packages:
     resolution: {integrity: sha512-DIpUSOhPfQ7u/qfUi/Wgm0wBO56MyBYXGvnlI0NcauDRPqdBUlAZZjW2Dxm92m+k1UWVhKw8YJ4f47+75Aujyw==}
     engines: {node: '>=20'}
 
-  '@tanstack/query-core@5.104.2':
-    resolution: {integrity: sha512-/qbsxJK5c3Ve1aFIULWYNcT2jeRUAiD4HME6Eu2ZdpofHoVgAjpkQhLg5xHuOoBkTPQUJLfP7zOxy0qsBcqROA==}
-
   '@tanstack/query-core@5.104.3':
     resolution: {integrity: sha512-DZY9TuJAOgU3UyHUhXb4CcTYEHNZszlwkPg4VViIwTxOKzLprPUU+rbaPZQd3srqkGOtpaDdKpW972UV/LKlcg==}
+
+  '@tanstack/query-core@5.104.4':
+    resolution: {integrity: sha512-nU4Yrb8Sjn0DeVb7PKG9uiepNavys3yoxy1FX0hViY4/P6Ng/mBje2SMl7i9812rtyHKtHyqiaC/td6GkI8StA==}
 
   '@tanstack/query-devtools@5.104.3':
     resolution: {integrity: sha512-2Hd8r9G7352GmM9Olu5rdgbslRFH71F5gVxknhgpkgPMgKse7IantVDu1NIeZbynlgsz6K3HhiY7dyq47mAb2A==}
@@ -882,10 +882,14 @@ packages:
       '@types/react': ^18 || ^19
       react: 19.3.1
 
-  '@tanstack/react-query@5.104.2':
-    resolution: {integrity: sha512-xKmzWGhadbE5wGS/ZmXShRITnI9oItox5GO14KvFZco3+vhTAyXS1erYzJWdiY280zapAGJXFUL9nHgwP6SV/g==}
+  '@tanstack/react-query@5.104.4':
+    resolution: {integrity: sha512-YD5QkvUNy8Ey3LbOy2vwL97JjoYycwDv++cWAibTe+9BLYvl3c09XpYp5dZ2VcxcguwoDhGF+utYJYb79RB36w==}
     peerDependencies:
+      '@types/react': ^18 || ^19
       react: 19.3.1
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@tsconfig/node10@1.0.12':
     resolution: {integrity: sha512-UCYBaeFvM11aU2y3YPZ//O5Rhj+xKyzy7mvcIoAjASbigy8mHMryP5cK7dgjlz2hWxh1g5pLw084E0a/wlUSFQ==}
@@ -3103,8 +3107,6 @@ snapshots:
       '@solid-primitives/utils': 6.4.1(solid-js@1.9.17)
       solid-js: 1.9.17
 
-  '@navikt/aksel-icons@8.19.1': {}
-
   '@navikt/aksel-icons@8.19.2': {}
 
   '@navikt/ds-css@8.19.2': {}
@@ -3115,11 +3117,12 @@ snapshots:
       '@floating-ui/react-dom': 2.1.9(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@navikt/aksel-icons': 8.19.2
       '@navikt/ds-tokens': 8.19.2
-      '@types/react': 19.2.18
       date-fns: 4.4.0
       react: 19.3.1
       react-day-picker: 10.0.1(@types/react@19.2.18)(react@19.3.1)
       react-dom: 19.3.1(react@19.3.1)
+    optionalDependencies:
+      '@types/react': 19.2.18
 
   '@navikt/ds-tokens@8.19.2': {}
 
@@ -3188,7 +3191,7 @@ snapshots:
 
   '@rolldown/pluginutils@1.0.1': {}
 
-  '@rollup/rollup-linux-x64-gnu@4.64.8':
+  '@rollup/rollup-linux-x64-gnu@4.64.10':
     optional: true
 
   '@so-ric/colorspace@1.1.6':
@@ -3333,9 +3336,9 @@ snapshots:
     dependencies:
       remove-accents: 0.5.0
 
-  '@tanstack/query-core@5.104.2': {}
-
   '@tanstack/query-core@5.104.3': {}
+
+  '@tanstack/query-core@5.104.4': {}
 
   '@tanstack/query-devtools@5.104.3(csstype@3.2.3)':
     dependencies:
@@ -3353,19 +3356,21 @@ snapshots:
     transitivePeerDependencies:
       - csstype
 
-  '@tanstack/react-query-devtools@5.104.3(@tanstack/react-query@5.104.2(react@19.3.1))(@types/react@19.2.18)(csstype@3.2.3)(react@19.3.1)':
+  '@tanstack/react-query-devtools@5.104.3(@tanstack/react-query@5.104.4(@types/react@19.2.18)(react@19.3.1))(@types/react@19.2.18)(csstype@3.2.3)(react@19.3.1)':
     dependencies:
       '@tanstack/query-devtools': 5.104.3(csstype@3.2.3)
-      '@tanstack/react-query': 5.104.2(react@19.3.1)
+      '@tanstack/react-query': 5.104.4(@types/react@19.2.18)(react@19.3.1)
       '@types/react': 19.2.18
       react: 19.3.1
     transitivePeerDependencies:
       - csstype
 
-  '@tanstack/react-query@5.104.2(react@19.3.1)':
+  '@tanstack/react-query@5.104.4(@types/react@19.2.18)(react@19.3.1)':
     dependencies:
-      '@tanstack/query-core': 5.104.2
+      '@tanstack/query-core': 5.104.4
       react: 19.3.1
+    optionalDependencies:
+      '@types/react': 19.2.18
 
   '@tsconfig/node10@1.0.12': {}
 
