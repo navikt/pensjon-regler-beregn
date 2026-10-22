@@ -23,8 +23,8 @@ importers:
         version: 19.3.1(react@19.3.1)
     optionalDependencies:
       '@rollup/rollup-linux-x64-gnu':
-        specifier: 4.64.8
-        version: 4.64.8
+        specifier: 4.64.10
+        version: 4.64.10
 
   bff:
     dependencies:
@@ -692,8 +692,8 @@ packages:
   '@rolldown/pluginutils@1.0.1':
     resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
 
-  '@rollup/rollup-linux-x64-gnu@4.64.8':
-    resolution: {integrity: sha512-Bwp7WxFHzzLMuP9u4xuBe1grnUWvue509m/K/x+54MMTvVnl+w2DCRcDr+19GNuCXds0TGjiUA3vEbvGxXunWg==}
+  '@rollup/rollup-linux-x64-gnu@4.64.10':
+    resolution: {integrity: sha512-ntHtQOMw7oIshHRF1swV3vyBw+beQt9PeZ04O3D32EeDZUMoHMJuZKp4/fDllH/+xogeK0GUCONVfjjKusqKLg==}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
@@ -3191,7 +3191,7 @@ snapshots:
 
   '@rolldown/pluginutils@1.0.1': {}
 
-  '@rollup/rollup-linux-x64-gnu@4.64.8':
+  '@rollup/rollup-linux-x64-gnu@4.64.10':
     optional: true
 
   '@so-ric/colorspace@1.1.6':
