@@ -3,7 +3,7 @@
     top: var(--navbar-height, 49px);
     left: 0;
     right: 0;
-    bottom: var(--console-height, 0px);
+    bottom: 0;
     display: flex;
     flex-direction: column;
     /* Keep below the fixed Navbar (z-index: 100) so its dropdown menus
@@ -68,30 +68,21 @@
     overflow: scroll !important;
 }
 
-#consoleview {
-    min-height: 100px;
-    max-height: 100px;
-    width: 100%;
-    bottom: 0;
-    overflow: scroll;
-    position: fixed;
-    grid-area: consoleview;
-    background-color: aliceblue;
+.responseError {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 8px 4px;
 }
 
-.consolelog {
-    border-top-style: solid;
-    display: grid;
-    min-height: 131px;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: "consolelog_detail consolelog_detail"
-}
-
-#consolelog_detail {
-    grid-area: consolelog_detail;
-    overflow: scroll;
+.responseErrorDetails {
+    margin: 0;
     padding: 8px;
+    font-size: 0.8rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+    background-color: var(--ax-bg-neutral-soft, #f5f6f7);
+    border: 1px solid var(--ax-border-subtle, #cfd3d8);
 }
 
 .headerContainer {

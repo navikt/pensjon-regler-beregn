@@ -2,7 +2,6 @@ import {ReactNode, useEffect} from "react";
 import {useLogResponseById} from "../../api/service/Queries.ts";
 import DetailView from "./DetailView.tsx";
 import {Loader} from "@navikt/ds-react";
-import ConsoleLog from "./ConsoleLog.tsx";
 import {useGlobalState} from "../../store/index.ts";
 
 
@@ -49,11 +48,7 @@ const Main: React.FC<MainProps> = ({ id }): ReactNode => {
     }
 
     return (
-        isSuccess &&
-        <>
-            <DetailView logResponse={data} />
-            <ConsoleLog />
-        </>
+        isSuccess && <DetailView logResponse={data} />
     )
 }
 
