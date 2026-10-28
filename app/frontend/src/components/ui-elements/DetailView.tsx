@@ -36,21 +36,20 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
 
     const harTekniskFeil = data?.metadata?.status === "error"
 
+    const {setDebugLog} = state
+
     useEffect(() => {
         if (isSuccess) {
-            const clazzName = metaData?.className?.split(".").pop()
-            if (harTekniskFeil) {
-                // Vis den tekniske feilen (kan inneholde en full stacktrace) i konsoll-loggen
-                // i footeren i stedet for i selve visningen, siden den kan være svært lang.
-                state.setConsoleLog(
-                    `${clazzName} feilet i miljø: ${state.getEnvironment()} - med sats: ${bruktSats}\n\n${data?.metadata?.info || "Ukjent teknisk feil"}`
-                )
-            } else {
-                state.setConsoleLog(`${clazzName} har kjørt ferdig i miljø: ${state.getEnvironment()} - med sats: ${bruktSats}`)
-            }
-            state.setDebugLog(data?.metadata?.debugLog || "")
+            setDebugLog(data?.metadata?.debugLog || "")
         }
-    }, [isSuccess, data, metaData, state, bruktSats, harTekniskFeil]);
+    }, [isSuccess, data, setDebugLog]);
+
+    const responseError = harTekniskFeil
+        ? {
+            title: `${metaData?.className?.split(".").pop() ?? "Beregningen"} feilet i miljø: ${state.getEnvironment()} - med sats: ${bruktSats}`,
+            details: data?.metadata?.info || "Ukjent teknisk feil",
+        }
+        : undefined
 
     // Nettverksfeil/transportfeil har ingen data å vise frem, og kastes videre
     // til ErrorBoundary. Faglige/tekniske feil fra selve beregningen (status
@@ -81,6 +80,7 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
         <SplitView
             request={data?.request}
             response={data?.response}
+            responseError={responseError}
             satstabell={state.getSats()}
             isFetching={isFetching}
         />

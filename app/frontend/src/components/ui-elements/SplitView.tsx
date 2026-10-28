@@ -4,17 +4,19 @@ import {Panel, Group, Separator} from "react-resizable-panels";
 import {DataElement} from "@pensjon/domain";
 import ResponsePane from "./ResponsePane.tsx"
 import RequestPane from "./RequestPane.tsx"
+import {ResponseError} from "./ResponsePane.tsx"
 
 export type ViewMode = "split" | "request" | "response"
 
 interface SplitViewProps {
     request: DataElement[] | undefined
     response: DataElement[] | undefined
+    responseError?: ResponseError
     satstabell: string
     isFetching: boolean
 }
 
-const SplitView: React.FC<SplitViewProps> = ({request, response, satstabell, isFetching}) => {
+const SplitView: React.FC<SplitViewProps> = ({request, response, responseError, satstabell, isFetching}) => {
 
     const [viewMode, setViewMode] = useState<ViewMode>("split")
 
@@ -43,7 +45,7 @@ const SplitView: React.FC<SplitViewProps> = ({request, response, satstabell, isF
                         <Separator className="panel_resize" />
                         <Panel defaultSize={50}>
                             <div id="responseview">
-                                <ResponsePane data={response} satstabell={satstabell} isFetching={isFetching}/>
+                                <ResponsePane data={response} error={responseError} satstabell={satstabell} isFetching={isFetching}/>
                             </div>
                         </Panel>
                     </Group>
@@ -55,7 +57,7 @@ const SplitView: React.FC<SplitViewProps> = ({request, response, satstabell, isF
                 }
                 {viewMode === "response" &&
                     <div id="responseview" className="fullPaneView">
-                        <ResponsePane data={response} satstabell={satstabell} isFetching={isFetching}/>
+                        <ResponsePane data={response} error={responseError} satstabell={satstabell} isFetching={isFetching}/>
                     </div>
                 }
             </div>

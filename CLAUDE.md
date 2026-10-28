@@ -56,7 +56,7 @@ To add a new element type: add the enum value to `ElementType` in `shared/domain
 
 ## Global State (Hookstate)
 
-`frontend/src/store/index.ts` manages: selected `sats` (rate table), `environment` (which pensjon-regler instance), `consoleLog`, and `debugLog`. Components access via `useGlobalState()` hook. Changing environment/sats triggers TanStack Query invalidation in `DetailView.tsx`.
+`frontend/src/store/index.ts` manages: selected `sats` (rate table), `environment` (which pensjon-regler instance), and `debugLog`. Components access via `useGlobalState()` hook. Changing environment/sats triggers TanStack Query invalidation in `DetailView.tsx`.
 
 ## BFF API Routes
 
