@@ -21,8 +21,6 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
         query.invalidateQueries({queryKey: ["guiModel", environment, sats],})
     }, [query, environment, sats]);
 
-    const bruktSats = state.getSats() ?? "Sats fra miljø";
-
     const metaData = JSON.parse(logResponse.metadata ?? '{}') as LogResponseMetadata;
     const body = JSON.parse(logResponse.json ?? '{}') as string;
 
@@ -46,7 +44,7 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
 
     const responseError = harTekniskFeil
         ? {
-            title: `${metaData?.className?.split(".").pop() ?? "Beregningen"} feilet i miljø: ${state.getEnvironment()} - med sats: ${bruktSats}`,
+            title: `${metaData?.className?.split(".").pop() ?? "Beregningen"} feilet i miljø: ${state.getEnvironment()}`,
             details: data?.metadata?.info || "Ukjent teknisk feil",
         }
         : undefined
@@ -57,7 +55,7 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
     // grunnlaget (requesten) fortsatt vises til brukeren sammen med en
     // feilmelding.
     if (isError) {
-        throw new Error(`Klarte ikke å hente data fra miljø ${state.getEnvironment()} med sats ${bruktSats}`)
+        throw new Error(`Klarte ikke å hente data fra miljø ${state.getEnvironment()}`)
     }
 
     if (isLoading) {
