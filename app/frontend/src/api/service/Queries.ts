@@ -63,7 +63,7 @@ const fetchGuiModel = async (body: string, clazzName: string, environment: strin
   return response.data as GuiModel
 }
 
-export const queryGuiModel = (body: string, clazzName: string, environment: string, sats: string) => useQuery({
+export const useGuiModel = (body: string, clazzName: string, environment: string, sats: string) => useQuery({
     queryKey: ['guiModel', environment, sats],
     queryFn: () => fetchGuiModel(body, clazzName, environment, sats),
     throwOnError: true,
@@ -73,13 +73,13 @@ export const queryGuiModel = (body: string, clazzName: string, environment: stri
     retry: false,
 })
 
-export const queryLogResponseById = (id: string) => useQuery({
+export const useLogResponseById = (id: string) => useQuery({
     queryKey: ['logResponseById', id],
     queryFn: () => fetchByLogId(id),
     throwOnError: false,
 })
 
-export const querySatstabeller = (env: string) => useQuery({
+export const useSatstabeller = (env: string) => useQuery({
   queryKey: ['satsTabeller', ensureEnv(env)],
   queryFn: () => fetchSatsTabeller(env),
   throwOnError: false,

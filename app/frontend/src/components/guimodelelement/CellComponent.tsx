@@ -1,30 +1,23 @@
 import {Button, HelpText, Popover, Table} from "@navikt/ds-react";
 import {CellElement, NodeElement, PopoverType} from "@pensjon/domain";
-import React, {useRef, useState} from "react";
+import React, {useState} from "react";
 import {JsonParser} from "./JsonParser.tsx";
 
 export interface CellComponentProps {
     cell: CellElement;
 }
 
-const generatePopoverTables = (tables: NodeElement[]): React.ReactNode[] => {
-    const result: React.ReactNode[] = [];
-    let table: React.ReactNode;
-    tables && tables.map((data, k) => {
-        table = <div key={k}>
+const generatePopoverTables = (tables: NodeElement[]): React.ReactNode[] =>
+    (tables ?? []).map((data, k) =>
+        <div key={k}>
             <JsonParser data={data}></JsonParser>
         </div>
-        result.push(table)
-    })
-    return result;
-}
+    )
 
 export const CellComponent = (props: CellComponentProps) => {
 
-    const buttonPopoverRef = useRef(null);
+    const [popoverAnchor, setPopoverAnchor] = useState<HTMLButtonElement | null>(null);
     const [open, setOpen] = useState(false);
-    let currentCell;
-    let data;
 
     const getPopoverColorClass = (item: CellElement) => {
         if (item.popoverType === PopoverType.DESCRIPTION) {
@@ -42,7 +35,7 @@ export const CellComponent = (props: CellComponentProps) => {
         }
         const popoverDetail: React.ReactNode[] = generatePopoverTables(item.popoverContent);
         return (
-            <Popover anchorEl={buttonPopoverRef.current}
+            <Popover anchorEl={popoverAnchor}
                      open={open}
                      onClose={() => setOpen(false)}
                      arrow={true}
@@ -71,17 +64,15 @@ export const CellComponent = (props: CellComponentProps) => {
     const createCell = (cell: CellElement) => {
         const tooltip = createTooltip(cell);
         const popOver = createPopover(cell);
-        if (cell.popoverType !== PopoverType.NONE) {
-            data = <Button
-                ref={buttonPopoverRef}
+        const data = cell.popoverType !== PopoverType.NONE
+            ? <Button
+                ref={setPopoverAnchor}
                 onClick={() => setOpen(!open)}
                 size="xsmall"
                 style={getPopoverColorClass(cell)}>
                 {cell.data}
-            </Button>;
-        } else {
-            data = cell.data;
-        }
+            </Button>
+            : cell.data;
 
         return {tooltip, data, popOver};
     }
@@ -92,7 +83,7 @@ export const CellComponent = (props: CellComponentProps) => {
 
     if (props.cell.header) {
         const {tooltip, data, popOver} = createCell(props.cell);
-        currentCell = <Table.HeaderCell align={"left"}>
+        return <Table.HeaderCell align={"left"}>
             { tooltip ?
                 <span style={{ display: 'flex', alignItems: 'center' }}>
                 {data} {tooltip} {popOver}
@@ -103,14 +94,12 @@ export const CellComponent = (props: CellComponentProps) => {
                 </div>
             }
         </Table.HeaderCell>
-    } else {
-        const {tooltip, data, popOver} = createCell(props.cell);
-        currentCell = <Table.DataCell align={"left"}>
-            {data}
-            {tooltip}
-            {popOver}
-        </Table.DataCell>
     }
 
-    return currentCell;
+    const {tooltip, data, popOver} = createCell(props.cell);
+    return <Table.DataCell align={"left"}>
+        {data}
+        {tooltip}
+        {popOver}
+    </Table.DataCell>
 };

@@ -34,11 +34,11 @@ if (typeof window !== "undefined" && window.location.pathname.startsWith("/dev/p
 }
 
 const DevPreview: React.FC = () => {
-    const state = useGlobalState()
+    const { setDebugLog, setConsoleLog } = useGlobalState()
 
     useEffect(() => {
-        state.setDebugLog(mockDebugLog)
-        state.setConsoleLog("[MOCK] BeregnAlderspensjon2025ForsteUttakRequest har kjørt ferdig i miljø: pensjon-regler-q0 - med sats: Mock sats")
+        setDebugLog(mockDebugLog)
+        setConsoleLog("[MOCK] BeregnAlderspensjon2025ForsteUttakRequest har kjørt ferdig i miljø: pensjon-regler-q0 - med sats: Mock sats")
 
         return () => {
             if (satsInterceptorId !== null) {
@@ -46,7 +46,7 @@ const DevPreview: React.FC = () => {
                 satsInterceptorId = null;
             }
         };
-    }, []);
+    }, [setDebugLog, setConsoleLog]);
 
     return (
         <>

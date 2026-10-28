@@ -1,23 +1,14 @@
 import {Button, CopyButton, InternalHeader, Modal} from "@navikt/ds-react";
-import React, {useEffect} from "react";
+import React from "react";
 import {LinkIcon, ThumbUpIcon} from "@navikt/aksel-icons";
 import {useGlobalState} from "../../store/index.ts";
 
 const DebugLogModal: React.FC = () => {
 
     const state = useGlobalState()
-    const [showDebugLog, setShowDebugLog] = React.useState(true);
+    const showDebugLog = state.getDebugLog() === ""
     const [windowSize] = React.useState([window.innerWidth, window.innerHeight]);
     const ref = React.useRef<HTMLDialogElement>(null);
-
-    useEffect(() => {
-        if (state.getDebugLog() !== "") {
-            //@ts-ignore
-            setShowDebugLog(false)
-        } else {
-            setShowDebugLog(true)
-        }
-    }, [state.getDebugLog()])
 
 
     return (

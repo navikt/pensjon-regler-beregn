@@ -73,7 +73,7 @@ export const TreeComponent = (props: TreeProps): React.ReactElement => {
         const x = document.getElementById(id);
         const btn = document.getElementById(nodeId);
         const treeTabs = document.getElementsByClassName("tree-tabs");
-        let i = 0;
+        let i: number;
         let active = 0;
 
         const treeSubNodes = document.getElementsByClassName("tree-subNodeBtn");

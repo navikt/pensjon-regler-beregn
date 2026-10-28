@@ -8,17 +8,24 @@ const initalState = hookstate({
     debugLog: "",
 })
 
+// Setterne er definert utenfor hooken slik at de har stabil identitet og
+// trygt kan brukes i dependency-arrayer i useEffect.
+const setSats = (s: string) => { initalState.sats.set(s) }
+const setEnvironment = (e: string) => { initalState.environment.set(e) }
+const setConsoleLog = (c: string) => { initalState.consoleLog.set(c) }
+const setDebugLog = (d: string) => { initalState.debugLog.set(d) }
+
 export const useGlobalState = () => {
     const state = useHookstate(initalState)
 
     return {
         getSats: () => state.sats.value,
-        setSats: (s: string) => { state.sats.set(s) },
+        setSats,
         getEnvironment: () => state.environment.value,
-        setEnvironment: (e: string) => { state.environment.set(e) },
+        setEnvironment,
         getConsoleLog: () => state.consoleLog.value,
-        setConsoleLog: (c:string) => { state.consoleLog.set(c) },
+        setConsoleLog,
         getDebugLog: () => state.debugLog.value,
-        setDebugLog: (d: string) => { state.debugLog.set(d) }
+        setDebugLog,
     }
 }
