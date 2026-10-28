@@ -34,3 +34,5 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
       - name: Build
         run: pnpm build
+      - name: Lint
+        run: pnpm --filter pensjon-regler-beregn-frontend lint
