@@ -5,7 +5,7 @@ import {LinkIcon, ThumbUpIcon} from "@navikt/aksel-icons";
 
 interface FallbackProps {
     error: Error;
-    errorInfo: ErrorInfo;
+    errorInfo?: ErrorInfo;
 }
 
 const ErrorFallback: React.FC<FallbackProps> = ({error}): ReactNode => {

@@ -1,5 +1,5 @@
 import {ReactNode, useEffect} from "react";
-import {queryLogResponseById} from "../../api/service/Queries.ts";
+import {useLogResponseById} from "../../api/service/Queries.ts";
 import DetailView from "./DetailView.tsx";
 import {Loader} from "@navikt/ds-react";
 import ConsoleLog from "./ConsoleLog.tsx";
@@ -12,11 +12,19 @@ interface MainProps {
 
 const Main: React.FC<MainProps> = ({ id }): ReactNode => {
     const state = useGlobalState()
-    const { data, isError, isLoading, isSuccess, isFetching,  } = queryLogResponseById(id)
+    const { setEnvironment } = state
+    const { data, isError, isLoading, isSuccess, isFetching,  } = useLogResponseById(id)
 
     useEffect(() => {
         if (isSuccess && data?.environment) {
-            state.setEnvironment(data.environment);
+            setEnvironment(data.environment);
+        }
+    }, [isSuccess, data, setEnvironment]);
+
+    useEffect(() => {
+        if (isSuccess) {
+            const metaData = JSON.parse(data?.metadata || '{}')
+            document.title = metaData?.saksId && !metaData?.saksId.includes("Det finnes ingen tilgjengelige") ? `SaksID ${metaData?.saksId} - Beregn pensjon` : `Beregn pensjon`
         }
     }, [isSuccess, data]);
 
@@ -30,11 +38,6 @@ const Main: React.FC<MainProps> = ({ id }): ReactNode => {
                 <Loader size="3xlarge" title="Laster ..." />
             </div>
         )
-    }
-
-    if (isSuccess) {
-        const metaData = JSON.parse(data?.metadata || '{}')
-        document.title = metaData?.saksId && !metaData?.saksId.includes("Det finnes ingen tilgjengelige") ? `SaksID ${metaData?.saksId} - Beregn pensjon` : `Beregn pensjon`
     }
 
     if (isFetching) {

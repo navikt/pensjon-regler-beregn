@@ -2,7 +2,7 @@ import React, { Component, ErrorInfo, ReactNode } from 'react';
 
 interface FallbackProps {
     error: Error;
-    errorInfo: ErrorInfo;
+    errorInfo?: ErrorInfo;
 }
 interface ErrorBoundaryProps {
     children: ReactNode;
@@ -36,7 +36,6 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
         if (this.state.hasError && this.state.error) {
             const { FallbackComponent } = this.props;
             const { error, errorInfo } = this.state;
-            // @ts-ignore
             return <FallbackComponent error={error} errorInfo={errorInfo} />;
         }
 

@@ -1,5 +1,5 @@
 import {Loader} from "@navikt/ds-react"
-import {queryGuiModel} from "../../api/service/Queries.ts"
+import {useGuiModel} from "../../api/service/Queries.ts"
 import {LogResponse, LogResponseMetadata} from "@pensjon/domain";
 import SplitView from "./SplitView.tsx"
 import {useEffect} from "react";
@@ -14,10 +14,12 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
 
     const state = useGlobalState()
     const query = useQueryClient()
+    const environment = state.getEnvironment()
+    const sats = state.getSats()
 
     useEffect(() => {
-        query.invalidateQueries({queryKey: ["guiModel", state.getEnvironment(), state.getSats()],})
-    }, [state.getEnvironment(), state.getSats()]);
+        query.invalidateQueries({queryKey: ["guiModel", environment, sats],})
+    }, [query, environment, sats]);
 
     const bruktSats = state.getSats() ?? "Sats fra miljø";
 
@@ -30,7 +32,7 @@ const DetailView: React.FC<DetailViewProps> = ({logResponse}) => {
         isLoading,
         isSuccess,
         isFetching
-    } = queryGuiModel(body, metaData.className, state.getEnvironment(), state.getSats())
+    } = useGuiModel(body, metaData.className, state.getEnvironment(), state.getSats())
 
     const harTekniskFeil = data?.metadata?.status === "error"
 
