@@ -20,7 +20,7 @@
     "@pensjon/domain": "workspace:*",
     "@tanstack/react-query": "^5.105.2",
     "@tanstack/react-query-devtools": "^5.105.1",
-    "asciidoctor": "^4.1.1",
+    "asciidoctor": "^4.2.1",
     "axios": "^1.21.0",
     "prismjs": "^1.30.0",
     "react": "^19.2.8",
