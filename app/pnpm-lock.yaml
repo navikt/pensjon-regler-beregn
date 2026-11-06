@@ -75,8 +75,8 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2(react@19.3.1)
       '@navikt/aksel-icons':
-        specifier: ^8.20.0
-        version: 8.20.0
+        specifier: ^8.21.0
+        version: 8.21.0
       '@navikt/ds-css':
         specifier: ^8.21.0
         version: 8.21.0
@@ -560,9 +560,6 @@ packages:
     resolution: {integrity: sha512-jRVXr+zsVHxzDXRoh+CDeXzvCsFJ6uiHhqqNQ26Cw9ZsZ3D6nqPUBt1gGVtj2ZPmRL3a9Uk1v8D1aJ8/I12Dow==}
     peerDependencies:
       solid-js: ^1.8.8
-
-  '@navikt/aksel-icons@8.20.0':
-    resolution: {integrity: sha512-5FVFg9Xba++NpvdBlqE/VoGbOie34M1sSLYqSUZEy6IZUjBwh4QrbKCU1hcamuBJ2pQFINwOAqxmw8Ri1AIDyw==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.20.0/b5d97e6736ed7c9245e0b02aa9ce8a89ecf6b72e}
 
   '@navikt/aksel-icons@8.21.0':
     resolution: {integrity: sha512-/RXiUI1dt4lt/prvz2ngVp7BryHzLFIpq0wW1cjMKxqaaJwE4eYvTDFAdAFUpu3dL4hNRaXsji1GOxGGAK/jqw==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.21.0/3732daf4de6b0b26ae40aa42c2ad832b6acccc62}
@@ -2700,8 +2697,6 @@ snapshots:
       '@solid-primitives/refs': 1.1.4(solid-js@1.9.18)
       '@solid-primitives/utils': 6.4.1(solid-js@1.9.18)
       solid-js: 1.9.18
-
-  '@navikt/aksel-icons@8.20.0': {}
 
   '@navikt/aksel-icons@8.21.0': {}
 
