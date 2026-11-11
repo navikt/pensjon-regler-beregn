@@ -9,7 +9,7 @@
     "local": "NODE_ENV=prod-gcp dotenv -e app/bff/.env.prod-gcp -- node bff/dist/server.js"
   },
   "devDependencies": {
-    "concurrently": "^10.0.6",
+    "concurrently": "^10.0.7",
     "dotenv-cli": "^11.1.0",
     "react-dom": "19.3.1"
   },
