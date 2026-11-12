@@ -108,8 +108,8 @@ importers:
         specifier: 19.3.1
         version: 19.3.1(react@19.3.1)
       react-resizable-panels:
-        specifier: ^4.20.0
-        version: 4.20.0(@types/react@19.2.18)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^4.21.0
+        version: 4.21.0(@types/react@19.2.18)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       react-router-dom:
         specifier: ^7.18.5
         version: 7.18.5(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -573,6 +573,9 @@ packages:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: 19.3.1
       react-dom: 19.3.1
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@navikt/ds-tokens@8.22.1':
     resolution: {integrity: sha512-cDmfPn5Q0HmE8eTie5jkj76zKMrS/AeZcAKscxtZFTL6sFdIFKON8AwWcS0pdRuC3yxYNGRmO176xGjn2POLCQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.22.1/43f354b993b9a56b9b4329ab54a9e17c5decf92b}
@@ -1966,8 +1969,8 @@ packages:
     peerDependencies:
       react: 19.3.1
 
-  react-resizable-panels@4.20.0:
-    resolution: {integrity: sha512-8a+cf9i/K0IKmnVPeXP2MqMCrY3vToMJty84kZ9M+wstKLnA/jWvc2Sxl4wEs9cAKnrin7QbPvTT5yKkIeXGeQ==}
+  react-resizable-panels@4.21.0:
+    resolution: {integrity: sha512-SzNEQNH/xIn3aKKLSdv48h0eu1gF1bkvozIVStow2hRmh/d9jkyoZR7dF8GUx39Wc2TAJTmfSUr4y/wwtvMoRQ==}
     peerDependencies:
       '@types/react': ^18.2.6 || ^19.0.0
       react: 19.3.1
@@ -2710,11 +2713,12 @@ snapshots:
       '@floating-ui/react-dom': 2.1.9(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@navikt/aksel-icons': 8.22.1
       '@navikt/ds-tokens': 8.22.1
-      '@types/react': 19.2.18
       date-fns: 4.4.0
       react: 19.3.1
       react-day-picker: 10.0.2(@types/react@19.2.18)(react@19.3.1)
       react-dom: 19.3.1(react@19.3.1)
+    optionalDependencies:
+      '@types/react': 19.2.18
 
   '@navikt/ds-tokens@8.22.1': {}
 
@@ -3977,7 +3981,7 @@ snapshots:
       react: 19.3.1
       scheduler: 0.28.0
 
-  react-resizable-panels@4.20.0(@types/react@19.2.18)(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
+  react-resizable-panels@4.21.0(@types/react@19.2.18)(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
     dependencies:
       react: 19.3.1
       react-dom: 19.3.1(react@19.3.1)
