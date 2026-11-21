@@ -23,14 +23,14 @@ importers:
         version: 19.3.1(react@19.3.1)
     optionalDependencies:
       '@rollup/rollup-linux-x64-gnu':
-        specifier: 4.68.4
-        version: 4.68.4
+        specifier: 4.68.5
+        version: 4.68.5
 
   bff:
     dependencies:
       '@navikt/oasis':
-        specifier: ^4.2.2
-        version: 4.2.2
+        specifier: ^4.2.3
+        version: 4.2.3
       '@pensjon/domain':
         specifier: workspace:*
         version: link:../shared/domain
@@ -75,8 +75,8 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2(react@19.3.1)
       '@navikt/aksel-icons':
-        specifier: ^8.22.1
-        version: 8.22.1
+        specifier: ^8.23.0
+        version: 8.23.0
       '@navikt/ds-css':
         specifier: ^8.22.1
         version: 8.22.1
@@ -87,14 +87,14 @@ importers:
         specifier: workspace:*
         version: link:../shared/domain
       '@tanstack/react-query':
-        specifier: ^5.107.1
-        version: 5.107.1(@types/react@19.2.18)(react@19.3.1)
+        specifier: ^5.108.0
+        version: 5.108.0(@types/react@19.2.18)(react@19.3.1)
       '@tanstack/react-query-devtools':
         specifier: ^5.107.1
-        version: 5.107.1(@tanstack/react-query@5.107.1(@types/react@19.2.18)(react@19.3.1))(@types/react@19.2.18)(csstype@3.2.3)(react@19.3.1)
+        version: 5.107.1(@tanstack/react-query@5.108.0(@types/react@19.2.18)(react@19.3.1))(@types/react@19.2.18)(csstype@3.2.3)(react@19.3.1)
       asciidoctor:
-        specifier: ^4.2.1
-        version: 4.2.1
+        specifier: ^4.3.0
+        version: 4.3.0
       axios:
         specifier: ^1.21.1
         version: 1.21.1
@@ -161,8 +161,8 @@ importers:
 
 packages:
 
-  '@asciidoctor/core@4.2.1':
-    resolution: {integrity: sha512-c/LvM4nnkeLhHryAQOI41AL7UlOowmydMhNaVoH4zecKo2HkyalaNodeVqueR2RVU0/MOg4HPikYtFMHdVXa4A==}
+  '@asciidoctor/core@4.3.0':
+    resolution: {integrity: sha512-GjUCNKhhMp7Sbp70biHN7dNS9DvnOqdO1Z4XflgQX7NZ9+GtpFglTaZ8R+VlrL9XqzuJ9KJDcq8FlMD8CSzXDw==}
     engines: {node: '>=20'}
     peerDependencies:
       highlight.js: ^11.0.0
@@ -580,9 +580,6 @@ packages:
       '@emnapi/core': ^1.7.1 || 2.0.0-beta.2
       '@emnapi/runtime': ^1.7.1 || 2.0.0-beta.2
 
-  '@navikt/aksel-icons@8.22.1':
-    resolution: {integrity: sha512-NmNg4vK6Hrabw8CleI6jJCwOb4aXnMjkE9Rw4OQjbfgHrg4UXWnUFgQJ3/Rk/unGdfXGNxV591RTwPNc2dZoTA==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.22.1/c93a3bad8be4134bd833ecc08db4583034be4d75}
-
   '@navikt/aksel-icons@8.23.0':
     resolution: {integrity: sha512-Nm7cP5l6A9oI4iw1zN2hllwmQFqTUq3sLVPYQULsg5yjeu4OHy4thNXg6ljb7Q+W0X/r/Gv0drAsKAqlfN9CFg==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.23.0/311555ce46b07fdc883d5398adbb0c7a47be45cd}
 
@@ -595,20 +592,23 @@ packages:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: 19.3.1
       react-dom: 19.3.1
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@navikt/ds-tokens@8.23.0':
     resolution: {integrity: sha512-+GXKDpfZixeCblvKJEnSG1/vlZp27xjqX6NNhzs0442Y1jGuEadGUJ+nxndYpmgZ4QcZCE2VEsKvluXctfHVYA==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.23.0/569a10706977258093e2ecf396f29884b03562f9}
 
-  '@navikt/oasis@4.2.2':
-    resolution: {integrity: sha512-EVMsF8uKbLPNRWuPfH1IKVJhqtibFzSTSyNkzj5mTCVMZV2QPS5W3uYMD4r0rXsmLx7nv0HnLovDphb3AFEjvw==, tarball: https://npm.pkg.github.com/download/@navikt/oasis/4.2.2/3c43e1e89bb2d46646a9a2aaf27972a024377a6f}
+  '@navikt/oasis@4.2.3':
+    resolution: {integrity: sha512-y9jzWKAxhZZvbj6xPKSOTJMfd4Vu4raQtPheeynSFokdxFwuoo3nH7khuB/F4HKjyYeR9UYZomfnjwIjuo81OQ==, tarball: https://npm.pkg.github.com/download/@navikt/oasis/4.2.3/2b6f6ff6ac6c82e6ea93f5ec4e041cf5a93b4302}
     engines: {node: ^20.19.0 || >= 22.12.0 || 24.x || 25.x}
 
-  '@navikt/texas@4.2.2':
-    resolution: {integrity: sha512-w/iTWLSdmvn2j2U3M+sJX9bSBvoV5UcMk+FuKs9EKz1QuaCoUksZrEfqX9/FtqyTUaOhwDnm/1iIuR6BudzFAg==, tarball: https://npm.pkg.github.com/download/@navikt/texas/4.2.2/862d743a1df21630a007a0d2d2a36a74dd8b5187}
+  '@navikt/texas@4.2.3':
+    resolution: {integrity: sha512-xESkYPtnX9OUpoANf4+ENf3l0GCxKldSkbarikVcHJFfVpTvb2zjuRxLbioO3I98vd3KC8D2aWdtTnAsUwsJVw==, tarball: https://npm.pkg.github.com/download/@navikt/texas/4.2.3/f694ea2082a8f801322606ffd3e5998d95a7133a}
     engines: {node: ^20.19.0 || >= 22.12.0 || 24.x || 25.x}
 
-  '@opentelemetry/api@1.9.1':
-    resolution: {integrity: sha512-gLyJlPHPZYdAk1JENA9LeHejZe1Ti77/pTeFm/nMXmQH/HFZlcS/O2XJB+L8fkbrNSqhdtlvjBVjxwUYanNH5Q==}
+  '@opentelemetry/api@1.10.0':
+    resolution: {integrity: sha512-lMkyes8iHrG+mk6WH7X70MdCLI2RS0FwNBY1PyQ8UemaijE2m5mv5A0Niy3HtbYTFrgkUEQjFMXmSAk2hQDuPQ==}
     engines: {node: '>=8.0.0'}
 
   '@oxc-project/types@0.156.0':
@@ -725,8 +725,8 @@ packages:
   '@rolldown/pluginutils@1.1.1':
     resolution: {integrity: sha512-glFIJDvLNDtJhT9qrMFWLPbvS+skxgt4L0K8Ei2YtnhPysAJnsI7nyxSJxKj4ADeKX0OLjC4ntRkwpLOoS3rwA==}
 
-  '@rollup/rollup-linux-x64-gnu@4.68.4':
-    resolution: {integrity: sha512-a4T4Ji3Is/TCh4rUuV6ehDdSMp3hxLH/v7mP4VT0kVB90Hfr9GUHVAiJhiJ3iy+tJ4qpvIG4haP+HpivOyWYpw==}
+  '@rollup/rollup-linux-x64-gnu@4.68.5':
+    resolution: {integrity: sha512-JK5S9YhArjVwuetZ9nf6/GdpiXLl7DAVTdRUpF40wVMQNq28hkBrQI1+xy9sqjqtPvW08xagGPfBCBj5wLerZA==}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
@@ -902,6 +902,9 @@ packages:
   '@tanstack/query-core@5.107.1':
     resolution: {integrity: sha512-PSyAik11oQBEVOiVy5hjZWHmoUqOXqK1WYy4v55mcxozEfKaQgpUMsgnXhWjuESzSht8JfzqMS1m6M/9CpNgvg==}
 
+  '@tanstack/query-core@5.108.0':
+    resolution: {integrity: sha512-X9zJUtEV/0D2q9pmGS/Bza8S4bNovSBhZOtdhtu0fzsHwizC6C+Eh/q5CX3MQBchsRMrirWVQmv7Fp4OStzV9g==}
+
   '@tanstack/query-devtools@5.107.1':
     resolution: {integrity: sha512-cZvgIPNvsh57mM3yTTwuL2GUMmMp5XR+3k5r2UJDyStmPYCqSwZf8z7OulgA4X8vISziAG5PoykbQ1q+2zemdA==}
 
@@ -915,8 +918,8 @@ packages:
       '@types/react':
         optional: true
 
-  '@tanstack/react-query@5.107.1':
-    resolution: {integrity: sha512-udCOOLp3ZAheUrIHLCe+ZZge6nr2ZUrGMSWcCuXsjY1Bf2JeeE09oxst97PILiCY6N8xo/7bIo3Hvz13zh06FA==}
+  '@tanstack/react-query@5.108.0':
+    resolution: {integrity: sha512-DpMbB8pVorEZcsHRa0Z13KQGfmndqvJbuLy9h+xfP8XpuEZBOxzq+QfXGonQ0fAgRSWhc+QsfoRETSTWxAEAVw==}
     peerDependencies:
       '@types/react': ^18 || ^19
       react: 19.3.1
@@ -1239,8 +1242,8 @@ packages:
   arg@4.1.3:
     resolution: {integrity: sha512-58S9QDqG0Xx27YwPSt9fJxivjYl432YCwfDMfZ+71RAqUrZef7LrKQZ3LHLOwCS4FLNBplP533Zx895SeOCHvA==}
 
-  asciidoctor@4.2.1:
-    resolution: {integrity: sha512-W8yx3gdn8LwHN/KnmRrrBO6qwH4wngGUQuj3b5vIetYT9W/+d+0rBuK290Gc+ozI5v9w+XA4Igp+Uht9IUas6g==}
+  asciidoctor@4.3.0:
+    resolution: {integrity: sha512-c25sTLx9rf0YYJ0pJqa4xmtEtI3iQ/YaWX/eTzo0dx8yxphiMO8aCXx7Nrxs1EuxxbXFJ6f39gyiuZoWdLf+dA==}
     engines: {node: '>=20'}
     hasBin: true
 
@@ -1726,8 +1729,8 @@ packages:
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
-  jose@6.2.11:
-    resolution: {integrity: sha512-A5NPn7g8EAzGU3IzRs+Yiq8K5n3ypYS75M5+KKiVHdUexfpWK1kP4ZMq7QnTGDoMj6TJ1dtcEJjW60yZDXS4hg==}
+  jose@6.2.17:
+    resolution: {integrity: sha512-wOuK9V1yujQFH5S0ZWmLcDZN7+IKh9bUCC2ZPCf2HDlol3WWHy+PPyNjEI75FXRLMp3vDKQcupP59xhVU95hcg==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -2376,7 +2379,7 @@ packages:
 
 snapshots:
 
-  '@asciidoctor/core@4.2.1': {}
+  '@asciidoctor/core@4.3.0': {}
 
   '@babel/code-frame@7.29.7':
     dependencies:
@@ -2762,8 +2765,6 @@ snapshots:
       '@tybys/wasm-util': 0.10.4
     optional: true
 
-  '@navikt/aksel-icons@8.22.1': {}
-
   '@navikt/aksel-icons@8.23.0': {}
 
   '@navikt/ds-css@8.22.1': {}
@@ -2774,30 +2775,31 @@ snapshots:
       '@floating-ui/react-dom': 2.1.9(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@navikt/aksel-icons': 8.23.0
       '@navikt/ds-tokens': 8.23.0
-      '@types/react': 19.2.18
       date-fns: 4.4.0
       react: 19.3.1
       react-day-picker: 10.0.2(@types/react@19.2.18)(react@19.3.1)
       react-dom: 19.3.1(react@19.3.1)
+    optionalDependencies:
+      '@types/react': 19.2.18
 
   '@navikt/ds-tokens@8.23.0': {}
 
-  '@navikt/oasis@4.2.2':
+  '@navikt/oasis@4.2.3':
     dependencies:
-      '@navikt/texas': 4.2.2
-      '@opentelemetry/api': 1.9.1
+      '@navikt/texas': 4.2.3
+      '@opentelemetry/api': 1.10.0
       '@prometheus-io/client': 0.16.1
-      jose: 6.2.11
+      jose: 6.2.17
 
-  '@navikt/texas@4.2.2': {}
+  '@navikt/texas@4.2.3': {}
 
-  '@opentelemetry/api@1.9.1': {}
+  '@opentelemetry/api@1.10.0': {}
 
   '@oxc-project/types@0.156.0': {}
 
   '@prometheus-io/client@0.16.1':
     dependencies:
-      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/api': 1.10.0
       tdigest: 0.1.3
 
   '@rolldown/binding-android-arm-eabi@1.2.19':
@@ -2856,7 +2858,7 @@ snapshots:
 
   '@rolldown/pluginutils@1.1.1': {}
 
-  '@rollup/rollup-linux-x64-gnu@4.68.4':
+  '@rollup/rollup-linux-x64-gnu@4.68.5':
     optional: true
 
   '@so-ric/colorspace@1.1.6':
@@ -3001,6 +3003,8 @@ snapshots:
 
   '@tanstack/query-core@5.107.1': {}
 
+  '@tanstack/query-core@5.108.0': {}
+
   '@tanstack/query-devtools@5.107.1(csstype@3.2.3)':
     dependencies:
       '@kobalte/core': 0.13.14(solid-js@1.9.18)
@@ -3018,19 +3022,19 @@ snapshots:
     transitivePeerDependencies:
       - csstype
 
-  '@tanstack/react-query-devtools@5.107.1(@tanstack/react-query@5.107.1(@types/react@19.2.18)(react@19.3.1))(@types/react@19.2.18)(csstype@3.2.3)(react@19.3.1)':
+  '@tanstack/react-query-devtools@5.107.1(@tanstack/react-query@5.108.0(@types/react@19.2.18)(react@19.3.1))(@types/react@19.2.18)(csstype@3.2.3)(react@19.3.1)':
     dependencies:
       '@tanstack/query-devtools': 5.107.1(csstype@3.2.3)
-      '@tanstack/react-query': 5.107.1(@types/react@19.2.18)(react@19.3.1)
+      '@tanstack/react-query': 5.108.0(@types/react@19.2.18)(react@19.3.1)
       react: 19.3.1
     optionalDependencies:
       '@types/react': 19.2.18
     transitivePeerDependencies:
       - csstype
 
-  '@tanstack/react-query@5.107.1(@types/react@19.2.18)(react@19.3.1)':
+  '@tanstack/react-query@5.108.0(@types/react@19.2.18)(react@19.3.1)':
     dependencies:
-      '@tanstack/query-core': 5.107.1
+      '@tanstack/query-core': 5.108.0
       react: 19.3.1
     optionalDependencies:
       '@types/react': 19.2.18
@@ -3323,9 +3327,9 @@ snapshots:
 
   arg@4.1.3: {}
 
-  asciidoctor@4.2.1:
+  asciidoctor@4.3.0:
     dependencies:
-      '@asciidoctor/core': 4.2.1
+      '@asciidoctor/core': 4.3.0
     transitivePeerDependencies:
       - highlight.js
 
@@ -3841,7 +3845,7 @@ snapshots:
 
   isexe@2.0.0: {}
 
-  jose@6.2.11: {}
+  jose@6.2.17: {}
 
   js-tokens@4.0.0: {}
 
