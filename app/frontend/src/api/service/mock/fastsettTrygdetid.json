@@ -1,0 +1,3038 @@
+{
+  "metadata" : {
+    "bruktSats" : "PROD_20260904",
+    "debugLog" : "[RUN] SERVICE: FastsettTrygdetidService\n[   ] VERSJON: pensjon-regler-local\n[   ] SATSTABELL: PROD_20260904\n[FUN] startFastsettTrygdetid\n[FUN] utledRegelverkstype\n[   ]    UT gir default regelverkstype G_REG\n<StartTrygdetidFlyt>\n  [HIT] FinnPersonensFørsteVirkRS.ErSøker_ikkeFleksibelAP\n  <FastsettTrygdetidFlyt>\n    [HIT] BestemUføretidspunktUTRS.FinnSisteBeregningsvilkårPeriode\n    [HIT] BestemUføretidspunktUTRS.UføretidspunktUT, sisteUFT = 2023-12-01\n    [HIT] HåndterMedlemskapInfoRS.SettInngangOgEksport\n    <FaktiskTrygdetidFlyt>\n      [HIT] BestemFaktiskTTParametereRS.TrygdetidFra16År, TT fra 1976-09-01\n      [HIT] BestemFaktiskTTParametereRS.Etter1991MaksGrense, 2026-12-31\n      [HIT] BestemFramtidigTTBeregnesRS.FttBeregnesForUT\n      [HIT] BestemFaktiskTTParametereRS.BestemFttBeregnes, true\n      [HIT] BestemFaktiskTTParametereRS.RestDagerRundesOpp\n      [HIT] BestemFaktiskTTRegnesTilRS.FinnUFT2, uføretidspunkt = 2023-12-01\n      [HIT] BestemFaktiskTTRegnesTilRS.Uføretrygd_UFTetterMndFyller16, TT til 2023-11-30\n      [HIT] BestemFaktiskTTParametereRS.IkkeAlderspensjon\n      [   ]    ttFaktiskBeregnes: true\n      [   ]    ttFaktiskRegnesTil: 2023-11-30\n      [HIT] BareTTNorgeRS.PeriodeNorge_faktiskTrygdetid\n      <formel title='Periode lengde'>\n      <fl>periode = [1976-09-01, 2023-11-30]</fl>\n      <fl>periode = 47 år 3 mnd 0 dager</fl>\n      </formel>\n      [HIT] BareTTNorgeRS.PeriodeEtter1967\n      <formel title='Periode lengde'>\n      <fl>periode = [1976-09-01, 2023-11-30]</fl>\n      <fl>periode = 47 år 3 mnd 0 dager</fl>\n      </formel>\n      [HIT] BeregnFaktiskTTRS.OpprettFaktiskTrygdetid\n      [HIT] BeregnFaktiskTTRS.TTEtter1966VirkEtter1991\n      [FUN] avrundTilMåneder, innDagerRundesOpp = true\n      <formel title='Avrund til måneder, rest dager rundes opp'>\n      <fl>mnd = år * 12 + mnd + (dager div 30) + (dager mod 30)</fl>\n      <fl>mnd = 47 * 12 + 3 + (0 div 30) + (0 mod 30)</fl>\n      <fl>mnd = 567</fl>\n      </formel>\n      [FUN] avrundTilMåneder, innDagerRundesOpp = true\n      <formel title='Avrund til måneder, rest dager rundes opp'>\n      <fl>mnd = år * 12 + mnd + (dager div 30) + (dager mod 30)</fl>\n      <fl>mnd = 47 * 12 + 3 + (0 div 30) + (0 mod 30)</fl>\n      <fl>mnd = 567</fl>\n      </formel>\n      <formel title='Faktisk trygdetid etter 1966'>\n      <fl>tt_E66 = avrundTilMåneder(47 år  + 3 mnd + 0 dager)</fl>\n      <fl>tt_E66 = min(40, avrund(567/12))</fl>\n      <fl>tt_E66 = 40</fl>\n      </formel>\n      [HIT] BeregnFaktiskTTRS.TTNorge\n      [FUN] avrundTilMåneder, innDagerRundesOpp = true\n      <formel title='Avrund til måneder, rest dager rundes opp'>\n      <fl>mnd = år * 12 + mnd + (dager div 30) + (dager mod 30)</fl>\n      <fl>mnd = 47 * 12 + 3 + (0 div 30) + (0 mod 30)</fl>\n      <fl>mnd = 567</fl>\n      </formel>\n      [   ]    tt_fa_mnd = 47 år 3 mnd 0 dg = 567 mnd\n      [FUN] avrundTilMåneder, innDagerRundesOpp = true\n      <formel title='Avrund til måneder, rest dager rundes opp'>\n      <fl>mnd = år * 12 + mnd + (dager div 30) + (dager mod 30)</fl>\n      <fl>mnd = 47 * 12 + 3 + (0 div 30) + (0 mod 30)</fl>\n      <fl>mnd = 567</fl>\n      </formel>\n      [   ]    tt_VkAp = 567\n      <formel title='Faktisk trygdetid Norge'>\n      <fl>sum = 47 år + 3 mnd + 0 dager)</fl>\n      <fl>sum = 47 år, 3 mnd, 0 dager</fl>\n      </formel>\n    </FaktiskTrygdetidFlyt>\n    <FramtidigTrygdetidFlyt>\n      [HIT] BestemFramtidigTTBeregnesRS.FttBeregnesForUT\n      [HIT] BestemFramtidigTTParametereRS.FTTtilUtgang66År, FTT til 2026-12-31\n      [HIT] BestemFramtidigTTParametereRS.Uføretrygd, FTT fra 2023-12-01\n      <formel title='Periode lengde'>\n      <fl>periode = [1976-10-01, 2023-11-30]</fl>\n      <fl>periode = 47 år 2 mnd 0 dager</fl>\n      </formel>\n      [FUN] avrundTilMåneder, innDagerRundesOpp = false\n      <formel title='Avrund til måneder'>\n      <fl>mnd = år * 12 + mnd + (dager div 30)</fl>\n      <fl>mnd = 47 * 12 + 2 + (0 div 30)</fl>\n      <fl>mnd = 566</fl>\n      </formel>\n      [HIT] BestemFramtidigTTParametereRS.Opptjeningsperiode = fom 1976-10-01 tom 2023-11-30 = 566\n      [HIT] BestemFramtidigTTParametereRS.FireFemtedelsKrav\n      <formel title='Fire femtedelskrav'>\n      <fl>firefemtedelskrav = avrund(opptjeningsperiode * 4/5)</fl>\n      <fl>firefemtedelskrav = avrund(566 * 4/5)</fl>\n      <fl>firefemtedelskrav = 453</fl>\n      </formel>\n      [HIT] BeregnFramtidigTTRS.fttNorge\n      <formel title='Periode lengde'>\n      <fl>periode = [2023-12-01, 2026-12-31]</fl>\n      <fl>periode = 3 år 1 mnd 0 dager</fl>\n      </formel>\n      [FUN] avrundTilMåneder, innDagerRundesOpp = true\n      <formel title='Avrund til måneder, rest dager rundes opp'>\n      <fl>mnd = år * 12 + mnd + (dager div 30) + (dager mod 30)</fl>\n      <fl>mnd = 3 * 12 + 1 + (0 div 30) + (0 mod 30)</fl>\n      <fl>mnd = 37</fl>\n      </formel>\n      <formel title='Framtidig trygdetid, tt_fa_mnd 567 >= 453'>\n      <fl>ftt = avrundTilMåneder(ttFramtidigRegnesFra, ttFramtidigRegnesTil)</fl>\n      <fl>ftt = avrundTilMåneder(2023-12-01, 2026-12-31)</fl>\n      <fl>ftt = 37</fl>\n      </formel>\n    </FramtidigTrygdetidFlyt>\n    <SamletTrygdetidFlyt>\n      [DBG] PersonenErFlyktningRS\n      [   ]    pg.flyktning: false\n      [   ]    ytelsestype: UT\n      [   ]    innKapittel20: false\n      [   ]    innVirk: 'Virkningstidspunkt' (2027-01-01)\n      [   ]    normertPensjonsdato: 'Normert Pensjonsdato' (2027-10-01)\n      [   ]    tidligsteKravfremsattDato: 'Kravfremsattdato for UT' (2024-07-01)\n      [HIT] PersonenErFlyktningRS.SettFaktiskTrygdetid_kap19\n      [HIT] PersonenErFlyktningRS.SettRelevantTrygdetid_kap19\n      [HIT] PersonenErFlyktningRS.AnvendtFlyktning_ikkeRelevant\n      [HIT] BeregnSamletTTRS.AvklarFlyktningKap19, 'Er flyktning' (IKKE_RELEVANT)\n      [HIT] AvklarEksportrettFlyktningRS.EksportrettFlyktning_medlemIFolketrygden\n      [HIT] BeregnSamletTTRS.AvklarEksportrettFlyktning eksportrettFlyktning: 'Eksportrett flyktning' (true)\n      [HIT] BeregnSamletTTRS.Etter1991SamletTrygdetid\n      <formel title='Samlet trygdetid'>\n      <fl>sum_tt = avrund((tt_fa_mnd + ftt)/12)</fl>\n      <fl>sum_tt = avrund((567 + 37)/12)</fl>\n      <fl>sum_tt = 50</fl>\n      </formel>\n      [HIT] BeregnSamletTTRS.SettMerknadUTMax40År\n      [HIT] BeregnSamletTTRS.Max40År\n      <formel title='Samlet trygdetid, max 40 år'>\n      <fl>sum_tt = 40</fl>\n      </formel>\n      [---] BeregnSamletTTRS.AnvendtFlyktning_IkkeUføretrygd\n      [   ]    anvendtFlyktningFaktum IKKE_RELEVANT\n      <formel title='Samlet trygdetid Norge'>\n      <fl>tt = 40</fl>\n      </formel>\n    </SamletTrygdetidFlyt>\n    [HIT] BestemUførehistorikkPåvirkerTTRS.FinnUføreperiodeListe\n  </FastsettTrygdetidFlyt>\n</StartTrygdetidFlyt>",
+    "info" : "",
+    "status" : "success"
+  },
+  "request" : [ {
+    "data" : [ {
+      "data" : [ {
+        "cells" : [ [ {
+          "data" : "virkFom",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "2027-01-01",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "brukerForsteVirk",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "2025-07-01",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "hovedKravlinjeType",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "UT",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "regelverkType",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : " - ",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "boddEllerArbeidetIUtlandet",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "false",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "redusertFTTUT",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : " - ",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ] ],
+        "name" : null,
+        "orientation" : "VERTICAL",
+        "type" : "TABLE"
+      }, {
+        "cells" : [ ],
+        "name" : "Ingen UttaksgradListe",
+        "orientation" : "HORIZONTAL",
+        "type" : "TABLE"
+      }, {
+        "cells" : [ [ {
+          "data" : "fom",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "tom",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "land",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "poengIInnAr",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "poengIUtAr",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "ikkeProRata",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "bruk",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "1960-09-01",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "2026-11-18",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "NOR",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "false",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "false",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "false",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "true",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ] ],
+        "name" : "Trygdetidperioder Kap 19",
+        "orientation" : "HORIZONTAL",
+        "type" : "TABLE"
+      }, {
+        "cells" : [ ],
+        "name" : "Ingen Trygdetidperioder Kap 20",
+        "orientation" : "HORIZONTAL",
+        "type" : "TABLE"
+      } ],
+      "name" : "Request",
+      "type" : "TAB"
+    }, {
+      "data" : [ {
+        "data" : [ {
+          "data" : [ {
+            "cells" : [ [ {
+              "data" : "penPerson",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "44313716",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "fodselsdato",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "1960-09-01",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "dodsdato",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : " - ",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "barnekull",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : " - ",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "statsborgerskap",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "NOR",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "bosattLand",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "NOR",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "sistMedlITrygden",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : " - ",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "medlemIFolketrygdenSiste3Ar",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "false",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "flyktning",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "false",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "dodAvYrkesskade",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "false",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "over60ArKanIkkeForsorgesSelv",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "false",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "arligPGIMinst1G",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "false",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "artikkel10",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "false",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "overkompUtl",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : " - ",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "antallArUtland",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "skiltesDelAvAvdodesTP",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "-99",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "vernepliktAr",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "sisteGyldigeOpptjeningsAr",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "2024",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ] ],
+            "name" : "Persongrunnlag",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          } ],
+          "name" : "Oversikt",
+          "type" : "TAB"
+        }, {
+          "data" : [ {
+            "cells" : [ [ {
+              "data" : "grunnlagsrolle",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "SOKER",
+              "header" : false,
+              "popoverContent" : [ {
+                "cells" : [ ],
+                "name" : "Ingen Barndetalj",
+                "orientation" : "VERTICAL",
+                "type" : "TABLE"
+              } ],
+              "popoverType" : "DESCRIPTION",
+              "tooltip" : null
+            } ], [ {
+              "data" : "rolleFomDato",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "1960-10-01",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "rolleTomDato",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : " - ",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "sivilstandType",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "UGIF",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "sivilstandRelatertPerson",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : " - ",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "borMed",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : " - ",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "tillegg",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "false",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "bruk",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "true",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "grunnlagKilde",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "TPS",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "serskiltSatsUtenET",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "false",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "epsAvkallEgenPensjon",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "false",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ] ],
+            "name" : "PersonDetaljer",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          } ],
+          "name" : "PersonDetaljer",
+          "type" : "TAB"
+        }, {
+          "data" : [ {
+            "cells" : [ [ {
+              "data" : "poengtillegg",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : " - ",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "fpp_eos",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "fravik_19_3",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : " - ",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "giftFor2011",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "false",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ] ],
+            "name" : "GenerellHistorikk",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Ventetilleggsgrunnlag",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen EosEkstra",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen GarantiTrygdetid",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          } ],
+          "name" : "GenerellHistorikk",
+          "type" : "TAB"
+        }, {
+          "data" : [ {
+            "cells" : [ [ {
+              "data" : "beholdningsType",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "ar",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "formelkode",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "totalbelop",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "PEN_B",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "2026",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : " - ",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "1654773.36",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ] ],
+            "name" : "Pensjonsbeholdning",
+            "orientation" : "HORIZONTAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ [ {
+              "data" : "ar",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "2024",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "opptjeningsgrunnlag",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "545570.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "anvendtOpptjeningsgrunnlag",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "545570.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "arligOpptjening",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "105154.9788700202",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "pSatsOpptjening",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "inntektUtenDagpenger",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "545570.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "dagpenger",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "dagpengerFiskerOgFangstmenn",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "forstegangstjeneste",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "omsorg",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "arligOpptjeningOmsorg",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "arligOpptjeningUtenOmsorg",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ] ],
+            "name" : "Opptjening",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ [ {
+              "data" : "ar",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "pp",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : "Pensjonspoeng"
+            }, {
+              "data" : "0.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "pia",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : "Anvendt pensjonsgivende inntekt"
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "poengtallType",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : " - ",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "pi",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "gv",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "maksUforegrad",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ] ],
+            "name" : "Poengtall",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Lønnsvekst Informasjon",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Uforeopptjening",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Yrkesskadeopptjening",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          } ],
+          "name" : "Pensjonsbeholdning",
+          "type" : "TAB"
+        }, {
+          "data" : [ {
+            "cells" : [ ],
+            "name" : "Ingen Uføregrunnlag",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Yrkesskadegrunnlag",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ [ {
+              "data" : "garantigrad",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "garantigradYrke",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "sistMedlITrygden",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : " - ",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ] ],
+            "name" : "Uførehistorikk",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ [ {
+              "data" : "ufg",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "100",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "uft",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "2023-12-01",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "uforeType",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "UFORE",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "fppGaranti",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "fppGarantiKode",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : " - ",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "redusertAntFppAr",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "redusertAntFppAr_proRata",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "proRataBeregningType",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : " - ",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "virk",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "2025-07-01",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "uftTom",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : " - ",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "ufgFom",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "2023-12-01",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "ufgTom",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : " - ",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "fodselsArYngsteBarn",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "spt",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "spt_proRata",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "opt",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "ypt",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "spt_pa_f92",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "spt_pa_e91",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "proRata_teller",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "proRata_nevner",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "opt_pa_f92",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "opt_pa_e91",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "ypt_pa_f92",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "ypt_pa_e91",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "paa",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "fpp",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "fpp_omregnet",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "spt_eos",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0.0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "spt_pa_e91_eos",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "spt_pa_f92_eos",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "beregningsgrunnlag",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "609508",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "angittUforetidspunkt",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "2023-12-01",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "antattInntektFaktorKap19",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "3.463656269721009",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "antattInntektFaktorKap20",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "4.463656269721009",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ] ],
+            "name" : "Uføreperioder",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          } ],
+          "name" : "Uføre",
+          "type" : "TAB"
+        }, {
+          "data" : [ {
+            "cells" : [ ],
+            "name" : "Ingen AFP Perioder",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          } ],
+          "name" : "AFP Historikk",
+          "type" : "TAB"
+        }, {
+          "data" : [ {
+            "cells" : [ [ {
+              "data" : "ar",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "opptjeningType",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "pi",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "pia",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : "Anvendt pensjonsgivende inntekt"
+            }, {
+              "data" : "pp",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : "Pensjonspoeng"
+            }, {
+              "data" : "maksUforegrad",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "bruk",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "grunnlagKilde",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "2013",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "PPI",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "375858",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "375858",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "3.46",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "true",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "POPP",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "2023",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "PPI",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "518851",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "518851",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "3.46",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "100",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "true",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "POPP",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "2021",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "PPI",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "467416",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "467416",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "3.46",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "true",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "POPP",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "2020",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "PPI",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "450173",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "450173",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "3.46",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "true",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "POPP",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "2019",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "PPI",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "441304",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "441304",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "3.46",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "true",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "POPP",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "2016",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "PPI",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "409496",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "409496",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "3.46",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "true",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "POPP",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "2015",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "PPI",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "399506",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "399506",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "3.46",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "true",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "POPP",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "2014",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "PPI",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "389802",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "389802",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "3.46",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "true",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "POPP",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "2011",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "PPI",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "348272",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "348272",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "3.46",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "true",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "POPP",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "2010",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "PPI",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "333529",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "333529",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "3.46",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "true",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "POPP",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "2012",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "PPI",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "362239",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "362239",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "3.46",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "true",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "POPP",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "2025",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "PPI",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "571866",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "571866",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "3.46",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "100",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "true",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "POPP",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "2024",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "PPI",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "545570",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "545570",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "3.46",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "100",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "true",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "POPP",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "2022",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "PPI",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "490038",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "490038",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "3.46",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "true",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "POPP",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "2018",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "PPI",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "427618",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "427618",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "3.46",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "true",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "POPP",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "2017",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "PPI",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "416374",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "416374",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "3.46",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "0",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "true",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "POPP",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ] ],
+            "name" : "Opptjeningsgrunnlag",
+            "orientation" : "HORIZONTAL",
+            "type" : "TABLE"
+          } ],
+          "name" : "Opptjeningsgrunnlag",
+          "type" : "TAB"
+        }, {
+          "data" : [ {
+            "cells" : [ [ {
+              "data" : "bruker",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "annenPerson",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "kravlinjeType",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "virkningsdato",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "kravFremsattDato",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "44313716",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : " - ",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "UT",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "2025-07-01",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "2024-07-01",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ] ],
+            "name" : "Første Virkningsdato Grunnlag",
+            "orientation" : "HORIZONTAL",
+            "type" : "TABLE"
+          } ],
+          "name" : "Første virkningsdato",
+          "type" : "TAB"
+        }, {
+          "data" : [ {
+            "cells" : [ [ {
+              "data" : "fom",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "tom",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "belop",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "inntektType",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "grunnlagKilde",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "2027-01-01",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "2027-12-31",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "170000",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "FORINTARB",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "SAKSB",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ] ],
+            "name" : "Inntektsgrunnlag",
+            "orientation" : "HORIZONTAL",
+            "type" : "TABLE"
+          } ],
+          "name" : "Inntektsgrunnlag",
+          "type" : "TAB"
+        }, {
+          "data" : [ {
+            "cells" : [ [ {
+              "data" : "fom",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "tom",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "poengIInnAr",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "poengIUtAr",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "land",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "ikkeProRata",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "grunnlagKilde",
+              "header" : true,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ], [ {
+              "data" : "1960-09-01",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "2026-11-18",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "false",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "false",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "NOR",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "false",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            }, {
+              "data" : "TPS",
+              "header" : false,
+              "popoverContent" : null,
+              "popoverType" : "NONE",
+              "tooltip" : null
+            } ] ],
+            "name" : "Boperioder ",
+            "orientation" : "HORIZONTAL",
+            "type" : "TABLE"
+          } ],
+          "name" : "Boperioder ",
+          "type" : "TAB"
+        }, {
+          "data" : [ {
+            "cells" : [ ],
+            "name" : "Ingen Folketrygd ",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Merknader",
+            "orientation" : "HORIZONTAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen EØS Trygdetid ",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Merknader",
+            "orientation" : "HORIZONTAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Nordisk Trygdetid ",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Merknader",
+            "orientation" : "HORIZONTAL",
+            "type" : "TABLE"
+          } ],
+          "name" : "Trygdetid ",
+          "type" : "TAB"
+        }, {
+          "data" : [ {
+            "cells" : [ ],
+            "name" : "Ingen Boperioder kap 20",
+            "orientation" : "HORIZONTAL",
+            "type" : "TABLE"
+          } ],
+          "name" : "Boperioder kap 20",
+          "type" : "TAB"
+        }, {
+          "data" : [ {
+            "cells" : [ ],
+            "name" : "Ingen Folketrygd kap 20",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Merknader",
+            "orientation" : "HORIZONTAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen EØS Trygdetid kap 20",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Merknader",
+            "orientation" : "HORIZONTAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Nordisk Trygdetid kap 20",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Merknader",
+            "orientation" : "HORIZONTAL",
+            "type" : "TABLE"
+          } ],
+          "name" : "Trygdetid kap 20",
+          "type" : "TAB"
+        }, {
+          "data" : [ {
+            "cells" : [ ],
+            "name" : "Ingen Folketrygd Alternativ",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Merknader",
+            "orientation" : "HORIZONTAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen EØS Trygdetid Alternativ",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Merknader",
+            "orientation" : "HORIZONTAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Nordisk Trygdetid Alternativ",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Merknader",
+            "orientation" : "HORIZONTAL",
+            "type" : "TABLE"
+          } ],
+          "name" : "Trygdetid Alternativ",
+          "type" : "TAB"
+        }, {
+          "data" : [ {
+            "cells" : [ ],
+            "name" : "Ingen Trygdeavtale",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Trygdeavtaledetaljer",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Manuelle poengår",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen Utenlandsopphold",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          } ],
+          "name" : "Trygdeavtale",
+          "type" : "TAB"
+        }, {
+          "data" : [ {
+            "cells" : [ ],
+            "name" : "Ingen InstOpphReduksjonsperiode",
+            "orientation" : "HORIZONTAL",
+            "type" : "TABLE"
+          }, {
+            "cells" : [ ],
+            "name" : "Ingen InstOpphFasteUtgifterperiode",
+            "orientation" : "HORIZONTAL",
+            "type" : "TABLE"
+          } ],
+          "name" : "Institusjon",
+          "type" : "TAB"
+        }, {
+          "data" : [ {
+            "cells" : [ ],
+            "name" : "Ingen InngangOgEksportGrunnlag",
+            "orientation" : "VERTICAL",
+            "type" : "TABLE"
+          } ],
+          "name" : "InngangOgEksportgrunnlag",
+          "type" : "TAB"
+        } ],
+        "position" : "SIDE",
+        "type" : "TABLIST"
+      } ],
+      "name" : "SOKER",
+      "type" : "TAB"
+    } ],
+    "position" : "TOP",
+    "type" : "TABLIST"
+  } ],
+  "response" : [ {
+    "data" : [ {
+      "data" : [ {
+        "cells" : [ [ {
+          "data" : "regelverkType",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "G_REG",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "tt",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "40",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "anvendtFlyktningFaktum",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "'Anvendt flyktning' (IKKE_RELEVANT)",
+          "header" : false,
+          "popoverContent" : [ {
+            "children" : [ {
+              "children" : [ {
+                "children" : [ {
+                  "children" : [ {
+                    "children" : [ {
+                      "children" : [ ],
+                      "elementType" : "ARCNODE",
+                      "name" : "JA 'Fortsatt medlem folketrygden' (true) er lik 'true'",
+                      "type" : "ARCNODE",
+                      "used" : true
+                    } ],
+                    "elementType" : "ARCNODE",
+                    "name" : "regel: JA AvklarEksportrettFlyktningRS.EksportrettFlyktning_medlemIFolketrygden",
+                    "type" : "ARCNODE",
+                    "used" : true
+                  } ],
+                  "elementType" : "ARCNODE",
+                  "name" : "'Eksportrett flyktning' (true)",
+                  "type" : "ARCNODE",
+                  "used" : false
+                } ],
+                "elementType" : "ARCNODE",
+                "name" : "JA 'Eksportrett flyktning' (true) er lik 'true'",
+                "type" : "ARCNODE",
+                "used" : true
+              }, {
+                "children" : [ ],
+                "elementType" : "ARCNODE",
+                "name" : "NEI 'Faktisk trygdetid' (40) må være mindre enn '40'",
+                "type" : "ARCNODE",
+                "used" : false
+              }, {
+                "children" : [ {
+                  "children" : [ {
+                    "children" : [ {
+                      "children" : [ {
+                        "children" : [ {
+                          "children" : [ ],
+                          "elementType" : "ARCNODE",
+                          "name" : "NEI 'Angitt flyktning' (false) må være lik 'true'",
+                          "type" : "ARCNODE",
+                          "used" : false
+                        } ],
+                        "elementType" : "ARCNODE",
+                        "name" : "regel: NEI PersonenErFlyktningRS.AngittFlyktning_HarFlyktningFlaggetSatt",
+                        "type" : "ARCNODE",
+                        "used" : false
+                      } ],
+                      "elementType" : "ARCNODE",
+                      "name" : "JA 'Regelreferanse' (AngittFlyktning) ingen [regel: NEI PersonenErFlyktningRS.AngittFlyktning_HarFlyktningFlaggetSatt]",
+                      "type" : "ARCNODE",
+                      "used" : true
+                    } ],
+                    "elementType" : "ARCNODE",
+                    "name" : "regel: JA PersonenErFlyktningRS.AnvendtFlyktning_ikkeRelevant",
+                    "type" : "ARCNODE",
+                    "used" : true
+                  } ],
+                  "elementType" : "ARCNODE",
+                  "name" : "'Er flyktning' (IKKE_RELEVANT)",
+                  "type" : "ARCNODE",
+                  "used" : false
+                } ],
+                "elementType" : "ARCNODE",
+                "name" : "NEI 'Er flyktning' (IKKE_RELEVANT) må være lik 'OPPFYLT'",
+                "type" : "ARCNODE",
+                "used" : false
+              } ],
+              "elementType" : "ARCNODE",
+              "name" : "regel: NEI BeregnSamletTTRS.AnvendtFlyktning_IkkeUføretrygd",
+              "type" : "ARCNODE",
+              "used" : false
+            } ],
+            "elementType" : "ARCNODE",
+            "name" : "'Anvendt flyktning' (IKKE_RELEVANT)",
+            "type" : "ARCNODE",
+            "used" : true
+          } ],
+          "popoverType" : "FAKTUM",
+          "tooltip" : null
+        } ], [ {
+          "data" : "virkFom",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "2027-01-01",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "tt_F67",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "0",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "tt_E66",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "40",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "tt_67_70",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "0",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "tt_67_75",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "0",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "tt_fa_mnd",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "567",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "tt_faktisk",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "567",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "tt_fa",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "år: 47 mnd: 3 dager: 0",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "tt_fa_F2021",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : " - ",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "ftt",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "37",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "ftt_fom",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "2023-12-01",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "ftt_redusert",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "false",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "prorataTellerVKAP",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "0",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "prorataNevnerVKAP",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "0",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "opptjeningsperiode",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : "566",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "garantiType",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        }, {
+          "data" : " - ",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ] ],
+        "name" : "Folketrygd ",
+        "orientation" : "VERTICAL",
+        "type" : "TABLE"
+      }, {
+        "cells" : [ [ {
+          "data" : "flettetTekst",
+          "header" : true,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "For bruker som ikke har hatt opphold i utlandet regnes faktisk trygdetid uavhengig av angitte trygdetidsperioder. Faktisk trygdetid er regnet fra 16 års dato 1976-09-01 til stønadstilfellets inntreden 2023-11-30.",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ], [ {
+          "data" : "Full trygdetid er 40 år",
+          "header" : false,
+          "popoverContent" : null,
+          "popoverType" : "NONE",
+          "tooltip" : null
+        } ] ],
+        "name" : "Merknader",
+        "orientation" : "HORIZONTAL",
+        "type" : "TABLE"
+      }, {
+        "cells" : [ ],
+        "name" : "Ingen EØS Trygdetid ",
+        "orientation" : "VERTICAL",
+        "type" : "TABLE"
+      }, {
+        "cells" : [ ],
+        "name" : "Ingen Merknader",
+        "orientation" : "HORIZONTAL",
+        "type" : "TABLE"
+      }, {
+        "cells" : [ ],
+        "name" : "Ingen Nordisk Trygdetid ",
+        "orientation" : "VERTICAL",
+        "type" : "TABLE"
+      }, {
+        "cells" : [ ],
+        "name" : "Ingen Merknader",
+        "orientation" : "HORIZONTAL",
+        "type" : "TABLE"
+      } ],
+      "name" : "Trygdetid ",
+      "type" : "TAB"
+    }, {
+      "data" : [ {
+        "cells" : [ ],
+        "name" : "Ingen Merknader Kontrollpunkt",
+        "orientation" : "HORIZONTAL",
+        "type" : "TABLE"
+      } ],
+      "name" : "Kontrollpunkt",
+      "type" : "TAB"
+    }, {
+      "data" : [ {
+        "cells" : [ ],
+        "name" : null,
+        "orientation" : "HORIZONTAL",
+        "type" : "TABLE"
+      } ],
+      "name" : "Toggles",
+      "type" : "TAB"
+    } ],
+    "position" : "TOP",
+    "type" : "TABLIST"
+  } ]
+}

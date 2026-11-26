@@ -1,62 +1,51 @@
-import {QueryCache, QueryClient, QueryClientProvider, QueryErrorResetBoundary} from '@tanstack/react-query';
-import './App.css'
-import Navbar from './components/navigation/Navbar.tsx'
+import {QueryCache, QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {Route, Routes} from 'react-router-dom';
-import Wrapper from './components/ui-elements/Wrapper.tsx';
+import {useState} from "react";
+import axios from "axios";
 import ErrorBoundary from './components/error/ErrorBoundary.tsx';
 import ErrorFallback from "./components/error/ErrorFallback.tsx";
-import axios from "axios";
-import DevPreview from "./dev/DevPreview.tsx";
+import AppHeader from "./components/layout/AppHeader.tsx";
+import BeregnPage from "./components/beregn/BeregnPage.tsx";
+import Landing from "./components/beregn/Landing.tsx";
+
+const createQueryClient = () => new QueryClient({
+    queryCache: new QueryCache({
+        onError: (error: unknown) => {
+            console.error("QueryCache error triggered:", error);
+            if (axios.isAxiosError(error) && error.response?.status === 401) {
+                console.warn("Unauthorized access - redirecting to login.");
+            }
+        }
+    }),
+    defaultOptions: {
+        queries: {
+            refetchOnWindowFocus: false,
+            retry: (failureCount, error) => {
+                if (axios.isAxiosError(error) && [401, 500, 502].includes(error.response?.status ?? 0)) {
+                    return failureCount < 1;
+                }
+                return failureCount < 3;
+            }
+        },
+    },
+})
 
 function App() {
-
-    const queryClient = new QueryClient(
-        {
-            queryCache: new QueryCache({
-                onError: (error: unknown) => {
-                    console.error("QueryCache error triggered:", error);
-                    if (axios.isAxiosError(error) && (error.response?.status === 401)) {
-                        console.warn("Unauthorized access - redirecting to login.");
-                    }
-                }
-            }),
-            defaultOptions:
-                {
-                    queries:
-                        {
-                            refetchOnWindowFocus: false,
-                            throwOnError: true,
-                            retry: (failureCount, error) => {
-                                let shouldRetry = true;
-                                console.error("Query retry triggered. Failure count:", failureCount, "Error:", error);
-                                if (axios.isAxiosError(error)
-                                    && (error.response?.status === 401 ||
-                                        error.response?.status === 502 ||
-                                        error.response?.status === 500
-                                    )) {
-                                    shouldRetry = failureCount < 1;
-                                }
-                                return shouldRetry;
-                            }
-                        },
-                },
-        })
+    const [queryClient] = useState(createQueryClient)
 
     return (
         <QueryClientProvider client={queryClient}>
-            <Routes>
-                {import.meta.env.DEV &&
-                    <Route path='/dev/preview' element={<DevPreview/>}></Route>
-                }
-                <Route path='/:id' element={
-                    <QueryErrorResetBoundary>
-                        <ErrorBoundary FallbackComponent={ErrorFallback}>
-                            <Navbar/>
-                            <Wrapper/>
-                        </ErrorBoundary>
-                    </QueryErrorResetBoundary>
-                }></Route>
-            </Routes>
+            <div className="app-shell">
+                <AppHeader/>
+                <main className="app-main">
+                    <ErrorBoundary FallbackComponent={ErrorFallback}>
+                        <Routes>
+                            <Route path="/" element={<Landing/>}/>
+                            <Route path="/:id" element={<BeregnPage/>}/>
+                        </Routes>
+                    </ErrorBoundary>
+                </main>
+            </div>
         </QueryClientProvider>
     )
 }

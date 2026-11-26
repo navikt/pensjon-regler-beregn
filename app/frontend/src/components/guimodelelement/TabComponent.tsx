@@ -1,26 +1,8 @@
-import {useState} from "react";
+import {TabElement} from "@pensjon/domain";
 import {JsonParser} from "./JsonParser.tsx";
-import {TabElement,} from "@pensjon/domain";
 
 interface TabProps {
     tab: TabElement;
 }
 
-export const TabComponent = (tabProps: TabProps)  => {
-    const [tab] = useState(tabProps.tab);
-
-    return (
-        <div>
-            {tab.data.map((element, key) => {
-                return (
-                    <div
-                        key={key}
-                    >
-                        <JsonParser data={element}></JsonParser>
-                    </div>
-                )
-            })}
-        </div>
-    )
-
-}
+export const TabComponent = ({tab}: TabProps) => <JsonParser data={tab.data}/>;
