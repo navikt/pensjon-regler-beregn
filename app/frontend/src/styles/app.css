@@ -1,0 +1,233 @@
+/* Layout og flater for Beregn pensjon. Bruker kun Aksel-tokens (--ax-*), så lyst og mørkt tema fungerer automatisk. */
+
+html, body {
+    margin: 0;
+    background: var(--ax-bg-default);
+}
+
+.app-theme-root {
+    min-height: 100vh;
+}
+
+.app-shell {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+}
+
+.app-main {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    min-width: 0;
+    overflow: auto;
+}
+
+.mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.8125rem;
+}
+
+/* Header-menyer (Miljø / Sats) */
+
+.header-select {
+    gap: var(--ax-space-6);
+}
+
+.header-select-label {
+    opacity: 0.75;
+    font-weight: normal;
+}
+
+.header-select-value {
+    font-weight: 600;
+}
+
+.header-action {
+    gap: var(--ax-space-8);
+}
+
+.header-action:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.menu-hint {
+    color: var(--ax-text-neutral-subtle);
+    font-size: 0.75rem;
+}
+
+/* Beregningssiden */
+
+.beregn-page {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+.page-message {
+    margin: 0 auto;
+}
+
+.context-bar {
+    padding: var(--ax-space-16) var(--ax-space-24) var(--ax-space-12);
+    border-bottom: 1px solid var(--ax-border-neutral-subtleA);
+    background: var(--ax-bg-raised);
+}
+
+.context-main {
+    min-width: 0;
+}
+
+.context-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.context-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ax-space-8) var(--ax-space-32);
+    margin: var(--ax-space-12) 0 0;
+}
+
+.context-meta-item dt {
+    font-size: 0.75rem;
+    color: var(--ax-text-neutral-subtle);
+}
+
+.context-meta-item dd {
+    display: flex;
+    align-items: center;
+    gap: var(--ax-space-2);
+    margin: 0;
+    min-height: 1.75rem;
+    font-weight: 600;
+}
+
+/* Delt visning */
+
+.split-group,
+.split-single {
+    flex: 1;
+    min-height: 0;
+}
+
+.split-single {
+    display: flex;
+}
+
+.split-single > .pane {
+    flex: 1;
+}
+
+.split-separator {
+    width: var(--ax-space-6);
+    background: var(--ax-border-neutral-subtleA);
+    transition: background 120ms;
+    outline: none;
+}
+
+.split-separator:hover,
+.split-separator[data-separator="active"],
+.split-separator:focus-visible {
+    background: var(--ax-border-accent);
+}
+
+.pane {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 0;
+}
+
+.pane-header {
+    padding: var(--ax-space-8) var(--ax-space-24);
+    min-height: 2.75rem;
+    border-bottom: 1px solid var(--ax-border-neutral-subtleA);
+    background: var(--ax-bg-default);
+}
+
+.pane-body {
+    container: pane / inline-size;
+    flex: 1;
+    overflow: auto;
+    padding: var(--ax-space-16) var(--ax-space-24) var(--ax-space-32);
+    transition: opacity 150ms;
+}
+
+.pane-body[data-refreshing] {
+    opacity: 0.55;
+}
+
+.pane-empty {
+    padding: var(--ax-space-16) 0;
+}
+
+.response-error {
+    margin-bottom: var(--ax-space-16);
+}
+
+.response-error-details {
+    margin: var(--ax-space-8) 0 0;
+    padding: var(--ax-space-8) var(--ax-space-12);
+    max-height: 16rem;
+    overflow: auto;
+    font-size: 0.75rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+    border-radius: var(--ax-radius-4);
+    background: var(--ax-bg-sunken);
+    border: 1px solid var(--ax-border-neutral-subtleA);
+}
+
+/* Regel-logg */
+
+.regel-logg-toolbar {
+    margin-bottom: var(--ax-space-12);
+}
+
+.regel-logg {
+    margin: 0;
+    padding: var(--ax-space-8) 0;
+    max-height: 65vh;
+    overflow: auto;
+    border-radius: var(--ax-radius-8);
+    background: var(--ax-bg-sunken);
+    border: 1px solid var(--ax-border-neutral-subtleA);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+}
+
+.regel-logg-line {
+    display: grid;
+    grid-template-columns: 4ch 1fr;
+    gap: var(--ax-space-12);
+    padding: 0 var(--ax-space-16) 0 var(--ax-space-8);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.regel-logg-line[data-level="error"] {
+    color: var(--ax-text-danger);
+    background: var(--ax-bg-danger-soft);
+}
+
+.regel-logg-number {
+    text-align: right;
+    color: var(--ax-text-neutral-subtle);
+    user-select: none;
+}
+
+.landing-input {
+    flex: 1;
+}
+
+@media (max-width: 900px) {
+    .context-bar > div:first-child {
+        flex-wrap: wrap;
+    }
+}

@@ -1,105 +1,80 @@
 import {Button, HelpText, Popover, Table} from "@navikt/ds-react";
-import {CellElement, NodeElement, PopoverType} from "@pensjon/domain";
-import React, {useState} from "react";
+import {CalculatorIcon, InformationSquareIcon} from "@navikt/aksel-icons";
+import {CellElement, PopoverType} from "@pensjon/domain";
+import {useState} from "react";
 import {JsonParser} from "./JsonParser.tsx";
+import {hasPopoverContent} from "../../util/cells.ts";
 
 export interface CellComponentProps {
     cell: CellElement;
+    scope: "col" | "row";
+    // Settes for formelceller som skal ekspanderes inline i tabellen i stedet for i popover.
+    inlineExpanded?: boolean;
+    onToggleInline?: () => void;
 }
 
-const generatePopoverTables = (tables: NodeElement[]): React.ReactNode[] =>
-    (tables ?? []).map((data, k) =>
-        <div key={k}>
-            <JsonParser data={data}></JsonParser>
-        </div>
-    )
+const POPOVER_STYLE: Record<PopoverType, { color: "accent" | "warning" | "neutral"; icon?: React.ReactNode; label: string }> = {
+    [PopoverType.NONE]: {color: "neutral", label: ""},
+    [PopoverType.DESCRIPTION]: {color: "accent", icon: <InformationSquareIcon aria-hidden/>, label: "Vis beskrivelse"},
+    [PopoverType.FORMEL]: {color: "warning", icon: <CalculatorIcon aria-hidden/>, label: "Vis formel"},
+    [PopoverType.FAKTUM]: {color: "neutral", icon: <InformationSquareIcon aria-hidden/>, label: "Vis faktum"},
+};
 
-export const CellComponent = (props: CellComponentProps) => {
+type CellContentProps = Pick<CellComponentProps, "cell" | "inlineExpanded" | "onToggleInline">;
 
-    const [popoverAnchor, setPopoverAnchor] = useState<HTMLButtonElement | null>(null);
+const CellContent = ({cell, inlineExpanded, onToggleInline}: CellContentProps) => {
+    const [anchor, setAnchor] = useState<HTMLButtonElement | null>(null);
     const [open, setOpen] = useState(false);
 
-    const getPopoverColorClass = (item: CellElement) => {
-        if (item.popoverType === PopoverType.DESCRIPTION) {
-            return {'backgroundColor': 'blue'};
-        } else if (item.popoverType === PopoverType.FORMEL) {
-            return {'color': 'orange', 'backgroundColor': 'grey'};
-        } else if (item.popoverType === PopoverType.FAKTUM) {
-            return {'color': 'white', 'backgroundColor': 'grey'};
-        }
-    }
-
-    const createPopover = (item: CellElement) => {
-        if (item.popoverType === PopoverType.NONE || !Array.isArray(item.popoverContent)) {
-            return null;
-        }
-        const popoverDetail: React.ReactNode[] = generatePopoverTables(item.popoverContent);
+    if (!hasPopoverContent(cell)) {
         return (
-            <Popover anchorEl={popoverAnchor}
-                     open={open}
-                     onClose={() => setOpen(false)}
-                     arrow={true}
-                     placement="left"
-                     offset={32}
-                     strategy={"absolute"}>
-                <Popover.Content className={"Popoverscroll"}>
-                    <>{popoverDetail}</>
-                </Popover.Content>
-            </Popover>
+            <span className="gui-cell">
+                {cell.data}
+                {cell.tooltip && <HelpText title={cell.tooltip}>{cell.tooltip}</HelpText>}
+            </span>
         );
     }
 
-    const createTooltip = (item: CellElement) => {
-        if (item && item.tooltip) {
-            return (
-                <HelpText title={item.tooltip}>
-                    {item.tooltip}
-                </HelpText>
-            );
-        } else {
-            return null;
-        }
+    const style = POPOVER_STYLE[cell.popoverType] ?? POPOVER_STYLE[PopoverType.FAKTUM];
+
+    if (onToggleInline) {
+        return (
+            <span className="gui-cell">
+                <Button size="xsmall" variant={inlineExpanded ? "primary" : "secondary"} data-color={style.color}
+                        icon={style.icon} iconPosition="right"
+                        aria-expanded={!!inlineExpanded}
+                        aria-label={`${cell.data} – ${inlineExpanded ? "skjul formel" : style.label.toLowerCase()}`}
+                        onClick={onToggleInline}>
+                    {cell.data}
+                </Button>
+                {cell.tooltip && <HelpText title={cell.tooltip}>{cell.tooltip}</HelpText>}
+            </span>
+        );
     }
 
-    const createCell = (cell: CellElement) => {
-        const tooltip = createTooltip(cell);
-        const popOver = createPopover(cell);
-        const data = cell.popoverType !== PopoverType.NONE
-            ? <Button
-                ref={setPopoverAnchor}
-                onClick={() => setOpen(!open)}
-                size="xsmall"
-                style={getPopoverColorClass(cell)}>
+    return (
+        <span className="gui-cell">
+            <Button ref={setAnchor} size="xsmall" variant="secondary" data-color={style.color}
+                    icon={style.icon} iconPosition="right"
+                    aria-expanded={open} aria-label={`${cell.data} – ${style.label.toLowerCase()}`}
+                    onClick={() => setOpen((value) => !value)}>
                 {cell.data}
             </Button>
-            : cell.data;
+            {cell.tooltip && <HelpText title={cell.tooltip}>{cell.tooltip}</HelpText>}
+            <Popover anchorEl={anchor} open={open} onClose={() => setOpen(false)} placement="bottom-start">
+                <Popover.Content className="gui-popover">
+                    <JsonParser data={cell.popoverContent}/>
+                </Popover.Content>
+            </Popover>
+        </span>
+    );
+};
 
-        return {tooltip, data, popOver};
+export const CellComponent = ({cell, scope, inlineExpanded, onToggleInline}: CellComponentProps) => {
+    if (!cell) return <Table.DataCell/>;
+    const content = <CellContent cell={cell} inlineExpanded={inlineExpanded} onToggleInline={onToggleInline}/>;
+    if (cell.header) {
+        return <Table.HeaderCell scope={scope} textSize="small">{content}</Table.HeaderCell>;
     }
-
-    if (!props.cell) {
-        return null;
-    }
-
-    if (props.cell.header) {
-        const {tooltip, data, popOver} = createCell(props.cell);
-        return <Table.HeaderCell align={"left"}>
-            { tooltip ?
-                <span style={{ display: 'flex', alignItems: 'center' }}>
-                {data} {tooltip} {popOver}
-                </span>
-                :
-                <div>
-                    {data} {popOver}
-                </div>
-            }
-        </Table.HeaderCell>
-    }
-
-    const {tooltip, data, popOver} = createCell(props.cell);
-    return <Table.DataCell align={"left"}>
-        {data}
-        {tooltip}
-        {popOver}
-    </Table.DataCell>
+    return <Table.DataCell textSize="small">{content}</Table.DataCell>;
 };
