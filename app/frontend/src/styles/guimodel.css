@@ -1,0 +1,376 @@
+/* Rekursive GuiModel-elementer (tabeller, faner, trær og formler). */
+
+.gui-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ax-space-20);
+    min-width: 0;
+}
+
+/* Tabeller */
+
+.gui-table {
+    min-width: 0;
+}
+
+.gui-table-title {
+    margin-bottom: var(--ax-space-8);
+}
+
+.gui-table-empty {
+    margin: 0;
+    padding: var(--ax-space-4) var(--ax-space-12);
+    border-left: 2px solid var(--ax-border-neutral-subtle);
+    color: var(--ax-text-neutral-subtle);
+    font-size: 0.875rem;
+}
+
+/* Sammenhengende tomme tabeller tettere sammen */
+.gui-table-empty + .gui-table-empty {
+    margin-top: calc(var(--ax-space-4) - var(--ax-space-20));
+}
+
+.gui-table-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--ax-border-neutral-subtleA);
+    border-radius: var(--ax-radius-8);
+}
+
+.gui-table-scroll table {
+    width: 100%;
+}
+
+.gui-table-scroll tr:last-child > * {
+    border-bottom: none;
+}
+
+.gui-table-scroll th[scope="row"] {
+    width: 1%;
+    white-space: nowrap;
+    color: var(--ax-text-neutral-subtle);
+    font-weight: 600;
+}
+
+.gui-cell {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ax-space-6);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.gui-cell button {
+    white-space: nowrap;
+}
+
+/* Sumrad sist i horisontale tabeller (første celle er tom) */
+.gui-table-scroll .gui-sum-row > * {
+    font-weight: 600;
+    border-top: 2px solid var(--ax-border-neutral);
+    background: var(--ax-bg-neutral-soft);
+}
+
+/* Formel ekspandert inline under raden */
+.gui-table-scroll .gui-formel-row > td {
+    background: var(--ax-bg-warning-soft);
+    border-left: 3px solid var(--ax-border-warning);
+    padding: var(--ax-space-12) var(--ax-space-16);
+    white-space: normal;
+}
+
+.gui-formel-inline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ax-space-8);
+    max-width: 60rem;
+}
+
+.gui-formel-inline-label {
+    font-size: var(--ax-font-size-small);
+    font-weight: 600;
+    color: var(--ax-text-warning-subtle);
+}
+
+.gui-popover {
+    max-width: min(48rem, 80vw);
+    max-height: 60vh;
+    overflow: auto;
+}
+
+/* Faner */
+
+.gui-tabs-panel {
+    padding-top: var(--ax-space-16);
+}
+
+.side-tabs {
+    display: grid;
+    grid-template-columns: minmax(8rem, max-content) minmax(0, 1fr);
+    gap: var(--ax-space-16);
+}
+
+.side-tabs-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ax-space-2);
+    border-right: 1px solid var(--ax-border-neutral-subtleA);
+    padding-right: var(--ax-space-8);
+}
+
+.side-tab {
+    all: unset;
+    box-sizing: border-box;
+    padding: var(--ax-space-6) var(--ax-space-12);
+    border-radius: var(--ax-radius-4);
+    cursor: pointer;
+    color: var(--ax-text-neutral-subtle);
+    font-size: 0.875rem;
+    white-space: nowrap;
+    box-shadow: inset 3px 0 0 transparent;
+}
+
+.side-tab:hover {
+    background: var(--ax-bg-neutral-softA);
+    color: var(--ax-text-neutral);
+}
+
+.side-tab[aria-selected="true"] {
+    background: var(--ax-bg-accent-softA);
+    color: var(--ax-text-accent);
+    font-weight: 600;
+    box-shadow: inset 3px 0 0 var(--ax-border-accent);
+}
+
+.side-tab:focus-visible {
+    outline: 2px solid var(--ax-border-accent);
+    outline-offset: 1px;
+}
+
+.side-tabs-panel {
+    min-width: 0;
+}
+
+/* Beregningstre */
+
+.calc-tree {
+    display: grid;
+    grid-template-columns: minmax(12rem, 16rem) minmax(0, 1fr);
+    border: 1px solid var(--ax-border-neutral-subtleA);
+    border-radius: var(--ax-radius-8);
+    overflow: hidden;
+}
+
+.calc-tree-nav {
+    background: var(--ax-bg-sunken);
+    border-right: 1px solid var(--ax-border-neutral-subtleA);
+    padding: var(--ax-space-8);
+    overflow: auto;
+    max-height: 70vh;
+}
+
+.calc-tree-nav-header {
+    padding: var(--ax-space-4) var(--ax-space-4) var(--ax-space-8);
+    color: var(--ax-text-neutral-subtle);
+}
+
+.calc-tree-list,
+.calc-tree-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tree-row {
+    display: flex;
+    align-items: center;
+    gap: var(--ax-space-2);
+    border-radius: var(--ax-radius-4);
+    font-size: 0.875rem;
+}
+
+.tree-row:hover {
+    background: var(--ax-bg-neutral-softA);
+}
+
+.tree-row[data-selected] {
+    background: var(--ax-bg-accent-softA);
+    box-shadow: inset 3px 0 0 var(--ax-border-accent);
+}
+
+.tree-row[data-selected] .tree-label {
+    color: var(--ax-text-accent);
+    font-weight: 600;
+}
+
+.tree-row[data-used="false"] .tree-label {
+    color: var(--ax-text-neutral-subtle);
+}
+
+.tree-toggle,
+.tree-label {
+    all: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.tree-toggle {
+    display: grid;
+    place-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: var(--ax-radius-4);
+    color: var(--ax-text-neutral-subtle);
+}
+
+.tree-toggle-spacer {
+    width: 1.5rem;
+    flex: none;
+}
+
+.tree-label {
+    flex: 1;
+    min-width: 0;
+    padding: var(--ax-space-4) var(--ax-space-6);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--ax-text-neutral);
+}
+
+.tree-toggle:focus-visible,
+.tree-label:focus-visible {
+    outline: 2px solid var(--ax-border-accent);
+    outline-offset: -2px;
+}
+
+.tree-unused {
+    flex: none;
+    margin: 0 var(--ax-space-6);
+    white-space: nowrap;
+    padding: 0 var(--ax-space-4);
+    border-radius: var(--ax-radius-4);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--ax-text-danger);
+    background: var(--ax-bg-danger-soft);
+    vertical-align: middle;
+}
+
+.calc-tree-content {
+    padding: var(--ax-space-16) var(--ax-space-20);
+    min-width: 0;
+    background: var(--ax-bg-default);
+}
+
+.calc-tree-title {
+    margin-bottom: var(--ax-space-12);
+}
+
+@container pane (max-width: 1000px) {
+    .calc-tree {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .calc-tree-nav {
+        border-right: none;
+        border-bottom: 1px solid var(--ax-border-neutral-subtleA);
+        max-height: 18rem;
+    }
+}
+
+.gui-tabs [role="tab"] {
+    white-space: nowrap;
+}
+
+/* Regelflyt (ArcNode) */
+
+.arc-legend {
+    margin-bottom: var(--ax-space-8);
+}
+
+.arc-root,
+.arc-root ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.arc-root ul {
+    margin-left: 0.6rem;
+    padding-left: var(--ax-space-16);
+    border-left: 1px solid var(--ax-border-neutral-subtleA);
+}
+
+.arc-node {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ax-space-6);
+    padding: var(--ax-space-2) 0;
+    font-size: 0.875rem;
+}
+
+.arc-node[data-used="true"] .arc-icon {
+    color: var(--ax-text-success-decoration);
+}
+
+.arc-node[data-used="false"] {
+    color: var(--ax-text-neutral-subtle);
+}
+
+.arc-node[data-used="false"] .arc-icon {
+    color: var(--ax-text-danger);
+}
+
+.arc-icon {
+    flex: none;
+    font-size: 1.125rem;
+}
+
+/* Formler */
+
+.formel-tree {
+    font-size: 0.875rem;
+}
+
+.formel-card {
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--ax-space-2);
+    padding: var(--ax-space-8) var(--ax-space-12);
+    border: 1px solid var(--ax-border-neutral-subtleA);
+    border-left: 3px solid var(--ax-border-warning);
+    border-radius: var(--ax-radius-8);
+    background: var(--ax-bg-raised);
+    min-width: 16rem;
+}
+
+.formel-name {
+    font-weight: 600;
+}
+
+.formel-notasjon {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.8125rem;
+    color: var(--ax-text-accent);
+}
+
+.formel-calc {
+    color: var(--ax-text-neutral-subtle);
+    font-variant-numeric: tabular-nums;
+}
+
+.formel-calc strong {
+    color: var(--ax-text-neutral);
+}
+
+.formel-children {
+    list-style: none;
+    margin: var(--ax-space-8) 0 0 var(--ax-space-12);
+    padding-left: var(--ax-space-16);
+    border-left: 1px dashed var(--ax-border-neutral-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: var(--ax-space-8);
+}

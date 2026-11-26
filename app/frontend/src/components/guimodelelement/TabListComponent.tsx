@@ -1,115 +1,76 @@
-import React, {useState} from "react";
+import React, {useId, useRef, useState} from "react";
+import {Tabs} from "@navikt/ds-react";
+import {Position, TabListElement} from "@pensjon/domain";
 import {JsonParser} from "./JsonParser.tsx";
-import {Tabs} from '@navikt/ds-react';
-import './css/TabList.css'
-import {Position, TableElement, TabListElement} from "@pensjon/domain";
 
 export interface TabListProps {
     tabs: TabListElement;
 }
 
-export function TabListComponent(props: TabListProps): React.ReactElement {
+const tabLabel = (name: string | undefined, index: number) => name?.trim() || `Fane ${index + 1}`;
 
-    const [tabs] = useState(props.tabs);
-    const position = tabs.position;
-    const [value, setValue] = useState(tabs?.data[0]?.name)
-    const [sideTabValue, setSideTabValue] = useState(tabs?.data[0]?.name + '0');
+const SideTabs = ({tabs}: TabListProps) => {
+    const [selected, setSelected] = useState(0);
+    const buttons = useRef<(HTMLButtonElement | null)[]>([]);
+    const idPrefix = useId();
 
-    const onHandleChange = (newValue: string) => {
-        setValue(newValue);
-        setSideTabValue(tabs?.data[0]?.name + '0');
-    }
+    const onKeyDown = (event: React.KeyboardEvent, index: number) => {
+        const delta = event.key === "ArrowDown" ? 1 : event.key === "ArrowUp" ? -1 : 0;
+        if (!delta) return;
+        event.preventDefault();
+        const next = (index + delta + tabs.data.length) % tabs.data.length;
+        setSelected(next);
+        buttons.current[next]?.focus();
+    };
 
-    switch (position) {
-        case Position.TOP:
-            return (
-                <>
-                    <Tabs value={value} onChange={onHandleChange} size="small">
-                        <Tabs.List>
-                            {tabs.data.map((tab, key) => {
-
-                                return (
-                                    <Tabs.Tab as={"button"}
-                                              style={{
-                                                  backgroundColor: value === tab.name? "white" : "#a8a1a6",
-                                                  borderLeft: '1px solid grey',
-                                                  borderRight: '1px solid grey',
-                                                  borderTop: '1px solid grey',
-                                                  borderBottom: value === tab.name? "" : "1px solid grey",
-                                                  borderRadius: '10px 10px 1px 1px',
-                                                  width: '200px',
-                                                  height: '50px',
-                                                  overflow: 'hidden'
-                                              }}
-
-                                              value={tab.name}
-                                              label={tab.name}
-                                              key={tab.name + key}
-                                              id={tab.name + '-tab'}
-                                              aria-controls={tab.name + '-panel'}
-                                    >
-                                        {tab.name}
-                                    </Tabs.Tab>
-                                )
-                            })}
-                        </Tabs.List>
-                    </Tabs>
-                    {tabs.data.map((tab, key) => {
-                        return (
-                            <div
-                                role="tabpanel"
-                                hidden={value !== tab.name}
-                                aria-labelledby={tab.name + '-tab'}
-                                key={tab.name + key}
-                                id={tab.name + key}
-                            >
-                                <JsonParser data={tab.data as TableElement[]} key={tab.name + key}/>
-                            </div>
-                        )
-                    })}
-                </>
-            );
-        case Position.SIDE:
-            return (
-                <div className='sidetab-container'>
-                    <div className="sidetab-menu-container">
-                        {tabs.data.map((tab, key) => {
-                            return (
-                                <div
-                                    className="sidetab-button"
-                                    onClick={() => setSideTabValue(tab.name + key)}
-                                    style={{
-                                        backgroundColor: sideTabValue === tab.name + key ? "white" : "#a8a1a6",
-                                        borderBottom: sideTabValue === tab.name + key ? "" : "1px solid grey",
-                                        color: sideTabValue === tab.name + key ? "black" : "lightslategrey",
-                                    }}
-                                    key={tab.name + key}
-                                    id={tab.name + key}
-                                    aria-controls={tab.name + '-panel'}
-                                >
-                                    <span className="sidetab-button-text">{tab.name}</span>
-                                </div>
-                            )
-                        })}
-                    </div>
-                    <div className='sidetab-content-container'>
-                        {tabs.data.map((tab, key) => {
-                            return (
-                                <div
-                                    role="tabpanel"
-                                    hidden={sideTabValue !== tab.name + key}
-                                    aria-labelledby={tab.name + '-tab'}
-                                    key={tab.name + key}
-                                    id={tab.name + key}>
-                                    <JsonParser
-                                        data={tab.data as TableElement[]} key={tab.name+key}/>
-                                </div>
-                            )
-                        })}
-                    </div>
+    return (
+        <div className="side-tabs">
+            <div role="tablist" aria-orientation="vertical" aria-label={tabs.name} className="side-tabs-list">
+                {tabs.data.map((tab, index) => (
+                    <button key={index}
+                            ref={(el) => {
+                                buttons.current[index] = el;
+                            }}
+                            type="button"
+                            role="tab"
+                            id={`${idPrefix}-tab-${index}`}
+                            aria-selected={selected === index}
+                            aria-controls={`${idPrefix}-panel-${index}`}
+                            tabIndex={selected === index ? 0 : -1}
+                            className="side-tab"
+                            onClick={() => setSelected(index)}
+                            onKeyDown={(event) => onKeyDown(event, index)}>
+                        {tabLabel(tab.name, index)}
+                    </button>
+                ))}
+            </div>
+            {tabs.data.map((tab, index) => (
+                <div key={index}
+                     role="tabpanel"
+                     id={`${idPrefix}-panel-${index}`}
+                     aria-labelledby={`${idPrefix}-tab-${index}`}
+                     hidden={selected !== index}
+                     className="side-tabs-panel">
+                    {selected === index && <JsonParser data={tab.data}/>}
                 </div>
-            );
-        default:
-            throw new Error("Unsupported position")
-    }
+            ))}
+        </div>
+    );
+};
+
+export function TabListComponent({tabs}: TabListProps): React.ReactElement {
+    if (tabs.position === Position.SIDE) return <SideTabs tabs={tabs}/>;
+
+    return (
+        <Tabs defaultValue="0" size="small" className="gui-tabs">
+            <Tabs.List>
+                {tabs.data.map((tab, index) => <Tabs.Tab key={index} value={String(index)} label={tabLabel(tab.name, index)}/>)}
+            </Tabs.List>
+            {tabs.data.map((tab, index) => (
+                <Tabs.Panel key={index} value={String(index)} className="gui-tabs-panel">
+                    <JsonParser data={tab.data}/>
+                </Tabs.Panel>
+            ))}
+        </Tabs>
+    );
 }
