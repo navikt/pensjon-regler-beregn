@@ -81,8 +81,8 @@ importers:
         specifier: ^8.23.1
         version: 8.23.1
       '@navikt/ds-react':
-        specifier: ^8.23.0
-        version: 8.23.0(@types/react@19.2.18)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^8.23.1
+        version: 8.23.1(@types/react@19.2.18)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@pensjon/domain':
         specifier: workspace:*
         version: link:../shared/domain
@@ -586,18 +586,15 @@ packages:
   '@navikt/ds-css@8.23.1':
     resolution: {integrity: sha512-8pHnprrJvpkXcT06K9GZ7qSlIVmdAwmhSrXesXw/ac+8J36PGUy3XPLE0RjARMVlhbgPfqxM9nynAh7ZdKFZ2A==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/8.23.1/6bde9b8856d4a733e02df5fca8d034fc0551e687}
 
-  '@navikt/ds-react@8.23.0':
-    resolution: {integrity: sha512-tTD8PgqQTlCh5xovdKneM8l62Jy7KswP+N2WNKs1U5JvO8ruwZ9X6oROJKHdOzkEdXvWPAP8Y67qNws2+si1Eg==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/8.23.0/2719a502c207c16a55528c580b2d5fc88697d0b1}
+  '@navikt/ds-react@8.23.1':
+    resolution: {integrity: sha512-VjyBxOSKkvJfsewW/NL/O3PpwiAgcO3gil3S881UeQKpBqfw/eNZzQHpTk3DCm8/G45uhPtHWVRGdnMwnXnSlQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/8.23.1/3542d53cf505c65151bd2a89090b2d7200c73f0d}
     peerDependencies:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: 19.3.1
       react-dom: 19.3.1
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
 
-  '@navikt/ds-tokens@8.23.0':
-    resolution: {integrity: sha512-+GXKDpfZixeCblvKJEnSG1/vlZp27xjqX6NNhzs0442Y1jGuEadGUJ+nxndYpmgZ4QcZCE2VEsKvluXctfHVYA==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.23.0/569a10706977258093e2ecf396f29884b03562f9}
+  '@navikt/ds-tokens@8.23.1':
+    resolution: {integrity: sha512-iGu3qUgsYnj22cMJWiTgKcFUfquZS9kKHLK3mW0BCToyetlCT9kWulVttW0/e1xjLK06DI7kaOIJuZryy9SwGw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.23.1/6521a0934c33893be932c2f0bfdaf2969f8b959c}
 
   '@navikt/oasis@4.2.3':
     resolution: {integrity: sha512-y9jzWKAxhZZvbj6xPKSOTJMfd4Vu4raQtPheeynSFokdxFwuoo3nH7khuB/F4HKjyYeR9UYZomfnjwIjuo81OQ==, tarball: https://npm.pkg.github.com/download/@navikt/oasis/4.2.3/2b6f6ff6ac6c82e6ea93f5ec4e041cf5a93b4302}
@@ -2768,20 +2765,19 @@ snapshots:
 
   '@navikt/ds-css@8.23.1': {}
 
-  '@navikt/ds-react@8.23.0(@types/react@19.2.18)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@navikt/ds-react@8.23.1(@types/react@19.2.18)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@floating-ui/react': 0.27.20(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@floating-ui/react-dom': 2.1.9(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@navikt/aksel-icons': 8.23.1
-      '@navikt/ds-tokens': 8.23.0
+      '@navikt/ds-tokens': 8.23.1
+      '@types/react': 19.2.18
       date-fns: 4.4.0
       react: 19.3.1
       react-day-picker: 10.0.2(@types/react@19.2.18)(react@19.3.1)
       react-dom: 19.3.1(react@19.3.1)
-    optionalDependencies:
-      '@types/react': 19.2.18
 
-  '@navikt/ds-tokens@8.23.0': {}
+  '@navikt/ds-tokens@8.23.1': {}
 
   '@navikt/oasis@4.2.3':
     dependencies:
